@@ -1,0 +1,235 @@
+.menu-overlay {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  width: 420px;
+  max-width: calc(100vw - 48px);
+}
+
+.nav-pill {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+  background: rgba(245, 245, 245, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 200px;
+  padding: 6px 6px 6px 20px;
+  width: 100%;
+}
+
+.nav-logo img {
+  height: 32px;
+  display: block;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #f5f5f5;
+  text-decoration: none;
+  font-family: 'Hepta Slab', serif;
+  font-size: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #d9d9d9;
+  border-radius: 2px;
+}
+
+/* X close icon */
+.close-icon {
+  position: relative;
+  width: 22px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-icon span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #d9d9d9;
+  border-radius: 2px;
+  position: absolute;
+}
+
+.close-icon span:first-child {
+  transform: rotate(35deg);
+}
+
+.close-icon span:last-child {
+  transform: rotate(-35deg);
+}
+
+.nav-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.nav-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+/* ── Menu panel ──────────────────────────────── */
+.menu-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-topbar {
+  padding: 0;
+}
+
+.menu-overlay.is-open .menu-panel {
+  background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04)),
+              #1a1a1a;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 40px;
+  padding-bottom: 32px;
+}
+
+/* Override pill bg inside open panel so it reads against dark bg */
+.menu-overlay.is-open .nav-pill {
+  background: rgba(245, 245, 245, 0.15);
+}
+
+/* Content hidden by default */
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 0 20px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s ease;
+}
+
+.menu-overlay.is-open .menu-content {
+  max-height: calc(100vh - 100px);
+  opacity: 1;
+  pointer-events: all;
+  padding: 20px 20px 0;
+  overflow-y: auto;
+}
+
+/* Panel content */
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 0 20px;
+}
+
+.menu-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(240, 238, 238, 0.2);
+}
+
+.menu-section--last {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.menu-label {
+  font-family: 'Hepta Slab', serif;
+  font-size: 20px;
+  color: rgba(245, 245, 245, 0.5);
+  line-height: 1.5;
+}
+
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.menu-link {
+  font-family: 'Instrument Serif', serif;
+  font-size: 40px;
+  line-height: 48px;
+  color: rgba(245, 245, 245, 0.6);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.menu-link:hover {
+  color: #f5f5f5;
+}
+
+.menu-link.active {
+  color: #f5f5f5;
+  border-bottom: 2px dashed #fff;
+  display: inline-block;
+}
+
+.menu-resume {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.menu-resume-link {
+  font-family: 'Instrument Serif', serif;
+  font-size: 40px;
+  line-height: 48px;
+  color: #f5f5f5;
+  text-decoration: none;
+}
+
+.menu-socials {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .nav-pill {
+    gap: 24px;
+  }
+
+  .menu-panel {
+    max-width: 100%;
+  }
+}

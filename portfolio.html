@@ -13,33 +13,14 @@
 
 <body>
 
-  <!-- Navbar -->
-  <header class="nav-wrap">
-    <nav class="nav-pill">
-      <div class="nav-logo">
-        <img src="image/Ola..svg" alt="Ola." />
-      </div>
-      <div class="nav-right">
-        <a href="#" class="nav-menu">
-          <span class="nav-hamburger">
-            <span></span>
-            <span></span>
-          </span>
-          Menu
-        </a>
-        <button class="nav-btn" aria-label="Toggle theme">
-          <img src="https://www.figma.com/api/mcp/asset/b4b643ae-742f-4e08-84f5-c5fec77f4465" alt="" />
-        </button>
-      </div>
-    </nav>
-  </header>
+  <div id="nav-component"></div>
 
   <main class="main-wrap">
 
     <!-- Hero -->
     <section class="hero">
       <div class="hero-avatar">
-        <img src="https://www.figma.com/api/mcp/asset/73ebc305-3714-4848-939d-0cb45dac7260" alt="Sulaimon Odeniran" />
+        <img src="image/Me.jpg" alt="Sulaimon Odeniran" />
       </div>
       <div class="hero-text">
         <h1 class="hero-heading">
@@ -63,94 +44,50 @@
   <section class="carousel-wrap">
     <div class="carousel-track">
       <div class="work-card">
-        <img src="https://www.figma.com/api/mcp/asset/2387fbfd-2c69-43b8-bf2b-5a756d3a2ebb" alt="Project 1" />
+        <img src="image/Work card 1.jpg" alt="Project 1" />
       </div>
       <div class="work-card">
-        <img src="https://www.figma.com/api/mcp/asset/2387fbfd-2c69-43b8-bf2b-5a756d3a2ebb" alt="Project 2" />
+        <img src="image/Work card 1.jpg" alt="Project 2" />
       </div>
       <div class="work-card">
-        <img src="https://www.figma.com/api/mcp/asset/2387fbfd-2c69-43b8-bf2b-5a756d3a2ebb" alt="Project 3" />
+        <img src="image/Work card 1.jpg" alt="Project 3" />
       </div>
       <div class="work-card">
-        <img src="https://www.figma.com/api/mcp/asset/2387fbfd-2c69-43b8-bf2b-5a756d3a2ebb" alt="Project 4" />
+        <img src="image/Work card 1.jpg" alt="Project 4" />
       </div>
       <!-- duplicate set for seamless loop -->
       <div class="work-card" aria-hidden="true">
-        <img src="https://www.figma.com/api/mcp/asset/2387fbfd-2c69-43b8-bf2b-5a756d3a2ebb" alt="" />
+        <img src="image/Work card 1.jpg" alt="" />
       </div>
       <div class="work-card" aria-hidden="true">
-        <img src="https://www.figma.com/api/mcp/asset/2387fbfd-2c69-43b8-bf2b-5a756d3a2ebb" alt="" />
+        <img src="image/Work card 1.jpg" alt="" />
       </div>
       <div class="work-card" aria-hidden="true">
-        <img src="https://www.figma.com/api/mcp/asset/2387fbfd-2c69-43b8-bf2b-5a756d3a2ebb" alt="" />
+        <img src="image/Work card 1.jpg" alt="" />
       </div>
       <div class="work-card" aria-hidden="true">
-        <img src="https://www.figma.com/api/mcp/asset/2387fbfd-2c69-43b8-bf2b-5a756d3a2ebb" alt="" />
+        <img src="image/Work card 1.jpg" alt="" />
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-inner">
+  <div id="footer-component"></div>
 
-      <div class="footer-touch">
-        <h2 class="footer-heading">Get in touch</h2>
-        <img src="https://www.figma.com/api/mcp/asset/85f00072-aec1-4dca-9ad3-4fe1a217e864" alt="→"
-          class="footer-arrow" />
-      </div>
+  <script src="components/footer/footer.js"></script>
+  <script src="components/nav/nav.js"></script>
+  <script>
+    function loadComponent(id, path, callback) {
+      fetch(path)
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById(id).innerHTML = html;
+          if (callback) callback();
+        });
+    }
 
-      <div class="footer-cols">
-        <div class="footer-col">
-          <p>Ola (Sulaimon Odeniran)</p>
-          <p>Lagos (Nigeria)</p>
-          <p>18:40 (WAT, GMT+1)</p>
-        </div>
-
-        <div class="footer-col">
-          <p class="col-label">Navigation</p>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Work</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Articles (soon)</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <p class="col-label">Services</p>
-          <ul>
-            <li>Website Design &amp; Dev</li>
-            <li>App Design</li>
-            <li>Web App Design</li>
-            <li>Brand Identity Design</li>
-            <li>Web App Design</li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <p class="col-label">Accepting New Projects</p>
-          <ul>
-            <li>
-              <a href="mailto:odeniransulaimon18@gmail.com" class="footer-link">
-                Send an Email
-                <img src="https://www.figma.com/api/mcp/asset/cb2b0115-5659-4d0a-bc2c-d41231768bcc" alt="" />
-              </a>
-            </li>
-            <li>
-              <a href="#" class="footer-link">
-                Schedule a Call
-                <img src="https://www.figma.com/api/mcp/asset/cb2b0115-5659-4d0a-bc2c-d41231768bcc" alt="" />
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </footer>
+    loadComponent('nav-component', 'components/nav/nav.html', initNav);
+    loadComponent('footer-component', 'components/footer/footer.html', startWATClock);
+  </script>
 
 </body>
 
