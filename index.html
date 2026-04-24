@@ -32,121 +32,7 @@
       z-index: 0;
     }
 
-    /* CSS cranes */
-    .cranes {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-    }
 
-    .crane {
-      position: absolute;
-      bottom: 0;
-    }
-
-    /* Left crane */
-    .crane-left {
-      left: 8%;
-    }
-
-    .crane-left .mast {
-      width: 12px;
-      height: 340px;
-      background: linear-gradient(90deg, #c8a84b, #e8c860, #c8a84b);
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .crane-left .boom {
-      width: 200px;
-      height: 10px;
-      background: linear-gradient(180deg, #c8a84b, #e8c860);
-      position: absolute;
-      bottom: 340px;
-      left: calc(50% - 20px);
-    }
-
-    .crane-left .cable {
-      width: 2px;
-      height: 80px;
-      background: #999;
-      position: absolute;
-      bottom: 260px;
-      left: calc(50% + 160px);
-    }
-
-    /* Right crane */
-    .crane-right {
-      right: 10%;
-    }
-
-    .crane-right .mast {
-      width: 10px;
-      height: 260px;
-      background: linear-gradient(90deg, #c8a84b, #e8c860, #c8a84b);
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .crane-right .boom {
-      width: 160px;
-      height: 8px;
-      background: linear-gradient(180deg, #c8a84b, #e8c860);
-      position: absolute;
-      bottom: 260px;
-      right: calc(50% - 20px);
-    }
-
-    .crane-right .cable {
-      width: 2px;
-      height: 60px;
-      background: #999;
-      position: absolute;
-      bottom: 200px;
-      right: calc(50% + 120px);
-    }
-
-    /* Building under construction */
-    .building {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 280px;
-      z-index: 1;
-    }
-
-    .floor {
-      height: 28px;
-      border: 2px solid #bbb;
-      background: rgba(200, 210, 220, 0.5);
-      margin-bottom: 2px;
-      display: flex;
-      gap: 4px;
-      padding: 3px;
-    }
-
-    .floor-col {
-      flex: 1;
-      background: rgba(160, 180, 200, 0.3);
-      border: 1px solid #ccc;
-    }
-
-    /* Ground */
-    .ground {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-      background: linear-gradient(180deg, #b8c8a0 0%, #9ab080 100%);
-      z-index: 2;
-    }
 
     /* Content */
     .content {
@@ -217,6 +103,36 @@
 
     .btn .arrow {
       font-size: 1.1rem;
+    }
+
+    @media (max-width: 600px) {
+      .content {
+        padding: 16px;
+      }
+
+      .logo {
+        font-size: 0.95rem;
+      }
+
+      .logo-img {
+        width: 40px;
+        height: 40px;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 10vw, 3rem);
+        letter-spacing: 0.5px;
+      }
+
+      p {
+        font-size: 0.9rem;
+        max-width: 90vw;
+      }
+
+      .btn {
+        padding: 12px 22px;
+        font-size: 0.875rem;
+      }
     }
   </style>
 </head>
