@@ -1,11 +1,40 @@
 function initNav() {
-  const overlay      = document.getElementById('menu-overlay');
-  const toggleBtn    = document.getElementById('menu-toggle');
-  const hamburger    = document.getElementById('hamburger-icon');
-  const closeIcon    = document.getElementById('close-icon');
-  const menuLabel    = document.getElementById('menu-label');
+  const overlay    = document.getElementById('menu-overlay');
+  const toggleBtn  = document.getElementById('menu-toggle');
+  const hamburger  = document.getElementById('hamburger-icon');
+  const closeIcon  = document.getElementById('close-icon');
+  const menuLabel  = document.getElementById('menu-label');
+  const themeBtns  = document.querySelectorAll('.nav-btn[aria-label="Toggle theme"]');
 
   if (!overlay || !toggleBtn) return;
+
+  // Theme toggle
+  const SUN_ICON  = 'image/Icons/Sun.svg';
+  const MOON_ICON = 'image/Icons/Moon.svg';
+
+  function applyTheme(theme) {
+    const isLight = theme === 'light';
+    if (isLight) {
+      document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+    themeBtns.forEach(btn => {
+      const img = btn.querySelector('img');
+      if (img) img.src = isLight ? MOON_ICON : SUN_ICON;
+    });
+    localStorage.setItem('theme', theme);
+  }
+
+  const saved = localStorage.getItem('theme') || 'dark';
+  applyTheme(saved);
+
+  themeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      applyTheme(isLight ? 'dark' : 'light');
+    });
+  });
 
   let isOpen = false;
 

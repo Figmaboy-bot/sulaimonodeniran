@@ -13,17 +13,23 @@
   align-items: center;
   justify-content: space-between;
   gap: 80px;
-  background: rgba(245, 245, 245, 0.2);
+  background: var(--nav-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-radius: 200px;
   padding: 6px 6px 6px 20px;
   width: 100%;
+  transition: background 0.3s ease;
 }
 
 .nav-logo img {
   height: 32px;
   display: block;
+  transition: filter 0.3s ease;
+}
+
+[data-theme="light"] .nav-logo img {
+  filter: invert(1);
 }
 
 .nav-right {
@@ -36,13 +42,13 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #f5f5f5;
-  text-decoration: none;
+  color: var(--text);
   font-family: 'Hepta Slab', serif;
   font-size: 18px;
   background: none;
   border: none;
   cursor: pointer;
+  transition: color 0.3s ease;
 }
 
 .nav-hamburger {
@@ -55,11 +61,11 @@
   display: block;
   width: 22px;
   height: 2px;
-  background: #d9d9d9;
+  background: var(--text);
   border-radius: 2px;
+  transition: background 0.3s ease;
 }
 
-/* X close icon */
 .close-icon {
   position: relative;
   width: 22px;
@@ -73,24 +79,20 @@
   display: block;
   width: 22px;
   height: 2px;
-  background: #d9d9d9;
+  background: var(--text);
   border-radius: 2px;
   position: absolute;
+  transition: background 0.3s ease;
 }
 
-.close-icon span:first-child {
-  transform: rotate(35deg);
-}
-
-.close-icon span:last-child {
-  transform: rotate(-35deg);
-}
+.close-icon span:first-child { transform: rotate(35deg); }
+.close-icon span:last-child  { transform: rotate(-35deg); }
 
 .nav-btn {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #1a1a1a;
+  background: var(--nav-btn-bg);
   border: none;
   cursor: pointer;
   display: flex;
@@ -98,6 +100,7 @@
   justify-content: center;
   flex-shrink: 0;
   text-decoration: none;
+  transition: background 0.3s ease;
 }
 
 .nav-btn img {
@@ -111,39 +114,40 @@
   flex-direction: column;
 }
 
-.menu-topbar {
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
   padding: 0;
 }
 
 .menu-overlay.is-open .menu-panel {
-  background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04)),
-              #1a1a1a;
+  background: var(--menu-panel-bg);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-radius: 40px;
   padding-bottom: 32px;
 }
 
-/* Override pill bg inside open panel so it reads against dark bg */
 .menu-overlay.is-open .nav-pill {
-  background: rgba(245, 245, 245, 0.15);
+  background: var(--nav-bg);
 }
 
-/* Content hidden by default */
-.menu-content {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  padding: 0 20px;
+/* Sections hidden by default */
+.menu-sections {
   overflow: hidden;
   max-height: 0;
   opacity: 0;
   pointer-events: none;
   transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
               opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 0 20px;
 }
 
-.menu-overlay.is-open .menu-content {
+.menu-overlay.is-open .menu-sections {
   max-height: calc(100vh - 100px);
   opacity: 1;
   pointer-events: all;
@@ -151,20 +155,12 @@
   overflow-y: auto;
 }
 
-/* Panel content */
-.menu-content {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  padding: 0 20px;
-}
-
 .menu-section {
   display: flex;
   flex-direction: column;
   gap: 20px;
   padding-bottom: 40px;
-  border-bottom: 1px solid rgba(240, 238, 238, 0.2);
+  border-bottom: 1px solid var(--menu-border);
 }
 
 .menu-section--last {
@@ -175,7 +171,7 @@
 .menu-label {
   font-family: 'Hepta Slab', serif;
   font-size: 20px;
-  color: rgba(245, 245, 245, 0.5);
+  color: var(--text-muted);
   line-height: 1.5;
 }
 
@@ -189,18 +185,18 @@
   font-family: 'Instrument Serif', serif;
   font-size: 40px;
   line-height: 48px;
-  color: rgba(245, 245, 245, 0.6);
+  color: var(--text-muted);
   text-decoration: none;
   transition: color 0.2s;
 }
 
-.menu-link:hover {
-  color: #f5f5f5;
+.menu-link:hover,
+.menu-link.active {
+  color: var(--text);
 }
 
 .menu-link.active {
-  color: #f5f5f5;
-  border-bottom: 2px dashed #fff;
+  border-bottom: 2px dashed var(--text);
   display: inline-block;
 }
 
@@ -214,7 +210,7 @@
   font-family: 'Instrument Serif', serif;
   font-size: 40px;
   line-height: 48px;
-  color: #f5f5f5;
+  color: var(--text);
   text-decoration: none;
 }
 
@@ -225,11 +221,6 @@
 }
 
 @media (max-width: 600px) {
-  .nav-pill {
-    gap: 24px;
-  }
-
-  .menu-panel {
-    max-width: 100%;
-  }
+  .nav-pill { gap: 24px; }
+  .menu-panel { max-width: 100%; }
 }
