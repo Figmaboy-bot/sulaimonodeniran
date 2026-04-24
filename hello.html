@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 60px 80px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .greeting {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #333;
+      letter-spacing: -1px;
+    }
+
+    .greeting span {
+      color: #667eea;
+    }
+
+    .subtitle {
+      margin-top: 12px;
+      font-size: 1.1rem;
+      color: #888;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: #667eea;
+      border-radius: 50%;
+      margin-top: 32px;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1 class="greeting">Hello, <span>World</span></h1>
+    <p class="subtitle">Welcome to my page</p>
+    <div class="dot"></div>
+  </div>
+</body>
+</html>
