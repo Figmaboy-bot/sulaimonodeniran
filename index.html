@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello</title>
+  <title>Portfolio Under Construction</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap"
+    rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -16,56 +20,226 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Hepta Slab', serif;
+      background: #a8d8ea;
+      overflow: hidden;
     }
 
-    .card {
-      background: white;
-      border-radius: 16px;
-      padding: 60px 80px;
-      text-align: center;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    .bg {
+      position: fixed;
+      inset: 0;
+      background: url('image/image.png') center center / cover no-repeat;
+      z-index: 0;
     }
 
-    .greeting {
-      font-size: 3rem;
-      font-weight: 700;
-      color: #333;
-      letter-spacing: -1px;
+    /* CSS cranes */
+    .cranes {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
     }
 
-    .greeting span {
-      color: #667eea;
+    .crane {
+      position: absolute;
+      bottom: 0;
     }
 
-    .subtitle {
-      margin-top: 12px;
-      font-size: 1.1rem;
-      color: #888;
+    /* Left crane */
+    .crane-left {
+      left: 8%;
     }
 
-    .dot {
-      display: inline-block;
-      width: 10px;
+    .crane-left .mast {
+      width: 12px;
+      height: 340px;
+      background: linear-gradient(90deg, #c8a84b, #e8c860, #c8a84b);
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .crane-left .boom {
+      width: 200px;
       height: 10px;
-      background: #667eea;
-      border-radius: 50%;
-      margin-top: 32px;
-      animation: pulse 1.5s ease-in-out infinite;
+      background: linear-gradient(180deg, #c8a84b, #e8c860);
+      position: absolute;
+      bottom: 340px;
+      left: calc(50% - 20px);
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.4); opacity: 0.6; }
+    .crane-left .cable {
+      width: 2px;
+      height: 80px;
+      background: #999;
+      position: absolute;
+      bottom: 260px;
+      left: calc(50% + 160px);
+    }
+
+    /* Right crane */
+    .crane-right {
+      right: 10%;
+    }
+
+    .crane-right .mast {
+      width: 10px;
+      height: 260px;
+      background: linear-gradient(90deg, #c8a84b, #e8c860, #c8a84b);
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .crane-right .boom {
+      width: 160px;
+      height: 8px;
+      background: linear-gradient(180deg, #c8a84b, #e8c860);
+      position: absolute;
+      bottom: 260px;
+      right: calc(50% - 20px);
+    }
+
+    .crane-right .cable {
+      width: 2px;
+      height: 60px;
+      background: #999;
+      position: absolute;
+      bottom: 200px;
+      right: calc(50% + 120px);
+    }
+
+    /* Building under construction */
+    .building {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 280px;
+      z-index: 1;
+    }
+
+    .floor {
+      height: 28px;
+      border: 2px solid #bbb;
+      background: rgba(200, 210, 220, 0.5);
+      margin-bottom: 2px;
+      display: flex;
+      gap: 4px;
+      padding: 3px;
+    }
+
+    .floor-col {
+      flex: 1;
+      background: rgba(160, 180, 200, 0.3);
+      border: 1px solid #ccc;
+    }
+
+    /* Ground */
+    .ground {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(180deg, #b8c8a0 0%, #9ab080 100%);
+      z-index: 2;
+    }
+
+    /* Content */
+    .content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+
+
+    .logo-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(3rem, 5vw, 4.2rem);
+      font-weight: 900;
+      color: #0f172a;
+      text-transform: uppercase;
+      line-height: 1.1;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #1e293b;
+      max-width: 420px;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #2563eb;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    .btn .arrow {
+      font-size: 1.1rem;
     }
   </style>
 </head>
+
 <body>
-  <div class="card">
-    <h1 class="greeting">Hello, <span>World</span></h1>
-    <p class="subtitle">Welcome to my page</p>
-    <div class="dot"></div>
+
+  <div class="bg"></div>
+
+
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="logo">
+      <img class="logo-img" src="image/Me.jpg" alt="">
+      Sulaimon Odeniran
+    </div>
+    <h1>Portfolio is Under<br>Construction</h1>
+    <p>I'm currently working hard to bring you an amazing new portfolio website. Please check back soon for updates.</p>
+    <a href="mailto:odeniransulaimon18@gmail.com" class="btn">
+      Contact Me <span class="arrow">&#8594;</span>
+    </a>
   </div>
+
 </body>
+
 </html>
