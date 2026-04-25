@@ -22,6 +22,12 @@
   transition: background 0.3s ease;
 }
 
+.nav-logo {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
 .nav-logo img {
   height: 32px;
   display: block;

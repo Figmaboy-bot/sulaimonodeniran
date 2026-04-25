@@ -21,13 +21,21 @@
         link.href = c.toDataURL();
         document.head.appendChild(link);
       };
-      img.src = 'image/Me.jpg';
+      img.src = '/image/Me.jpg';
     })();
   </script>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="portfolio.css">
+  <!-- DNS + TLS handshake done early for Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Non-blocking font load — text renders immediately in fallback, swaps when ready -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap" rel="stylesheet"></noscript>
+  <!-- Component CSS loaded here so it's ready before the fetch completes -->
+  <link rel="stylesheet" href="/components/nav/nav.css">
+  <link rel="stylesheet" href="/components/footer/footer.css">
+  <link rel="stylesheet" href="/portfolio.css">
+  <!-- Hero image is above the fold — start fetching immediately -->
+  <link rel="preload" as="image" href="/image/Me.jpg">
 </head>
 
 <body>
@@ -67,38 +75,38 @@
   <section class="carousel-wrap">
     <div class="carousel-track">
       <div class="work-card">
-        <img src="image/Work card 1.jpg" alt="Project 1" />
+        <img src="/image/Work card 1.jpg" alt="Project 1" loading="lazy" />
       </div>
       <div class="work-card">
-        <img src="image/Work card 2.png" alt="Project 2" />
+        <img src="/image/Work card 2.png" alt="Project 2" loading="lazy" />
       </div>
       <div class="work-card">
-        <img src="image/Work card 1.jpg" alt="Project 3" />
+        <img src="/image/Work card 1.jpg" alt="Project 3" loading="lazy" />
       </div>
       <div class="work-card">
-        <img src="image/Work card 1.jpg" alt="Project 4" />
+        <img src="/image/Work card 1.jpg" alt="Project 4" loading="lazy" />
       </div>
       <div class="work-card">
-        <img src="image/Work card 1.jpg" alt="Project 5" />
+        <img src="/image/Work card 1.jpg" alt="Project 5" loading="lazy" />
       </div>
       <div class="work-card">
-        <img src="image/Work card 1.jpg" alt="Project 6" />
+        <img src="/image/Work card 1.jpg" alt="Project 6" loading="lazy" />
       </div>
       <!-- duplicate set for seamless loop -->
       <div class="work-card" aria-hidden="true">
-        <img src="image/Work card 1.jpg" alt="" />
+        <img src="/image/Work card 1.jpg" alt="" loading="lazy" />
       </div>
       <div class="work-card" aria-hidden="true">
-        <img src="image/Work card 1.jpg" alt="" />
+        <img src="/image/Work card 1.jpg" alt="" loading="lazy" />
       </div>
       <div class="work-card" aria-hidden="true">
-        <img src="image/Work card 1.jpg" alt="" />
+        <img src="/image/Work card 1.jpg" alt="" loading="lazy" />
       </div>
       <div class="work-card" aria-hidden="true">
-        <img src="image/Work card 1.jpg" alt="" />
+        <img src="/image/Work card 1.jpg" alt="" loading="lazy" />
       </div>
       <div class="work-card" aria-hidden="true">
-        <img src="image/Work card 1.jpg" alt="" />
+        <img src="/image/Work card 1.jpg" alt="" loading="lazy" />
       </div>
       <div class="work-card" aria-hidden="true">
         <img src="image/Work card 1.jpg" alt="" />
@@ -108,6 +116,7 @@
 
   <div id="footer-component"></div>
 
+  <script src="/scripts/transitions.js"></script>
   <script src="/components/footer/footer.js"></script>
   <script src="/components/nav/nav.js"></script>
   <script>
