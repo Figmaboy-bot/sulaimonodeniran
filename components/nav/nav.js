@@ -1,5 +1,6 @@
 function initNav() {
   const overlay    = document.getElementById('menu-overlay');
+  const backdrop   = document.getElementById('nav-backdrop');
   const toggleBtn  = document.getElementById('menu-toggle');
   const hamburger  = document.getElementById('hamburger-icon');
   const closeIcon  = document.getElementById('close-icon');
@@ -41,6 +42,7 @@ function initNav() {
   function openMenu() {
     isOpen = true;
     overlay.classList.add('is-open');
+    if (backdrop) backdrop.classList.add('is-open');
     hamburger.style.display = 'none';
     closeIcon.style.display = 'flex';
     menuLabel.textContent = 'Close';
@@ -50,6 +52,7 @@ function initNav() {
   function closeMenu() {
     isOpen = false;
     overlay.classList.remove('is-open');
+    if (backdrop) backdrop.classList.remove('is-open');
     hamburger.style.display = 'flex';
     closeIcon.style.display = 'none';
     menuLabel.textContent = 'Menu';
@@ -58,9 +61,7 @@ function initNav() {
 
   toggleBtn.addEventListener('click', () => isOpen ? closeMenu() : openMenu());
 
-  document.addEventListener('click', function (e) {
-    if (isOpen && !overlay.contains(e.target)) closeMenu();
-  });
+  if (backdrop) backdrop.addEventListener('click', closeMenu);
 
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') closeMenu();

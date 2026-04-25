@@ -128,19 +128,21 @@ body {
   height: 12px;
 }
 
+[data-theme="light"] .btn-arrow {
+  filter: invert(1);
+}
+
 /* ── Work Carousel (auto-scroll) ─────────────── */
 .carousel-wrap {
   overflow: hidden;
   width: 100%;
-  margin-top: 100px;
+  margin-top: 60px;
 }
 
 .carousel-track {
   display: flex;
-  gap: 12px;
   width: max-content;
   animation: marquee 18s linear infinite;
-  padding: 0 6px;
 }
 
 .carousel-track:hover {
@@ -162,8 +164,9 @@ body {
   border-radius: var(--radius-sm);
   overflow: hidden;
   aspect-ratio: 846 / 700;
-  width: calc(38vw - 9px);
+  width: calc(22vw - 9px);
   flex-shrink: 0;
+  margin-right: 12px;
 }
 
 .work-card img {
