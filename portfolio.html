@@ -108,8 +108,8 @@
 
   <div id="footer-component"></div>
 
-  <script src="components/footer/footer.js"></script>
-  <script src="components/nav/nav.js"></script>
+  <script src="/components/footer/footer.js"></script>
+  <script src="/components/nav/nav.js"></script>
   <script>
     function loadComponent(id, path, callback) {
       fetch(path)
@@ -120,8 +120,8 @@
         });
     }
 
-    loadComponent('nav-component', 'components/nav/nav.html', initNav);
-    loadComponent('footer-component', 'components/footer/footer.html', startWATClock);
+    loadComponent('nav-component', '/components/nav/nav.html', initNav);
+    loadComponent('footer-component', '/components/footer/footer.html', startWATClock);
   </script>
 
 </body>

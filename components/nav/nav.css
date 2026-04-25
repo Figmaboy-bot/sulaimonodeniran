@@ -317,9 +317,10 @@
 }
 
 .menu-resume {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 20px;
+  text-decoration: none;
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
@@ -336,7 +337,6 @@
   font-size: 32px;
   line-height: 40px;
   color: var(--text);
-  text-decoration: none;
 }
 
 .menu-socials {

@@ -6,8 +6,8 @@ function initNav() {
 
   if (!overlay || !toggleBtn) return;
 
-  const SUN_ICON  = 'image/Icons/Sun.svg';
-  const MOON_ICON = 'image/Icons/Moon.svg';
+  const SUN_ICON  = '/image/Icons/Sun.svg';
+  const MOON_ICON = '/image/Icons/Moon.svg';
 
   function applyTheme(theme) {
     const isLight = theme === 'light';
@@ -128,5 +128,22 @@ function initNav() {
 
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeMenu();
+  });
+
+  // Highlight the current page link
+  const path = window.location.pathname;
+  document.querySelectorAll('.menu-link').forEach(function(link) {
+    link.classList.remove('active');
+    const href = link.getAttribute('href');
+    if (!href) return;
+    const isHome = href === '/portfolio.html' || href === '/';
+    if (isHome) {
+      if (path === '/' || path === '/portfolio.html') link.classList.add('active');
+    } else {
+      const base = href.replace(/\/$/, '');
+      if (path === base || path === base + '/' || path.startsWith(base + '/')) {
+        link.classList.add('active');
+      }
+    }
   });
 }

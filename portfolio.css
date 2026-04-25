@@ -94,6 +94,7 @@ body {
   overflow: hidden;
   box-shadow: 0 0 0 4px var(--bg);
   transition: box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .hero-avatar img {

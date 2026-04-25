@@ -6,7 +6,7 @@ function initSpotify() {
 
   if (!widget) return;
 
-  const DEFAULT_DISC = 'image/vinyl-record-2026-03-09-05-44-56-utc (1).jpg';
+  const DEFAULT_DISC = '/image/vinyl-record-2026-03-09-05-44-56-utc (1).jpg';
 
   function setIdle() {
     disc.src = DEFAULT_DISC;

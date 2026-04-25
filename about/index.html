@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Ola</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/portfolio.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div id="nav-component"></div>
+
+  <main class="main-wrap">
+  </main>
+
+  <div id="footer-component"></div>
+
+  <script src="/components/footer/footer.js"></script>
+  <script src="/components/nav/nav.js"></script>
+  <script src="script.js"></script>
+  <script>
+    function loadComponent(id, path, callback) {
+      fetch(path)
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById(id).innerHTML = html;
+          if (callback) callback();
+        });
+    }
+    loadComponent('nav-component', '/components/nav/nav.html', initNav);
+    loadComponent('footer-component', '/components/footer/footer.html', startWATClock);
+  </script>
+
+</body>
+
+</html>
