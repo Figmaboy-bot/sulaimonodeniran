@@ -4,159 +4,102 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio Under Construction</title>
+  <title>Ola — Multidisciplinary Designer</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap"
     rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Hepta Slab', serif;
-      background: #a8d8ea;
-      overflow: hidden;
-    }
-
-    .bg {
-      position: fixed;
-      inset: 0;
-      background: url('image/image.png') center center / cover no-repeat;
-      z-index: 0;
-    }
-
-
-
-    /* Content */
-    .content {
-      position: relative;
-      z-index: 10;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .logo {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 20px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #1a1a2e;
-    }
-
-
-    .logo-img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-    }
-
-    h1 {
-      font-family: 'Instrument Serif', serif;
-      font-size: clamp(3rem, 5vw, 4.2rem);
-      font-weight: 900;
-      color: #0f172a;
-      text-transform: uppercase;
-      line-height: 1.1;
-      letter-spacing: 1px;
-      margin-bottom: 16px;
-    }
-
-    p {
-      font-size: 1rem;
-      color: #1e293b;
-      max-width: 420px;
-      margin: 0 auto 28px;
-      line-height: 1.6;
-      font-weight: 500;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: #2563eb;
-      color: white;
-      padding: 14px 28px;
-      border-radius: 50px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.2s;
-      cursor: pointer;
-      border: none;
-    }
-
-    .btn:hover {
-      background: #1d4ed8;
-      transform: translateY(-1px);
-    }
-
-    .btn .arrow {
-      font-size: 1.1rem;
-    }
-
-    @media (max-width: 600px) {
-      .content {
-        padding: 16px;
-      }
-
-      .logo {
-        font-size: 0.95rem;
-      }
-
-      .logo-img {
-        width: 40px;
-        height: 40px;
-      }
-
-      h1 {
-        font-size: clamp(2rem, 10vw, 3rem);
-        letter-spacing: 0.5px;
-      }
-
-      p {
-        font-size: 0.9rem;
-        max-width: 90vw;
-        font-weight: 500;
-      }
-
-      .btn {
-        padding: 12px 22px;
-        font-size: 0.875rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="portfolio.css">
 </head>
 
 <body>
 
-  <div class="bg"></div>
+  <div id="nav-component"></div>
 
+  <main class="main-wrap">
 
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-avatar">
+        <img src="image/Me.jpg" alt="Sulaimon Odeniran" />
+      </div>
+      <div class="hero-text">
+        <h1 class="hero-heading">
+          I'm <span class="muted">Ola</span>,<br>
+          a Multidisciplinary Designer.
+        </h1>
+        <p class="hero-bio">
+          With 3+ years in UI/UX, brand design, Webflow, and Framer, I craft digital experiences for clients and thrive
+          on learning and growing with fellow creatives.
+        </p>
+      </div>
+      <a href="mailto:odeniransulaimon18@gmail.com" class="btn-primary">
+        Work With Me
+        <img src="image/Icons/Arrow.svg" alt="" class="btn-arrow" />
+      </a>
+    </section>
 
-  <!-- Main content -->
-  <div class="content">
-    <div class="logo">
-      <img class="logo-img" src="image/Me.jpg" alt="">
-      Sulaimon Odeniran
+  </main>
+
+  <!-- Work Carousel (full-width, outside main-wrap) -->
+  <section class="carousel-wrap">
+    <div class="carousel-track">
+      <div class="work-card">
+        <img src="image/Work card 1.jpg" alt="Project 1" />
+      </div>
+      <div class="work-card">
+        <img src="image/Work card 1.jpg" alt="Project 2" />
+      </div>
+      <div class="work-card">
+        <img src="image/Work card 1.jpg" alt="Project 3" />
+      </div>
+      <div class="work-card">
+        <img src="image/Work card 1.jpg" alt="Project 4" />
+      </div>
+      <div class="work-card">
+        <img src="image/Work card 1.jpg" alt="Project 5" />
+      </div>
+      <div class="work-card">
+        <img src="image/Work card 1.jpg" alt="Project 6" />
+      </div>
+      <!-- duplicate set for seamless loop -->
+      <div class="work-card" aria-hidden="true">
+        <img src="image/Work card 1.jpg" alt="" />
+      </div>
+      <div class="work-card" aria-hidden="true">
+        <img src="image/Work card 1.jpg" alt="" />
+      </div>
+      <div class="work-card" aria-hidden="true">
+        <img src="image/Work card 1.jpg" alt="" />
+      </div>
+      <div class="work-card" aria-hidden="true">
+        <img src="image/Work card 1.jpg" alt="" />
+      </div>
+      <div class="work-card" aria-hidden="true">
+        <img src="image/Work card 1.jpg" alt="" />
+      </div>
+      <div class="work-card" aria-hidden="true">
+        <img src="image/Work card 1.jpg" alt="" />
+      </div>
     </div>
-    <h1>Portfolio is Under<br>Construction</h1>
-    <p>I'm currently working hard to bring you an amazing new portfolio website. Please check back soon for updates.</p>
-    <a href="mailto:odeniransulaimon18@gmail.com" class="btn">
-      Contact Me <span class="arrow">&#8594;</span>
-    </a>
-  </div>
+  </section>
+
+  <div id="footer-component"></div>
+
+  <script src="components/footer/footer.js"></script>
+  <script src="components/nav/nav.js"></script>
+  <script>
+    function loadComponent(id, path, callback) {
+      fetch(path)
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById(id).innerHTML = html;
+          if (callback) callback();
+        });
+    }
+
+    loadComponent('nav-component', 'components/nav/nav.html', initNav);
+    loadComponent('footer-component', 'components/footer/footer.html', startWATClock);
+  </script>
 
 </body>
 
