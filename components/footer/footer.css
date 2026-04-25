@@ -142,6 +142,81 @@
   color: var(--text-muted);
 }
 
+/* ── Spotify widget ──────────────────────────── */
+.spotify-widget {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  margin-top: 4px;
+}
+
+.spotify-disc-wrap {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--border);
+  overflow: hidden;
+}
+
+/* vinyl centre hole */
+.spotify-disc-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bg);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.spotify-disc {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  animation: spotify-spin 8s linear infinite;
+  animation-play-state: paused;
+}
+
+.spotify-disc.playing {
+  animation-play-state: running;
+}
+
+@keyframes spotify-spin {
+  to { transform: rotate(360deg); }
+}
+
+.spotify-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.spotify-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.spotify-track {
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.spotify-artist {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
 .blink-colon {
   animation: blink 1s step-start infinite;
 }

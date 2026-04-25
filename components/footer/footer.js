@@ -1,3 +1,37 @@
+function initSpotify() {
+  const widget  = document.getElementById('spotify-widget');
+  const disc    = document.getElementById('spotify-disc');
+  const track   = document.getElementById('spotify-track');
+  const artist  = document.getElementById('spotify-artist');
+
+  if (!widget) return;
+
+  async function poll() {
+    try {
+      const res  = await fetch('/api/spotify');
+      const data = await res.json();
+
+      if (data.isPlaying) {
+        if (disc.src !== data.albumArt) disc.src = data.albumArt || '';
+        disc.classList.add('playing');
+        track.textContent  = data.title;
+        artist.textContent = data.artist;
+        widget.href        = data.songUrl || '#';
+      } else {
+        disc.classList.remove('playing');
+        track.textContent  = 'Not Playing';
+        artist.textContent = '';
+      }
+    } catch {
+      track.textContent  = 'Not Playing';
+      artist.textContent = '';
+    }
+  }
+
+  poll();
+  setInterval(poll, 30000);
+}
+
 function startWATClock() {
   function tick() {
     const el = document.getElementById('wat-time');
@@ -11,6 +45,7 @@ function startWATClock() {
   tick();
   setInterval(tick, 1000);
   initFooterHeading();
+  initSpotify();
 }
 
 function initFooterHeading() {

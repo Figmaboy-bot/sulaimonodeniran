@@ -23,7 +23,8 @@ function initNav() {
     localStorage.setItem('theme', theme);
   }
 
-  const saved = localStorage.getItem('theme') || 'dark';
+  const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  const saved = localStorage.getItem('theme') || systemTheme;
   applyTheme(saved);
 
   themeBtns.forEach(btn => {
