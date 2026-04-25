@@ -6,25 +6,32 @@ function initSpotify() {
 
   if (!widget) return;
 
+  const DEFAULT_DISC = 'image/vinyl-record-2026-03-09-05-44-56-utc (1).jpg';
+
+  function setIdle() {
+    disc.src = DEFAULT_DISC;
+    disc.classList.remove('playing');
+    track.textContent  = 'Not Playing';
+    artist.textContent = '';
+    widget.href = '#';
+  }
+
   async function poll() {
     try {
       const res  = await fetch('/api/spotify');
       const data = await res.json();
 
       if (data.isPlaying) {
-        if (disc.src !== data.albumArt) disc.src = data.albumArt || '';
+        if (disc.src !== data.albumArt) disc.src = data.albumArt || DEFAULT_DISC;
         disc.classList.add('playing');
         track.textContent  = data.title;
         artist.textContent = data.artist;
         widget.href        = data.songUrl || '#';
       } else {
-        disc.classList.remove('playing');
-        track.textContent  = 'Not Playing';
-        artist.textContent = '';
+        setIdle();
       }
     } catch {
-      track.textContent  = 'Not Playing';
-      artist.textContent = '';
+      setIdle();
     }
   }
 

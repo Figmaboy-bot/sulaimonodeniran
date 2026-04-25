@@ -6,7 +6,7 @@
   --border: rgba(255, 255, 255, 0.1);
   --nav-bg: rgba(245, 245, 245, 0.2);
   --nav-btn-bg: #1a1a1a;
-  --menu-panel-bg: rgba(30, 30, 30, 0.95);
+  --menu-panel-bg: rgba(45, 45, 45, 0.95);
   --menu-border: rgba(240, 238, 238, 0.2);
   --font-serif: 'Instrument Serif', serif;
   --font-slab: 'Hepta Slab', serif;
@@ -63,18 +63,52 @@ body {
   max-width: 720px;
 }
 
+.hero-avatar-wrap {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+
+/* Back cards sit behind the main avatar div */
+.avatar-card {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  z-index: 1;
+  transform-origin: bottom center;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Main image in its own clipped box — no corner bleed possible */
 .hero-avatar {
+  position: relative;
+  z-index: 2;
   width: 80px;
   height: 80px;
   border-radius: var(--radius-sm);
   overflow: hidden;
-  flex-shrink: 0;
+  box-shadow: 0 0 0 4px var(--bg);
+  transition: box-shadow 0.3s ease;
 }
 
 .hero-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+}
+
+.hero-avatar-wrap:hover .avatar-card--left {
+  transform: translateX(-32px) rotate(-18deg);
+}
+
+.hero-avatar-wrap:hover .avatar-card--right {
+  transform: translateX(32px) rotate(18deg);
 }
 
 .hero-text {
@@ -120,12 +154,17 @@ body {
 }
 
 .btn-primary:hover {
-  opacity: 0.88;
+  opacity: 0.92;
 }
 
 .btn-arrow {
   width: 19px;
   height: 12px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary:hover .btn-arrow {
+  transform: translateX(-5px);
 }
 
 [data-theme="light"] .btn-arrow {

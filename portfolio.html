@@ -5,6 +5,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ola — Multidisciplinary Designer</title>
+  <script>
+    (function () {
+      var img = new Image();
+      img.onload = function () {
+        var c = document.createElement('canvas');
+        c.width = c.height = 64;
+        var ctx = c.getContext('2d');
+        ctx.beginPath();
+        ctx.arc(32, 32, 32, 0, Math.PI * 2);
+        ctx.clip();
+        ctx.drawImage(img, 0, 0, 64, 64);
+        var link = document.querySelector("link[rel='icon']") || document.createElement('link');
+        link.rel = 'icon';
+        link.href = c.toDataURL();
+        document.head.appendChild(link);
+      };
+      img.src = 'image/Me.jpg';
+    })();
+  </script>
   <link
     href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap"
     rel="stylesheet">
@@ -19,8 +38,12 @@
 
     <!-- Hero -->
     <section class="hero">
-      <div class="hero-avatar">
-        <img src="image/Me.jpg" alt="Sulaimon Odeniran" />
+      <div class="hero-avatar-wrap">
+        <img class="avatar-card avatar-card--left"  src="image/Me.jpg" alt="" aria-hidden="true" />
+        <img class="avatar-card avatar-card--right" src="image/Me.jpg" alt="" aria-hidden="true" />
+        <div class="hero-avatar">
+          <img src="image/Me.jpg" alt="Sulaimon Odeniran" />
+        </div>
       </div>
       <div class="hero-text">
         <h1 class="hero-heading">
@@ -47,7 +70,7 @@
         <img src="image/Work card 1.jpg" alt="Project 1" />
       </div>
       <div class="work-card">
-        <img src="image/Work card 2.jpg" alt="Project 2" />
+        <img src="image/Work card 2.png" alt="Project 2" />
       </div>
       <div class="work-card">
         <img src="image/Work card 1.jpg" alt="Project 3" />
