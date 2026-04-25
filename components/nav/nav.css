@@ -8,27 +8,6 @@
   max-width: calc(100vw - 48px);
 }
 
-.nav-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  z-index: 199;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.nav-backdrop.is-open {
-  opacity: 1;
-  pointer-events: all;
-}
-
-[data-theme="light"] .nav-backdrop {
-  background: rgba(0, 0, 0, 0.4);
-}
-
 .nav-pill {
   display: flex;
   align-items: center;
