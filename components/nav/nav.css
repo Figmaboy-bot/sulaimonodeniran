@@ -51,10 +51,23 @@
   transition: color 0.3s ease;
 }
 
+.nav-icon-wrap {
+  position: relative;
+  width: 22px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
 .nav-hamburger {
+  position: absolute;
+  top: 50%;
+  left: 0;
   display: flex;
   flex-direction: column;
   gap: 4px;
+  opacity: 1;
+  transform: translateY(-50%) rotate(0deg);
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nav-hamburger span {
@@ -67,12 +80,17 @@
 }
 
 .close-icon {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 22px;
   height: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 0;
+  transform: rotate(-45deg);
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .close-icon span {
@@ -91,6 +109,16 @@
 
 .close-icon span:last-child {
   transform: rotate(-35deg);
+}
+
+.menu-overlay.is-open .nav-hamburger {
+  opacity: 0;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.menu-overlay.is-open .close-icon {
+  opacity: 1;
+  transform: rotate(0deg);
 }
 
 .nav-btn {
@@ -133,6 +161,10 @@
 .menu-panel {
   display: flex;
   flex-direction: column;
+  transition:
+    background 0.4s ease,
+    border-radius 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    padding-bottom 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .menu-content {
@@ -160,8 +192,9 @@
   max-height: 0;
   opacity: 0;
   pointer-events: none;
-  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.3s ease;
+  transition:
+    max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.35s ease;
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -169,11 +202,12 @@
 }
 
 .menu-overlay.is-open .menu-sections {
-  max-height: calc(100vh - 100px);
+  max-height: 800px;
   opacity: 1;
   pointer-events: all;
   padding: 20px 20px 0;
-  overflow-y: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
 }
 
 .menu-section {
@@ -182,11 +216,32 @@
   gap: 20px;
   padding-bottom: 40px;
   border-bottom: 1px solid var(--menu-border);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .menu-section--last {
   border-bottom: none;
   padding-bottom: 0;
+}
+
+.menu-overlay.is-open .menu-section:nth-child(1) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.15s;
+}
+
+.menu-overlay.is-open .menu-section:nth-child(2) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.25s;
+}
+
+.menu-overlay.is-open .menu-section:nth-child(3) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.35s;
 }
 
 .menu-label {
@@ -209,7 +264,9 @@
   line-height: 48px;
   color: var(--text-muted);
   text-decoration: none;
-  transition: color 0.2s;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: color 0.2s, opacity 0.4s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .menu-link:hover,
@@ -222,10 +279,55 @@
   display: inline-block;
 }
 
+.menu-overlay.is-open .menu-link:nth-child(1) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.20s;
+}
+
+.menu-overlay.is-open .menu-link:nth-child(2) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.26s;
+}
+
+.menu-overlay.is-open .menu-link:nth-child(3) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.32s;
+}
+
+.menu-overlay.is-open .menu-link:nth-child(4) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.38s;
+}
+
+.menu-overlay.is-open .menu-link:nth-child(5) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.44s;
+}
+
+.menu-overlay.is-open .menu-link:nth-child(6) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.50s;
+}
+
 .menu-resume {
   display: flex;
   align-items: center;
   gap: 20px;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.menu-overlay.is-open .menu-resume {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.30s;
 }
 
 .menu-resume-link {
@@ -240,6 +342,15 @@
   display: flex;
   gap: 20px;
   align-items: center;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.menu-overlay.is-open .menu-socials {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.40s;
 }
 
 @media (max-width: 600px) {
