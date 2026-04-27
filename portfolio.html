@@ -28,8 +28,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Non-blocking font load — text renders immediately in fallback, swaps when ready -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap"
+      rel="stylesheet">
+  </noscript>
   <!-- Component CSS loaded here so it's ready before the fetch completes -->
   <link rel="stylesheet" href="/components/nav/nav.css">
   <link rel="stylesheet" href="/components/footer/footer.css">
@@ -46,22 +52,25 @@
 
     <!-- Hero -->
     <section class="hero">
-      <div class="hero-avatar-wrap">
-        <img class="avatar-card avatar-card--left"  src="image/Me.jpg" alt="" aria-hidden="true" />
-        <img class="avatar-card avatar-card--right" src="image/Me.jpg" alt="" aria-hidden="true" />
-        <div class="hero-avatar">
-          <img src="image/Me.jpg" alt="Sulaimon Odeniran" />
+      <div class="img-text">
+        <div class="hero-avatar-wrap">
+          <img class="avatar-card avatar-card--left" src="image/Me.jpg" alt="" aria-hidden="true" />
+          <img class="avatar-card avatar-card--right" src="image/Me.jpg" alt="" aria-hidden="true" />
+          <div class="hero-avatar">
+            <img src="image/Me.jpg" alt="Sulaimon Odeniran" />
+          </div>
         </div>
-      </div>
-      <div class="hero-text">
-        <h1 class="hero-heading">
-          I'm <span class="muted">Ola</span>,<br>
-          a Multidisciplinary Designer.
-        </h1>
-        <p class="hero-bio">
-          With 3+ years in UI/UX, brand design, Webflow, and Framer, I craft digital experiences for clients and thrive
-          on learning and growing with fellow creatives.
-        </p>
+        <div class="hero-text">
+          <h1 class="hero-heading">
+            I'm <span class="muted">Ola</span>,<br>
+            a Multidisciplinary Designer.
+          </h1>
+          <p class="hero-bio">
+            With 3+ years in UI/UX, brand design, Webflow, and Framer, I craft digital experiences for clients and
+            thrive
+            on learning and growing with fellow creatives.
+          </p>
+        </div>
       </div>
       <a href="mailto:odeniransulaimon18@gmail.com" class="btn-primary">
         Work With Me

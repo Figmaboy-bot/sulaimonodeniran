@@ -50,6 +50,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -72,13 +73,19 @@ body {
   display: flex;
   flex-direction: column;
   gap: 48px;
-  max-width: 720px;
+  max-width: 520px;
+}
+
+.img-text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .hero-avatar-wrap {
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 56px;
+  height: 56px;
   flex-shrink: 0;
 }
 
@@ -100,8 +107,8 @@ body {
 .hero-avatar {
   position: relative;
   z-index: 2;
-  width: 80px;
-  height: 80px;
+  width: 56px;
+  height: 56px;
   border-radius: var(--radius-sm);
   overflow: hidden;
   box-shadow: 0 0 0 4px var(--bg);
@@ -127,12 +134,12 @@ body {
 .hero-text {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
 }
 
 .hero-heading {
   font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
   font-weight: 400;
   line-height: 1;
   color: var(--text);
@@ -143,7 +150,7 @@ body {
 }
 
 .hero-bio {
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-size: clamp(0.8rem, 1.1vw, 1rem);
   line-height: 1.6;
   color: var(--text-soft);
   max-width: 700px;
@@ -213,12 +220,12 @@ body {
 
 .work-card {
   background: #fff;
-  border-radius: var(--radius-sm);
   overflow: hidden;
   aspect-ratio: 846 / 700;
   width: calc(22vw - 9px);
   flex-shrink: 0;
-  margin-right: 12px;
+  margin-right: 6px;
+  cursor: pointer;
 }
 
 .work-card img {
