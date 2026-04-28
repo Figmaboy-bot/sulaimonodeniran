@@ -1,1 +1,144 @@
 /* About page styles */
+
+/* ── Carousel at top with nav clearance ─────── */
+.about-carousel {
+  padding-top: 150px;
+  margin-top: 0;
+}
+
+.about-carousel .work-card {
+  width: calc(16vw - 9px);
+  aspect-ratio: 3 / 4;
+}
+
+.about-carousel .carousel-track {
+  animation-duration: 100s;
+}
+
+.work-card {
+  margin-right: 2px;
+}
+
+/* ── Main content override ───────────────────── */
+.about-wrap {
+  padding-top: 100px;
+  gap: 0;
+}
+
+/* ── About section ───────────────────────────── */
+.about-section {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  max-width: 700px;
+}
+
+/* ── Title + Bio ─────────────────────────────── */
+.about-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.about-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 4vw, 3rem);
+  font-weight: 400;
+  line-height: 1.17;
+  color: var(--text);
+}
+
+.about-heading .muted {
+  color: var(--text-muted);
+}
+
+.about-bio {
+  font-family: var(--font-slab);
+  font-size: clamp(0.95rem, 1.2vw, 1rem);
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--text-soft);
+}
+
+/* ── Experience ──────────────────────────────── */
+.about-experience {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.exp-label {
+  font-family: var(--font-slab);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.exp-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.exp-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 14px;
+}
+
+.exp-item:last-child {
+  padding-bottom: 0;
+}
+
+.exp-role {
+  font-family: var(--font-slab);
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.exp-company {
+  font-family: var(--font-slab);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 900px) {
+  .about-carousel {
+    padding-top: 120px;
+  }
+
+  .about-wrap {
+    padding-top: 80px;
+  }
+
+  .about-section {
+    max-width: 100%;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-carousel {
+    padding-top: 100px;
+  }
+
+  .about-wrap {
+    padding-top: 60px;
+  }
+
+  .about-section {
+    gap: 32px;
+  }
+
+  .about-heading {
+    font-size: clamp(2rem, 8vw, 2.6rem);
+  }
+}

@@ -5,11 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About — Ola</title>
-  <script>(function(){var img=new Image();img.onload=function(){var c=document.createElement('canvas');c.width=c.height=64;var ctx=c.getContext('2d');ctx.beginPath();ctx.arc(32,32,32,0,Math.PI*2);ctx.clip();ctx.drawImage(img,0,0,64,64);var link=document.querySelector("link[rel='icon']")||document.createElement('link');link.rel='icon';link.href=c.toDataURL();document.head.appendChild(link);};img.src='/image/Me.jpg';})()</script>
+  <script>(function () { var img = new Image(); img.onload = function () { var c = document.createElement('canvas'); c.width = c.height = 64; var ctx = c.getContext('2d'); ctx.beginPath(); ctx.arc(32, 32, 32, 0, Math.PI * 2); ctx.clip(); ctx.drawImage(img, 0, 0, 64, 64); var link = document.querySelector("link[rel='icon']") || document.createElement('link'); link.rel = 'icon'; link.href = c.toDataURL(); document.head.appendChild(link); }; img.src = '/image/Me.jpg'; })()</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap"
+      rel="stylesheet">
+  </noscript>
   <link rel="stylesheet" href="/components/nav/nav.css">
   <link rel="stylesheet" href="/components/footer/footer.css">
   <link rel="stylesheet" href="/portfolio.css">
@@ -20,7 +26,105 @@
 
   <div id="nav-component"></div>
 
-  <main class="main-wrap">
+  <!-- Full-width image carousel -->
+  <section class="carousel-wrap about-carousel">
+    <div class="carousel-track">
+      <div class="work-card"><img src="/image/My pictures/myself-1.JPG" alt="Project" loading="eager" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-2.JPG" alt="Project" loading="eager" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-3.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-11.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-4.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-5.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-6.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-12.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-7.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-8.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-13.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-9.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-10.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-14.JPG" alt="Project" loading="lazy" /></div>
+      <!-- duplicate set for seamless loop -->
+      <div class="work-card"><img src="/image/My pictures/myself-1.JPG" alt="Project" loading="eager" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-2.JPG" alt="Project" loading="eager" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-3.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-11.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-4.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-5.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-6.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-12.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-7.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-8.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-13.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-9.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-10.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-14.JPG" alt="Project" loading="lazy" /></div>
+    </div>
+  </section>
+
+  <main class="main-wrap about-wrap">
+    <section class="about-section">
+
+      <!-- Title + Bio -->
+      <div class="about-text-block">
+        <h1 class="about-heading">
+          I'm <span class="muted">Ola</span>,<br>
+          a Design Engineer.
+        </h1>
+        <p class="about-bio">
+          I'm a designer focused on crafting thoughtful, user-centered digital experiences and brand identities that
+          feel both visually compelling and strategically grounded. Over time, I've developed a strong ability to take
+          ideas from early concepts to polished outcomes, translating abstract visions into clear, engaging interfaces
+          and cohesive brand systems. My approach is rooted in understanding people: how they think, interact, and
+          connect with products. This allows me to design work that isn't just aesthetically strong, but also
+          intuitive, purposeful, and aligned with real user needs. I pay close attention to detail, consistency, and
+          storytelling, ensuring every touchpoint contributes to a meaningful and memorable experience.
+          <br><br>
+          Alongside my design expertise, I'm growing into design engineering, expanding my ability to bring ideas to
+          life through code and no-code tools like HTML, CSS, JavaScript, React, Webflow, and Framer. While I'm still
+          early in this journey, I'm intentional about learning how things are built so I can design with deeper
+          technical awareness and collaborate more effectively across disciplines. My goal is to bridge the gap between
+          design and development, creating smoother workflows and more refined end products. I approach this process
+          with curiosity and a hands-on mindset, constantly refining both my craft and my technical foundation.
+          <br><br>
+          Outside of digital work, I'm drawn to fashion culture and style, which subtly shapes how I think about
+          aesthetics, composition, and expression.
+        </p>
+      </div>
+
+      <!-- Experience -->
+      <div class="about-experience">
+        <p class="exp-label">Experience</p>
+        <ul class="exp-list">
+          <li class="exp-item">
+            <p class="exp-role">Designer</p>
+            <p class="exp-company">Rehive Inc &middot; 2026 &ndash; Present</p>
+          </li>
+          <li class="exp-item">
+            <p class="exp-role">Designer &amp; No&#8209;Code Web Developer</p>
+            <p class="exp-company">Hypergrowth &middot; 2024 &ndash; 2026</p>
+          </li>
+          <li class="exp-item">
+            <p class="exp-role">UIUX Designer</p>
+            <p class="exp-company">Cimpla &middot; 2023 &ndash; 2024</p>
+          </li>
+          <li class="exp-item">
+            <p class="exp-role">Junior UIUX Designer</p>
+            <p class="exp-company">EtherealDesign Studio &middot; 2023</p>
+          </li>
+          <li class="exp-item">
+            <p class="exp-role">UIUX Design Intern</p>
+            <p class="exp-company">GoPay &middot; 2022 &ndash; 2023</p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- CTA -->
+      <a href="mailto:odeniransulaimon18@gmail.com" class="btn-primary">
+        Work With Me
+        <img src="/image/Icons/Arrow.svg" alt="" class="btn-arrow" />
+      </a>
+
+    </section>
   </main>
 
   <div id="footer-component"></div>
