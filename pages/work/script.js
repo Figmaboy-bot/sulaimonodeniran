@@ -26,7 +26,7 @@
         '<p class="case-study-meta">' + esc(meta) + '</p>' +
         '<div class="case-study-details">' +
           '<h2 class="case-study-title">' + esc(p.title || '') + '</h2>' +
-          '<p class="case-study-desc">' + esc(p.about || p.tagline || '') + '</p>' +
+          '<p class="case-study-desc">' + esc(p.tagline || p.about || '') + '</p>' +
           '<div class="case-study-role">' +
             '<p class="role-label">Role</p>' +
             '<p class="role-value">' + esc(p.role || '') + '</p>' +
