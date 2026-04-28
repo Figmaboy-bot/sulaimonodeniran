@@ -504,14 +504,197 @@ body {
   align-items: flex-end;
 }
 
-.empty-gallery {
-  font-family: var(--font-slab);
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  padding: 24px;
+/* ── Upload zone ───────────────────────────── */
+
+.upload-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1.5px dashed var(--border);
+  border-radius: 12px;
+  padding: 36px 24px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  margin-bottom: 20px;
   text-align: center;
-  border: 1px dashed var(--border);
+}
+
+.upload-zone:hover,
+.upload-zone.drag-over {
+  border-color: rgba(245,245,245,0.4);
+  background: rgba(245,245,245,0.03);
+}
+
+.upload-zone input[type="file"] {
+  display: none;
+}
+
+.upload-zone svg {
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.upload-label {
+  font-family: var(--font-slab);
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
+
+.upload-label span {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.upload-hint {
+  font-family: var(--font-slab);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.cover-hint {
+  font-family: var(--font-slab);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ── Gallery image grid ────────────────────── */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+/* ── Gallery card ──────────────────────────── */
+
+.gcard {
+  border: 1px solid var(--border);
   border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s;
+}
+
+.gcard.is-cover {
+  border-color: rgba(245,245,245,0.5);
+}
+
+.gcard-img-wrap {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: rgba(255,255,255,0.04);
+  overflow: hidden;
+}
+
+.gcard-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gcard-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 8px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 60%);
+}
+
+.gcard:hover .gcard-overlay {
+  opacity: 1;
+}
+
+.gcard-cover-btn {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: rgba(255,255,255,0.5);
+  line-height: 1;
+  padding: 2px;
+  transition: color 0.15s, transform 0.15s;
+}
+
+.gcard-cover-btn:hover,
+.gcard.is-cover .gcard-cover-btn {
+  color: #fbbf24;
+  transform: scale(1.2);
+}
+
+.gcard-remove-btn {
+  background: none;
+  border: none;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: rgba(255,255,255,0.5);
+  line-height: 1;
+  padding: 2px;
+  transition: color 0.15s;
+}
+
+.gcard-remove-btn:hover { color: #ff6b6b; }
+
+.gcard-cover-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: #fbbf24;
+  color: #000;
+  font-family: var(--font-slab);
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+  border-radius: 100px;
+  display: none;
+}
+
+.gcard.is-cover .gcard-cover-badge { display: block; }
+
+.gcard-meta {
+  padding: 10px 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gcard-alt {
+  font-size: 0.8rem;
+  padding: 7px 10px;
+}
+
+.gcard-layout {
+  display: flex;
+  gap: 4px;
+}
+
+.gcard-layout-btn {
+  flex: 1;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px;
+  font-family: var(--font-slab);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.gcard-layout-btn.active {
+  background: rgba(245,245,245,0.12);
+  border-color: rgba(245,245,245,0.3);
+  color: var(--text);
 }
 
 /* ── Buttons ───────────────────────────────── */

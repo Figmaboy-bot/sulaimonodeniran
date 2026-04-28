@@ -120,28 +120,30 @@
         <section class="editor-section">
           <h3 class="section-title">Work Listing Card</h3>
           <div class="field-grid">
-            <div class="field">
+            <div class="field field--full">
               <label class="field-label">Category · Year label</label>
               <input class="field-input" id="f-meta" type="text" placeholder="e.g. Fintech · 2023" />
-            </div>
-            <div class="field">
-              <label class="field-label">Card image path</label>
-              <input class="field-input" id="f-card-img" type="text" placeholder="/image/Work card 1.jpg" />
             </div>
           </div>
         </section>
 
-        <!-- Gallery -->
+        <!-- Gallery & Images -->
         <section class="editor-section">
           <div class="section-header">
-            <h3 class="section-title">Gallery</h3>
-            <div class="gallery-add-btns">
-              <button class="btn-ghost btn-sm" id="btn-add-full">+ Full</button>
-              <button class="btn-ghost btn-sm" id="btn-add-pair">+ Pair</button>
-            </div>
+            <h3 class="section-title">Images</h3>
+            <p class="cover-hint">Star (★) sets the work listing cover</p>
           </div>
-          <div class="gallery-list" id="gallery-list"></div>
-          <p class="empty-gallery" id="empty-gallery" style="display:none;">No gallery items yet. Add a full-width or side-by-side pair.</p>
+
+          <!-- Upload zone -->
+          <label class="upload-zone" id="upload-zone">
+            <input type="file" id="upload-input" accept="image/*" multiple />
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <p class="upload-label">Drop images here or <span>browse</span></p>
+            <p class="upload-hint">PNG, JPG, WebP · Multiple files supported</p>
+          </label>
+
+          <!-- Image grid -->
+          <div class="gallery-grid" id="gallery-grid"></div>
         </section>
 
       </div>
@@ -150,6 +152,7 @@
   </div>
 
   <script src="/data/projects.js"></script>
+  <script src="imagedb.js"></script>
   <script src="script.js"></script>
 
 </body>

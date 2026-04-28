@@ -27,27 +27,40 @@
   // ── Build gallery ───────────────────────────
   var gallery = document.getElementById('project-gallery');
 
-  function makeImg(src, alt, eager) {
+  function makeImg(alt, eager) {
     var wrap = document.createElement('div');
     wrap.className = 'gallery-img';
     var img = document.createElement('img');
-    img.src = src;
-    img.alt = alt;
+    img.alt     = alt;
     img.loading = eager ? 'eager' : 'lazy';
     wrap.appendChild(img);
     return wrap;
   }
 
+  function resolveImg(imgEl, imageId, src) {
+    if (imageId) {
+      ImageDB.get(imageId).then(function (rec) {
+        if (rec) imgEl.src = rec.dataUrl;
+        else if (src) imgEl.src = src;
+      }).catch(function () { if (src) imgEl.src = src; });
+    } else if (src) {
+      imgEl.src = src;
+    }
+  }
+
   project.gallery.forEach(function (section, i) {
     if (section.type === 'full') {
-      var wrap = makeImg(section.src, section.alt, i === 0);
+      var wrap = makeImg(section.alt || '', i === 0);
       wrap.classList.add('gallery-img--full');
+      resolveImg(wrap.querySelector('img'), section.imageId, section.src);
       gallery.appendChild(wrap);
     } else if (section.type === 'pair') {
       var row = document.createElement('div');
       row.className = 'gallery-row';
-      section.images.forEach(function (item) {
-        row.appendChild(makeImg(item.src, item.alt, false));
+      (section.images || []).forEach(function (item) {
+        var w = makeImg(item.alt || '', false);
+        resolveImg(w.querySelector('img'), item.imageId, item.src);
+        row.appendChild(w);
       });
       gallery.appendChild(row);
     }
