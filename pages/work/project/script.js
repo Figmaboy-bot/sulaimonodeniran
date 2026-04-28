@@ -1,8 +1,14 @@
 (function () {
 
   // ── Load project data from URL ──────────────
+  // Check localStorage first (set by admin dashboard), fallback to static file
   var id = new URLSearchParams(location.search).get('id');
-  var project = PROJECTS && PROJECTS[id];
+  var source = PROJECTS;
+  try {
+    var stored = localStorage.getItem('portfolio_projects');
+    if (stored) source = JSON.parse(stored);
+  } catch (e) {}
+  var project = source && source[id];
 
   if (!project) {
     location.replace('/pages/work/');

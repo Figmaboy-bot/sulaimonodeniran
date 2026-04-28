@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="/portfolio.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Top bar -->
+  <header class="admin-header">
+    <a href="/" class="admin-logo">
+      <span class="admin-logo-text">Portfolio</span>
+      <span class="admin-logo-badge">Admin</span>
+    </a>
+    <div class="admin-header-actions">
+      <a href="/pages/work/" target="_blank" class="btn-ghost">View Work Page ↗</a>
+      <button class="btn-export" id="btn-export">Export projects.js</button>
+    </div>
+  </header>
+
+  <div class="admin-layout">
+
+    <!-- Sidebar: project list -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <p class="sidebar-label">Projects</p>
+        <button class="btn-new" id="btn-new">+ New</button>
+      </div>
+      <ul class="project-list" id="project-list"></ul>
+    </aside>
+
+    <!-- Main: editor -->
+    <main class="admin-main" id="admin-main">
+      <div class="empty-state" id="empty-state">
+        <p class="empty-title">Select a project to edit</p>
+        <p class="empty-sub">or create a new one</p>
+      </div>
+
+      <!-- Editor panel (hidden until project selected) -->
+      <div class="editor" id="editor" style="display:none;">
+
+        <div class="editor-header">
+          <div>
+            <h2 class="editor-title" id="editor-heading">Edit Project</h2>
+            <p class="editor-url" id="editor-url"></p>
+          </div>
+          <div class="editor-header-actions">
+            <a class="btn-ghost" id="btn-preview" href="#" target="_blank">Preview ↗</a>
+            <button class="btn-danger" id="btn-delete">Delete</button>
+            <button class="btn-primary" id="btn-save">Save</button>
+          </div>
+        </div>
+
+        <!-- Details -->
+        <section class="editor-section">
+          <h3 class="section-title">Details</h3>
+          <div class="field-grid">
+            <div class="field field--full">
+              <label class="field-label">Slug (URL ID)</label>
+              <input class="field-input" id="f-slug" type="text" placeholder="e.g. coin-compass" />
+              <p class="field-hint">Used in the URL: /pages/work/project/?id=<span id="slug-preview">…</span></p>
+            </div>
+            <div class="field field--full">
+              <label class="field-label">Title</label>
+              <input class="field-input" id="f-title" type="text" placeholder="Project title" />
+            </div>
+            <div class="field field--full">
+              <label class="field-label">Tagline</label>
+              <input class="field-input" id="f-tagline" type="text" placeholder="One-line description" />
+            </div>
+            <div class="field field--full">
+              <label class="field-label">About</label>
+              <textarea class="field-input field-textarea" id="f-about" rows="4" placeholder="Longer project description"></textarea>
+            </div>
+            <div class="field">
+              <label class="field-label">Industry</label>
+              <input class="field-input" id="f-industry" type="text" placeholder="e.g. Fintech" />
+            </div>
+            <div class="field">
+              <label class="field-label">Role</label>
+              <input class="field-input" id="f-role" type="text" placeholder="e.g. UI/UX Design" />
+            </div>
+            <div class="field">
+              <label class="field-label">Year</label>
+              <input class="field-input" id="f-year" type="text" placeholder="e.g. 2024" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Work listing card -->
+        <section class="editor-section">
+          <h3 class="section-title">Work Listing Card</h3>
+          <div class="field-grid">
+            <div class="field">
+              <label class="field-label">Category · Year label</label>
+              <input class="field-input" id="f-meta" type="text" placeholder="e.g. Fintech · 2023" />
+            </div>
+            <div class="field">
+              <label class="field-label">Card image path</label>
+              <input class="field-input" id="f-card-img" type="text" placeholder="/image/Work card 1.jpg" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Gallery -->
+        <section class="editor-section">
+          <div class="section-header">
+            <h3 class="section-title">Gallery</h3>
+            <div class="gallery-add-btns">
+              <button class="btn-ghost btn-sm" id="btn-add-full">+ Full</button>
+              <button class="btn-ghost btn-sm" id="btn-add-pair">+ Pair</button>
+            </div>
+          </div>
+          <div class="gallery-list" id="gallery-list"></div>
+          <p class="empty-gallery" id="empty-gallery" style="display:none;">No gallery items yet. Add a full-width or side-by-side pair.</p>
+        </section>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script src="/data/projects.js"></script>
+  <script src="script.js"></script>
+
+</body>
+
+</html>
