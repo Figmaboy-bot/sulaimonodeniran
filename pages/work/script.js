@@ -10,7 +10,18 @@
   var list = document.getElementById('case-studies-list');
   if (!list) return;
 
-  var ids = Object.keys(source || {});
+  var savedOrder = null;
+  try {
+    var rawOrder = localStorage.getItem('portfolio_project_order');
+    if (rawOrder) savedOrder = JSON.parse(rawOrder);
+  } catch (e) {}
+
+  var allIds = Object.keys(source || {});
+  var ids = savedOrder
+    ? savedOrder.filter(function (id) { return source[id]; }).concat(
+        allIds.filter(function (id) { return savedOrder.indexOf(id) === -1; })
+      )
+    : allIds;
   if (!ids.length) return;
 
   ids.forEach(function (id) {

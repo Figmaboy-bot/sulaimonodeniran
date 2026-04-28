@@ -243,10 +243,50 @@ body {
 }
 
 .project-list-item {
-  padding: 12px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 8px 10px 6px;
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.15s ease;
+}
+
+.pli-drag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 5px;
+  color: var(--text-muted);
+  cursor: grab;
+  transition: background 0.15s, color 0.15s;
+}
+
+.pli-drag:hover {
+  background: rgba(245, 245, 245, 0.08);
+  color: var(--text-soft);
+}
+
+.pli-drag:active {
+  cursor: grabbing;
+}
+
+.pli-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.project-list-item.is-dragging {
+  opacity: 0.35;
+}
+
+.project-list-item.drag-over {
+  background: rgba(245, 245, 245, 0.1);
+  outline: 1px solid rgba(245, 245, 245, 0.25);
+  outline-offset: -1px;
 }
 
 .project-list-item:hover {

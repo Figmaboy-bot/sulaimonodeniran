@@ -65,16 +65,19 @@
 
   // ── State ───────────────────────────────────
   var STORAGE_KEY = 'portfolio_projects';
+  var ORDER_KEY   = 'portfolio_project_order';
 
   var state = {
     projects:  {},
+    order:     [],   // explicit render order (array of project IDs)
     activeId:  null,
     isNew:     false,
-    gallery:   [],   // [{ imageId, alt, layout:'full'|'half' }]
-    coverId:   null  // imageId of cover
+    gallery:   [],
+    coverId:   null
   };
 
-  var dragSrcIdx = null;
+  var dragSrcIdx     = null;  // gallery drag
+  var sidebarDragSrc = null;  // sidebar project reorder drag
 
   // ── Init ────────────────────────────────────
   function init() {
@@ -85,21 +88,36 @@
     } else {
       state.projects = deepClone(PROJECTS);
     }
+    var storedOrder = localStorage.getItem(ORDER_KEY);
+    if (storedOrder) {
+      try { state.order = JSON.parse(storedOrder); }
+      catch (e) { state.order = []; }
+    }
+    normalizeOrder();
     renderList();
-    var keys = Object.keys(state.projects);
-    if (keys.length) selectProject(keys[0]);
+    if (state.order.length) selectProject(state.order[0]);
     bindGlobalEvents();
   }
 
   // ── Helpers ─────────────────────────────────
   function deepClone(o)   { return JSON.parse(JSON.stringify(o)); }
   function persist()      { localStorage.setItem(STORAGE_KEY, JSON.stringify(state.projects)); }
+  function persistOrder() { localStorage.setItem(ORDER_KEY, JSON.stringify(state.order)); }
   function slugify(s)     { return s.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''); }
   function uid()          { return 'img_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7); }
   function esc(s)         {
     return String(s || '')
       .replace(/&/g, '&amp;').replace(/"/g, '&quot;')
       .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  // Keeps state.order in sync with state.projects keys
+  function normalizeOrder() {
+    var keys = Object.keys(state.projects);
+    state.order = state.order.filter(function (id) { return !!state.projects[id]; });
+    keys.forEach(function (id) {
+      if (state.order.indexOf(id) === -1) state.order.push(id);
+    });
   }
 
   function toast(msg) {
@@ -115,19 +133,74 @@
     el._t = setTimeout(function () { el.classList.remove('show'); }, 2400);
   }
 
-  // ── Project list ─────────────────────────────
+  // ── Project list (sidebar) ───────────────────
   function renderList() {
     var list = document.getElementById('project-list');
     list.innerHTML = '';
-    Object.keys(state.projects).forEach(function (id) {
+
+    state.order.forEach(function (id, idx) {
       var p  = state.projects[id];
+      if (!p) return;
       var li = document.createElement('li');
-      li.className     = 'project-list-item' + (id === state.activeId ? ' active' : '');
-      li.dataset.id    = id;
-      li.innerHTML     =
-        '<p class="pli-title">' + esc(p.title || 'Untitled') + '</p>' +
-        '<p class="pli-meta">' + esc(p.industry || '') + (p.year ? ' · ' + esc(p.year) : '') + '</p>';
-      li.addEventListener('click', function () { selectProject(id); });
+      li.className   = 'project-list-item' + (id === state.activeId ? ' active' : '');
+      li.dataset.id  = id;
+      li.dataset.idx = idx;
+      li.draggable   = true;
+
+      li.innerHTML =
+        '<span class="pli-drag" title="Drag to reorder">' +
+          '<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">' +
+            '<circle cx="3.5" cy="2.5" r="1.1"/><circle cx="8.5" cy="2.5" r="1.1"/>' +
+            '<circle cx="3.5" cy="6" r="1.1"/><circle cx="8.5" cy="6" r="1.1"/>' +
+            '<circle cx="3.5" cy="9.5" r="1.1"/><circle cx="8.5" cy="9.5" r="1.1"/>' +
+          '</svg>' +
+        '</span>' +
+        '<div class="pli-text">' +
+          '<p class="pli-title">' + esc(p.title || 'Untitled') + '</p>' +
+          '<p class="pli-meta">' + esc(p.industry || '') + (p.year ? ' · ' + esc(p.year) : '') + '</p>' +
+        '</div>';
+
+      // Select on click (but not on the drag handle)
+      li.addEventListener('click', function (e) {
+        if (e.target.closest('.pli-drag')) return;
+        selectProject(id);
+      });
+
+      // Sidebar drag-to-reorder
+      li.addEventListener('dragstart', function (e) {
+        sidebarDragSrc = idx;
+        e.dataTransfer.effectAllowed = 'move';
+        setTimeout(function () { li.classList.add('is-dragging'); }, 0);
+      });
+      li.addEventListener('dragend', function () {
+        sidebarDragSrc = null;
+        li.classList.remove('is-dragging');
+        document.querySelectorAll('.project-list-item').forEach(function (el) {
+          el.classList.remove('drag-over');
+        });
+      });
+      li.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+      });
+      li.addEventListener('dragenter', function (e) {
+        e.preventDefault();
+        if (sidebarDragSrc !== null && sidebarDragSrc !== idx) li.classList.add('drag-over');
+      });
+      li.addEventListener('dragleave', function () {
+        li.classList.remove('drag-over');
+      });
+      li.addEventListener('drop', function (e) {
+        e.preventDefault();
+        li.classList.remove('drag-over');
+        if (sidebarDragSrc === null || sidebarDragSrc === idx) return;
+        var moved = state.order.splice(sidebarDragSrc, 1)[0];
+        state.order.splice(idx, 0, moved);
+        persistOrder();
+        renderList();
+        toast('Order saved');
+      });
+
       list.appendChild(li);
     });
   }
@@ -161,7 +234,6 @@
     document.getElementById('f-live-url').value = p.liveUrl  || '';
     document.getElementById('slug-preview').textContent = id;
 
-    // Migrate old gallery format (src-based) to new imageId-based
     state.gallery = (p.gallery || []).map(function (item) {
       if (item.type === 'full')  return { imageId: item.imageId || null, src: item.src || null, alt: item.alt || '', layout: 'full', mediaType: item.mediaType || 'image' };
       if (item.type === 'pair')  return [
@@ -222,7 +294,6 @@
           '</div>' +
         '</div>';
 
-      // ── Drag to reorder ──────────────────────
       card.addEventListener('dragstart', function (e) {
         dragSrcIdx = idx;
         e.dataTransfer.effectAllowed = 'move';
@@ -252,7 +323,6 @@
         renderGalleryGrid();
       });
 
-      // Load media
       var mediaEl = card.querySelector('.gcard-img');
       if (item.imageId) {
         ImageDB.get(item.imageId).then(function (rec) {
@@ -262,7 +332,6 @@
         mediaEl.src = item.src;
       }
 
-      // Cover button (images only)
       var coverBtn = card.querySelector('.gcard-cover-btn');
       if (coverBtn) {
         coverBtn.addEventListener('click', function () {
@@ -277,19 +346,16 @@
         });
       }
 
-      // Remove button
       card.querySelector('.gcard-remove-btn').addEventListener('click', function () {
         if (item.imageId && item.imageId === state.coverId) state.coverId = null;
         state.gallery.splice(idx, 1);
         renderGalleryGrid();
       });
 
-      // Alt text
       card.querySelector('.gcard-alt').addEventListener('input', function () {
         state.gallery[idx].alt = this.value;
       });
 
-      // Layout toggle
       card.querySelectorAll('.gcard-layout-btn').forEach(function (btn) {
         btn.addEventListener('click', function () {
           state.gallery[idx].layout = this.dataset.layout;
@@ -316,7 +382,6 @@
         var id      = uid();
         ImageDB.save(id, dataUrl, file.name).then(function () {
           state.gallery.push({ imageId: id, src: null, alt: file.name.replace(/\.[^.]+$/, ''), layout: 'full', mediaType: isVideo ? 'video' : 'image' });
-          // Auto-set first image (not video) as cover
           if (!state.coverId && isImage) state.coverId = id;
           renderGalleryGrid();
         });
@@ -368,11 +433,25 @@
     var data = readForm();
     if (!data.title) { toast('Title is required'); return; }
     var oldId = state.activeId;
-    if (newSlug !== oldId && !state.isNew) delete state.projects[oldId];
+
+    if (state.isNew) {
+      // New project: replace temp key with real slug in order
+      var tempIdx = state.order.indexOf(oldId);
+      if (tempIdx !== -1) state.order[tempIdx] = newSlug;
+      else state.order.push(newSlug);
+      delete state.projects[oldId];
+    } else if (newSlug !== oldId) {
+      // Slug renamed: swap in order
+      var orderIdx = state.order.indexOf(oldId);
+      if (orderIdx !== -1) state.order[orderIdx] = newSlug;
+      delete state.projects[oldId];
+    }
+
     state.projects[newSlug] = data;
     state.activeId = newSlug;
     state.isNew    = false;
     persist();
+    persistOrder();
     renderList();
     selectProject(newSlug);
     toast('Project saved ✓');
@@ -382,14 +461,15 @@
   function deleteProject() {
     if (!state.activeId) return;
     if (!confirm('Delete "' + (state.projects[state.activeId].title || state.activeId) + '"?')) return;
+    state.order = state.order.filter(function (id) { return id !== state.activeId; });
     delete state.projects[state.activeId];
     state.activeId = null;
     persist();
+    persistOrder();
     renderList();
     document.getElementById('editor').style.display      = 'none';
     document.getElementById('empty-state').style.display = 'flex';
-    var keys = Object.keys(state.projects);
-    if (keys.length) selectProject(keys[0]);
+    if (state.order.length) selectProject(state.order[0]);
     toast('Project deleted');
   }
 
@@ -402,7 +482,9 @@
       industry: '', role: '', year: '',
       meta: '', coverImageId: null, gallery: []
     };
+    state.order.push(tempId);
     persist();
+    persistOrder();
     renderList();
     selectProject(tempId);
     document.getElementById('f-slug').value = '';
@@ -416,8 +498,12 @@
       state.projects[state.activeId] = Object.assign(state.projects[state.activeId], readForm());
     }
 
-    // Resolve all imageIds to base64 dataUrls for the export
-    var exported = deepClone(state.projects);
+    // Build export object in the current sidebar order
+    var exported = {};
+    state.order.forEach(function (id) {
+      if (state.projects[id]) exported[id] = deepClone(state.projects[id]);
+    });
+
     var promises = [];
     Object.values(exported).forEach(function (p) {
       (p.gallery || []).forEach(function (section) {
@@ -466,7 +552,6 @@
 
   // ── Bind events ───────────────────────────────
   function bindGlobalEvents() {
-    // Upload zone
     var zone  = document.getElementById('upload-zone');
     var input = document.getElementById('upload-input');
 
@@ -481,7 +566,6 @@
       handleFiles(e.dataTransfer.files);
     });
 
-    // Slug preview
     document.getElementById('f-slug').addEventListener('input', function () {
       document.getElementById('slug-preview').textContent = slugify(this.value) || '…';
     });
