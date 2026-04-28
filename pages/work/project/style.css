@@ -217,6 +217,13 @@ body {
 
 /* ── CTA buttons ───────────────────────────── */
 
+.sidebar-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+
 .btn-live-project {
   display: flex;
   align-items: center;
