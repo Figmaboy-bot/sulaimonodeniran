@@ -61,7 +61,6 @@
 
     // Only the image navigates to the project
     var imgWrap = article.querySelector('.case-study-image');
-    imgWrap.style.cursor = 'pointer';
     imgWrap.addEventListener('click', function () {
       var href = article.dataset.href;
       document.body.style.transition = 'transform 0.5s cubic-bezier(0.76,0,0.24,1), opacity 0.4s ease';
@@ -69,6 +68,22 @@
       document.body.style.opacity    = '0';
       setTimeout(function () { location.href = href; }, 480);
     });
+  });
+
+  // ── Custom "view" cursor ─────────────────────
+  var cursor = document.createElement('div');
+  cursor.className = 'work-cursor';
+  cursor.textContent = 'view project';
+  document.body.appendChild(cursor);
+
+  document.addEventListener('mousemove', function (e) {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top  = e.clientY + 'px';
+    if (e.target.closest('.case-study-image')) {
+      cursor.classList.add('is-visible');
+    } else {
+      cursor.classList.remove('is-visible');
+    }
   });
 
   function esc(s) {

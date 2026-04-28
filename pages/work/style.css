@@ -1,3 +1,13 @@
+/* ── Override page-enter: opacity only, no transform (transform on body breaks scroll) */
+@keyframes work-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+body {
+  animation: work-fade-in 0.5s ease both;
+}
+
 /* ── Work page ─────────────────────────────── */
 
 .work-main {
@@ -105,6 +115,42 @@
   font-style: normal;
   color: var(--text);
   line-height: 1.2;
+}
+
+/* ── Custom view cursor ────────────────────── */
+
+.work-cursor {
+  position: fixed;
+  width: 110px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  font-family: var(--font-slab);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.03em;
+  user-select: none;
+}
+
+.work-cursor.is-visible {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.case-study-image:hover {
+  cursor: none;
 }
 
 /* ── Case Study Image ──────────────────────── */
