@@ -179,7 +179,7 @@
 
     state.gallery.forEach(function (item, idx) {
       var isVideo   = item.mediaType === 'video';
-      var isCover   = item.imageId && item.imageId === state.coverId;
+      var isCover   = !!(state.coverId && item.imageId && item.imageId === state.coverId);
       var card      = document.createElement('div');
       card.className    = 'gcard' + (isCover ? ' is-cover' : '');
       card.dataset.idx  = idx;
@@ -228,11 +228,12 @@
       var coverBtn = card.querySelector('.gcard-cover-btn');
       if (coverBtn) {
         coverBtn.addEventListener('click', function () {
-          state.coverId = item.imageId || null;
+          if (!item.imageId) { toast('Re-upload this image to use it as cover'); return; }
+          state.coverId = item.imageId;
           document.querySelectorAll('.gcard').forEach(function (c) {
-            var cIdx = parseInt(c.dataset.idx);
+            var cIdx  = parseInt(c.dataset.idx);
             var cItem = state.gallery[cIdx];
-            c.classList.toggle('is-cover', cItem && cItem.imageId === state.coverId);
+            c.classList.toggle('is-cover', !!(state.coverId && cItem && cItem.imageId === state.coverId));
           });
           toast('Cover image set');
         });
