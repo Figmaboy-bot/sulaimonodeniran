@@ -24,6 +24,12 @@
   document.getElementById('project-role').textContent     = project.role;
   document.getElementById('project-year').textContent     = project.year;
 
+  var liveBtn = document.getElementById('btn-live');
+  if (project.liveUrl) {
+    liveBtn.href          = project.liveUrl;
+    liveBtn.style.display = '';
+  }
+
   // ── Build gallery ───────────────────────────
   var gallery = document.getElementById('project-gallery');
 

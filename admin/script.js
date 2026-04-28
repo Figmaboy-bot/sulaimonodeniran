@@ -156,6 +156,7 @@
     document.getElementById('f-role').value     = p.role     || '';
     document.getElementById('f-year').value     = p.year     || '';
     document.getElementById('f-meta').value     = p.meta     || '';
+    document.getElementById('f-live-url').value = p.liveUrl  || '';
     document.getElementById('slug-preview').textContent = id;
 
     // Migrate old gallery format (src-based) to new imageId-based
@@ -317,6 +318,7 @@
       role:         document.getElementById('f-role').value.trim(),
       year:         document.getElementById('f-year').value.trim(),
       meta:         document.getElementById('f-meta').value.trim(),
+      liveUrl:      document.getElementById('f-live-url').value.trim() || null,
       coverImageId: state.coverId || null,
       gallery:      galleryToProjectFormat()
     };
