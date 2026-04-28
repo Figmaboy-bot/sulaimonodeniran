@@ -661,6 +661,22 @@ body {
 
 .gcard.is-cover .gcard-cover-badge { display: block; }
 
+.gcard-video-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  font-family: var(--font-slab);
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+  border-radius: 100px;
+  pointer-events: none;
+}
+
 .gcard-meta {
   padding: 10px 10px 12px;
   display: flex;

@@ -39,21 +39,25 @@
 
     list.appendChild(article);
 
-    // Load cover image: try IndexedDB first, then coverSrc, then cardImg
+    // Load cover image: IndexedDB → coverSrc → cardImg → first gallery src
     var img = article.querySelector('.case-study-image img');
+
+    function fallbackSrc() {
+      if (p.coverSrc) return p.coverSrc;
+      if (p.cardImg)  return p.cardImg;
+      var first = (p.gallery || []).find(function (s) {
+        return s.type === 'full' ? s.src : (s.images && s.images[0] && s.images[0].src);
+      });
+      if (!first) return '';
+      return first.type === 'full' ? first.src : first.images[0].src;
+    }
+
     if (p.coverImageId) {
       ImageDB.get(p.coverImageId).then(function (rec) {
-        if (rec) img.src = rec.dataUrl;
-        else if (p.coverSrc) img.src = p.coverSrc;
-        else if (p.cardImg)  img.src = p.cardImg;
-      }).catch(function () {
-        if (p.coverSrc)  img.src = p.coverSrc;
-        else if (p.cardImg) img.src = p.cardImg;
-      });
-    } else if (p.coverSrc) {
-      img.src = p.coverSrc;
-    } else if (p.cardImg) {
-      img.src = p.cardImg;
+        img.src = rec ? rec.dataUrl : fallbackSrc();
+      }).catch(function () { img.src = fallbackSrc(); });
+    } else {
+      img.src = fallbackSrc();
     }
 
     // Slide-up transition on click

@@ -160,10 +160,10 @@
 
     // Migrate old gallery format (src-based) to new imageId-based
     state.gallery = (p.gallery || []).map(function (item) {
-      if (item.type === 'full')  return { imageId: item.imageId || null, src: item.src || null, alt: item.alt || '', layout: 'full' };
+      if (item.type === 'full')  return { imageId: item.imageId || null, src: item.src || null, alt: item.alt || '', layout: 'full', mediaType: item.mediaType || 'image' };
       if (item.type === 'pair')  return [
-        { imageId: (item.images[0] || {}).imageId || null, src: (item.images[0] || {}).src || null, alt: (item.images[0] || {}).alt || '', layout: 'half' },
-        { imageId: (item.images[1] || {}).imageId || null, src: (item.images[1] || {}).src || null, alt: (item.images[1] || {}).alt || '', layout: 'half' }
+        { imageId: (item.images[0] || {}).imageId || null, src: (item.images[0] || {}).src || null, alt: (item.images[0] || {}).alt || '', layout: 'half', mediaType: (item.images[0] || {}).mediaType || 'image' },
+        { imageId: (item.images[1] || {}).imageId || null, src: (item.images[1] || {}).src || null, alt: (item.images[1] || {}).alt || '', layout: 'half', mediaType: (item.images[1] || {}).mediaType || 'image' }
       ];
       return item;
     }).flat();
@@ -178,47 +178,65 @@
     grid.innerHTML = '';
 
     state.gallery.forEach(function (item, idx) {
-      var card = document.createElement('div');
-      card.className    = 'gcard' + (item.imageId && item.imageId === state.coverId ? ' is-cover' : '');
+      var isVideo   = item.mediaType === 'video';
+      var isCover   = item.imageId && item.imageId === state.coverId;
+      var card      = document.createElement('div');
+      card.className    = 'gcard' + (isCover ? ' is-cover' : '');
       card.dataset.idx  = idx;
+
+      var mediaHtml = isVideo
+        ? '<video class="gcard-img" muted preload="metadata" loop playsinline></video>'
+        : '<img class="gcard-img" src="" alt="" />';
+
+      var coverBtnHtml = isVideo
+        ? ''
+        : '<button class="gcard-cover-btn" title="Set as cover">★</button>';
+
+      var videoBadgeHtml = isVideo
+        ? '<span class="gcard-video-badge">Video</span>'
+        : '';
 
       card.innerHTML =
         '<div class="gcard-img-wrap">' +
-          '<img class="gcard-img" src="" alt="" />' +
+          mediaHtml +
           '<div class="gcard-overlay">' +
-            '<button class="gcard-cover-btn" title="Set as cover">★</button>' +
+            coverBtnHtml +
             '<button class="gcard-remove-btn" title="Remove">✕</button>' +
           '</div>' +
           '<span class="gcard-cover-badge">Cover</span>' +
+          videoBadgeHtml +
         '</div>' +
         '<div class="gcard-meta">' +
-          '<input class="field-input gcard-alt" type="text" placeholder="Alt text" value="' + esc(item.alt) + '" />' +
+          '<input class="field-input gcard-alt" type="text" placeholder="' + (isVideo ? 'Video label' : 'Alt text') + '" value="' + esc(item.alt) + '" />' +
           '<div class="gcard-layout">' +
             '<button class="gcard-layout-btn' + (item.layout !== 'half' ? ' active' : '') + '" data-layout="full">Full</button>' +
             '<button class="gcard-layout-btn' + (item.layout === 'half' ? ' active' : '') + '" data-layout="half">Half</button>' +
           '</div>' +
         '</div>';
 
-      // Load image
-      var img = card.querySelector('.gcard-img');
+      // Load media
+      var mediaEl = card.querySelector('.gcard-img');
       if (item.imageId) {
         ImageDB.get(item.imageId).then(function (rec) {
-          if (rec) img.src = rec.dataUrl;
+          if (rec) mediaEl.src = rec.dataUrl;
         });
       } else if (item.src) {
-        img.src = item.src;
+        mediaEl.src = item.src;
       }
 
-      // Cover button
-      card.querySelector('.gcard-cover-btn').addEventListener('click', function () {
-        state.coverId = item.imageId || null;
-        document.querySelectorAll('.gcard').forEach(function (c) {
-          var cIdx = parseInt(c.dataset.idx);
-          var cItem = state.gallery[cIdx];
-          c.classList.toggle('is-cover', cItem && cItem.imageId === state.coverId);
+      // Cover button (images only)
+      var coverBtn = card.querySelector('.gcard-cover-btn');
+      if (coverBtn) {
+        coverBtn.addEventListener('click', function () {
+          state.coverId = item.imageId || null;
+          document.querySelectorAll('.gcard').forEach(function (c) {
+            var cIdx = parseInt(c.dataset.idx);
+            var cItem = state.gallery[cIdx];
+            c.classList.toggle('is-cover', cItem && cItem.imageId === state.coverId);
+          });
+          toast('Cover image set');
         });
-        toast('Cover image set');
-      });
+      }
 
       // Remove button
       card.querySelector('.gcard-remove-btn').addEventListener('click', function () {
@@ -250,15 +268,17 @@
   function handleFiles(files) {
     if (!files || !files.length) return;
     Array.from(files).forEach(function (file) {
-      if (!file.type.startsWith('image/')) return;
+      var isVideo = file.type.startsWith('video/');
+      var isImage = file.type.startsWith('image/');
+      if (!isImage && !isVideo) return;
       var reader = new FileReader();
       reader.onload = function (e) {
         var dataUrl = e.target.result;
         var id      = uid();
         ImageDB.save(id, dataUrl, file.name).then(function () {
-          state.gallery.push({ imageId: id, src: null, alt: file.name.replace(/\.[^.]+$/, ''), layout: 'full' });
-          // Auto-set first image as cover
-          if (!state.coverId) state.coverId = id;
+          state.gallery.push({ imageId: id, src: null, alt: file.name.replace(/\.[^.]+$/, ''), layout: 'full', mediaType: isVideo ? 'video' : 'image' });
+          // Auto-set first image (not video) as cover
+          if (!state.coverId && isImage) state.coverId = id;
           renderGalleryGrid();
         });
       };
@@ -274,12 +294,12 @@
       var item = state.gallery[i];
       if (item.layout === 'half' && state.gallery[i + 1] && state.gallery[i + 1].layout === 'half') {
         result.push({ type: 'pair', images: [
-          { imageId: item.imageId, src: item.src, alt: item.alt },
-          { imageId: state.gallery[i + 1].imageId, src: state.gallery[i + 1].src, alt: state.gallery[i + 1].alt }
+          { imageId: item.imageId, src: item.src, alt: item.alt, mediaType: item.mediaType || 'image' },
+          { imageId: state.gallery[i + 1].imageId, src: state.gallery[i + 1].src, alt: state.gallery[i + 1].alt, mediaType: state.gallery[i + 1].mediaType || 'image' }
         ]});
         i += 2;
       } else {
-        result.push({ type: 'full', imageId: item.imageId, src: item.src, alt: item.alt });
+        result.push({ type: 'full', imageId: item.imageId, src: item.src, alt: item.alt, mediaType: item.mediaType || 'image' });
         i++;
       }
     }

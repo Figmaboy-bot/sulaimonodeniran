@@ -7,6 +7,8 @@ var PROJECTS = {
     industry: 'Fintech',
     role: 'UI/UX Design, Brand Design',
     year: '2023',
+    meta: 'Fintech · 2023',
+    cardImg: '/image/Work card 1.jpg',
     gallery: [
       { type: 'full', src: '/image/Work card 1.jpg', alt: 'Coin Compass — hero screen' },
       { type: 'full', src: '/image/Work card 1.jpg', alt: 'Coin Compass — dashboard' },
@@ -30,6 +32,8 @@ var PROJECTS = {
     industry: 'E-Commerce',
     role: 'UI/UX Design, Brand Identity',
     year: '2024',
+    meta: 'E-Commerce · 2024',
+    cardImg: '/image/Work card 2.png',
     gallery: [
       { type: 'full', src: '/image/Work card 2.png', alt: 'Brand Project — hero' },
       { type: 'full', src: '/image/Work card 2.png', alt: 'Brand Project — identity' },

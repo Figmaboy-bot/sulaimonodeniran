@@ -27,39 +27,49 @@
   // ── Build gallery ───────────────────────────
   var gallery = document.getElementById('project-gallery');
 
-  function makeImg(alt, eager) {
+  function makeMedia(mediaType, alt, eager) {
     var wrap = document.createElement('div');
     wrap.className = 'gallery-img';
-    var img = document.createElement('img');
-    img.alt     = alt;
-    img.loading = eager ? 'eager' : 'lazy';
-    wrap.appendChild(img);
+    var el;
+    if (mediaType === 'video') {
+      el = document.createElement('video');
+      el.autoplay = true;
+      el.muted    = true;
+      el.loop     = true;
+      el.setAttribute('playsinline', '');
+      el.setAttribute('preload', 'auto');
+    } else {
+      el = document.createElement('img');
+      el.alt     = alt;
+      el.loading = eager ? 'eager' : 'lazy';
+    }
+    wrap.appendChild(el);
     return wrap;
   }
 
-  function resolveImg(imgEl, imageId, src) {
+  function resolveMedia(el, imageId, src) {
     if (imageId) {
       ImageDB.get(imageId).then(function (rec) {
-        if (rec) imgEl.src = rec.dataUrl;
-        else if (src) imgEl.src = src;
-      }).catch(function () { if (src) imgEl.src = src; });
+        if (rec) el.src = rec.dataUrl;
+        else if (src) el.src = src;
+      }).catch(function () { if (src) el.src = src; });
     } else if (src) {
-      imgEl.src = src;
+      el.src = src;
     }
   }
 
   project.gallery.forEach(function (section, i) {
     if (section.type === 'full') {
-      var wrap = makeImg(section.alt || '', i === 0);
+      var wrap = makeMedia(section.mediaType || 'image', section.alt || '', i === 0);
       wrap.classList.add('gallery-img--full');
-      resolveImg(wrap.querySelector('img'), section.imageId, section.src);
+      resolveMedia(wrap.firstChild, section.imageId, section.src);
       gallery.appendChild(wrap);
     } else if (section.type === 'pair') {
       var row = document.createElement('div');
       row.className = 'gallery-row';
       (section.images || []).forEach(function (item) {
-        var w = makeImg(item.alt || '', false);
-        resolveImg(w.querySelector('img'), item.imageId, item.src);
+        var w = makeMedia(item.mediaType || 'image', item.alt || '', false);
+        resolveMedia(w.firstChild, item.imageId, item.src);
         row.appendChild(w);
       });
       gallery.appendChild(row);
