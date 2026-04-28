@@ -61,7 +61,7 @@
   project.gallery.forEach(function (section, i) {
     if (section.type === 'full') {
       var wrap = makeMedia(section.mediaType || 'image', section.alt || '', i === 0);
-      wrap.classList.add('gallery-img--full');
+      if (i === 0) wrap.classList.add('gallery-img--full'); // only cover gets fixed height
       resolveMedia(wrap.firstChild, section.imageId, section.src);
       gallery.appendChild(wrap);
     } else if (section.type === 'pair') {

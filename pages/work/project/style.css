@@ -270,14 +270,21 @@ body {
   flex: none;
 }
 
+/* natural height for non-cover gallery images */
 .gallery-img img,
 .gallery-img video {
   width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+
+/* cover (first) image fills its fixed-height container */
+.gallery-img--full img,
+.gallery-img--full video {
   height: 100%;
   object-fit: cover;
   object-position: center top;
-  display: block;
-  pointer-events: none;
 }
 
 .gallery-img img {
