@@ -1,5 +1,76 @@
 (function () {
 
+  // ── Auth ────────────────────────────────────
+  var PWD_KEY  = 'admin_pwd_hash';
+  var AUTH_KEY = 'admin_authed';
+
+  async function sha256(str) {
+    var buf  = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+  }
+
+  function showLock() {
+    var hasPassword = !!localStorage.getItem(PWD_KEY);
+    document.getElementById('lock-title').textContent = hasPassword ? 'Welcome back' : 'Set a password';
+    document.getElementById('lock-sub').textContent   = hasPassword
+      ? 'Enter your password to continue'
+      : 'This is your first time — choose a password for the admin.';
+    document.getElementById('lock-btn').textContent   = hasPassword ? 'Continue' : 'Set password';
+  }
+
+  document.getElementById('lock-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var input  = document.getElementById('lock-input');
+    var errEl  = document.getElementById('lock-error');
+    var btn    = document.getElementById('lock-btn');
+    var pwd    = input.value;
+
+    if (!pwd) return;
+    btn.disabled = true;
+    errEl.textContent = '';
+
+    var hash       = await sha256(pwd);
+    var storedHash = localStorage.getItem(PWD_KEY);
+
+    if (!storedHash) {
+      // First-time setup — save the hash and unlock
+      localStorage.setItem(PWD_KEY, hash);
+      sessionStorage.setItem(AUTH_KEY, '1');
+      document.getElementById('lock-screen').classList.add('hidden');
+    } else if (hash === storedHash) {
+      sessionStorage.setItem(AUTH_KEY, '1');
+      document.getElementById('lock-screen').classList.add('hidden');
+    } else {
+      errEl.textContent = 'Incorrect password';
+      input.classList.add('shake');
+      input.addEventListener('animationend', function(){ input.classList.remove('shake'); }, { once: true });
+      input.value = '';
+      input.focus();
+    }
+
+    btn.disabled = false;
+  });
+
+  // Toggle password visibility
+  document.getElementById('lock-toggle').addEventListener('click', function () {
+    var input  = document.getElementById('lock-input');
+    var eyeOn  = document.getElementById('icon-eye');
+    var eyeOff = document.getElementById('icon-eye-off');
+    var showing = input.type === 'text';
+    input.type       = showing ? 'password' : 'text';
+    eyeOn.style.display  = showing ? '' : 'none';
+    eyeOff.style.display = showing ? 'none' : '';
+    input.focus();
+  });
+
+  // Already authenticated this session?
+  if (sessionStorage.getItem(AUTH_KEY)) {
+    document.getElementById('lock-screen').classList.add('hidden');
+  } else {
+    showLock();
+  }
+
+  // ── Projects ────────────────────────────────
   var STORAGE_KEY = 'portfolio_projects';
 
   // ── State ──────────────────────────────────

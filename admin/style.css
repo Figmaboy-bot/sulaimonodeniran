@@ -1,3 +1,148 @@
+/* ── Lock screen ───────────────────────────── */
+
+.lock-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.lock-screen.hidden {
+  display: none;
+}
+
+.lock-card {
+  width: 100%;
+  max-width: 380px;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lock-logo {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--text-soft);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lock-badge {
+  font-family: var(--font-slab);
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--text);
+  color: var(--bg);
+  padding: 2px 7px;
+  border-radius: 100px;
+}
+
+.lock-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.lock-sub {
+  font-family: var(--font-slab);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.lock-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lock-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.lock-input {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 48px 14px 16px;
+  font-family: var(--font-slab);
+  font-size: 1rem;
+  color: var(--text);
+  outline: none;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+
+.lock-input:focus {
+  border-color: rgba(245,245,245,0.4);
+}
+
+.lock-toggle {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.lock-toggle:hover {
+  color: var(--text);
+}
+
+.lock-input.shake {
+  animation: lock-shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes lock-shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-8px); }
+  40%       { transform: translateX(8px); }
+  60%       { transform: translateX(-5px); }
+  80%       { transform: translateX(5px); }
+}
+
+.lock-error {
+  font-family: var(--font-slab);
+  font-size: 0.8rem;
+  color: #ff6b6b;
+  min-height: 1em;
+}
+
+.lock-btn {
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-family: var(--font-slab);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  margin-top: 4px;
+}
+
+.lock-btn:hover { opacity: 0.85; }
+.lock-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
 /* ── Admin layout ──────────────────────────── */
 
 body {
