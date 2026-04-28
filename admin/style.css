@@ -583,6 +583,35 @@ body {
   border-color: rgba(245,245,245,0.5);
 }
 
+.gcard-drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  color: var(--text-muted);
+  cursor: grab;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s, color 0.15s;
+}
+
+.gcard-drag-handle:hover {
+  background: rgba(245,245,245,0.05);
+  color: var(--text-soft);
+}
+
+.gcard-drag-handle:active {
+  cursor: grabbing;
+}
+
+.gcard.is-dragging {
+  opacity: 0.35;
+}
+
+.gcard.drag-over {
+  border-color: rgba(245,245,245,0.6);
+  box-shadow: 0 0 0 2px rgba(245,245,245,0.2);
+}
+
 .gcard-img-wrap {
   position: relative;
   aspect-ratio: 16 / 10;

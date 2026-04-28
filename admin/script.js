@@ -74,6 +74,8 @@
     coverId:   null  // imageId of cover
   };
 
+  var dragSrcIdx = null;
+
   // ── Init ────────────────────────────────────
   function init() {
     var stored = localStorage.getItem(STORAGE_KEY);
@@ -197,7 +199,12 @@
         ? '<span class="gcard-video-badge">Video</span>'
         : '';
 
+      card.draggable = true;
+
       card.innerHTML =
+        '<div class="gcard-drag-handle" title="Drag to reorder">' +
+          '<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><circle cx="4" cy="3" r="1.3"/><circle cx="10" cy="3" r="1.3"/><circle cx="4" cy="7" r="1.3"/><circle cx="10" cy="7" r="1.3"/><circle cx="4" cy="11" r="1.3"/><circle cx="10" cy="11" r="1.3"/></svg>' +
+        '</div>' +
         '<div class="gcard-img-wrap">' +
           mediaHtml +
           '<div class="gcard-overlay">' +
@@ -214,6 +221,36 @@
             '<button class="gcard-layout-btn' + (item.layout === 'half' ? ' active' : '') + '" data-layout="half">Half</button>' +
           '</div>' +
         '</div>';
+
+      // ── Drag to reorder ──────────────────────
+      card.addEventListener('dragstart', function (e) {
+        dragSrcIdx = idx;
+        e.dataTransfer.effectAllowed = 'move';
+        setTimeout(function () { card.classList.add('is-dragging'); }, 0);
+      });
+      card.addEventListener('dragend', function () {
+        dragSrcIdx = null;
+        card.classList.remove('is-dragging');
+        document.querySelectorAll('.gcard').forEach(function (c) { c.classList.remove('drag-over'); });
+      });
+      card.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+      });
+      card.addEventListener('dragenter', function () {
+        if (dragSrcIdx !== null && dragSrcIdx !== idx) card.classList.add('drag-over');
+      });
+      card.addEventListener('dragleave', function () {
+        card.classList.remove('drag-over');
+      });
+      card.addEventListener('drop', function (e) {
+        e.preventDefault();
+        card.classList.remove('drag-over');
+        if (dragSrcIdx === null || dragSrcIdx === idx) return;
+        var moved = state.gallery.splice(dragSrcIdx, 1)[0];
+        state.gallery.splice(idx, 0, moved);
+        renderGalleryGrid();
+      });
 
       // Load media
       var mediaEl = card.querySelector('.gcard-img');
