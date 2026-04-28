@@ -27,6 +27,18 @@
   --menu-border: rgba(0, 0, 0, 0.1);
 }
 
+/* ── Text selection ─────────────────────────── */
+
+::selection {
+  background: #f5f5f5;
+  color: #1a1a1a;
+}
+
+[data-theme="light"] ::selection {
+  background: #1a1a1a;
+  color: #f5f5f5;
+}
+
 *,
 *::before,
 *::after {

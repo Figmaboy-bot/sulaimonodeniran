@@ -1,0 +1,335 @@
+/* ── Entry animations ──────────────────────── */
+
+/* body just fades — no transform so position:fixed sidebar stays locked */
+@keyframes project-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+body {
+  animation: project-fade-in 0.4s ease both;
+}
+
+/* gallery slides up from below */
+@keyframes gallery-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-gallery {
+  animation: gallery-slide-in 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Project detail page ───────────────────── */
+
+.project-main {
+  padding-top: 40px;
+  padding-bottom: 80px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* ── Back link ─────────────────────────────── */
+
+.project-back-row {
+  padding-bottom: 8px;
+}
+
+.project-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-slab);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--text-soft);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.project-back:hover {
+  color: var(--text);
+}
+
+.back-arrow {
+  width: 19px;
+  height: 12px;
+  filter: invert(1) opacity(0.8);
+  transform: rotate(180deg);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+[data-theme="light"] .back-arrow {
+  filter: invert(0) opacity(0.8);
+}
+
+.project-back:hover .back-arrow {
+  transform: rotate(180deg) translateX(4px);
+}
+
+/* ── Two-column layout ─────────────────────── */
+
+.project-layout {
+  display: block;
+  position: relative;
+}
+
+/* ── Fixed sidebar ─────────────────────────── */
+
+.project-sidebar {
+  position: fixed;
+  left: max(0px, calc(50vw - 800px));
+  top: 0;
+  width: 540px;
+  height: 100vh;
+  padding: 40px 40px 60px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+  scrollbar-width: none;
+  z-index: 1;
+}
+
+.project-sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+/* when gallery ends, sidebar docks to the bottom of the layout */
+.project-sidebar.is-docked {
+  position: absolute;
+  left: 0;
+  top: auto;
+  bottom: 0;
+}
+
+.sidebar-top {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* ── Project header ────────────────────────── */
+
+.project-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.project-title {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.project-tagline {
+  font-family: var(--font-slab);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-soft);
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+/* ── About block ───────────────────────────── */
+
+.project-about {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 40px;
+}
+
+/* ── Meta labels/values ────────────────────── */
+
+.meta-label {
+  font-family: var(--font-slab);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-soft);
+  line-height: 1.5;
+  max-width: 500px;
+}
+
+.meta-body {
+  font-family: var(--font-slab);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-soft);
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+/* ── Project metadata ──────────────────────── */
+
+.project-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.meta-value {
+  font-family: var(--font-slab);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+
+.meta-year {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+/* ── CTA button ────────────────────────────── */
+
+.btn-work-with-me {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 16px 24px;
+  background: var(--text);
+  color: var(--bg);
+  font-family: var(--font-slab);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: opacity 0.2s ease;
+}
+
+.btn-work-with-me:hover {
+  opacity: 0.85;
+}
+
+.btn-work-with-me img {
+  width: 19px;
+  height: 12px;
+}
+
+/* invert arrow to match button bg */
+[data-theme="light"] .btn-work-with-me img {
+  filter: invert(1);
+}
+
+/* ── Gallery ───────────────────────────────── */
+
+.project-gallery {
+  margin-left: 540px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gallery-img {
+  overflow: hidden;
+  background: #fff;
+  flex: 1;
+  min-width: 0;
+}
+
+.gallery-img--full {
+  width: 100%;
+  height: 600px;
+  flex: none;
+}
+
+.gallery-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  pointer-events: none;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-img:hover img {
+  transform: scale(1.02);
+}
+
+/* ── Side-by-side row ──────────────────────── */
+
+.gallery-row {
+  display: flex;
+  gap: 12px;
+  height: 500px;
+}
+
+.gallery-row .gallery-img {
+  height: 100%;
+}
+
+/* ── Responsive ────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .project-sidebar {
+    flex: 0 0 380px;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-main {
+    padding-top: 20px;
+  }
+
+  .project-sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    padding: 20px 20px 40px;
+  }
+
+  .project-gallery {
+    margin-left: 0;
+  }
+
+  .gallery-img--full {
+    height: 320px;
+  }
+
+  .gallery-row {
+    height: 260px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-row {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .gallery-row .gallery-img {
+    height: 260px;
+  }
+}
