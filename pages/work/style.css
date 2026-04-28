@@ -38,8 +38,7 @@
 
 .case-study {
   display: flex;
-  align-items: stretch;
-  min-height: 600px;
+  align-items: flex-start;
 }
 
 .case-study-info {
@@ -47,8 +46,9 @@
   padding: 60px 40px 60px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: top;
   gap: 20px;
+  position: sticky;
+  top: 0;
 }
 
 .case-study-meta {
@@ -114,6 +114,8 @@
   overflow: hidden;
   background: #fff;
   position: relative;
+  height: 85vh;
+  min-height: 500px;
 }
 
 .case-study-image img {
@@ -145,13 +147,13 @@
 
   .case-study {
     flex-direction: column;
-    min-height: unset;
   }
 
   .case-study-info {
     flex: none;
     width: 100%;
     padding: 40px 20px;
+    position: static;
   }
 
   .case-study-image {
