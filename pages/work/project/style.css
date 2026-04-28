@@ -52,7 +52,7 @@ body {
   align-items: center;
   gap: 10px;
   font-family: var(--font-slab);
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 400;
   color: var(--text-soft);
   text-decoration: none;

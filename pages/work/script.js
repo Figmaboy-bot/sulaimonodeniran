@@ -19,7 +19,6 @@
     var article = document.createElement('article');
     article.className        = 'case-study';
     article.dataset.href     = '/pages/work/project/?id=' + id;
-    article.style.cursor     = 'pointer';
 
     article.innerHTML =
       '<div class="case-study-info">' +
@@ -60,9 +59,11 @@
       img.src = fallbackSrc();
     }
 
-    // Slide-up transition on click
-    article.addEventListener('click', function () {
-      var href = this.dataset.href;
+    // Only the image navigates to the project
+    var imgWrap = article.querySelector('.case-study-image');
+    imgWrap.style.cursor = 'pointer';
+    imgWrap.addEventListener('click', function () {
+      var href = article.dataset.href;
       document.body.style.transition = 'transform 0.5s cubic-bezier(0.76,0,0.24,1), opacity 0.4s ease';
       document.body.style.transform  = 'translateY(-40px)';
       document.body.style.opacity    = '0';
