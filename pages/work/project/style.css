@@ -15,6 +15,11 @@ body {
   animation: project-fade-in 0.4s ease both;
 }
 
+/* Project main must not use transform — fixed sidebar would break */
+main.project-main {
+  animation: project-fade-in 0.4s ease both;
+}
+
 /* gallery slides up from below */
 @keyframes gallery-slide-in {
   from {

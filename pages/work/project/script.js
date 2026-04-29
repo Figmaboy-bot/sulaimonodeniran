@@ -168,6 +168,7 @@
   if (backBtn) {
     backBtn.addEventListener('click', function (e) {
       e.preventDefault();
+      e.stopPropagation();
       var href = this.getAttribute('href');
       var g = document.getElementById('project-gallery');
       if (g) {

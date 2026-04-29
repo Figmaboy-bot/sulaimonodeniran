@@ -26,6 +26,9 @@ function initNav() {
   const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
   const saved = localStorage.getItem('theme') || systemTheme;
   applyTheme(saved);
+  requestAnimationFrame(function () {
+    document.body.classList.add('theme-ready');
+  });
 
   themeBtns.forEach(btn => {
     btn.addEventListener('click', () => {

@@ -14,11 +14,16 @@
     ) return;
 
     e.preventDefault();
-    document.body.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-    document.body.style.opacity = '0';
-    document.body.style.transform = 'translateY(-12px)';
+    var main = document.querySelector('main');
+    if (main) {
+      main.style.transition = 'transform 0.28s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.22s ease';
+      main.style.transform  = 'translateY(-28px)';
+      main.style.opacity    = '0';
+    }
+    document.body.style.transition = 'opacity 0.28s ease';
+    document.body.style.opacity    = '0';
     setTimeout(function () {
       location.href = href;
-    }, 250);
+    }, 290);
   });
 })();

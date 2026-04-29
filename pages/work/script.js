@@ -76,10 +76,15 @@
     var imgWrap = article.querySelector('.case-study-image');
     imgWrap.addEventListener('click', function () {
       var href = article.dataset.href;
-      document.body.style.transition = 'transform 0.5s cubic-bezier(0.76,0,0.24,1), opacity 0.4s ease';
-      document.body.style.transform  = 'translateY(-40px)';
+      var main = document.querySelector('main');
+      if (main) {
+        main.style.transition = 'transform 0.45s cubic-bezier(0.76,0,0.24,1), opacity 0.35s ease';
+        main.style.transform  = 'translateY(-40px)';
+        main.style.opacity    = '0';
+      }
+      document.body.style.transition = 'opacity 0.35s ease';
       document.body.style.opacity    = '0';
-      setTimeout(function () { location.href = href; }, 480);
+      setTimeout(function () { location.href = href; }, 460);
     });
   });
 
@@ -89,13 +94,18 @@
   cursor.textContent = 'view project';
   document.body.appendChild(cursor);
 
+  var rafId = null, cx = 0, cy = 0, cOver = false;
   document.addEventListener('mousemove', function (e) {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top  = e.clientY + 'px';
-    if (e.target.closest('.case-study-image')) {
-      cursor.classList.add('is-visible');
-    } else {
-      cursor.classList.remove('is-visible');
+    cx    = e.clientX;
+    cy    = e.clientY;
+    cOver = !!e.target.closest('.case-study-image');
+    if (!rafId) {
+      rafId = requestAnimationFrame(function () {
+        cursor.style.left = cx + 'px';
+        cursor.style.top  = cy + 'px';
+        cursor.classList.toggle('is-visible', cOver);
+        rafId = null;
+      });
     }
   });
 
