@@ -669,7 +669,28 @@
     document.getElementById('pg-editor-heading').textContent = item.title || 'Untitled';
     document.getElementById('pg-f-title').value = item.title || '';
     document.getElementById('pg-f-desc').value  = item.desc  || '';
+    renderPgCoverPreview(item);
     renderPgMediaPreview(item);
+  }
+
+  function renderPgCoverPreview(item) {
+    var wrap = document.getElementById('pg-cover-preview');
+    wrap.innerHTML = '';
+    if (!item || !item.coverId) return;
+    ImageDB.get(item.coverId).then(function (rec) {
+      if (!rec) return;
+      var el = document.createElement('img');
+      el.src = rec.dataUrl; el.className = 'pg-media-thumb';
+      wrap.appendChild(el);
+      var removeBtn = document.createElement('button');
+      removeBtn.className = 'btn-ghost btn-sm'; removeBtn.textContent = 'Remove cover';
+      removeBtn.style.marginTop = '10px';
+      removeBtn.addEventListener('click', function () {
+        var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
+        if (idx !== -1) { pgState.items[idx].coverId = null; renderPgCoverPreview(pgState.items[idx]); }
+      });
+      wrap.appendChild(removeBtn);
+    });
   }
 
   function renderPgMediaPreview(item) {
@@ -681,13 +702,10 @@
       var el = item.mediaType === 'video'
         ? Object.assign(document.createElement('video'), { controls: true, muted: true })
         : document.createElement('img');
-      el.src       = rec.dataUrl;
-      el.className = 'pg-media-thumb';
+      el.src = rec.dataUrl; el.className = 'pg-media-thumb';
       wrap.appendChild(el);
-
       var removeBtn = document.createElement('button');
-      removeBtn.className   = 'btn-ghost btn-sm';
-      removeBtn.textContent = 'Remove media';
+      removeBtn.className = 'btn-ghost btn-sm'; removeBtn.textContent = 'Remove media';
       removeBtn.style.marginTop = '10px';
       removeBtn.addEventListener('click', function () {
         var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
@@ -701,6 +719,22 @@
   }
 
   // ── File upload ────────────────────────────────────────────────────────────
+
+  function handlePgCoverFile(file) {
+    if (!file.type.startsWith('image/')) return;
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var coverId = 'pg_cover_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
+      ImageDB.save(coverId, e.target.result, file.name).then(function () {
+        var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
+        if (idx === -1) return;
+        pgState.items[idx].coverId = coverId;
+        renderPgCoverPreview(pgState.items[idx]);
+        pgToast('Cover uploaded');
+      });
+    };
+    reader.readAsDataURL(file);
+  }
 
   function handlePgFile(file) {
     var isVideo = file.type.startsWith('video/');
@@ -765,8 +799,18 @@
   // ── Bind events ────────────────────────────────────────────────────────────
 
   function bindPgEvents() {
+    var coverZone  = document.getElementById('pg-cover-zone');
+    var coverInput = document.getElementById('pg-cover-input');
     var zone  = document.getElementById('pg-upload-zone');
     var input = document.getElementById('pg-upload-input');
+
+    coverInput.addEventListener('change', function () { if (this.files[0]) handlePgCoverFile(this.files[0]); this.value = ''; });
+    coverZone.addEventListener('dragover',  function (e) { e.preventDefault(); this.classList.add('drag-over'); });
+    coverZone.addEventListener('dragleave', function ()  { this.classList.remove('drag-over'); });
+    coverZone.addEventListener('drop',      function (e) {
+      e.preventDefault(); this.classList.remove('drag-over');
+      if (e.dataTransfer.files[0]) handlePgCoverFile(e.dataTransfer.files[0]);
+    });
 
     input.addEventListener('change', function () { if (this.files[0]) handlePgFile(this.files[0]); this.value = ''; });
     zone.addEventListener('dragover',  function (e) { e.preventDefault(); this.classList.add('drag-over'); });

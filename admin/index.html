@@ -204,7 +204,19 @@
           </div>
         </section>
         <section class="editor-section">
-          <h3 class="section-title">Media</h3>
+          <h3 class="section-title">Cover Image</h3>
+          <p class="field-hint" style="margin-bottom:12px;">Shown on the card. Required for video items.</p>
+          <label class="upload-zone" id="pg-cover-zone">
+            <input type="file" id="pg-cover-input" accept="image/*" />
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <p class="upload-label">Drop cover image here or <span>browse</span></p>
+            <p class="upload-hint">PNG, JPG, WebP</p>
+          </label>
+          <div class="pg-media-preview" id="pg-cover-preview"></div>
+        </section>
+        <section class="editor-section">
+          <h3 class="section-title">Main Media</h3>
+          <p class="field-hint" style="margin-bottom:12px;">Shown in the modal when the card is clicked.</p>
           <label class="upload-zone" id="pg-upload-zone">
             <input type="file" id="pg-upload-input" accept="image/*,video/*" />
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>

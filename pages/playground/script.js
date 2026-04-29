@@ -16,47 +16,35 @@
   if (!items.length) {
     grid.innerHTML = '<p class="pg-empty">No items yet — add some in the admin panel.</p>';
   } else {
-    for (var r = 0; r < Math.ceil(items.length / 4); r++) {
-      var row = document.createElement('div');
-      row.className = 'pg-row';
-      for (var c = 0; c < 4; c++) {
-        var idx  = r * 4 + c;
-        if (idx >= items.length) break;
-        var item = items[idx];
+    items.forEach(function (item) {
+      var card = document.createElement('div');
+      card.className         = 'pg-item';
+      card.dataset.id        = item.id;
+      card.dataset.title     = item.title     || '';
+      card.dataset.desc      = item.desc      || '';
+      card.dataset.mediaType = item.mediaType || 'image';
 
-        var card = document.createElement('div');
-        card.className        = 'pg-item';
-        card.dataset.id       = item.id;
-        card.dataset.title    = item.title    || '';
-        card.dataset.desc     = item.desc     || '';
-        card.dataset.mediaType = item.mediaType || 'image';
+      card.innerHTML =
+        '<div class="pg-image"><img class="pg-card-thumb" src="" alt="' + esc(item.title || '') + '" loading="lazy" /></div>' +
+        '<div class="pg-info">' +
+          '<p class="pg-title">' + esc(item.title || '') + '</p>' +
+          '<p class="pg-desc">'  + esc(item.desc  || '') + '</p>' +
+        '</div>';
 
-        var thumbHtml = item.mediaType === 'video'
-          ? '<video class="pg-card-thumb" muted loop playsinline></video>'
-          : '<img  class="pg-card-thumb" src="" alt="' + esc(item.title || '') + '" loading="lazy" />';
-
-        card.innerHTML =
-          '<div class="pg-image">' + thumbHtml + '</div>' +
-          '<div class="pg-info">' +
-            '<p class="pg-title">' + esc(item.title || '') + '</p>' +
-            '<p class="pg-desc">'  + esc(item.desc  || '') + '</p>' +
-          '</div>';
-
-        // Load thumbnail from IndexedDB
-        if (item.mediaId) {
-          (function (card, item) {
-            ImageDB.get(item.mediaId).then(function (rec) {
-              if (!rec) return;
-              var el = card.querySelector('.pg-card-thumb');
-              if (el) el.src = rec.dataUrl;
-            });
-          })(card, item);
-        }
-
-        row.appendChild(card);
+      // Cover: prefer coverId, fall back to mediaId when it's an image
+      var thumbId = item.coverId || (item.mediaType !== 'video' ? item.mediaId : null);
+      if (thumbId) {
+        (function (card, thumbId) {
+          ImageDB.get(thumbId).then(function (rec) {
+            if (!rec) return;
+            var el = card.querySelector('.pg-card-thumb');
+            if (el) el.src = rec.dataUrl;
+          });
+        })(card, thumbId);
       }
-      grid.appendChild(row);
-    }
+
+      grid.appendChild(card);
+    });
   }
 
   // ── Modal ──────────────────────────────────────────────────────────────────
@@ -78,12 +66,12 @@
         var el;
         if (item.mediaType === 'video') {
           el = document.createElement('video');
-          el.controls  = true;
-          el.autoplay  = true;
-          el.muted     = true;
-          el.loop      = true;
+          el.controls   = true;
+          el.autoplay   = true;
+          el.muted      = true;
+          el.loop       = true;
           el.playsInline = true;
-          el.className = 'pg-modal-video';
+          el.className  = 'pg-modal-video';
         } else {
           el = document.createElement('img');
           el.alt       = item.title || '';
@@ -117,16 +105,8 @@
   });
 
   closeBtn.addEventListener('click', closeModal);
-
-  overlay.addEventListener('click', function (e) {
-    if (e.target === overlay) closeModal();
-  });
-
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeModal();
-  });
-
-  // ── Helpers ────────────────────────────────────────────────────────────────
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
 
   function esc(s) {
     return String(s || '')
