@@ -49,12 +49,16 @@
       <div id="header-actions-playground" style="display:none;align-items:center;gap:12px;">
         <a href="/pages/playground/" target="_blank" class="btn-ghost">View Playground ↗</a>
       </div>
+      <div id="header-actions-articles" style="display:none;align-items:center;gap:12px;">
+        <a href="/pages/articles/" target="_blank" class="btn-ghost">View Articles ↗</a>
+      </div>
     </div>
   </header>
 
   <div class="admin-tabs">
     <button class="admin-tab active" data-panel="projects">Projects</button>
     <button class="admin-tab" data-panel="playground">Playground</button>
+    <button class="admin-tab" data-panel="articles">Articles</button>
   </div>
 
   <div class="admin-layout" id="projects-panel">
@@ -224,6 +228,65 @@
             <p class="upload-hint">PNG, JPG, WebP, MP4, MOV</p>
           </label>
           <div class="pg-media-preview" id="pg-media-preview"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Articles panel -->
+  <div class="admin-layout" id="articles-panel" style="display:none;">
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <p class="sidebar-label">Articles</p>
+        <button class="btn-new" id="art-btn-new">+ New</button>
+      </div>
+      <ul class="project-list" id="art-item-list"></ul>
+    </aside>
+    <main class="admin-main">
+      <div class="empty-state" id="art-empty-state">
+        <p class="empty-title">Select an article to edit</p>
+        <p class="empty-sub">or create a new one</p>
+      </div>
+      <div class="editor" id="art-editor" style="display:none;">
+        <div class="editor-header">
+          <div>
+            <h2 class="editor-title" id="art-editor-heading">Edit Article</h2>
+          </div>
+          <div class="editor-header-actions">
+            <button class="btn-danger" id="art-btn-delete">Delete</button>
+            <button class="btn-primary" id="art-btn-save">Save</button>
+          </div>
+        </div>
+        <section class="editor-section">
+          <h3 class="section-title">Details</h3>
+          <div class="field-grid">
+            <div class="field field--full">
+              <label class="field-label">Title</label>
+              <input class="field-input" id="art-f-title" type="text" placeholder="Article title" />
+            </div>
+            <div class="field field--full">
+              <label class="field-label">Description</label>
+              <textarea class="field-input field-textarea" id="art-f-desc" rows="3" placeholder="Short description"></textarea>
+            </div>
+            <div class="field">
+              <label class="field-label">Date</label>
+              <input class="field-input" id="art-f-date" type="text" placeholder="e.g. Dec 31, 2025" />
+            </div>
+            <div class="field">
+              <label class="field-label">Substack URL</label>
+              <input class="field-input" id="art-f-url" type="url" placeholder="https://…" />
+            </div>
+          </div>
+        </section>
+        <section class="editor-section">
+          <h3 class="section-title">Cover Image</h3>
+          <label class="upload-zone" id="art-cover-zone">
+            <input type="file" id="art-cover-input" accept="image/*" />
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <p class="upload-label">Drop cover image here or <span>browse</span></p>
+            <p class="upload-hint">PNG, JPG, WebP</p>
+          </label>
+          <div class="pg-media-preview" id="art-cover-preview"></div>
         </section>
       </div>
     </main>
