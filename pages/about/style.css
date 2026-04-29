@@ -52,12 +52,70 @@
   color: var(--text-muted);
 }
 
+.bio-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.bio-collapse.is-open {
+  grid-template-rows: 1fr;
+}
+
+.bio-collapse > p {
+  min-height: 0;
+}
+
 .about-bio {
   font-family: var(--font-slab);
   font-size: clamp(0.95rem, 1.2vw, 1rem);
   font-weight: 400;
   line-height: 1.65;
   color: var(--text-soft);
+}
+
+.bio-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-slab);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-soft);
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.bio-toggle:hover {
+  color: var(--text);
+}
+
+.bio-toggle-arrow {
+  width: 16px;
+  height: 10px;
+  filter: invert(1) opacity(0.6);
+  transform: rotate(90deg);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s ease;
+}
+
+[data-theme="light"] .bio-toggle-arrow {
+  filter: invert(0) opacity(0.6);
+}
+
+.bio-toggle:hover .bio-toggle-arrow {
+  filter: invert(1) opacity(0.9);
+}
+
+[data-theme="light"] .bio-toggle:hover .bio-toggle-arrow {
+  filter: invert(0) opacity(0.9);
+}
+
+.bio-toggle[aria-expanded="true"] .bio-toggle-arrow {
+  transform: rotate(-90deg);
 }
 
 /* ── Experience ──────────────────────────────── */
