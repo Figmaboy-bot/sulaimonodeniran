@@ -302,6 +302,7 @@ body {
   background: #fff;
   flex: 1;
   min-width: 0;
+  position: relative;
 }
 
 .gallery-img--full {
@@ -390,4 +391,67 @@ body {
   .gallery-row .gallery-img {
     height: 260px;
   }
+}
+
+/* ── Video controls overlay ─────────────────── */
+
+.video-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.55));
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.gallery-img:hover .video-controls {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.vc-btn {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  transition: opacity 0.15s ease;
+}
+
+.vc-btn:hover {
+  opacity: 1;
+}
+
+.vc-progress {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+  transition: height 0.15s ease;
+}
+
+.vc-progress:hover {
+  height: 5px;
+}
+
+.vc-progress-fill {
+  height: 100%;
+  background: #fff;
+  border-radius: 2px;
+  width: 0%;
+  pointer-events: none;
 }
