@@ -3,7 +3,7 @@
 .articles-main {
   max-width: 1600px;
   margin: 0 auto;
-  padding: 158px 40px 80px;
+  padding: 158px 0px 80px;
   display: flex;
   flex-direction: column;
   gap: 40px;
