@@ -586,3 +586,226 @@
   init();
 
 })();
+
+// ── Playground tab ───────────────────────────────────────────────────────────
+(function () {
+
+  var PG_KEY = 'portfolio_playground';
+
+  var pgState = {
+    items:    [],
+    activeId: null
+  };
+
+  function pgUid() { return 'pg_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7); }
+  function pgEsc(s) {
+    return String(s || '')
+      .replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+      .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function pgPersist() { localStorage.setItem(PG_KEY, JSON.stringify(pgState.items)); }
+
+  function pgToast(msg) {
+    var el = document.getElementById('toast');
+    if (!el) { el = document.createElement('div'); el.id = 'toast'; el.className = 'toast'; document.body.appendChild(el); }
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(el._t);
+    el._t = setTimeout(function () { el.classList.remove('show'); }, 2400);
+  }
+
+  // ── Tab switching ──────────────────────────────────────────────────────────
+
+  function initTabs() {
+    document.querySelectorAll('.admin-tab').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var panel = this.dataset.panel;
+        document.querySelectorAll('.admin-tab').forEach(function (b) { b.classList.remove('active'); });
+        this.classList.add('active');
+        var isProjects = panel === 'projects';
+        document.getElementById('projects-panel').style.display      = isProjects ? 'flex' : 'none';
+        document.getElementById('playground-panel').style.display    = isProjects ? 'none' : 'flex';
+        document.getElementById('header-actions-projects').style.display   = isProjects ? 'flex' : 'none';
+        document.getElementById('header-actions-playground').style.display = isProjects ? 'none' : 'flex';
+      });
+    });
+  }
+
+  // ── List ───────────────────────────────────────────────────────────────────
+
+  function renderPgList() {
+    var list = document.getElementById('pg-item-list');
+    list.innerHTML = '';
+    pgState.items.forEach(function (item) {
+      var li = document.createElement('li');
+      li.className = 'project-list-item' + (item.id === pgState.activeId ? ' active' : '');
+      li.dataset.id = item.id;
+      li.innerHTML =
+        '<div class="pli-text">' +
+          '<p class="pli-title">' + pgEsc(item.title || 'Untitled') + '</p>' +
+          '<p class="pli-meta">' + pgEsc(item.mediaType || '—') + '</p>' +
+        '</div>';
+      li.addEventListener('click', function () { selectPgItem(item.id); });
+      list.appendChild(li);
+    });
+  }
+
+  // ── Select / populate ──────────────────────────────────────────────────────
+
+  function selectPgItem(id) {
+    pgState.activeId = id;
+    document.querySelectorAll('#pg-item-list .project-list-item').forEach(function (el) {
+      el.classList.toggle('active', el.dataset.id === id);
+    });
+    populatePgEditor(id);
+    document.getElementById('pg-empty-state').style.display = 'none';
+    document.getElementById('pg-editor').style.display      = 'block';
+  }
+
+  function populatePgEditor(id) {
+    var item = pgState.items.find(function (i) { return i.id === id; });
+    if (!item) return;
+    document.getElementById('pg-editor-heading').textContent = item.title || 'Untitled';
+    document.getElementById('pg-f-title').value = item.title || '';
+    document.getElementById('pg-f-desc').value  = item.desc  || '';
+    renderPgMediaPreview(item);
+  }
+
+  function renderPgMediaPreview(item) {
+    var wrap = document.getElementById('pg-media-preview');
+    wrap.innerHTML = '';
+    if (!item || !item.mediaId) return;
+    ImageDB.get(item.mediaId).then(function (rec) {
+      if (!rec) return;
+      var el = item.mediaType === 'video'
+        ? Object.assign(document.createElement('video'), { controls: true, muted: true })
+        : document.createElement('img');
+      el.src       = rec.dataUrl;
+      el.className = 'pg-media-thumb';
+      wrap.appendChild(el);
+
+      var removeBtn = document.createElement('button');
+      removeBtn.className   = 'btn-ghost btn-sm';
+      removeBtn.textContent = 'Remove media';
+      removeBtn.style.marginTop = '10px';
+      removeBtn.addEventListener('click', function () {
+        var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
+        if (idx === -1) return;
+        pgState.items[idx].mediaId   = null;
+        pgState.items[idx].mediaType = null;
+        renderPgMediaPreview(pgState.items[idx]);
+      });
+      wrap.appendChild(removeBtn);
+    });
+  }
+
+  // ── File upload ────────────────────────────────────────────────────────────
+
+  function handlePgFile(file) {
+    var isVideo = file.type.startsWith('video/');
+    var isImage = file.type.startsWith('image/');
+    if (!isImage && !isVideo) return;
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var mediaId = 'pg_media_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
+      ImageDB.save(mediaId, e.target.result, file.name).then(function () {
+        var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
+        if (idx === -1) return;
+        pgState.items[idx].mediaId   = mediaId;
+        pgState.items[idx].mediaType = isVideo ? 'video' : 'image';
+        renderPgMediaPreview(pgState.items[idx]);
+        renderPgList();
+        pgToast('Media uploaded');
+      });
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // ── CRUD ───────────────────────────────────────────────────────────────────
+
+  function savePgItem() {
+    var title = document.getElementById('pg-f-title').value.trim();
+    var desc  = document.getElementById('pg-f-desc').value.trim();
+    if (!title) { pgToast('Title is required'); return; }
+    var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
+    if (idx === -1) { pgToast('Item not found'); return; }
+    pgState.items[idx].title = title;
+    pgState.items[idx].desc  = desc;
+    document.getElementById('pg-editor-heading').textContent = title;
+    pgPersist();
+    renderPgList();
+    pgToast('Saved ✓');
+  }
+
+  function deletePgItem() {
+    if (!pgState.activeId) return;
+    var item = pgState.items.find(function (x) { return x.id === pgState.activeId; });
+    if (!confirm('Delete "' + (item && item.title ? item.title : 'this item') + '"?')) return;
+    pgState.items = pgState.items.filter(function (x) { return x.id !== pgState.activeId; });
+    pgState.activeId = null;
+    pgPersist();
+    renderPgList();
+    document.getElementById('pg-editor').style.display      = 'none';
+    document.getElementById('pg-empty-state').style.display = 'flex';
+    pgToast('Deleted');
+  }
+
+  function newPgItem() {
+    var id   = pgUid();
+    var item = { id: id, title: '', desc: '', mediaId: null, mediaType: null };
+    pgState.items.push(item);
+    pgPersist();
+    renderPgList();
+    selectPgItem(id);
+    document.getElementById('pg-f-title').focus();
+    pgToast('New item — fill in the details and save');
+  }
+
+  // ── Bind events ────────────────────────────────────────────────────────────
+
+  function bindPgEvents() {
+    var zone  = document.getElementById('pg-upload-zone');
+    var input = document.getElementById('pg-upload-input');
+
+    input.addEventListener('change', function () { if (this.files[0]) handlePgFile(this.files[0]); this.value = ''; });
+    zone.addEventListener('dragover',  function (e) { e.preventDefault(); this.classList.add('drag-over'); });
+    zone.addEventListener('dragleave', function ()  { this.classList.remove('drag-over'); });
+    zone.addEventListener('drop',      function (e) {
+      e.preventDefault(); this.classList.remove('drag-over');
+      if (e.dataTransfer.files[0]) handlePgFile(e.dataTransfer.files[0]);
+    });
+
+    document.getElementById('pg-f-title').addEventListener('input', function () {
+      document.getElementById('pg-editor-heading').textContent = this.value || 'Untitled';
+    });
+
+    document.getElementById('pg-btn-save').addEventListener('click', savePgItem);
+    document.getElementById('pg-btn-delete').addEventListener('click', deletePgItem);
+    document.getElementById('pg-btn-new').addEventListener('click', newPgItem);
+
+    document.addEventListener('keydown', function (e) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 's') {
+        var pgPanel = document.getElementById('playground-panel');
+        if (pgPanel && pgPanel.style.display !== 'none') {
+          e.preventDefault(); savePgItem();
+        }
+      }
+    });
+  }
+
+  // ── Init ───────────────────────────────────────────────────────────────────
+
+  function pgInit() {
+    try {
+      var stored = localStorage.getItem(PG_KEY);
+      if (stored) pgState.items = JSON.parse(stored);
+    } catch (e) { pgState.items = []; }
+    initTabs();
+    bindPgEvents();
+    renderPgList();
+  }
+
+  pgInit();
+
+})();

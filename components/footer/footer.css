@@ -1,7 +1,8 @@
 .footer {
   margin-top: 80px;
-  padding-bottom: 60px;
+  padding-bottom: 100px;
 }
+
 
 .footer-inner {
   max-width: 1600px;
@@ -190,7 +191,9 @@
 }
 
 @keyframes spotify-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .spotify-text {

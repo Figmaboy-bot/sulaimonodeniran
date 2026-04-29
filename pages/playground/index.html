@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playground — Ola</title>
+  <script>(function(){var img=new Image();img.onload=function(){var c=document.createElement('canvas');c.width=c.height=64;var ctx=c.getContext('2d');ctx.beginPath();ctx.arc(32,32,32,0,Math.PI*2);ctx.clip();ctx.drawImage(img,0,0,64,64);var link=document.querySelector("link[rel='icon']")||document.createElement('link');link.rel='icon';link.href=c.toDataURL();document.head.appendChild(link);};img.src='/image/Me.jpg';})()</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="/components/nav/nav.css">
+  <link rel="stylesheet" href="/components/footer/footer.css">
+  <link rel="stylesheet" href="/portfolio.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div id="nav-component"></div>
+
+  <main class="playground-main">
+
+    <div class="playground-label-row">
+      <p class="playground-label">Playground</p>
+    </div>
+
+    <div class="playground-grid" id="playground-grid"></div>
+
+  </main>
+
+  <div id="footer-component"></div>
+
+  <!-- Bottom sheet modal -->
+  <div class="pg-modal-overlay" id="pg-modal-overlay" aria-hidden="true">
+    <div class="pg-modal" id="pg-modal" role="dialog" aria-modal="true">
+      <div class="pg-modal-header">
+        <div class="pg-modal-heading">
+          <p class="pg-modal-title" id="pg-modal-title"></p>
+          <p class="pg-modal-desc" id="pg-modal-desc"></p>
+        </div>
+        <button class="pg-modal-close" id="pg-modal-close" aria-label="Close">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <div class="pg-modal-image-wrap" id="pg-modal-media-wrap"></div>
+    </div>
+  </div>
+
+  <script src="/admin/imagedb.js"></script>
+  <script src="/scripts/transitions.js"></script>
+  <script src="/components/footer/footer.js"></script>
+  <script src="/components/nav/nav.js"></script>
+  <script src="script.js"></script>
+  <script>
+    function loadComponent(id, path, callback) {
+      fetch(path)
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById(id).innerHTML = html;
+          if (callback) callback();
+        });
+    }
+    loadComponent('nav-component', '/components/nav/nav.html', initNav);
+    loadComponent('footer-component', '/components/footer/footer.html', startWATClock);
+  </script>
+
+</body>
+
+</html>

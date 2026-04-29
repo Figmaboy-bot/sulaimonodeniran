@@ -60,12 +60,10 @@ body {
 @keyframes page-enter {
   from {
     opacity: 0;
-    transform: translateY(20px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -213,7 +211,7 @@ body {
 .carousel-track {
   display: flex;
   width: max-content;
-  animation: marquee 18s linear infinite;
+  animation: marquee 50s linear infinite;
 }
 
 .carousel-track:hover {

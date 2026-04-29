@@ -42,12 +42,22 @@
       <span class="admin-logo-badge">Admin</span>
     </a>
     <div class="admin-header-actions">
-      <a href="/pages/work/" target="_blank" class="btn-ghost">View Work Page ↗</a>
-      <button class="btn-export" id="btn-export">Export projects.js</button>
+      <div id="header-actions-projects" style="display:flex;align-items:center;gap:12px;">
+        <a href="/pages/work/" target="_blank" class="btn-ghost">View Work Page ↗</a>
+        <button class="btn-export" id="btn-export">Export projects.js</button>
+      </div>
+      <div id="header-actions-playground" style="display:none;align-items:center;gap:12px;">
+        <a href="/pages/playground/" target="_blank" class="btn-ghost">View Playground ↗</a>
+      </div>
     </div>
   </header>
 
-  <div class="admin-layout">
+  <div class="admin-tabs">
+    <button class="admin-tab active" data-panel="projects">Projects</button>
+    <button class="admin-tab" data-panel="playground">Playground</button>
+  </div>
+
+  <div class="admin-layout" id="projects-panel">
 
     <!-- Sidebar: project list -->
     <aside class="admin-sidebar">
@@ -154,6 +164,57 @@
       </div>
     </main>
 
+  </div>
+
+  <!-- Playground panel -->
+  <div class="admin-layout" id="playground-panel" style="display:none;">
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <p class="sidebar-label">Items</p>
+        <button class="btn-new" id="pg-btn-new">+ New</button>
+      </div>
+      <ul class="project-list" id="pg-item-list"></ul>
+    </aside>
+    <main class="admin-main">
+      <div class="empty-state" id="pg-empty-state">
+        <p class="empty-title">Select an item to edit</p>
+        <p class="empty-sub">or create a new one</p>
+      </div>
+      <div class="editor" id="pg-editor" style="display:none;">
+        <div class="editor-header">
+          <div>
+            <h2 class="editor-title" id="pg-editor-heading">Edit Item</h2>
+          </div>
+          <div class="editor-header-actions">
+            <button class="btn-danger" id="pg-btn-delete">Delete</button>
+            <button class="btn-primary" id="pg-btn-save">Save</button>
+          </div>
+        </div>
+        <section class="editor-section">
+          <h3 class="section-title">Details</h3>
+          <div class="field-grid">
+            <div class="field field--full">
+              <label class="field-label">Title</label>
+              <input class="field-input" id="pg-f-title" type="text" placeholder="e.g. Carousel Animation" />
+            </div>
+            <div class="field field--full">
+              <label class="field-label">Description</label>
+              <input class="field-input" id="pg-f-desc" type="text" placeholder="Short description" />
+            </div>
+          </div>
+        </section>
+        <section class="editor-section">
+          <h3 class="section-title">Media</h3>
+          <label class="upload-zone" id="pg-upload-zone">
+            <input type="file" id="pg-upload-input" accept="image/*,video/*" />
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <p class="upload-label">Drop image or video here or <span>browse</span></p>
+            <p class="upload-hint">PNG, JPG, WebP, MP4, MOV</p>
+          </label>
+          <div class="pg-media-preview" id="pg-media-preview"></div>
+        </section>
+      </div>
+    </main>
   </div>
 
   <script src="/data/projects.js"></script>
