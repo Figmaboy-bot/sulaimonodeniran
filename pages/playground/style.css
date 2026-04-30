@@ -181,6 +181,27 @@ body {
   line-height: 1.5;
 }
 
+/* ── Modal live link ────────────────────────── */
+
+.pg-modal-live-link {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 14px;
+  font-family: var(--font-slab);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--text);
+  padding-bottom: 1px;
+  width: fit-content;
+  transition: opacity 0.2s ease;
+}
+
+.pg-modal-live-link:hover {
+  opacity: 0.6;
+}
+
 /* ── Modal close button ─────────────────────── */
 
 .pg-modal-close {

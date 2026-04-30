@@ -668,8 +668,9 @@
     var item = pgState.items.find(function (i) { return i.id === id; });
     if (!item) return;
     document.getElementById('pg-editor-heading').textContent = item.title || 'Untitled';
-    document.getElementById('pg-f-title').value = item.title || '';
-    document.getElementById('pg-f-desc').value  = item.desc  || '';
+    document.getElementById('pg-f-title').value    = item.title   || '';
+    document.getElementById('pg-f-desc').value     = item.desc    || '';
+    document.getElementById('pg-f-live-url').value = item.liveUrl || '';
     renderPgCoverPreview(item);
     renderPgMediaPreview(item);
   }
@@ -774,8 +775,9 @@
     if (!title) { pgToast('Title is required'); return; }
     var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
     if (idx === -1) { pgToast('Item not found'); return; }
-    pgState.items[idx].title = title;
-    pgState.items[idx].desc  = desc;
+    pgState.items[idx].title   = title;
+    pgState.items[idx].desc    = desc;
+    pgState.items[idx].liveUrl = document.getElementById('pg-f-live-url').value.trim() || null;
     document.getElementById('pg-editor-heading').textContent = title;
     pgPersist();
     renderPgList();
@@ -797,7 +799,7 @@
 
   function newPgItem() {
     var id   = pgUid();
-    var item = { id: id, title: '', desc: '', mediaId: null, mediaType: null };
+    var item = { id: id, title: '', desc: '', liveUrl: null, mediaId: null, mediaType: null };
     pgState.items.push(item);
     pgPersist();
     renderPgList();

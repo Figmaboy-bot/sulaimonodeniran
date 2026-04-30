@@ -58,6 +58,13 @@
   function openModal(item) {
     titleEl.textContent = item.title || '';
     descEl.textContent  = item.desc  || '';
+    var liveLinkEl = document.getElementById('pg-modal-live-link');
+    if (item.liveUrl) {
+      liveLinkEl.href          = item.liveUrl;
+      liveLinkEl.style.display = '';
+    } else {
+      liveLinkEl.style.display = 'none';
+    }
     mediaWrap.innerHTML = '';
 
     if (item.mediaId) {
