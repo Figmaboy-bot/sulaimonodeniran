@@ -66,19 +66,24 @@
         var el;
         if (item.mediaType === 'video') {
           el = document.createElement('video');
-          el.controls   = true;
-          el.autoplay   = true;
-          el.muted      = true;
-          el.loop       = true;
+          el.controls    = true;
+          el.autoplay    = true;
+          el.muted       = true;
+          el.loop        = true;
           el.playsInline = true;
-          el.className  = 'pg-modal-video';
+          el.className   = 'pg-modal-video';
+          mediaWrap.appendChild(el);
+          fetch(rec.dataUrl).then(function (r) { return r.blob(); }).then(function (blob) {
+            el.src = URL.createObjectURL(blob);
+            el.play().catch(function () {});
+          });
         } else {
           el = document.createElement('img');
           el.alt       = item.title || '';
           el.className = 'pg-modal-img';
+          el.src       = rec.dataUrl;
+          mediaWrap.appendChild(el);
         }
-        el.src = rec.dataUrl;
-        mediaWrap.appendChild(el);
       });
     }
 

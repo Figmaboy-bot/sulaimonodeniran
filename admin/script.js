@@ -700,10 +700,19 @@
     if (!item || !item.mediaId) return;
     ImageDB.get(item.mediaId).then(function (rec) {
       if (!rec) return;
-      var el = item.mediaType === 'video'
-        ? Object.assign(document.createElement('video'), { controls: true, muted: true })
-        : document.createElement('img');
-      el.src = rec.dataUrl; el.className = 'pg-media-thumb';
+      var el;
+      if (item.mediaType === 'video') {
+        el = document.createElement('video');
+        el.controls = true;
+        el.muted = true;
+        fetch(rec.dataUrl).then(function (r) { return r.blob(); }).then(function (blob) {
+          el.src = URL.createObjectURL(blob);
+        });
+      } else {
+        el = document.createElement('img');
+        el.src = rec.dataUrl;
+      }
+      el.className = 'pg-media-thumb';
       wrap.appendChild(el);
       var removeBtn = document.createElement('button');
       removeBtn.className = 'btn-ghost btn-sm'; removeBtn.textContent = 'Remove media';
