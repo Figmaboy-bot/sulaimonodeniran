@@ -64,7 +64,7 @@
   grid-template-rows: 1fr;
 }
 
-.bio-collapse > p {
+.bio-collapse>p {
   min-height: 0;
 }
 
@@ -171,7 +171,7 @@
 /* ── Responsive ──────────────────────────────── */
 @media (max-width: 900px) {
   .about-carousel {
-    padding-top: 120px;
+    padding-top: 0px;
   }
 
   .about-wrap {
@@ -186,7 +186,7 @@
 
 @media (max-width: 600px) {
   .about-carousel {
-    padding-top: 100px;
+    padding-top: 0px;
   }
 
   .about-wrap {

@@ -60,8 +60,13 @@ body.theme-ready {
 }
 
 @keyframes page-enter {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes main-slide-in {
@@ -69,6 +74,7 @@ body.theme-ready {
     opacity: 0;
     transform: translateY(48px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -263,15 +269,23 @@ main {
   .main-wrap {
     padding: 80px 24px 0;
   }
+
+  .work-card {
+    min-width: 240px;
+  }
 }
 
 @media (max-width: 600px) {
   .main-wrap {
-    padding: 60px 20px 0;
+    padding: 140px 20px 0;
     gap: 64px;
   }
 
   .hero {
     gap: 32px;
+  }
+
+  .work-card {
+    min-width: 200px;
   }
 }

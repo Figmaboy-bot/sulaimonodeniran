@@ -192,17 +192,23 @@
 
 @media (max-width: 768px) {
   .work-main {
-    padding-top: 120px;
+    padding-top: 140px;
+  }
+
+  .case-studies-list {
+    gap: 40px;
   }
 
   .case-study {
     flex-direction: column;
+    padding: 0px 20px;
+    gap: 20px;
   }
 
   .case-study-info {
     flex: none;
     width: 100%;
-    padding: 40px 20px;
+    padding: 0px;
     position: static;
   }
 
@@ -218,6 +224,12 @@
 }
 
 @media (max-width: 480px) {
+
+  .case-study-image {
+    height: auto;
+    min-height: auto;
+  }
+
   .case-study-desc {
     max-width: 100%;
   }

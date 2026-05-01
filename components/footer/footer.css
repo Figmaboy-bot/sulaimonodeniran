@@ -247,11 +247,29 @@
 }
 
 @media (max-width: 600px) {
+
+  .footer {
+    padding-bottom: 48px;
+  }
+
   .footer-cols {
     grid-template-columns: 1fr;
   }
 
   .footer-inner {
     padding: 0 20px;
+  }
+
+  .footer-col {
+    font-size: 0.85rem;
+  }
+
+  .footer-touch {
+    padding: 28px 0;
+  }
+
+  .footer-arrow {
+    width: 56px;
+    height: 32px;
   }
 }
