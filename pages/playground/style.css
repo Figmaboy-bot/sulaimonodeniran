@@ -153,7 +153,7 @@ body {
 .pg-modal-header {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  gap: 12px;
   padding: 40px;
 }
 
@@ -161,7 +161,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  max-width: 500px;
+  flex: 1;
+  min-width: 0;
 }
 
 .pg-modal-title {
@@ -184,22 +185,37 @@ body {
 /* ── Modal live link ────────────────────────── */
 
 .pg-modal-live-link {
-  display: inline-flex;
-  align-items: center;
-  margin-top: 14px;
-  font-family: var(--font-slab);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text);
-  text-decoration: none;
-  border-bottom: 1px solid var(--text);
-  padding-bottom: 1px;
-  width: fit-content;
-  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+  align-self: flex-start;
 }
 
-.pg-modal-live-link:hover {
-  opacity: 0.6;
+.pg-modal-live-link .btn-arrow {
+  transform: rotate(-45deg);
+}
+
+.pg-modal-live-link:hover .btn-arrow {
+  transform: rotate(-45deg) translate(4px, -4px);
+}
+
+@media (max-width: 768px) {
+  .pg-modal-header {
+    flex-wrap: wrap;
+  }
+
+  .pg-modal-heading {
+    flex: 0 0 calc(100% - 52px);
+    order: 1;
+  }
+
+  .pg-modal-close {
+    order: 2;
+  }
+
+  .pg-modal-live-link {
+    order: 3;
+    flex: 0 0 100%;
+    margin-top: 8px;
+  }
 }
 
 /* ── Modal close button ─────────────────────── */
