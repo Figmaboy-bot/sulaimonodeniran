@@ -288,4 +288,16 @@ body {
   .pg-image {
     height: 340px;
   }
+
+  .pg-modal-header {
+    padding: 20px;
+  }
+
+  .pg-modal-title {
+    font-size: 28px;
+  }
+
+  .pg-modal-desc {
+    font-size: 16px;
+  }
 }
