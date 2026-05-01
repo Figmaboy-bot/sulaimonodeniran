@@ -80,12 +80,50 @@
   var sidebarDragSrc = null;
 
   // ── Storage helpers ───────────────────────────
-  async function uploadFile(file, folder) {
-    var ext  = file.name.split('.').pop().toLowerCase();
-    var path = folder + '/' + Date.now() + '_' + Math.random().toString(36).slice(2, 7) + '.' + ext;
-    var { error } = await _sb.storage.from(PROJ_BUCKET).upload(path, file);
-    if (error) throw error;
-    return _sb.storage.from(PROJ_BUCKET).getPublicUrl(path).data.publicUrl;
+  function uploadFile(file, folder, progressId) {
+    return new Promise(function (resolve, reject) {
+      var ext  = file.name.split('.').pop().toLowerCase();
+      var path = folder + '/' + Date.now() + '_' + Math.random().toString(36).slice(2, 7) + '.' + ext;
+      var endpoint = SUPABASE_URL + '/storage/v1/object/' + PROJ_BUCKET + '/' + path;
+
+      var bar  = progressId ? document.getElementById(progressId) : null;
+      var fill = bar ? bar.querySelector('.upload-progress-fill') : null;
+      var pct  = bar ? bar.querySelector('[id$="-pct"]') : null;
+      var name = bar ? bar.querySelector('[id$="-name"]') : null;
+      if (bar)  { bar.classList.add('active'); }
+      if (fill) { fill.style.width = '0%'; }
+      if (pct)  { pct.textContent = '0%'; }
+      if (name) { name.textContent = file.name; }
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', endpoint);
+      xhr.setRequestHeader('apikey', SUPABASE_ANON_KEY);
+      xhr.setRequestHeader('Authorization', 'Bearer ' + SUPABASE_ANON_KEY);
+      xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+
+      xhr.upload.addEventListener('progress', function (e) {
+        if (!e.lengthComputable) return;
+        var p = Math.round((e.loaded / e.total) * 100);
+        if (fill) fill.style.width = p + '%';
+        if (pct)  pct.textContent  = p + '%';
+      });
+
+      xhr.addEventListener('load', function () {
+        if (bar) bar.classList.remove('active');
+        if (xhr.status >= 200 && xhr.status < 300) {
+          resolve(SUPABASE_URL + '/storage/v1/object/public/' + PROJ_BUCKET + '/' + path);
+        } else {
+          reject(new Error('Upload failed (' + xhr.status + ')'));
+        }
+      });
+
+      xhr.addEventListener('error', function () {
+        if (bar) bar.classList.remove('active');
+        reject(new Error('Network error during upload'));
+      });
+
+      xhr.send(file);
+    });
   }
 
   async function deleteStorageFile(url) {
@@ -354,6 +392,8 @@
   }
 
   // ── File upload ───────────────────────────────
+  var MAX_FILE_BYTES = 100 * 1024 * 1024; // 100 MB
+
   async function handleFiles(files) {
     if (!files || !files.length) return;
     for (var fi = 0; fi < files.length; fi++) {
@@ -361,9 +401,10 @@
       var isVideo = file.type.startsWith('video/');
       var isImage = file.type.startsWith('image/');
       if (!isImage && !isVideo) continue;
+      if (file.size > MAX_FILE_BYTES) { toast('File too large — max 100 MB'); continue; }
       toast('Uploading…');
       try {
-        var url = await uploadFile(file, isVideo ? 'videos' : 'images');
+        var url = await uploadFile(file, isVideo ? 'videos' : 'images', 'gallery-upload-progress');
         state.gallery.push({ src: url, alt: file.name.replace(/\.[^.]+$/, ''), layout: 'full', mediaType: isVideo ? 'video' : 'image' });
         if (!state.activeCoverUrl && isImage) state.activeCoverUrl = url;
         renderGalleryGrid();
@@ -548,12 +589,52 @@
 
   // ── Storage helpers ─────────────────────────────────────────────────────────
 
-  async function uploadFile(file, folder) {
-    var ext  = file.name.split('.').pop().toLowerCase();
-    var path = folder + '/' + Date.now() + '_' + Math.random().toString(36).slice(2, 7) + '.' + ext;
-    var { error } = await _sb.storage.from(BUCKET).upload(path, file);
-    if (error) throw error;
-    return _sb.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+  var PG_MAX_FILE_BYTES = 100 * 1024 * 1024; // 100 MB
+
+  function uploadFile(file, folder, progressId) {
+    return new Promise(function (resolve, reject) {
+      var ext  = file.name.split('.').pop().toLowerCase();
+      var path = folder + '/' + Date.now() + '_' + Math.random().toString(36).slice(2, 7) + '.' + ext;
+      var endpoint = SUPABASE_URL + '/storage/v1/object/' + BUCKET + '/' + path;
+
+      var bar  = progressId ? document.getElementById(progressId) : null;
+      var fill = bar ? bar.querySelector('.upload-progress-fill') : null;
+      var pct  = bar ? bar.querySelector('[id$="-pct"]') : null;
+      var name = bar ? bar.querySelector('[id$="-name"]') : null;
+      if (bar)  { bar.classList.add('active'); }
+      if (fill) { fill.style.width = '0%'; }
+      if (pct)  { pct.textContent = '0%'; }
+      if (name) { name.textContent = file.name; }
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', endpoint);
+      xhr.setRequestHeader('apikey', SUPABASE_ANON_KEY);
+      xhr.setRequestHeader('Authorization', 'Bearer ' + SUPABASE_ANON_KEY);
+      xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+
+      xhr.upload.addEventListener('progress', function (e) {
+        if (!e.lengthComputable) return;
+        var p = Math.round((e.loaded / e.total) * 100);
+        if (fill) fill.style.width = p + '%';
+        if (pct)  pct.textContent  = p + '%';
+      });
+
+      xhr.addEventListener('load', function () {
+        if (bar) bar.classList.remove('active');
+        if (xhr.status >= 200 && xhr.status < 300) {
+          resolve(SUPABASE_URL + '/storage/v1/object/public/' + BUCKET + '/' + path);
+        } else {
+          reject(new Error('Upload failed (' + xhr.status + ')'));
+        }
+      });
+
+      xhr.addEventListener('error', function () {
+        if (bar) bar.classList.remove('active');
+        reject(new Error('Network error during upload'));
+      });
+
+      xhr.send(file);
+    });
   }
 
   async function deleteFile(url) {
@@ -692,9 +773,10 @@
     var isVideo = file.type.startsWith('video/');
     var isImage = file.type.startsWith('image/');
     if (!isImage && !isVideo) return;
+    if (file.size > PG_MAX_FILE_BYTES) { pgToast('File too large — max 100 MB'); return; }
     pgToast('Uploading…');
     try {
-      var url = await uploadFile(file, isVideo ? 'videos' : 'images');
+      var url = await uploadFile(file, isVideo ? 'videos' : 'images', 'pg-upload-progress');
       var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
       if (idx === -1) return;
       pgState.items[idx].media_url  = url;

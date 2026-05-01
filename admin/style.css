@@ -600,6 +600,41 @@ body {
   color: var(--text-muted);
 }
 
+/* ── Upload progress bar ───────────────────── */
+
+.upload-progress {
+  display: none;
+  margin: -12px 0 20px;
+}
+
+.upload-progress.active {
+  display: block;
+}
+
+.upload-progress-bar {
+  height: 3px;
+  background: rgba(245, 245, 245, 0.1);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 7px;
+}
+
+.upload-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--text);
+  border-radius: 99px;
+  transition: width 0.15s linear;
+}
+
+.upload-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-slab);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
 /* ── Gallery image grid ────────────────────── */
 
 .gallery-grid {

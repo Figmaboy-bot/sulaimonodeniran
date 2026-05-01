@@ -158,8 +158,12 @@
             <input type="file" id="upload-input" accept="image/*,video/*" multiple />
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
             <p class="upload-label">Drop images or videos here or <span>browse</span></p>
-            <p class="upload-hint">PNG, JPG, WebP, MP4, MOV · Multiple files supported</p>
+            <p class="upload-hint">PNG, JPG, WebP, MP4, MOV · Multiple files · up to 100 MB each</p>
           </label>
+          <div class="upload-progress" id="gallery-upload-progress">
+            <div class="upload-progress-bar"><div class="upload-progress-fill" id="gallery-upload-fill"></div></div>
+            <div class="upload-progress-label"><span id="gallery-upload-name"></span><span id="gallery-upload-pct"></span></div>
+          </div>
 
           <!-- Image grid -->
           <div class="gallery-grid" id="gallery-grid"></div>
@@ -230,8 +234,12 @@
             <input type="file" id="pg-upload-input" accept="image/*,video/*" />
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
             <p class="upload-label">Drop image or video here or <span>browse</span></p>
-            <p class="upload-hint">PNG, JPG, WebP, MP4, MOV</p>
+            <p class="upload-hint">PNG, JPG, WebP, MP4, MOV · up to 100 MB</p>
           </label>
+          <div class="upload-progress" id="pg-upload-progress">
+            <div class="upload-progress-bar"><div class="upload-progress-fill" id="pg-upload-fill"></div></div>
+            <div class="upload-progress-label"><span id="pg-upload-name"></span><span id="pg-upload-pct"></span></div>
+          </div>
           <div class="pg-media-preview" id="pg-media-preview"></div>
         </section>
       </div>
