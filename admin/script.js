@@ -590,7 +590,8 @@
 // ── Playground tab ───────────────────────────────────────────────────────────
 (function () {
 
-  var PG_KEY = 'portfolio_playground';
+  var _sb    = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  var BUCKET = 'playground';
 
   var pgState = {
     items:    [],
@@ -604,8 +605,6 @@
       .replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  function pgPersist() { localStorage.setItem(PG_KEY, JSON.stringify(pgState.items)); }
-
   function pgToast(msg) {
     var el = document.getElementById('toast');
     if (!el) { el = document.createElement('div'); el.id = 'toast'; el.className = 'toast'; document.body.appendChild(el); }
@@ -615,7 +614,26 @@
     el._t = setTimeout(function () { el.classList.remove('show'); }, 2400);
   }
 
-  // ── Tab switching ──────────────────────────────────────────────────────────
+  // ── Storage helpers ─────────────────────────────────────────────────────────
+
+  async function uploadFile(file, folder) {
+    var ext  = file.name.split('.').pop().toLowerCase();
+    var path = folder + '/' + Date.now() + '_' + Math.random().toString(36).slice(2, 7) + '.' + ext;
+    var { error } = await _sb.storage.from(BUCKET).upload(path, file);
+    if (error) throw error;
+    return _sb.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+  }
+
+  async function deleteFile(url) {
+    if (!url) return;
+    try {
+      var marker = '/object/public/' + BUCKET + '/';
+      var i = url.indexOf(marker);
+      if (i !== -1) await _sb.storage.from(BUCKET).remove([decodeURIComponent(url.slice(i + marker.length))]);
+    } catch (e) {}
+  }
+
+  // ── Tab switching ───────────────────────────────────────────────────────────
 
   function initTabs() {
     document.querySelectorAll('.admin-tab').forEach(function (btn) {
@@ -633,26 +651,26 @@
     });
   }
 
-  // ── List ───────────────────────────────────────────────────────────────────
+  // ── List ────────────────────────────────────────────────────────────────────
 
   function renderPgList() {
     var list = document.getElementById('pg-item-list');
     list.innerHTML = '';
     pgState.items.forEach(function (item) {
       var li = document.createElement('li');
-      li.className = 'project-list-item' + (item.id === pgState.activeId ? ' active' : '');
+      li.className  = 'project-list-item' + (item.id === pgState.activeId ? ' active' : '');
       li.dataset.id = item.id;
       li.innerHTML =
         '<div class="pli-text">' +
-          '<p class="pli-title">' + pgEsc(item.title || 'Untitled') + '</p>' +
-          '<p class="pli-meta">' + pgEsc(item.mediaType || '—') + '</p>' +
+          '<p class="pli-title">' + pgEsc(item.title      || 'Untitled') + '</p>' +
+          '<p class="pli-meta">'  + pgEsc(item.media_type || '—')        + '</p>' +
         '</div>';
       li.addEventListener('click', function () { selectPgItem(item.id); });
       list.appendChild(li);
     });
   }
 
-  // ── Select / populate ──────────────────────────────────────────────────────
+  // ── Select / populate ───────────────────────────────────────────────────────
 
   function selectPgItem(id) {
     pgState.activeId = id;
@@ -667,10 +685,10 @@
   function populatePgEditor(id) {
     var item = pgState.items.find(function (i) { return i.id === id; });
     if (!item) return;
-    document.getElementById('pg-editor-heading').textContent = item.title || 'Untitled';
-    document.getElementById('pg-f-title').value    = item.title   || '';
-    document.getElementById('pg-f-desc').value     = item.desc    || '';
-    document.getElementById('pg-f-live-url').value = item.liveUrl || '';
+    document.getElementById('pg-editor-heading').textContent = item.title       || 'Untitled';
+    document.getElementById('pg-f-title').value              = item.title       || '';
+    document.getElementById('pg-f-desc').value               = item.description || '';
+    document.getElementById('pg-f-live-url').value           = item.live_url    || '';
     renderPgCoverPreview(item);
     renderPgMediaPreview(item);
   }
@@ -678,119 +696,111 @@
   function renderPgCoverPreview(item) {
     var wrap = document.getElementById('pg-cover-preview');
     wrap.innerHTML = '';
-    if (!item || !item.coverId) return;
-    ImageDB.get(item.coverId).then(function (rec) {
-      if (!rec) return;
-      var el = document.createElement('img');
-      el.src = rec.dataUrl; el.className = 'pg-media-thumb';
-      wrap.appendChild(el);
-      var removeBtn = document.createElement('button');
-      removeBtn.className = 'btn-ghost btn-sm'; removeBtn.textContent = 'Remove cover';
-      removeBtn.style.marginTop = '10px';
-      removeBtn.addEventListener('click', function () {
-        var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
-        if (idx !== -1) { pgState.items[idx].coverId = null; renderPgCoverPreview(pgState.items[idx]); }
-      });
-      wrap.appendChild(removeBtn);
+    if (!item || !item.cover_url) return;
+    var img = document.createElement('img');
+    img.src = item.cover_url; img.className = 'pg-media-thumb';
+    wrap.appendChild(img);
+    var btn = document.createElement('button');
+    btn.className = 'btn-ghost btn-sm'; btn.textContent = 'Remove cover';
+    btn.style.marginTop = '10px';
+    btn.addEventListener('click', async function () {
+      var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
+      if (idx === -1) return;
+      await deleteFile(pgState.items[idx].cover_url);
+      pgState.items[idx].cover_url = null;
+      renderPgCoverPreview(pgState.items[idx]);
     });
+    wrap.appendChild(btn);
   }
 
   function renderPgMediaPreview(item) {
     var wrap = document.getElementById('pg-media-preview');
     wrap.innerHTML = '';
-    if (!item || !item.mediaId) return;
-    ImageDB.get(item.mediaId).then(function (rec) {
-      if (!rec) return;
-      var el;
-      if (item.mediaType === 'video') {
-        el = document.createElement('video');
-        el.controls = true;
-        el.muted = true;
-        fetch(rec.dataUrl).then(function (r) { return r.blob(); }).then(function (blob) {
-          el.src = URL.createObjectURL(blob);
-        });
-      } else {
-        el = document.createElement('img');
-        el.src = rec.dataUrl;
-      }
-      el.className = 'pg-media-thumb';
-      wrap.appendChild(el);
-      var removeBtn = document.createElement('button');
-      removeBtn.className = 'btn-ghost btn-sm'; removeBtn.textContent = 'Remove media';
-      removeBtn.style.marginTop = '10px';
-      removeBtn.addEventListener('click', function () {
-        var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
-        if (idx === -1) return;
-        pgState.items[idx].mediaId   = null;
-        pgState.items[idx].mediaType = null;
-        renderPgMediaPreview(pgState.items[idx]);
-      });
-      wrap.appendChild(removeBtn);
+    if (!item || !item.media_url) return;
+    var el;
+    if (item.media_type === 'video') {
+      el = document.createElement('video');
+      el.controls = true; el.muted = true; el.src = item.media_url;
+    } else {
+      el = document.createElement('img');
+      el.src = item.media_url;
+    }
+    el.className = 'pg-media-thumb';
+    wrap.appendChild(el);
+    var btn = document.createElement('button');
+    btn.className = 'btn-ghost btn-sm'; btn.textContent = 'Remove media';
+    btn.style.marginTop = '10px';
+    btn.addEventListener('click', async function () {
+      var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
+      if (idx === -1) return;
+      await deleteFile(pgState.items[idx].media_url);
+      pgState.items[idx].media_url  = null;
+      pgState.items[idx].media_type = null;
+      renderPgMediaPreview(pgState.items[idx]);
     });
+    wrap.appendChild(btn);
   }
 
-  // ── File upload ────────────────────────────────────────────────────────────
+  // ── File upload ──────────────────────────────────────────────────────────────
 
-  function handlePgCoverFile(file) {
+  async function handlePgCoverFile(file) {
     if (!file.type.startsWith('image/')) return;
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      var coverId = 'pg_cover_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
-      ImageDB.save(coverId, e.target.result, file.name).then(function () {
-        var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
-        if (idx === -1) return;
-        pgState.items[idx].coverId = coverId;
-        renderPgCoverPreview(pgState.items[idx]);
-        pgToast('Cover uploaded');
-      });
-    };
-    reader.readAsDataURL(file);
+    pgToast('Uploading…');
+    try {
+      var url = await uploadFile(file, 'covers');
+      var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
+      if (idx === -1) return;
+      pgState.items[idx].cover_url = url;
+      renderPgCoverPreview(pgState.items[idx]);
+      pgToast('Cover uploaded');
+    } catch (e) { pgToast('Upload failed: ' + e.message); }
   }
 
-  function handlePgFile(file) {
+  async function handlePgFile(file) {
     var isVideo = file.type.startsWith('video/');
     var isImage = file.type.startsWith('image/');
     if (!isImage && !isVideo) return;
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      var mediaId = 'pg_media_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
-      ImageDB.save(mediaId, e.target.result, file.name).then(function () {
-        var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
-        if (idx === -1) return;
-        pgState.items[idx].mediaId   = mediaId;
-        pgState.items[idx].mediaType = isVideo ? 'video' : 'image';
-        renderPgMediaPreview(pgState.items[idx]);
-        renderPgList();
-        pgToast('Media uploaded');
-      });
-    };
-    reader.readAsDataURL(file);
+    pgToast('Uploading…');
+    try {
+      var url = await uploadFile(file, isVideo ? 'videos' : 'images');
+      var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
+      if (idx === -1) return;
+      pgState.items[idx].media_url  = url;
+      pgState.items[idx].media_type = isVideo ? 'video' : 'image';
+      renderPgMediaPreview(pgState.items[idx]);
+      renderPgList();
+      pgToast('Media uploaded');
+    } catch (e) { pgToast('Upload failed: ' + e.message); }
   }
 
-  // ── CRUD ───────────────────────────────────────────────────────────────────
+  // ── CRUD ─────────────────────────────────────────────────────────────────────
 
-  function savePgItem() {
+  async function savePgItem() {
     var title = document.getElementById('pg-f-title').value.trim();
     var desc  = document.getElementById('pg-f-desc').value.trim();
     if (!title) { pgToast('Title is required'); return; }
     var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
     if (idx === -1) { pgToast('Item not found'); return; }
-    pgState.items[idx].title   = title;
-    pgState.items[idx].desc    = desc;
-    pgState.items[idx].liveUrl = document.getElementById('pg-f-live-url').value.trim() || null;
+    pgState.items[idx].title       = title;
+    pgState.items[idx].description = desc;
+    pgState.items[idx].live_url    = document.getElementById('pg-f-live-url').value.trim() || null;
+    pgState.items[idx].sort_order  = idx;
     document.getElementById('pg-editor-heading').textContent = title;
-    pgPersist();
+    var { error } = await _sb.from('playground_items').upsert(pgState.items[idx]);
+    if (error) { pgToast('Save failed: ' + error.message); return; }
     renderPgList();
     pgToast('Saved ✓');
   }
 
-  function deletePgItem() {
+  async function deletePgItem() {
     if (!pgState.activeId) return;
     var item = pgState.items.find(function (x) { return x.id === pgState.activeId; });
     if (!confirm('Delete "' + (item && item.title ? item.title : 'this item') + '"?')) return;
-    pgState.items = pgState.items.filter(function (x) { return x.id !== pgState.activeId; });
+    if (item) { await deleteFile(item.cover_url); await deleteFile(item.media_url); }
+    var { error } = await _sb.from('playground_items').delete().eq('id', pgState.activeId);
+    if (error) { pgToast('Delete failed: ' + error.message); return; }
+    pgState.items    = pgState.items.filter(function (x) { return x.id !== pgState.activeId; });
     pgState.activeId = null;
-    pgPersist();
     renderPgList();
     document.getElementById('pg-editor').style.display      = 'none';
     document.getElementById('pg-empty-state').style.display = 'flex';
@@ -799,16 +809,15 @@
 
   function newPgItem() {
     var id   = pgUid();
-    var item = { id: id, title: '', desc: '', liveUrl: null, mediaId: null, mediaType: null };
+    var item = { id: id, title: '', description: '', live_url: null, media_url: null, media_type: null, cover_url: null, sort_order: pgState.items.length };
     pgState.items.push(item);
-    pgPersist();
     renderPgList();
     selectPgItem(id);
     document.getElementById('pg-f-title').focus();
     pgToast('New item — fill in the details and save');
   }
 
-  // ── Bind events ────────────────────────────────────────────────────────────
+  // ── Bind events ──────────────────────────────────────────────────────────────
 
   function bindPgEvents() {
     var coverZone  = document.getElementById('pg-cover-zone');
@@ -850,15 +859,20 @@
     });
   }
 
-  // ── Init ───────────────────────────────────────────────────────────────────
+  // ── Init ─────────────────────────────────────────────────────────────────────
 
-  function pgInit() {
-    try {
-      var stored = localStorage.getItem(PG_KEY);
-      if (stored) pgState.items = JSON.parse(stored);
-    } catch (e) { pgState.items = []; }
+  async function pgInit() {
     initTabs();
     bindPgEvents();
+    try {
+      var { data, error } = await _sb.from('playground_items')
+        .select('*')
+        .order('sort_order', { ascending: true });
+      if (!error && data) pgState.items = data;
+      else if (error) pgToast('DB error: ' + error.message);
+    } catch (e) {
+      pgToast('Could not connect to Supabase — check supabase-config.js');
+    }
     renderPgList();
   }
 
