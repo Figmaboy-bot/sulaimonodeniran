@@ -113,7 +113,12 @@
         if (xhr.status >= 200 && xhr.status < 300) {
           resolve(SUPABASE_URL + '/storage/v1/object/public/' + PROJ_BUCKET + '/' + path);
         } else {
-          reject(new Error('Upload failed (' + xhr.status + ')'));
+          var msg = 'Upload failed (' + xhr.status + ')';
+          try { var body = JSON.parse(xhr.responseText); msg = body.error || body.message || msg; } catch (_) {}
+          if (xhr.status === 413 || (msg && msg.toLowerCase().includes('size'))) {
+            msg = 'File too large for the bucket — increase the max file size in your Supabase dashboard (Storage → Buckets → Edit)';
+          }
+          reject(new Error(msg));
         }
       });
 
@@ -624,7 +629,12 @@
         if (xhr.status >= 200 && xhr.status < 300) {
           resolve(SUPABASE_URL + '/storage/v1/object/public/' + BUCKET + '/' + path);
         } else {
-          reject(new Error('Upload failed (' + xhr.status + ')'));
+          var msg = 'Upload failed (' + xhr.status + ')';
+          try { var body = JSON.parse(xhr.responseText); msg = body.error || body.message || msg; } catch (_) {}
+          if (xhr.status === 413 || (msg && msg.toLowerCase().includes('size'))) {
+            msg = 'File too large for the bucket — increase the max file size in your Supabase dashboard (Storage → Buckets → Edit)';
+          }
+          reject(new Error(msg));
         }
       });
 
