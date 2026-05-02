@@ -5,25 +5,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ola — Design Engineer</title>
-  <script>!function(){var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');t==='light'&&document.documentElement.setAttribute('data-theme','light')}()</script>
+  <script>!function () { var t = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme:light)').matches ? 'light' : 'dark'); t === 'light' && document.documentElement.setAttribute('data-theme', 'light') }()</script>
   <script>
-    (function () {
-      var img = new Image();
-      img.onload = function () {
-        var c = document.createElement('canvas');
-        c.width = c.height = 64;
-        var ctx = c.getContext('2d');
-        ctx.beginPath();
-        ctx.arc(32, 32, 32, 0, Math.PI * 2);
-        ctx.clip();
-        ctx.drawImage(img, 0, 0, 64, 64);
-        var link = document.querySelector("link[rel='icon']") || document.createElement('link');
-        link.rel = 'icon';
-        link.href = c.toDataURL();
-        document.head.appendChild(link);
-      };
-      img.src = '/image/Me.jpg';
-    })();
+      (function () {
+        var img = new Image();
+        img.onload = function () {
+          var c = document.createElement('canvas');
+          c.width = c.height = 64;
+          var ctx = c.getContext('2d');
+          ctx.beginPath();
+          ctx.arc(32, 32, 32, 0, Math.PI * 2);
+          ctx.clip();
+          ctx.drawImage(img, 0, 0, 64, 64);
+          var link = document.querySelector("link[rel='icon']") || document.createElement('link');
+          link.rel = 'icon';
+          link.href = c.toDataURL();
+          document.head.appendChild(link);
+        };
+        img.src = '/image/Me.jpg';
+      })();
   </script>
   <!-- DNS + TLS handshake done early for Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -90,10 +90,13 @@
         <img src="/image/Work card 2.png" alt="Project 2" loading="lazy" />
       </div>
       <div class="work-card">
-        <img src="/image/Card mockup.jpg" alt="Project 3" loading="lazy" />
+        <img src="/image/Dashborad.jpg" alt="Project 3" loading="lazy" />
       </div>
       <div class="work-card">
-        <img src="/image/scene 15.jpg" alt="Project 4" loading="lazy" />
+        <img src="/image/Card mockup.jpg" alt="Project 4" loading="lazy" />
+      </div>
+      <div class="work-card">
+        <img src="/image/scene 15.jpg" alt="Project 5" loading="lazy" />
       </div>
       <div class="work-card">
         <img src="/image/iPhone 16 Pro.jpg" alt="Project 5" loading="lazy" />
@@ -107,6 +110,9 @@
       </div>
       <div class="work-card">
         <img src="/image/Work card 2.png" alt="Project 2" loading="lazy" />
+      </div>
+      <div class="work-card">
+        <img src="/image/Dashborad.jpg" alt="Project 3" loading="lazy" />
       </div>
       <div class="work-card">
         <img src="/image/Card mockup.jpg" alt="Project 3" loading="lazy" />

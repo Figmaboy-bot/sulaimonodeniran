@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About — Ola</title>
-  <script>!function(){var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');t==='light'&&document.documentElement.setAttribute('data-theme','light')}()</script>
+  <script>!function () { var t = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme:light)').matches ? 'light' : 'dark'); t === 'light' && document.documentElement.setAttribute('data-theme', 'light') }()</script>
   <script>(function () { var img = new Image(); img.onload = function () { var c = document.createElement('canvas'); c.width = c.height = 64; var ctx = c.getContext('2d'); ctx.beginPath(); ctx.arc(32, 32, 32, 0, Math.PI * 2); ctx.clip(); ctx.drawImage(img, 0, 0, 64, 64); var link = document.querySelector("link[rel='icon']") || document.createElement('link'); link.rel = 'icon'; link.href = c.toDataURL(); document.head.appendChild(link); }; img.src = '/image/Me.jpg'; })()</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,27 +34,27 @@
       <div class="work-card"><img src="/image/My pictures/myself-2.JPG" alt="Project" loading="eager" /></div>
       <div class="work-card"><img src="/image/My pictures/myself-11.JPG" alt="Project" loading="lazy" /></div>
       <div class="work-card"><img src="/image/My pictures/myself-4.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-8.JPG" alt="Project" loading="lazy" /></div>
       <div class="work-card"><img src="/image/My pictures/myself-5.JPG" alt="Project" loading="lazy" /></div>
       <div class="work-card"><img src="/image/My pictures/myself-6.JPG" alt="Project" loading="lazy" /></div>
       <div class="work-card"><img src="/image/My pictures/myself-12.JPG" alt="Project" loading="lazy" /></div>
       <div class="work-card"><img src="/image/My pictures/myself-3.JPG" alt="Project" loading="lazy" /></div>
       <div class="work-card"><img src="/image/My pictures/myself-7.JPG" alt="Project" loading="lazy" /></div>
-      <div class="work-card"><img src="/image/My pictures/myself-8.JPG" alt="Project" loading="lazy" /></div>
       <div class="work-card"><img src="/image/My pictures/myself-13.JPG" alt="Project" loading="lazy" /></div>
       <div class="work-card"><img src="/image/My pictures/myself-9.JPG" alt="Project" loading="lazy" /></div>
       <div class="work-card"><img src="/image/My pictures/myself-10.JPG" alt="Project" loading="lazy" /></div>
       <div class="work-card"><img src="/image/My pictures/myself-14.JPG" alt="Project" loading="lazy" /></div>
       <!-- duplicate set for seamless loop -->
-      <div class="work-card"><img src="/image/My pictures/myself-1.JPG" alt="Project" loading="lazy" /></div>
-      <div class="work-card"><img src="/image/My pictures/myself-2.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-1.JPG" alt="Project" loading="eager" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-2.JPG" alt="Project" loading="eager" /></div>
       <div class="work-card"><img src="/image/My pictures/myself-11.JPG" alt="Project" loading="lazy" /></div>
       <div class="work-card"><img src="/image/My pictures/myself-4.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-8.JPG" alt="Project" loading="lazy" /></div>
       <div class="work-card"><img src="/image/My pictures/myself-5.JPG" alt="Project" loading="lazy" /></div>
       <div class="work-card"><img src="/image/My pictures/myself-6.JPG" alt="Project" loading="lazy" /></div>
-      <div class="work-card"><img src="/image/My pictures/myself-3.JPG" alt="Project" loading="lazy" /></div>
       <div class="work-card"><img src="/image/My pictures/myself-12.JPG" alt="Project" loading="lazy" /></div>
+      <div class="work-card"><img src="/image/My pictures/myself-3.JPG" alt="Project" loading="lazy" /></div>
       <div class="work-card"><img src="/image/My pictures/myself-7.JPG" alt="Project" loading="lazy" /></div>
-      <div class="work-card"><img src="/image/My pictures/myself-8.JPG" alt="Project" loading="lazy" /></div>
       <div class="work-card"><img src="/image/My pictures/myself-13.JPG" alt="Project" loading="lazy" /></div>
       <div class="work-card"><img src="/image/My pictures/myself-9.JPG" alt="Project" loading="lazy" /></div>
       <div class="work-card"><img src="/image/My pictures/myself-10.JPG" alt="Project" loading="lazy" /></div>
@@ -87,7 +87,8 @@
             Alongside my design expertise, I'm growing into design engineering, expanding my ability to bring ideas to
             life through code and no-code tools like HTML, CSS, JavaScript, React, Webflow, and Framer. While I'm still
             early in this journey, I'm intentional about learning how things are built so I can design with deeper
-            technical awareness and collaborate more effectively across disciplines. My goal is to bridge the gap between
+            technical awareness and collaborate more effectively across disciplines. My goal is to bridge the gap
+            between
             design and development, creating smoother workflows and more refined end products. I approach this process
             with curiosity and a hands-on mindset, constantly refining both my craft and my technical foundation.
             <br><br>
