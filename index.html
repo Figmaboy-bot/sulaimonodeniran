@@ -78,7 +78,7 @@
 
   <!-- Work Carousel (full-width, outside main-wrap) -->
   <section class="carousel-wrap">
-    <div class="carousel-track">
+    <div class="carousel-track" id="home-carousel-track">
       <div class="work-card">
         <img src="/image/Work card 1.jpg" alt="Project 1" loading="lazy" />
       </div>
@@ -121,9 +121,35 @@
 
   <div id="footer-component"></div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="/supabase-config.js"></script>
   <script src="/scripts/transitions.js"></script>
   <script src="/components/footer/footer.js"></script>
   <script src="/components/nav/nav.js"></script>
+  <script>
+    (function () {
+      var track = document.getElementById('home-carousel-track');
+      if (!track) return;
+      var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      _sb.from('carousel_images').select('url').eq('page', 'home').order('sort_order', { ascending: true })
+        .then(function (res) {
+          if (res.error || !res.data || !res.data.length) return;
+          track.innerHTML = '';
+          function addCard(url, hidden) {
+            var div = document.createElement('div');
+            div.className = 'work-card';
+            if (hidden) div.setAttribute('aria-hidden', 'true');
+            var img = document.createElement('img');
+            img.src = url;
+            img.loading = hidden ? 'lazy' : 'eager';
+            div.appendChild(img);
+            track.appendChild(div);
+          }
+          res.data.forEach(function (item) { addCard(item.url, false); });
+          res.data.forEach(function (item) { addCard(item.url, true); });
+        }).catch(function () {});
+    })();
+  </script>
   <script>
     function loadComponent(id, path, callback) {
       fetch(path)

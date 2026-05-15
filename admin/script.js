@@ -667,9 +667,11 @@
         document.getElementById('projects-panel').style.display    = panel === 'projects'   ? 'flex' : 'none';
         document.getElementById('playground-panel').style.display  = panel === 'playground' ? 'flex' : 'none';
         document.getElementById('articles-panel').style.display    = panel === 'articles'   ? 'flex' : 'none';
+        document.getElementById('carousel-panel').style.display    = panel === 'carousel'   ? 'flex' : 'none';
         document.getElementById('header-actions-projects').style.display   = panel === 'projects'   ? 'flex' : 'none';
         document.getElementById('header-actions-playground').style.display = panel === 'playground' ? 'flex' : 'none';
         document.getElementById('header-actions-articles').style.display   = panel === 'articles'   ? 'flex' : 'none';
+        document.getElementById('header-actions-carousel').style.display   = panel === 'carousel'   ? 'flex' : 'none';
       });
     });
   }
@@ -1104,5 +1106,181 @@
   }
 
   artInit();
+
+})();
+
+// ── Carousel tab ──────────────────────────────────────────────────────────────
+(function () {
+
+  var _sb   = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  var BUCKET = 'carousel';
+  var CAR_MAX = 100 * 1024 * 1024;
+
+  var carState = { home: [], about: [] };
+
+  function carToast(msg) {
+    var el = document.getElementById('toast');
+    if (!el) { el = document.createElement('div'); el.id = 'toast'; el.className = 'toast'; document.body.appendChild(el); }
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(el._t);
+    el._t = setTimeout(function () { el.classList.remove('show'); }, 2400);
+  }
+
+  function carUploadFile(file, page, progressId) {
+    return new Promise(function (resolve, reject) {
+      var ext  = file.name.split('.').pop().toLowerCase();
+      var path = page + '/' + Date.now() + '_' + Math.random().toString(36).slice(2, 7) + '.' + ext;
+      var endpoint = SUPABASE_URL + '/storage/v1/object/' + BUCKET + '/' + path;
+
+      var bar  = progressId ? document.getElementById(progressId) : null;
+      var fill = bar ? bar.querySelector('.upload-progress-fill') : null;
+      var pct  = bar ? bar.querySelector('[id$="-pct"]') : null;
+      var name = bar ? bar.querySelector('[id$="-name"]') : null;
+      if (bar)  { bar.classList.add('active'); }
+      if (fill) { fill.style.width = '0%'; }
+      if (pct)  { pct.textContent = '0%'; }
+      if (name) { name.textContent = file.name; }
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', endpoint);
+      xhr.setRequestHeader('apikey', SUPABASE_ANON_KEY);
+      xhr.setRequestHeader('Authorization', 'Bearer ' + SUPABASE_ANON_KEY);
+      xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+
+      xhr.upload.addEventListener('progress', function (e) {
+        if (!e.lengthComputable) return;
+        var p = Math.round((e.loaded / e.total) * 100);
+        if (fill) fill.style.width = p + '%';
+        if (pct)  pct.textContent  = p + '%';
+      });
+
+      xhr.addEventListener('load', function () {
+        if (bar) bar.classList.remove('active');
+        if (xhr.status >= 200 && xhr.status < 300) {
+          resolve(SUPABASE_URL + '/storage/v1/object/public/' + BUCKET + '/' + path);
+        } else {
+          var msg = 'Upload failed (' + xhr.status + ')';
+          try { var body = JSON.parse(xhr.responseText); msg = body.error || body.message || msg; } catch (_) {}
+          reject(new Error(msg));
+        }
+      });
+
+      xhr.addEventListener('error', function () {
+        if (bar) bar.classList.remove('active');
+        reject(new Error('Network error during upload'));
+      });
+
+      xhr.send(file);
+    });
+  }
+
+  async function deleteCarFile(url) {
+    if (!url) return;
+    try {
+      var marker = '/object/public/' + BUCKET + '/';
+      var i = url.indexOf(marker);
+      if (i !== -1) await _sb.storage.from(BUCKET).remove([decodeURIComponent(url.slice(i + marker.length))]);
+    } catch (e) {}
+  }
+
+  function renderCarGrid(page) {
+    var grid = document.getElementById('car-' + page + '-grid');
+    if (!grid) return;
+    var items = carState[page];
+    if (!items.length) {
+      grid.innerHTML = '<p class="car-empty">No images yet. Upload some above.</p>';
+      return;
+    }
+    grid.innerHTML = '';
+    items.forEach(function (item) {
+      var div = document.createElement('div');
+      div.className = 'car-img-item';
+      var img = document.createElement('img');
+      img.src = item.url;
+      img.alt = '';
+      var btn = document.createElement('button');
+      btn.className = 'car-delete-btn';
+      btn.title = 'Remove';
+      btn.innerHTML = '&times;';
+      btn.addEventListener('click', function () { removeCarImage(item.id, item.url, page); });
+      div.appendChild(img);
+      div.appendChild(btn);
+      grid.appendChild(div);
+    });
+  }
+
+  async function removeCarImage(id, url, page) {
+    carToast('Deleting…');
+    try {
+      var res = await _sb.from('carousel_images').delete().eq('id', id);
+      if (res.error) throw res.error;
+      await deleteCarFile(url);
+      carState[page] = carState[page].filter(function (i) { return i.id !== id; });
+      renderCarGrid(page);
+      carToast('Deleted');
+    } catch (e) {
+      carToast('Delete failed: ' + e.message);
+    }
+  }
+
+  async function handleCarUpload(files, page) {
+    var progressId = 'car-' + page + '-progress';
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      if (file.size > CAR_MAX) { carToast(file.name + ' is too large (max 100 MB)'); continue; }
+      try {
+        carToast('Uploading ' + (i + 1) + ' of ' + files.length + '…');
+        var url = await carUploadFile(file, page, progressId);
+        var existing = carState[page];
+        var order = existing.length ? Math.max.apply(null, existing.map(function (x) { return x.sort_order || 0; })) + 1 : 0;
+        var id  = page + '_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
+        var res = await _sb.from('carousel_images').insert({ id: id, url: url, page: page, sort_order: order });
+        if (res.error) throw res.error;
+        carState[page].push({ id: id, url: url, page: page, sort_order: order });
+        renderCarGrid(page);
+      } catch (e) {
+        carToast('Upload failed: ' + e.message);
+      }
+    }
+    if (files.length > 1) carToast('Done uploading');
+  }
+
+  function bindCarEvents() {
+    ['home', 'about'].forEach(function (page) {
+      var zone  = document.getElementById('car-' + page + '-zone');
+      var input = document.getElementById('car-' + page + '-input');
+      if (!zone || !input) return;
+
+      input.addEventListener('change', function () {
+        if (this.files && this.files.length) handleCarUpload(this.files, page);
+        this.value = '';
+      });
+
+      zone.addEventListener('dragover', function (e) { e.preventDefault(); zone.classList.add('drag-over'); });
+      zone.addEventListener('dragleave', function () { zone.classList.remove('drag-over'); });
+      zone.addEventListener('drop', function (e) {
+        e.preventDefault();
+        zone.classList.remove('drag-over');
+        if (e.dataTransfer.files.length) handleCarUpload(e.dataTransfer.files, page);
+      });
+    });
+  }
+
+  async function carInit() {
+    bindCarEvents();
+    try {
+      var res = await _sb.from('carousel_images').select('*').order('sort_order', { ascending: true });
+      if (res.error) throw res.error;
+      carState.home  = (res.data || []).filter(function (i) { return i.page === 'home'; });
+      carState.about = (res.data || []).filter(function (i) { return i.page === 'about'; });
+    } catch (e) {
+      carToast('Could not load carousel images');
+    }
+    renderCarGrid('home');
+    renderCarGrid('about');
+  }
+
+  carInit();
 
 })();

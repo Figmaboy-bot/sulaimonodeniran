@@ -52,6 +52,10 @@
       <div id="header-actions-articles" style="display:none;align-items:center;gap:12px;">
         <a href="/pages/articles/" target="_blank" class="btn-ghost">View Articles ↗</a>
       </div>
+      <div id="header-actions-carousel" style="display:none;align-items:center;gap:12px;">
+        <a href="/" target="_blank" class="btn-ghost">View Home ↗</a>
+        <a href="/pages/about/" target="_blank" class="btn-ghost">View About ↗</a>
+      </div>
     </div>
   </header>
 
@@ -59,6 +63,7 @@
     <button class="admin-tab active" data-panel="projects">Projects</button>
     <button class="admin-tab" data-panel="playground">Playground</button>
     <button class="admin-tab" data-panel="articles">Articles</button>
+    <button class="admin-tab" data-panel="carousel">Carousel</button>
   </div>
 
   <div class="admin-layout" id="projects-panel">
@@ -301,6 +306,55 @@
           </label>
           <div class="pg-media-preview" id="art-cover-preview"></div>
         </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Carousel panel -->
+  <div class="admin-layout" id="carousel-panel" style="display:none;">
+    <main class="admin-main">
+      <div class="editor">
+        <div class="editor-header">
+          <div>
+            <h2 class="editor-title">Carousel Images</h2>
+            <p class="editor-url">Manage photos shown in the scrolling carousels on the Home and About pages.</p>
+          </div>
+        </div>
+
+        <!-- Home carousel section -->
+        <section class="editor-section car-section">
+          <h3 class="section-title">Home Page</h3>
+          <p class="field-hint" style="margin-bottom:16px;">Images shown in the scrolling carousel on the homepage.</p>
+          <label class="upload-zone" id="car-home-zone">
+            <input type="file" id="car-home-input" accept="image/*" multiple />
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <p class="upload-label">Drop images here or <span>browse</span></p>
+            <p class="upload-hint">PNG, JPG, WebP · Multiple files · up to 100 MB each</p>
+          </label>
+          <div class="upload-progress" id="car-home-progress">
+            <div class="upload-progress-bar"><div class="upload-progress-fill" id="car-home-fill"></div></div>
+            <div class="upload-progress-label"><span id="car-home-name"></span><span id="car-home-pct"></span></div>
+          </div>
+          <div class="car-img-grid" id="car-home-grid"><p class="car-empty">Loading…</p></div>
+        </section>
+
+        <!-- About carousel section -->
+        <section class="editor-section car-section">
+          <h3 class="section-title">About Page</h3>
+          <p class="field-hint" style="margin-bottom:16px;">Images shown in the scrolling carousel on the About page.</p>
+          <label class="upload-zone" id="car-about-zone">
+            <input type="file" id="car-about-input" accept="image/*" multiple />
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <p class="upload-label">Drop images here or <span>browse</span></p>
+            <p class="upload-hint">PNG, JPG, WebP · Multiple files · up to 100 MB each</p>
+          </label>
+          <div class="upload-progress" id="car-about-progress">
+            <div class="upload-progress-bar"><div class="upload-progress-fill" id="car-about-fill"></div></div>
+            <div class="upload-progress-label"><span id="car-about-name"></span><span id="car-about-pct"></span></div>
+          </div>
+          <div class="car-img-grid" id="car-about-grid"><p class="car-empty">Loading…</p></div>
+        </section>
+
       </div>
     </main>
   </div>
