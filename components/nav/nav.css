@@ -361,6 +361,10 @@
 }
 
 @media (max-width: 600px) {
+  .menu-overlay {
+    top: 12px;
+  }
+
   .nav-pill {
     gap: 24px;
   }
