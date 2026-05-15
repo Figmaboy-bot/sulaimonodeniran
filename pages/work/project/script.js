@@ -18,7 +18,6 @@
   // ── Populate sidebar ────────────────────────
   document.title = project.title + ' — Ola';
   document.getElementById('project-title').textContent    = project.title;
-  document.getElementById('project-tagline').textContent  = project.tagline;
   document.getElementById('project-about').textContent    = project.about;
   document.getElementById('project-industry').textContent = project.industry;
   document.getElementById('project-role').textContent     = project.role;
