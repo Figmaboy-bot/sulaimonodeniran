@@ -91,15 +91,17 @@
         el.loop        = true;
         el.playsInline = true;
         el.className   = 'pg-modal-video';
-        el.src         = item.media_url;
+        mediaWrap.appendChild(el);
+        el.src = item.media_url;
+        el.load();
         el.play().catch(function () {});
       } else {
         el           = document.createElement('img');
         el.alt       = item.title || '';
         el.className = 'pg-modal-img';
         el.src       = item.media_url;
+        mediaWrap.appendChild(el);
       }
-      mediaWrap.appendChild(el);
     }
 
     overlay.classList.add('is-open');
@@ -112,7 +114,7 @@
     overlay.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
     var video = mediaWrap.querySelector('video');
-    if (video) { video.pause(); video.src = ''; }
+    if (video) { video.pause(); video.removeAttribute('src'); video.load(); }
     mediaWrap.innerHTML = '';
   }
 
