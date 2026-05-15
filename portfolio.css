@@ -59,6 +59,36 @@ body.theme-ready {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
+/* ── Skeleton shimmer ───────────────────────── */
+
+@keyframes sk-shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position:  200% 0; }
+}
+
+.sk {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.05) 25%,
+    rgba(255,255,255,0.11) 50%,
+    rgba(255,255,255,0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: sk-shimmer 1.4s infinite linear;
+  border-radius: 4px;
+}
+
+[data-theme="light"] .sk {
+  background: linear-gradient(
+    90deg,
+    rgba(0,0,0,0.06) 25%,
+    rgba(0,0,0,0.12) 50%,
+    rgba(0,0,0,0.06) 75%
+  );
+  background-size: 200% 100%;
+  animation: sk-shimmer 1.4s infinite linear;
+}
+
 @keyframes page-enter {
   from {
     opacity: 0;

@@ -4,7 +4,27 @@
   var grid = document.getElementById('playground-grid');
   if (!grid) return;
 
-  // ── Load items ──────────────────────────────────────────────────────────────
+  // ── Skeletons ────────────────────────────────
+  function showSkeletons(n) {
+    for (var i = 0; i < n; i++) {
+      var el = document.createElement('div');
+      el.className = 'pg-item-skeleton';
+      el.innerHTML =
+        '<div class="sk sk-image"></div>' +
+        '<div style="display:flex;flex-direction:column;gap:6px;">' +
+          '<div class="sk sk-title"></div>' +
+          '<div class="sk sk-desc"></div>' +
+        '</div>';
+      grid.appendChild(el);
+    }
+  }
+
+  function clearSkeletons() {
+    grid.querySelectorAll('.pg-item-skeleton').forEach(function (el) { el.remove(); });
+  }
+
+  // ── Load items ───────────────────────────────
+  showSkeletons(8);
 
   var items = [];
   try {
@@ -15,8 +35,9 @@
     if (!error && data) items = data;
   } catch (e) {}
 
-  // ── Build grid ──────────────────────────────────────────────────────────────
+  clearSkeletons();
 
+  // ── Build grid ───────────────────────────────
   if (!items.length) {
     grid.innerHTML = '<p class="pg-empty">No items yet — add some in the admin panel.</p>';
   } else {
@@ -40,8 +61,7 @@
     });
   }
 
-  // ── Modal ───────────────────────────────────────────────────────────────────
-
+  // ── Modal ────────────────────────────────────
   var overlay   = document.getElementById('pg-modal-overlay');
   var mediaWrap = document.getElementById('pg-modal-media-wrap');
   var titleEl   = document.getElementById('pg-modal-title');

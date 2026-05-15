@@ -5,12 +5,30 @@
 
   var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  function esc(s) {
-    return String(s || '')
-      .replace(/&/g, '&amp;').replace(/"/g, '&quot;')
-      .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  // ── Skeletons ────────────────────────────────
+  function showSkeletons(n) {
+    for (var i = 0; i < n; i++) {
+      var el = document.createElement('div');
+      el.className = 'case-study-skeleton';
+      el.innerHTML =
+        '<div class="sk-info">' +
+          '<div class="sk sk-meta"></div>' +
+          '<div class="sk sk-title"></div>' +
+          '<div class="sk sk-desc"></div>' +
+          '<div class="sk sk-desc2"></div>' +
+          '<div class="sk sk-rlabel"></div>' +
+          '<div class="sk sk-rval"></div>' +
+        '</div>' +
+        '<div class="sk sk-image"></div>';
+      list.appendChild(el);
+    }
   }
 
+  function clearSkeletons() {
+    list.querySelectorAll('.case-study-skeleton').forEach(function (el) { el.remove(); });
+  }
+
+  // ── Render ───────────────────────────────────
   function coverSrc(p) {
     if (p.cover_url) return p.cover_url;
     if (p.coverSrc)  return p.coverSrc;
@@ -23,7 +41,7 @@
   }
 
   function renderProjects(projects) {
-    list.innerHTML = '';
+    clearSkeletons();
     if (!projects.length) return;
 
     projects.forEach(function (p) {
@@ -68,7 +86,7 @@
       });
     });
 
-    // ── Custom "view" cursor (desktop only) ──────
+    // Custom "view" cursor (desktop only)
     var cursor = document.createElement('div');
     cursor.className = 'work-cursor';
     cursor.textContent = 'view project';
@@ -92,9 +110,17 @@
 
   function fromStatic() {
     var source = PROJECTS || {};
-    var ids    = Object.keys(source);
-    return ids.map(function (id) { return Object.assign({ id: id }, source[id]); });
+    return Object.keys(source).map(function (id) { return Object.assign({ id: id }, source[id]); });
   }
+
+  function esc(s) {
+    return String(s || '')
+      .replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+      .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  // ── Fetch ────────────────────────────────────
+  showSkeletons(3);
 
   _sb.from('projects').select('*').order('sort_order', { ascending: true })
     .then(function (res) {

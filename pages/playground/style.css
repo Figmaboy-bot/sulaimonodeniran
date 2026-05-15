@@ -274,6 +274,38 @@ body {
   object-fit: contain;
 }
 
+/* ── Skeleton ───────────────────────────────── */
+
+.pg-item-skeleton {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pg-item-skeleton .sk-image {
+  width: 100%;
+  height: 450px;
+  border-radius: 0;
+}
+
+.pg-item-skeleton .sk-title {
+  height: 18px;
+  width: 65%;
+}
+
+.pg-item-skeleton .sk-desc {
+  height: 13px;
+  width: 88%;
+  margin-top: 2px;
+}
+
+@media (max-width: 768px) {
+  .pg-item-skeleton .sk-image {
+    height: 340px;
+  }
+}
+
 /* ── Empty state ────────────────────────────── */
 
 .pg-empty {
