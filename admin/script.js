@@ -1117,6 +1117,7 @@
   var CAR_MAX = 100 * 1024 * 1024;
 
   var carState = { home: [], about: [] };
+  var carDrag  = { page: null, fromIndex: -1 };
 
   function carToast(msg) {
     var el = document.getElementById('toast');
@@ -1184,6 +1185,18 @@
     } catch (e) {}
   }
 
+  async function saveCarOrder(page) {
+    try {
+      var updates = carState[page].map(function (item, i) {
+        return { id: item.id, url: item.url, page: item.page, sort_order: i };
+      });
+      var res = await _sb.from('carousel_images').upsert(updates);
+      if (res.error) throw res.error;
+    } catch (e) {
+      carToast('Could not save order: ' + e.message);
+    }
+  }
+
   function renderCarGrid(page) {
     var grid = document.getElementById('car-' + page + '-grid');
     if (!grid) return;
@@ -1193,19 +1206,60 @@
       return;
     }
     grid.innerHTML = '';
-    items.forEach(function (item) {
+    items.forEach(function (item, index) {
       var div = document.createElement('div');
       div.className = 'car-img-item';
+      div.draggable = true;
+
       var img = document.createElement('img');
       img.src = item.url;
       img.alt = '';
+
       var btn = document.createElement('button');
       btn.className = 'car-delete-btn';
       btn.title = 'Remove';
       btn.innerHTML = '&times;';
       btn.addEventListener('click', function () { removeCarImage(item.id, item.url, page); });
+
       div.appendChild(img);
       div.appendChild(btn);
+
+      div.addEventListener('dragstart', function (e) {
+        e.dataTransfer.effectAllowed = 'move';
+        carDrag.page      = page;
+        carDrag.fromIndex = index;
+        div.classList.add('car-dragging');
+      });
+
+      div.addEventListener('dragend', function () {
+        div.classList.remove('car-dragging');
+        grid.querySelectorAll('.car-img-item').forEach(function (el) { el.classList.remove('car-drag-over'); });
+      });
+
+      div.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+        if (carDrag.page !== page) return;
+        grid.querySelectorAll('.car-img-item').forEach(function (el) { el.classList.remove('car-drag-over'); });
+        div.classList.add('car-drag-over');
+      });
+
+      div.addEventListener('dragleave', function () {
+        div.classList.remove('car-drag-over');
+      });
+
+      div.addEventListener('drop', function (e) {
+        e.preventDefault();
+        div.classList.remove('car-drag-over');
+        var toIndex = index;
+        if (carDrag.page !== page || carDrag.fromIndex === toIndex) return;
+        var arr   = carState[page];
+        var moved = arr.splice(carDrag.fromIndex, 1)[0];
+        arr.splice(toIndex, 0, moved);
+        renderCarGrid(page);
+        saveCarOrder(page);
+      });
+
       grid.appendChild(div);
     });
   }

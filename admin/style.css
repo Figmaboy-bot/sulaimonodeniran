@@ -1030,6 +1030,18 @@ body {
   aspect-ratio: 4 / 3;
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--border);
+  cursor: grab;
+  transition: opacity 0.2s, outline 0.15s;
+}
+
+.car-img-item.car-dragging {
+  opacity: 0.35;
+  cursor: grabbing;
+}
+
+.car-img-item.car-drag-over {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
 }
 
 .car-img-item img {
