@@ -213,7 +213,7 @@ body {
 
   .pg-modal-live-link {
     order: 3;
-    flex: 0 0 100%;
+    flex: none;
     margin-top: 8px;
   }
 }
