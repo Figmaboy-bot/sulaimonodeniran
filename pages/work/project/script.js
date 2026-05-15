@@ -18,7 +18,34 @@
   // ── Populate sidebar ────────────────────────
   document.title = project.title + ' — Ola';
   document.getElementById('project-title').textContent    = project.title;
-  document.getElementById('project-about').textContent    = project.about;
+  var aboutEl   = document.getElementById('project-about');
+  var toggleBtn = document.getElementById('about-toggle');
+  aboutEl.textContent = project.about;
+
+  var shortScreen = window.matchMedia('(max-height: 960px)');
+
+  function syncAboutCollapse() {
+    if (shortScreen.matches) {
+      aboutEl.classList.add('is-collapsed');
+      var overflows = aboutEl.scrollHeight > aboutEl.clientHeight + 2;
+      toggleBtn.style.display = overflows ? '' : 'none';
+      if (!overflows) aboutEl.classList.remove('is-collapsed');
+    } else {
+      aboutEl.classList.remove('is-collapsed');
+      toggleBtn.style.display = 'none';
+      toggleBtn.querySelector('span').textContent = 'View more';
+      toggleBtn.classList.remove('is-expanded');
+    }
+  }
+
+  toggleBtn.addEventListener('click', function () {
+    var collapsed = aboutEl.classList.toggle('is-collapsed');
+    toggleBtn.querySelector('span').textContent = collapsed ? 'View more' : 'Show less';
+    toggleBtn.classList.toggle('is-expanded', !collapsed);
+  });
+
+  syncAboutCollapse();
+  shortScreen.addEventListener('change', syncAboutCollapse);
   document.getElementById('project-industry').textContent = project.industry;
   document.getElementById('project-role').textContent     = project.role;
   document.getElementById('project-year').textContent     = project.year;

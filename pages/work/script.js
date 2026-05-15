@@ -126,6 +126,9 @@
     .then(function (res) {
       if (!res.error && res.data && res.data.length) {
         renderProjects(res.data);
+        var cache = {};
+        res.data.forEach(function (p) { cache[p.id] = p; });
+        try { localStorage.setItem('portfolio_projects', JSON.stringify(cache)); } catch (e) {}
       } else {
         renderProjects(fromStatic());
       }

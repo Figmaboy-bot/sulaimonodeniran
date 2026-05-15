@@ -117,10 +117,7 @@
 
 .work-cursor {
   position: fixed;
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #ffffff;
   border-radius: 14px;
   padding: 14px 24px;
   display: flex;
@@ -135,16 +132,11 @@
   font-family: var(--font-slab);
   font-size: 0.85rem;
   font-weight: 500;
-  color: #fff;
+  color: #000;
   letter-spacing: 0.03em;
   white-space: nowrap;
   user-select: none;
-}
-
-[data-theme="light"] .work-cursor {
-  background: rgba(26, 26, 26, 0.75);
-  border-color: rgba(0, 0, 0, 0.15);
-  color: #f5f5f5;
+  mix-blend-mode: difference;
 }
 
 .work-cursor.is-visible {
