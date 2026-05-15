@@ -2,6 +2,7 @@ name: Keep Supabase Alive
 on:
   schedule:
     - cron: '0 12 */3 * *'  # every 3 days
+  workflow_dispatch:  # adds manual trigger button
 
 jobs:
   ping:
