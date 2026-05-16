@@ -45,10 +45,11 @@
     if (!projects.length) return;
 
     projects.forEach(function (p) {
-      var meta    = p.meta || ((p.industry || '') + (p.year ? ' · ' + p.year : ''));
-      var id      = p.id;
-      var article = document.createElement('article');
-      article.className    = 'case-study';
+      var meta       = p.meta || ((p.industry || '') + (p.year ? ' · ' + p.year : ''));
+      var id         = p.id;
+      var isComingSoon = !!p.coming_soon;
+      var article    = document.createElement('article');
+      article.className    = 'case-study' + (isComingSoon ? ' is-coming-soon' : '');
       article.dataset.href = '/pages/work/project/?id=' + id;
 
       article.innerHTML =
@@ -67,41 +68,48 @@
         '</div>' +
         '<div class="case-study-image">' +
           '<img src="' + esc(coverSrc(p)) + '" alt="' + esc(p.title || '') + '" loading="lazy" />' +
+          (isComingSoon ? '<div class="coming-soon-badge">Coming Soon</div>' : '') +
         '</div>';
 
       list.appendChild(article);
 
-      var imgWrap = article.querySelector('.case-study-image');
-      imgWrap.addEventListener('click', function () {
-        var href = article.dataset.href;
-        var main = document.querySelector('main');
-        if (main) {
-          main.style.transition = 'transform 0.45s cubic-bezier(0.76,0,0.24,1), opacity 0.35s ease';
-          main.style.transform  = 'translateY(-40px)';
-          main.style.opacity    = '0';
-        }
-        document.body.style.transition = 'opacity 0.35s ease';
-        document.body.style.opacity    = '0';
-        setTimeout(function () { location.href = href; }, 460);
-      });
+      if (!isComingSoon) {
+        var imgWrap = article.querySelector('.case-study-image');
+        imgWrap.addEventListener('click', function () {
+          var href = article.dataset.href;
+          var main = document.querySelector('main');
+          if (main) {
+            main.style.transition = 'transform 0.45s cubic-bezier(0.76,0,0.24,1), opacity 0.35s ease';
+            main.style.transform  = 'translateY(-40px)';
+            main.style.opacity    = '0';
+          }
+          document.body.style.transition = 'opacity 0.35s ease';
+          document.body.style.opacity    = '0';
+          setTimeout(function () { location.href = href; }, 460);
+        });
+      }
     });
 
-    // Custom "view" cursor (desktop only)
+    // Custom cursor (desktop only)
     var cursor = document.createElement('div');
     cursor.className = 'work-cursor';
     cursor.textContent = 'view project';
     document.body.appendChild(cursor);
 
-    var rafId = null, cx = 0, cy = 0, cOver = false;
+    var rafId = null, cx = 0, cy = 0, cOver = false, cSoon = false;
     document.addEventListener('mousemove', function (e) {
       cx    = e.clientX;
       cy    = e.clientY;
-      cOver = !!e.target.closest('.case-study-image');
+      var imgEl = e.target.closest('.case-study-image');
+      cOver = !!imgEl;
+      cSoon = cOver && !!e.target.closest('.is-coming-soon');
       if (!rafId) {
         rafId = requestAnimationFrame(function () {
           cursor.style.left = cx + 'px';
           cursor.style.top  = cy + 'px';
           cursor.classList.toggle('is-visible', cOver);
+          cursor.classList.toggle('is-soon', cSoon);
+          cursor.textContent = cSoon ? 'coming soon' : 'view project';
           rafId = null;
         });
       }

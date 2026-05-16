@@ -379,6 +379,63 @@ body {
   flex-shrink: 0;
 }
 
+/* ── Coming soon toggle ────────────────────── */
+
+.coming-soon-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.coming-soon-toggle input {
+  display: none;
+}
+
+.coming-soon-track {
+  width: 36px;
+  height: 20px;
+  border-radius: 10px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  position: relative;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.coming-soon-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.coming-soon-toggle input:checked + .coming-soon-track {
+  background: #f59e0b;
+  border-color: #f59e0b;
+}
+
+.coming-soon-toggle input:checked + .coming-soon-track .coming-soon-thumb {
+  transform: translateX(16px);
+  background: #fff;
+}
+
+.coming-soon-label {
+  font-family: var(--font-slab);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.coming-soon-toggle input:checked ~ .coming-soon-label {
+  color: #f59e0b;
+}
+
 /* ── Sections ──────────────────────────────── */
 
 .editor-section {

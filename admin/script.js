@@ -283,6 +283,7 @@
     document.getElementById('f-year').value     = p.year     || '';
     document.getElementById('f-meta').value     = p.meta     || '';
     document.getElementById('f-live-url').value = p.live_url || '';
+    document.getElementById('f-coming-soon').checked = !!p.coming_soon;
     document.getElementById('slug-preview').textContent = id;
 
     state.gallery        = galleryToFlat(p.gallery);
@@ -430,7 +431,8 @@
       role:      document.getElementById('f-role').value.trim(),
       year:      document.getElementById('f-year').value.trim(),
       meta:      document.getElementById('f-meta').value.trim(),
-      live_url:  document.getElementById('f-live-url').value.trim() || null,
+      live_url:     document.getElementById('f-live-url').value.trim() || null,
+      coming_soon:  document.getElementById('f-coming-soon').checked,
       cover_url: state.activeCoverUrl || null,
       gallery:   galleryToProjectFormat()
     };
