@@ -131,6 +131,14 @@
       var track = document.getElementById('home-carousel-track');
       if (!track) return;
       var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+      _sb.from('carousel_settings').select('duration').eq('page', 'home').single()
+        .then(function (res) {
+          if (!res.error && res.data && res.data.duration) {
+            track.style.animationDuration = res.data.duration + 's';
+          }
+        }).catch(function () {});
+
       _sb.from('carousel_images').select('url,crop').eq('page', 'home').order('sort_order', { ascending: true })
         .then(function (res) {
           if (res.error || !res.data || !res.data.length) return;

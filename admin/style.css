@@ -1016,6 +1016,45 @@ body {
   margin-top: 8px;
 }
 
+.car-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.car-section-header .section-title {
+  margin: 0;
+}
+
+.car-speed-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.car-speed-label {
+  font-family: var(--font-slab);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.car-speed-range {
+  width: 120px;
+  accent-color: var(--text);
+  cursor: pointer;
+}
+
+.car-speed-val {
+  font-family: var(--font-slab);
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  min-width: 34px;
+}
+
 .car-img-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));

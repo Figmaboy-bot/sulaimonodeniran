@@ -1316,6 +1316,50 @@
     if (files.length > 1) carToast('Done uploading');
   }
 
+  // ── Speed settings ────────────────────────────────────────────────────────────
+
+  var carSpeed = { home: 70, about: 70 };
+
+  function initSpeedControls() {
+    ['home', 'about'].forEach(function (page) {
+      var slider  = document.getElementById('car-' + page + '-speed');
+      var valEl   = document.getElementById('car-' + page + '-speed-val');
+      var saveBtn = document.getElementById('car-' + page + '-speed-save');
+      if (!slider) return;
+
+      slider.value = carSpeed[page];
+      valEl.textContent = carSpeed[page] + 's';
+
+      slider.addEventListener('input', function () {
+        valEl.textContent = this.value + 's';
+      });
+
+      saveBtn.addEventListener('click', async function () {
+        var duration = parseInt(slider.value, 10);
+        carSpeed[page] = duration;
+        try {
+          var res = await _sb.from('carousel_settings').upsert({ page: page, duration: duration });
+          if (res.error) throw res.error;
+          carToast('Speed saved ✓');
+        } catch (e) {
+          carToast('Save failed: ' + e.message);
+        }
+      });
+    });
+  }
+
+  async function loadSpeedSettings() {
+    try {
+      var res = await _sb.from('carousel_settings').select('page,duration');
+      if (res.error || !res.data) return;
+      res.data.forEach(function (row) {
+        if (row.page === 'home' || row.page === 'about') {
+          carSpeed[row.page] = row.duration;
+        }
+      });
+    } catch (e) {}
+  }
+
   // ── Crop modal ────────────────────────────────────────────────────────────────
 
   var cropState = {
@@ -1487,6 +1531,8 @@
   async function carInit() {
     bindCarEvents();
     bindCropDrag();
+    await loadSpeedSettings();
+    initSpeedControls();
     try {
       var res = await _sb.from('carousel_images').select('*').order('sort_order', { ascending: true });
       if (res.error) throw res.error;

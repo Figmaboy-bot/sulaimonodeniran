@@ -323,7 +323,15 @@
 
         <!-- Home carousel section -->
         <section class="editor-section car-section">
-          <h3 class="section-title">Home Page</h3>
+          <div class="car-section-header">
+            <h3 class="section-title">Home Page</h3>
+            <div class="car-speed-control">
+              <label class="car-speed-label" for="car-home-speed">Speed</label>
+              <input type="range" id="car-home-speed" class="car-speed-range" min="20" max="180" step="5" value="70" />
+              <span id="car-home-speed-val" class="car-speed-val">70s</span>
+              <button id="car-home-speed-save" class="btn-ghost btn-sm">Save</button>
+            </div>
+          </div>
           <p class="field-hint" style="margin-bottom:16px;">Images shown in the scrolling carousel on the homepage.</p>
           <label class="upload-zone" id="car-home-zone">
             <input type="file" id="car-home-input" accept="image/*" multiple />
@@ -340,7 +348,15 @@
 
         <!-- About carousel section -->
         <section class="editor-section car-section">
-          <h3 class="section-title">About Page</h3>
+          <div class="car-section-header">
+            <h3 class="section-title">About Page</h3>
+            <div class="car-speed-control">
+              <label class="car-speed-label" for="car-about-speed">Speed</label>
+              <input type="range" id="car-about-speed" class="car-speed-range" min="20" max="180" step="5" value="70" />
+              <span id="car-about-speed-val" class="car-speed-val">70s</span>
+              <button id="car-about-speed-save" class="btn-ghost btn-sm">Save</button>
+            </div>
+          </div>
           <p class="field-hint" style="margin-bottom:16px;">Images shown in the scrolling carousel on the About page.</p>
           <label class="upload-zone" id="car-about-zone">
             <input type="file" id="car-about-input" accept="image/*" multiple />
