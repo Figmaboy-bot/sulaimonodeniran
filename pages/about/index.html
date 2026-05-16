@@ -151,7 +151,7 @@
       _sb.from('carousel_settings').select('duration').eq('page', 'about').single()
         .then(function (res) {
           if (!res.error && res.data && res.data.duration) {
-            track.style.animation = 'marquee ' + res.data.duration + 's linear infinite';
+            track.style.animationDuration = res.data.duration + 's';
           }
         }).catch(function () {});
 
