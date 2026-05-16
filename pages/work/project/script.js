@@ -51,8 +51,9 @@
   document.getElementById('project-year').textContent     = project.year;
 
   var liveBtn = document.getElementById('btn-live');
-  if (project.liveUrl) {
-    liveBtn.href          = project.liveUrl;
+  var liveUrl = project.live_url || project.liveUrl;
+  if (liveUrl) {
+    liveBtn.href          = liveUrl;
     liveBtn.style.display = '';
   }
 
