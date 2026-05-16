@@ -1083,6 +1083,139 @@ body {
   margin: 0;
 }
 
+/* ── Carousel crop button + badge ──────────── */
+
+.car-crop-btn {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: rgba(20, 20, 20, 0.78);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+  padding: 0;
+}
+
+.car-img-item:hover .car-crop-btn {
+  opacity: 1;
+}
+
+.car-crop-badge {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  background: rgba(20, 20, 20, 0.78);
+  color: rgba(255, 255, 255, 0.85);
+  font-family: var(--font-slab);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* ── Crop modal ────────────────────────────── */
+
+.crop-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.82);
+}
+
+.crop-modal.active {
+  display: flex;
+}
+
+.crop-modal-inner {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  width: min(92vw, 860px);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.crop-modal-header {
+  padding: 18px 24px 14px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.crop-modal-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--text);
+  margin: 0 0 4px;
+}
+
+.crop-modal-hint {
+  font-family: var(--font-slab);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.crop-canvas-wrap {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+  min-height: 240px;
+  max-height: 60vh;
+  user-select: none;
+}
+
+.crop-img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.crop-rect {
+  position: absolute;
+  display: none;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.52);
+  cursor: grab;
+  box-sizing: border-box;
+}
+
+.crop-rect:active {
+  cursor: grabbing;
+}
+
+.crop-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 14px 24px;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
 /* ── Light theme adjustments ───────────────── */
 
 [data-theme="light"] .field-input {

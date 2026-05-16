@@ -1188,7 +1188,7 @@
   async function saveCarOrder(page) {
     try {
       var updates = carState[page].map(function (item, i) {
-        return { id: item.id, url: item.url, page: item.page, sort_order: i };
+        return { id: item.id, url: item.url, page: item.page, sort_order: i, crop: item.crop || null };
       });
       var res = await _sb.from('carousel_images').upsert(updates);
       if (res.error) throw res.error;
@@ -1214,6 +1214,15 @@
       var img = document.createElement('img');
       img.src = item.url;
       img.alt = '';
+      if (item.crop && item.crop.x !== undefined) {
+        img.style.objectPosition = item.crop.x + '% ' + item.crop.y + '%';
+      }
+
+      var cropBtn = document.createElement('button');
+      cropBtn.className = 'car-crop-btn';
+      cropBtn.title = 'Crop';
+      cropBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 2 6 6 2 6"/><polyline points="18 22 18 18 22 18"/><rect x="6" y="6" width="12" height="12" rx="1"/></svg>';
+      cropBtn.addEventListener('click', function (e) { e.stopPropagation(); openCropModal(page, index); });
 
       var btn = document.createElement('button');
       btn.className = 'car-delete-btn';
@@ -1222,7 +1231,14 @@
       btn.addEventListener('click', function () { removeCarImage(item.id, item.url, page); });
 
       div.appendChild(img);
+      div.appendChild(cropBtn);
       div.appendChild(btn);
+      if (item.crop && item.crop.x !== undefined) {
+        var badge = document.createElement('span');
+        badge.className = 'car-crop-badge';
+        badge.textContent = 'Cropped';
+        div.appendChild(badge);
+      }
 
       div.addEventListener('dragstart', function (e) {
         e.dataTransfer.effectAllowed = 'move';
@@ -1300,6 +1316,153 @@
     if (files.length > 1) carToast('Done uploading');
   }
 
+  // ── Crop modal ────────────────────────────────────────────────────────────────
+
+  var cropState = {
+    page: null, index: null,
+    rectW: 0, rectH: 0,
+    rectX: 0, rectY: 0,
+    maxX: 0,  maxY: 0,
+    imgOffX: 0, imgOffY: 0,
+    dragging: false,
+    startMX: 0, startMY: 0, startRX: 0, startRY: 0
+  };
+
+  function openCropModal(page, index) {
+    var item = carState[page][index];
+    if (!item) return;
+    cropState.page  = page;
+    cropState.index = index;
+    var modal  = document.getElementById('crop-modal');
+    var imgEl  = document.getElementById('crop-img');
+    var rectEl = document.getElementById('crop-rect');
+    rectEl.style.display = 'none';
+    imgEl.src = '';
+    modal.classList.add('active');
+
+    function setupRect() {
+      var wrap    = document.getElementById('crop-canvas-wrap');
+      var wrapR   = wrap.getBoundingClientRect();
+      var imgR    = imgEl.getBoundingClientRect();
+      var RATIO   = 846 / 700;
+      var dispW   = imgEl.offsetWidth;
+      var dispH   = imgEl.offsetHeight;
+      if (!dispW || !dispH) return;
+
+      cropState.imgOffX = imgR.left - wrapR.left;
+      cropState.imgOffY = imgR.top  - wrapR.top;
+
+      if (dispW / dispH > RATIO) {
+        cropState.rectH = dispH;
+        cropState.rectW = dispH * RATIO;
+      } else {
+        cropState.rectW = dispW;
+        cropState.rectH = dispW / RATIO;
+      }
+      cropState.maxX = dispW - cropState.rectW;
+      cropState.maxY = dispH - cropState.rectH;
+
+      var crop = item.crop;
+      if (crop && crop.x !== undefined) {
+        cropState.rectX = cropState.maxX > 0 ? (crop.x / 100) * cropState.maxX : 0;
+        cropState.rectY = cropState.maxY > 0 ? (crop.y / 100) * cropState.maxY : 0;
+      } else {
+        cropState.rectX = cropState.maxX / 2;
+        cropState.rectY = cropState.maxY / 2;
+      }
+      updateCropRect();
+      rectEl.style.display = 'block';
+    }
+
+    if (imgEl.complete && imgEl.naturalWidth) {
+      requestAnimationFrame(setupRect);
+    } else {
+      imgEl.onload = function () { requestAnimationFrame(setupRect); };
+    }
+    imgEl.src = item.url;
+  }
+
+  function updateCropRect() {
+    var rectEl = document.getElementById('crop-rect');
+    rectEl.style.left   = (cropState.imgOffX + cropState.rectX) + 'px';
+    rectEl.style.top    = (cropState.imgOffY + cropState.rectY) + 'px';
+    rectEl.style.width  = cropState.rectW + 'px';
+    rectEl.style.height = cropState.rectH + 'px';
+  }
+
+  function closeCropModal() {
+    document.getElementById('crop-modal').classList.remove('active');
+  }
+
+  function bindCropDrag() {
+    var rectEl = document.getElementById('crop-rect');
+    var wrap   = document.getElementById('crop-canvas-wrap');
+
+    function startDrag(clientX, clientY) {
+      cropState.dragging = true;
+      cropState.startMX  = clientX;
+      cropState.startMY  = clientY;
+      cropState.startRX  = cropState.rectX;
+      cropState.startRY  = cropState.rectY;
+    }
+
+    function moveDrag(clientX, clientY) {
+      if (!cropState.dragging) return;
+      var dx = clientX - cropState.startMX;
+      var dy = clientY - cropState.startMY;
+      cropState.rectX = Math.min(cropState.maxX, Math.max(0, cropState.startRX + dx));
+      cropState.rectY = Math.min(cropState.maxY, Math.max(0, cropState.startRY + dy));
+      updateCropRect();
+    }
+
+    function stopDrag() { cropState.dragging = false; }
+
+    rectEl.addEventListener('mousedown', function (e) { e.preventDefault(); startDrag(e.clientX, e.clientY); });
+    document.addEventListener('mousemove', function (e) { moveDrag(e.clientX, e.clientY); });
+    document.addEventListener('mouseup', stopDrag);
+
+    rectEl.addEventListener('touchstart', function (e) { var t = e.touches[0]; startDrag(t.clientX, t.clientY); }, { passive: true });
+    document.addEventListener('touchmove', function (e) {
+      if (!cropState.dragging) return;
+      e.preventDefault();
+      var t = e.touches[0];
+      moveDrag(t.clientX, t.clientY);
+    }, { passive: false });
+    document.addEventListener('touchend', stopDrag);
+
+    document.getElementById('crop-cancel-btn').addEventListener('click', closeCropModal);
+
+    document.getElementById('crop-reset-btn').addEventListener('click', function () {
+      cropState.rectX = cropState.maxX / 2;
+      cropState.rectY = cropState.maxY / 2;
+      updateCropRect();
+    });
+
+    document.getElementById('crop-apply-btn').addEventListener('click', async function () {
+      var x    = cropState.maxX > 0 ? Math.round(cropState.rectX / cropState.maxX * 100) : 50;
+      var y    = cropState.maxY > 0 ? Math.round(cropState.rectY / cropState.maxY * 100) : 50;
+      var crop = { x: x, y: y };
+      var page  = cropState.page;
+      var index = cropState.index;
+      var item  = carState[page][index];
+      if (!item) return;
+      item.crop = crop;
+      try {
+        var res = await _sb.from('carousel_images').update({ crop: crop }).eq('id', item.id);
+        if (res.error) throw res.error;
+        carToast('Crop saved ✓');
+      } catch (e) {
+        carToast('Save failed: ' + e.message);
+      }
+      renderCarGrid(page);
+      closeCropModal();
+    });
+
+    document.getElementById('crop-modal').addEventListener('click', function (e) {
+      if (e.target === this) closeCropModal();
+    });
+  }
+
   function bindCarEvents() {
     ['home', 'about'].forEach(function (page) {
       var zone  = document.getElementById('car-' + page + '-zone');
@@ -1323,6 +1486,7 @@
 
   async function carInit() {
     bindCarEvents();
+    bindCropDrag();
     try {
       var res = await _sb.from('carousel_images').select('*').order('sort_order', { ascending: true });
       if (res.error) throw res.error;

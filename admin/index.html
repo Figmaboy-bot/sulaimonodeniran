@@ -359,6 +359,25 @@
     </main>
   </div>
 
+  <!-- Crop modal -->
+  <div id="crop-modal" class="crop-modal" role="dialog" aria-modal="true">
+    <div class="crop-modal-inner">
+      <div class="crop-modal-header">
+        <h3 class="crop-modal-title">Crop Image</h3>
+        <p class="crop-modal-hint">Drag the highlighted box to choose which part appears in the carousel card.</p>
+      </div>
+      <div class="crop-canvas-wrap" id="crop-canvas-wrap">
+        <img id="crop-img" class="crop-img" alt="" />
+        <div id="crop-rect" class="crop-rect"></div>
+      </div>
+      <div class="crop-modal-footer">
+        <button id="crop-reset-btn" class="btn-ghost">Reset</button>
+        <button id="crop-cancel-btn" class="btn-ghost">Cancel</button>
+        <button id="crop-apply-btn" class="btn-primary">Apply Crop</button>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="/supabase-config.js"></script>
   <script src="script.js"></script>
