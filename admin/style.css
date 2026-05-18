@@ -1312,8 +1312,151 @@ body {
   flex-shrink: 0;
 }
 
+/* ── Analytics ─────────────────────────────── */
+
+.analytics-range-btns {
+  display: flex;
+  gap: 4px;
+}
+
+.analytics-range-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: var(--font-slab);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.analytics-range-btn:hover {
+  background: var(--border);
+  color: var(--text-soft);
+}
+
+.analytics-range-btn.active {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+
+.analytics-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.analytics-card {
+  background: rgba(245, 245, 245, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
+.analytics-card-label {
+  font-family: var(--font-slab);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.analytics-card-value {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  color: var(--text);
+  line-height: 1;
+}
+
+.analytics-card-value--sm {
+  font-size: 1.1rem;
+  font-family: var(--font-slab);
+  word-break: break-all;
+}
+
+.analytics-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.analytics-table th {
+  font-family: var(--font-slab);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.analytics-table td {
+  font-family: var(--font-slab);
+  font-size: 0.875rem;
+  color: var(--text-soft);
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(245, 245, 245, 0.05);
+  vertical-align: middle;
+}
+
+.analytics-table tr:last-child td {
+  border-bottom: none;
+}
+
+.analytics-bar-wrap {
+  width: 120px;
+  height: 6px;
+  background: rgba(245, 245, 245, 0.08);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.analytics-bar {
+  height: 100%;
+  background: var(--text-soft);
+  border-radius: 100px;
+  transition: width 0.4s ease;
+}
+
+.analytics-count {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.analytics-loading {
+  font-family: var(--font-slab);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  padding: 8px 0;
+}
+
+.analytics-empty {
+  font-family: var(--font-slab);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  padding: 12px 0;
+}
+
 /* ── Light theme adjustments ───────────────── */
 
 [data-theme="light"] .field-input {
   background: rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .analytics-card {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="light"] .analytics-bar-wrap {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .analytics-bar {
+  background: var(--text);
 }

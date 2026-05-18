@@ -56,6 +56,13 @@
         <a href="/" target="_blank" class="btn-ghost">View Home ↗</a>
         <a href="/pages/about/" target="_blank" class="btn-ghost">View About ↗</a>
       </div>
+      <div id="header-actions-analytics" style="display:none;align-items:center;gap:12px;">
+        <div class="analytics-range-btns">
+          <button class="analytics-range-btn active" data-range="7d">7 days</button>
+          <button class="analytics-range-btn" data-range="30d">30 days</button>
+          <button class="analytics-range-btn" data-range="all">All time</button>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -64,6 +71,7 @@
     <button class="admin-tab" data-panel="playground">Playground</button>
     <button class="admin-tab" data-panel="articles">Articles</button>
     <button class="admin-tab" data-panel="carousel">Carousel</button>
+    <button class="admin-tab" data-panel="analytics">Analytics</button>
   </div>
 
   <div class="admin-layout" id="projects-panel">
@@ -376,6 +384,65 @@
             <div class="upload-progress-label"><span id="car-about-name"></span><span id="car-about-pct"></span></div>
           </div>
           <div class="car-img-grid" id="car-about-grid"><p class="car-empty">Loading…</p></div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Analytics panel -->
+  <div class="admin-layout" id="analytics-panel" style="display:none;">
+    <main class="admin-main">
+      <div class="editor">
+        <div class="editor-header">
+          <div>
+            <h2 class="editor-title">Analytics</h2>
+            <p class="editor-url" id="analytics-updated">Loading…</p>
+          </div>
+        </div>
+
+        <!-- Stat cards -->
+        <div class="analytics-cards">
+          <div class="analytics-card">
+            <p class="analytics-card-label">Total Views</p>
+            <p class="analytics-card-value" id="stat-total">—</p>
+          </div>
+          <div class="analytics-card">
+            <p class="analytics-card-label">Today</p>
+            <p class="analytics-card-value" id="stat-today">—</p>
+          </div>
+          <div class="analytics-card">
+            <p class="analytics-card-label">Top Page</p>
+            <p class="analytics-card-value analytics-card-value--sm" id="stat-top">—</p>
+          </div>
+          <div class="analytics-card">
+            <p class="analytics-card-label">Unique Pages</p>
+            <p class="analytics-card-value" id="stat-pages">—</p>
+          </div>
+        </div>
+
+        <!-- Per-page breakdown -->
+        <section class="editor-section">
+          <h3 class="section-title">Pages</h3>
+          <div id="analytics-table-wrap">
+            <p class="analytics-loading">Loading data…</p>
+          </div>
+        </section>
+
+        <!-- Countries -->
+        <section class="editor-section">
+          <h3 class="section-title">Countries</h3>
+          <div id="analytics-country-wrap">
+            <p class="analytics-loading">Loading data…</p>
+          </div>
+        </section>
+
+        <!-- Referrers -->
+        <section class="editor-section">
+          <h3 class="section-title">Referrers</h3>
+          <div id="analytics-ref-wrap">
+            <p class="analytics-loading">Loading data…</p>
+          </div>
         </section>
 
       </div>

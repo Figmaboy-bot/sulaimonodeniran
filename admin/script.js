@@ -670,10 +670,13 @@
         document.getElementById('playground-panel').style.display  = panel === 'playground' ? 'flex' : 'none';
         document.getElementById('articles-panel').style.display    = panel === 'articles'   ? 'flex' : 'none';
         document.getElementById('carousel-panel').style.display    = panel === 'carousel'   ? 'flex' : 'none';
+        document.getElementById('analytics-panel').style.display   = panel === 'analytics'  ? 'flex' : 'none';
         document.getElementById('header-actions-projects').style.display   = panel === 'projects'   ? 'flex' : 'none';
         document.getElementById('header-actions-playground').style.display = panel === 'playground' ? 'flex' : 'none';
         document.getElementById('header-actions-articles').style.display   = panel === 'articles'   ? 'flex' : 'none';
         document.getElementById('header-actions-carousel').style.display   = panel === 'carousel'   ? 'flex' : 'none';
+        document.getElementById('header-actions-analytics').style.display  = panel === 'analytics'  ? 'flex' : 'none';
+        if (panel === 'analytics') analyticsLoad();
       });
     });
   }
@@ -1548,5 +1551,139 @@
   }
 
   carInit();
+
+})();
+
+// ── Analytics tab ─────────────────────────────────────────────────────────────
+(function () {
+
+  var _sb        = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  var activeRange = '7d';
+  var loaded      = false;
+
+  function fmtRelative(date) {
+    var diff = Date.now() - date.getTime();
+    var mins = Math.floor(diff / 60000);
+    if (mins < 1)  return 'just now';
+    if (mins < 60) return mins + 'm ago';
+    var hrs = Math.floor(mins / 60);
+    if (hrs < 24)  return hrs + 'h ago';
+    var days = Math.floor(hrs / 24);
+    return days + 'd ago';
+  }
+
+  function fmtNum(n) {
+    return n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(n);
+  }
+
+  function renderPageTable(rows, max) {
+    if (!rows.length) return '<p class="analytics-empty">No data yet.</p>';
+    var html = '<table class="analytics-table"><thead><tr>' +
+      '<th>Page</th><th>Views</th><th></th><th>Last seen</th>' +
+      '</tr></thead><tbody>';
+    rows.forEach(function (r) {
+      var pct = max > 0 ? Math.round((r.count / max) * 100) : 0;
+      html += '<tr>' +
+        '<td>' + r.page + '</td>' +
+        '<td><span class="analytics-count">' + fmtNum(r.count) + '</span></td>' +
+        '<td><div class="analytics-bar-wrap"><div class="analytics-bar" style="width:' + pct + '%"></div></div></td>' +
+        '<td>' + fmtRelative(r.lastSeen) + '</td>' +
+        '</tr>';
+    });
+    return html + '</tbody></table>';
+  }
+
+  function renderRefTable(rows, max) {
+    if (!rows.length) return '<p class="analytics-empty">No referrer data yet.</p>';
+    var html = '<table class="analytics-table"><thead><tr>' +
+      '<th>Referrer</th><th>Views</th><th></th>' +
+      '</tr></thead><tbody>';
+    rows.forEach(function (r) {
+      var pct = max > 0 ? Math.round((r.count / max) * 100) : 0;
+      html += '<tr>' +
+        '<td>' + (r.ref || 'Direct / none') + '</td>' +
+        '<td><span class="analytics-count">' + fmtNum(r.count) + '</span></td>' +
+        '<td><div class="analytics-bar-wrap"><div class="analytics-bar" style="width:' + pct + '%"></div></div></td>' +
+        '</tr>';
+    });
+    return html + '</tbody></table>';
+  }
+
+  async function analyticsLoad() {
+    document.getElementById('analytics-updated').textContent = 'Loading…';
+    document.getElementById('analytics-table-wrap').innerHTML = '<p class="analytics-loading">Loading…</p>';
+    document.getElementById('analytics-ref-wrap').innerHTML   = '<p class="analytics-loading">Loading…</p>';
+
+    var query = _sb.from('page_views').select('page, referrer, created_at');
+    if (activeRange !== 'all') {
+      var days = activeRange === '7d' ? 7 : 30;
+      var from = new Date(Date.now() - days * 86400000).toISOString();
+      query = query.gte('created_at', from);
+    }
+
+    var { data, error } = await query;
+    if (error) {
+      document.getElementById('analytics-updated').textContent = 'Error: ' + error.message;
+      return;
+    }
+
+    var totalViews = data.length;
+
+    var todayStart = new Date(); todayStart.setHours(0, 0, 0, 0);
+    var todayViews = data.filter(function (r) { return new Date(r.created_at) >= todayStart; }).length;
+
+    var pageCounts   = {};
+    var pageLastSeen = {};
+    var refCounts    = {};
+
+    data.forEach(function (r) {
+      pageCounts[r.page]   = (pageCounts[r.page]   || 0) + 1;
+      var t = new Date(r.created_at);
+      if (!pageLastSeen[r.page] || t > pageLastSeen[r.page]) pageLastSeen[r.page] = t;
+
+      var ref = r.referrer ? (function () {
+        try { return new URL(r.referrer).hostname.replace(/^www\./, ''); } catch (e) { return r.referrer; }
+      })() : '';
+      refCounts[ref] = (refCounts[ref] || 0) + 1;
+    });
+
+    var pageRows = Object.keys(pageCounts).map(function (p) {
+      return { page: p, count: pageCounts[p], lastSeen: pageLastSeen[p] };
+    }).sort(function (a, b) { return b.count - a.count; });
+
+    var refRows = Object.keys(refCounts).map(function (r) {
+      return { ref: r, count: refCounts[r] };
+    }).sort(function (a, b) { return b.count - a.count; });
+
+    var topPage    = pageRows.length ? pageRows[0].page : '—';
+    var pageMax    = pageRows.length ? pageRows[0].count : 1;
+    var refMax     = refRows.length  ? refRows[0].count  : 1;
+
+    document.getElementById('stat-total').textContent = fmtNum(totalViews);
+    document.getElementById('stat-today').textContent = fmtNum(todayViews);
+    document.getElementById('stat-top').textContent   = topPage;
+    document.getElementById('stat-pages').textContent = String(pageRows.length);
+
+    document.getElementById('analytics-table-wrap').innerHTML = renderPageTable(pageRows, pageMax);
+    document.getElementById('analytics-ref-wrap').innerHTML   = renderRefTable(refRows, refMax);
+
+    document.getElementById('analytics-updated').textContent =
+      'Last updated ' + new Date().toLocaleTimeString();
+  }
+
+  function bindAnalyticsEvents() {
+    document.querySelectorAll('.analytics-range-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.analytics-range-btn').forEach(function (b) { b.classList.remove('active'); });
+        this.classList.add('active');
+        activeRange = this.dataset.range;
+        analyticsLoad();
+      });
+    });
+  }
+
+  window.analyticsLoad = analyticsLoad;
+
+  bindAnalyticsEvents();
 
 })();
