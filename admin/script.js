@@ -1609,12 +1609,29 @@
     return html + '</tbody></table>';
   }
 
+  function renderCountryTable(rows, max) {
+    if (!rows.length) return '<p class="analytics-empty">No country data yet.</p>';
+    var html = '<table class="analytics-table"><thead><tr>' +
+      '<th>Country</th><th>Views</th><th></th>' +
+      '</tr></thead><tbody>';
+    rows.forEach(function (r) {
+      var pct = max > 0 ? Math.round((r.count / max) * 100) : 0;
+      html += '<tr>' +
+        '<td>' + (r.country || 'Unknown') + '</td>' +
+        '<td><span class="analytics-count">' + fmtNum(r.count) + '</span></td>' +
+        '<td><div class="analytics-bar-wrap"><div class="analytics-bar" style="width:' + pct + '%"></div></div></td>' +
+        '</tr>';
+    });
+    return html + '</tbody></table>';
+  }
+
   async function analyticsLoad() {
     document.getElementById('analytics-updated').textContent = 'Loading…';
-    document.getElementById('analytics-table-wrap').innerHTML = '<p class="analytics-loading">Loading…</p>';
-    document.getElementById('analytics-ref-wrap').innerHTML   = '<p class="analytics-loading">Loading…</p>';
+    document.getElementById('analytics-table-wrap').innerHTML   = '<p class="analytics-loading">Loading…</p>';
+    document.getElementById('analytics-ref-wrap').innerHTML     = '<p class="analytics-loading">Loading…</p>';
+    document.getElementById('analytics-country-wrap').innerHTML = '<p class="analytics-loading">Loading…</p>';
 
-    var query = _sb.from('page_views').select('page, referrer, created_at');
+    var query = _sb.from('page_views').select('page, referrer, country, created_at');
     if (activeRange !== 'all') {
       var days = activeRange === '7d' ? 7 : 30;
       var from = new Date(Date.now() - days * 86400000).toISOString();
@@ -1632,12 +1649,13 @@
     var todayStart = new Date(); todayStart.setHours(0, 0, 0, 0);
     var todayViews = data.filter(function (r) { return new Date(r.created_at) >= todayStart; }).length;
 
-    var pageCounts   = {};
-    var pageLastSeen = {};
-    var refCounts    = {};
+    var pageCounts    = {};
+    var pageLastSeen  = {};
+    var refCounts     = {};
+    var countryCounts = {};
 
     data.forEach(function (r) {
-      pageCounts[r.page]   = (pageCounts[r.page]   || 0) + 1;
+      pageCounts[r.page] = (pageCounts[r.page] || 0) + 1;
       var t = new Date(r.created_at);
       if (!pageLastSeen[r.page] || t > pageLastSeen[r.page]) pageLastSeen[r.page] = t;
 
@@ -1645,6 +1663,9 @@
         try { return new URL(r.referrer).hostname.replace(/^www\./, ''); } catch (e) { return r.referrer; }
       })() : '';
       refCounts[ref] = (refCounts[ref] || 0) + 1;
+
+      var c = r.country || '';
+      countryCounts[c] = (countryCounts[c] || 0) + 1;
     });
 
     var pageRows = Object.keys(pageCounts).map(function (p) {
@@ -1655,17 +1676,23 @@
       return { ref: r, count: refCounts[r] };
     }).sort(function (a, b) { return b.count - a.count; });
 
-    var topPage    = pageRows.length ? pageRows[0].page : '—';
-    var pageMax    = pageRows.length ? pageRows[0].count : 1;
-    var refMax     = refRows.length  ? refRows[0].count  : 1;
+    var countryRows = Object.keys(countryCounts).map(function (c) {
+      return { country: c, count: countryCounts[c] };
+    }).sort(function (a, b) { return b.count - a.count; });
+
+    var topPage    = pageRows.length    ? pageRows[0].page    : '—';
+    var pageMax    = pageRows.length    ? pageRows[0].count    : 1;
+    var refMax     = refRows.length     ? refRows[0].count     : 1;
+    var countryMax = countryRows.length ? countryRows[0].count : 1;
 
     document.getElementById('stat-total').textContent = fmtNum(totalViews);
     document.getElementById('stat-today').textContent = fmtNum(todayViews);
     document.getElementById('stat-top').textContent   = topPage;
     document.getElementById('stat-pages').textContent = String(pageRows.length);
 
-    document.getElementById('analytics-table-wrap').innerHTML = renderPageTable(pageRows, pageMax);
-    document.getElementById('analytics-ref-wrap').innerHTML   = renderRefTable(refRows, refMax);
+    document.getElementById('analytics-table-wrap').innerHTML   = renderPageTable(pageRows, pageMax);
+    document.getElementById('analytics-ref-wrap').innerHTML     = renderRefTable(refRows, refMax);
+    document.getElementById('analytics-country-wrap').innerHTML = renderCountryTable(countryRows, countryMax);
 
     document.getElementById('analytics-updated').textContent =
       'Last updated ' + new Date().toLocaleTimeString();
