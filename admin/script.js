@@ -1680,6 +1680,8 @@
         analyticsLoad();
       });
     });
+
+    document.getElementById('analytics-refresh-btn').addEventListener('click', analyticsLoad);
   }
 
   window.analyticsLoad = analyticsLoad;
