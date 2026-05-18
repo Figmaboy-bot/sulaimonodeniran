@@ -1,7 +1,8 @@
+var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 // ── Projects tab ─────────────────────────────────────────────────────────────
 (function () {
 
-  var _sb         = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   var PROJ_BUCKET = 'projects';
 
   // ── Auth ─────────────────────────────────────
@@ -570,7 +571,6 @@
 // ── Playground tab ───────────────────────────────────────────────────────────
 (function () {
 
-  var _sb    = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   var BUCKET = 'playground';
 
   var pgState = {
@@ -914,7 +914,6 @@
 // ── Articles tab ─────────────────────────────────────────────────────────────
 (function () {
 
-  var _sb        = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   var ART_BUCKET = 'articles';
 
   var artState = { items: [], activeId: null };
@@ -1117,7 +1116,6 @@
 // ── Carousel tab ──────────────────────────────────────────────────────────────
 (function () {
 
-  var _sb   = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   var BUCKET = 'carousel';
   var CAR_MAX = 100 * 1024 * 1024;
 
@@ -1557,7 +1555,6 @@
 // ── Analytics tab ─────────────────────────────────────────────────────────────
 (function () {
 
-  var _sb        = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   var activeRange = '7d';
   var loaded      = false;
 
