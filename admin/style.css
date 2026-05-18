@@ -1443,6 +1443,93 @@ body {
   padding: 12px 0;
 }
 
+/* ── Mobile back button (hidden on desktop) ── */
+
+.mob-back-btn {
+  display: none;
+}
+
+/* ── Mobile responsive ─────────────────────── */
+
+@media (max-width: 768px) {
+  body { height: 100dvh; }
+
+  /* Header */
+  .admin-header { padding: 0 14px; gap: 8px; }
+  .admin-header-actions a.btn-ghost { display: none; }
+
+  /* Tabs: horizontal scroll */
+  .admin-tabs {
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0 12px;
+    gap: 2px;
+  }
+  .admin-tabs::-webkit-scrollbar { display: none; }
+  .admin-tab { white-space: nowrap; padding: 5px 10px; font-size: 0.78rem; }
+
+  /* Sidebar panels: show one view at a time */
+  .admin-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    max-height: 50vh;
+  }
+
+  #projects-panel:not(.mob-editor-active) .admin-main,
+  #playground-panel:not(.mob-editor-active) .admin-main,
+  #articles-panel:not(.mob-editor-active) .admin-main { display: none; }
+
+  #projects-panel.mob-editor-active .admin-sidebar,
+  #playground-panel.mob-editor-active .admin-sidebar,
+  #articles-panel.mob-editor-active .admin-sidebar { display: none; }
+
+  /* Back button */
+  .mob-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-family: var(--font-slab);
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 0 0 18px;
+    transition: color 0.15s;
+  }
+  .mob-back-btn:hover { color: var(--text); }
+
+  /* Main */
+  .admin-main { padding: 20px 16px; }
+
+  /* Editor header: stack vertically */
+  .editor-header { flex-direction: column; gap: 14px; margin-bottom: 24px; }
+  .editor-title  { font-size: 1.5rem; }
+  .editor-header-actions { flex-wrap: wrap; gap: 8px; width: 100%; }
+  .coming-soon-label { display: none; }
+
+  /* Field grid: single column */
+  .field-grid { grid-template-columns: 1fr; }
+
+  /* Analytics */
+  .analytics-cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .analytics-card { padding: 14px 16px; }
+  .analytics-card-value { font-size: 1.8rem; }
+  .analytics-bar-wrap { display: none; }
+  .analytics-table { font-size: 0.82rem; }
+  .analytics-table td, .analytics-table th { padding: 8px 8px; }
+  .analytics-range-btn { padding: 5px 9px; font-size: 0.74rem; }
+
+  /* Carousel */
+  .car-section-header { flex-direction: column; align-items: flex-start; }
+  .car-speed-range { width: 100%; }
+}
+
 /* ── Light theme adjustments ───────────────── */
 
 [data-theme="light"] .field-input {

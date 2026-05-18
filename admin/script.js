@@ -267,6 +267,7 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     populateEditor(id);
     document.getElementById('empty-state').style.display = 'none';
     document.getElementById('editor').style.display      = 'block';
+    document.getElementById('projects-panel').classList.add('mob-editor-active');
   }
 
   // ── Populate editor ───────────────────────────
@@ -497,7 +498,8 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     renderList();
     document.getElementById('editor').style.display      = 'none';
     document.getElementById('empty-state').style.display = 'flex';
-    if (state.order.length) selectProject(state.order[0]);
+    document.getElementById('projects-panel').classList.remove('mob-editor-active');
+    if (state.order.length && window.innerWidth > 768) selectProject(state.order[0]);
     toast('Project deleted');
   }
 
@@ -536,6 +538,9 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     document.getElementById('btn-save').addEventListener('click', saveProject);
     document.getElementById('btn-delete').addEventListener('click', deleteProject);
     document.getElementById('btn-new').addEventListener('click', newProject);
+    document.getElementById('proj-mob-back').addEventListener('click', function () {
+      document.getElementById('projects-panel').classList.remove('mob-editor-active');
+    });
 
     var exportBtn = document.getElementById('btn-export');
     if (exportBtn) exportBtn.style.display = 'none';
@@ -710,6 +715,7 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     populatePgEditor(id);
     document.getElementById('pg-empty-state').style.display = 'none';
     document.getElementById('pg-editor').style.display      = 'block';
+    document.getElementById('playground-panel').classList.add('mob-editor-active');
   }
 
   function populatePgEditor(id) {
@@ -835,6 +841,7 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     renderPgList();
     document.getElementById('pg-editor').style.display      = 'none';
     document.getElementById('pg-empty-state').style.display = 'flex';
+    document.getElementById('playground-panel').classList.remove('mob-editor-active');
     pgToast('Deleted');
   }
 
@@ -879,6 +886,9 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     document.getElementById('pg-btn-save').addEventListener('click', savePgItem);
     document.getElementById('pg-btn-delete').addEventListener('click', deletePgItem);
     document.getElementById('pg-btn-new').addEventListener('click', newPgItem);
+    document.getElementById('pg-mob-back').addEventListener('click', function () {
+      document.getElementById('playground-panel').classList.remove('mob-editor-active');
+    });
 
     document.addEventListener('keydown', function (e) {
       if ((e.metaKey || e.ctrlKey) && e.key === 's') {
@@ -974,6 +984,7 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     populateArtEditor(id);
     document.getElementById('art-empty-state').style.display = 'none';
     document.getElementById('art-editor').style.display      = 'block';
+    document.getElementById('articles-panel').classList.add('mob-editor-active');
   }
 
   function populateArtEditor(id) {
@@ -1054,6 +1065,7 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     renderArtList();
     document.getElementById('art-editor').style.display      = 'none';
     document.getElementById('art-empty-state').style.display = 'flex';
+    document.getElementById('articles-panel').classList.remove('mob-editor-active');
     artToast('Deleted');
   }
 
@@ -1084,6 +1096,9 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     document.getElementById('art-btn-save').addEventListener('click', saveArtItem);
     document.getElementById('art-btn-delete').addEventListener('click', deleteArtItem);
     document.getElementById('art-btn-new').addEventListener('click', newArtItem);
+    document.getElementById('art-mob-back').addEventListener('click', function () {
+      document.getElementById('articles-panel').classList.remove('mob-editor-active');
+    });
     document.addEventListener('keydown', function (e) {
       if ((e.metaKey || e.ctrlKey) && e.key === 's') {
         if (document.getElementById('articles-panel').style.display !== 'none') {
