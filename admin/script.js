@@ -1621,15 +1621,24 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     return html + '</tbody></table>';
   }
 
+  function countryFlag(code) {
+    if (!code || code.length !== 2) return '';
+    var c = code.toUpperCase();
+    return String.fromCodePoint(0x1F1E6 - 65 + c.charCodeAt(0)) +
+           String.fromCodePoint(0x1F1E6 - 65 + c.charCodeAt(1));
+  }
+
   function renderCountryTable(rows, max) {
     if (!rows.length) return '<p class="analytics-empty">No country data yet.</p>';
     var html = '<table class="analytics-table"><thead><tr>' +
       '<th>Country</th><th>Views</th><th></th>' +
       '</tr></thead><tbody>';
     rows.forEach(function (r) {
-      var pct = max > 0 ? Math.round((r.count / max) * 100) : 0;
+      var pct  = max > 0 ? Math.round((r.count / max) * 100) : 0;
+      var flag = countryFlag(r.country);
+      var label = r.country ? (flag ? flag + ' ' + r.country : r.country) : 'Unknown';
       html += '<tr>' +
-        '<td>' + (r.country || 'Unknown') + '</td>' +
+        '<td>' + label + '</td>' +
         '<td><span class="analytics-count">' + fmtNum(r.count) + '</span></td>' +
         '<td><div class="analytics-bar-wrap"><div class="analytics-bar" style="width:' + pct + '%"></div></div></td>' +
         '</tr>';
