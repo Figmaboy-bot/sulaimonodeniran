@@ -1621,6 +1621,46 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     return html + '</tbody></table>';
   }
 
+  var COUNTRY_NAMES = {
+    AF:'Afghanistan',ZA:'South Africa',AL:'Albania',DZ:'Algeria',DE:'Germany',
+    AD:'Andorra',AO:'Angola',AG:'Antigua & Barbuda',SA:'Saudi Arabia',AR:'Argentina',
+    AM:'Armenia',AU:'Australia',AT:'Austria',AZ:'Azerbaijan',BS:'Bahamas',
+    BH:'Bahrain',BD:'Bangladesh',BB:'Barbados',BY:'Belarus',BE:'Belgium',
+    BZ:'Belize',BJ:'Benin',BT:'Bhutan',BO:'Bolivia',BA:'Bosnia & Herzegovina',
+    BW:'Botswana',BR:'Brazil',BN:'Brunei',BG:'Bulgaria',BF:'Burkina Faso',
+    BI:'Burundi',CV:'Cape Verde',KH:'Cambodia',CM:'Cameroon',CA:'Canada',
+    CF:'Central African Republic',TD:'Chad',CL:'Chile',CN:'China',CY:'Cyprus',
+    CO:'Colombia',KM:'Comoros',CG:'Congo',CD:'DR Congo',KP:'North Korea',
+    KR:'South Korea',CI:"Côte d'Ivoire",CR:'Costa Rica',HR:'Croatia',CU:'Cuba',
+    DK:'Denmark',DJ:'Djibouti',DM:'Dominica',DO:'Dominican Republic',EC:'Ecuador',
+    EG:'Egypt',SV:'El Salvador',AE:'United Arab Emirates',ER:'Eritrea',SK:'Slovakia',
+    SI:'Slovenia',ES:'Spain',US:'United States',EE:'Estonia',ET:'Ethiopia',
+    FJ:'Fiji',PH:'Philippines',FI:'Finland',FR:'France',GA:'Gabon',GM:'Gambia',
+    GE:'Georgia',GH:'Ghana',GD:'Grenada',GR:'Greece',GT:'Guatemala',GN:'Guinea',
+    GW:'Guinea-Bissau',GQ:'Equatorial Guinea',GY:'Guyana',HT:'Haiti',HN:'Honduras',
+    HU:'Hungary',IN:'India',ID:'Indonesia',IQ:'Iraq',IR:'Iran',IE:'Ireland',
+    IS:'Iceland',IL:'Israel',IT:'Italy',JM:'Jamaica',JP:'Japan',JO:'Jordan',
+    KZ:'Kazakhstan',KE:'Kenya',KG:'Kyrgyzstan',KI:'Kiribati',KW:'Kuwait',
+    LA:'Laos',LS:'Lesotho',LV:'Latvia',LB:'Lebanon',LR:'Liberia',LY:'Libya',
+    LI:'Liechtenstein',LT:'Lithuania',LU:'Luxembourg',MG:'Madagascar',MY:'Malaysia',
+    MW:'Malawi',MV:'Maldives',ML:'Mali',MT:'Malta',MA:'Morocco',MH:'Marshall Islands',
+    MR:'Mauritania',MU:'Mauritius',MX:'Mexico',FM:'Micronesia',MD:'Moldova',
+    MC:'Monaco',MN:'Mongolia',ME:'Montenegro',MZ:'Mozambique',MM:'Myanmar',
+    NA:'Namibia',NR:'Nauru',NP:'Nepal',NI:'Nicaragua',NE:'Niger',NG:'Nigeria',
+    NO:'Norway',NZ:'New Zealand',OM:'Oman',NL:'Netherlands',PK:'Pakistan',
+    PW:'Palau',PA:'Panama',PG:'Papua New Guinea',PY:'Paraguay',PE:'Peru',
+    PL:'Poland',PT:'Portugal',QA:'Qatar',GB:'United Kingdom',CZ:'Czech Republic',
+    RO:'Romania',RW:'Rwanda',RU:'Russia',KN:'Saint Kitts & Nevis',
+    LC:'Saint Lucia',VC:'Saint Vincent & Grenadines',WS:'Samoa',SM:'San Marino',
+    ST:'São Tomé & Príncipe',SN:'Senegal',RS:'Serbia',SC:'Seychelles',
+    SL:'Sierra Leone',SG:'Singapore',SO:'Somalia',LK:'Sri Lanka',SD:'Sudan',
+    SS:'South Sudan',SR:'Suriname',SZ:'Eswatini',SE:'Sweden',CH:'Switzerland',
+    SY:'Syria',TJ:'Tajikistan',TH:'Thailand',TL:'Timor-Leste',TG:'Togo',
+    TO:'Tonga',TT:'Trinidad & Tobago',TN:'Tunisia',TM:'Turkmenistan',TR:'Turkey',
+    TV:'Tuvalu',UA:'Ukraine',UG:'Uganda',UY:'Uruguay',UZ:'Uzbekistan',
+    VU:'Vanuatu',VE:'Venezuela',VN:'Vietnam',YE:'Yemen',ZM:'Zambia',ZW:'Zimbabwe'
+  };
+
   function countryFlag(code) {
     if (!code || code.length !== 2) return '';
     var c = code.toUpperCase();
@@ -1636,7 +1676,8 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     rows.forEach(function (r) {
       var pct  = max > 0 ? Math.round((r.count / max) * 100) : 0;
       var flag = countryFlag(r.country);
-      var label = r.country ? (flag ? flag + ' ' + r.country : r.country) : 'Unknown';
+      var name = (r.country && COUNTRY_NAMES[r.country.toUpperCase()]) || r.country || 'Unknown';
+      var label = flag ? flag + ' ' + name : name;
       html += '<tr>' +
         '<td>' + label + '</td>' +
         '<td><span class="analytics-count">' + fmtNum(r.count) + '</span></td>' +
