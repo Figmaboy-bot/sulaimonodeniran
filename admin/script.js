@@ -101,6 +101,7 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
       xhr.setRequestHeader('apikey', SUPABASE_ANON_KEY);
       xhr.setRequestHeader('Authorization', 'Bearer ' + SUPABASE_ANON_KEY);
       xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+      xhr.setRequestHeader('cache-control', 'max-age=31536000, immutable');
 
       xhr.upload.addEventListener('progress', function (e) {
         if (!e.lengthComputable) return;
@@ -623,6 +624,7 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
       xhr.setRequestHeader('apikey', SUPABASE_ANON_KEY);
       xhr.setRequestHeader('Authorization', 'Bearer ' + SUPABASE_ANON_KEY);
       xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+      xhr.setRequestHeader('cache-control', 'max-age=31536000, immutable');
 
       xhr.upload.addEventListener('progress', function (e) {
         if (!e.lengthComputable) return;
@@ -941,7 +943,7 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   async function artUploadFile(file) {
     var ext  = file.name.split('.').pop().toLowerCase();
     var path = 'covers/' + Date.now() + '_' + Math.random().toString(36).slice(2, 7) + '.' + ext;
-    var { error } = await _sb.storage.from(ART_BUCKET).upload(path, file);
+    var { error } = await _sb.storage.from(ART_BUCKET).upload(path, file, { cacheControl: '31536000', upsert: false });
     if (error) throw error;
     return _sb.storage.from(ART_BUCKET).getPublicUrl(path).data.publicUrl;
   }
@@ -1166,6 +1168,7 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
       xhr.setRequestHeader('apikey', SUPABASE_ANON_KEY);
       xhr.setRequestHeader('Authorization', 'Bearer ' + SUPABASE_ANON_KEY);
       xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+      xhr.setRequestHeader('cache-control', 'max-age=31536000, immutable');
 
       xhr.upload.addEventListener('progress', function (e) {
         if (!e.lengthComputable) return;

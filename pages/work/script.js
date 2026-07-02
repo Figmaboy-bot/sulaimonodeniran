@@ -67,7 +67,7 @@
           '</div>' +
         '</div>' +
         '<div class="case-study-image">' +
-          '<img src="' + esc(coverSrc(p)) + '" alt="' + esc(p.title || '') + '" loading="lazy" />' +
+          '<img src="' + esc(cdnUrl(coverSrc(p))) + '" alt="' + esc(p.title || '') + '" loading="lazy" />' +
           (isComingSoon ? '<div class="coming-soon-badge">Coming Soon</div>' : '') +
         '</div>';
 

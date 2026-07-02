@@ -19,7 +19,7 @@
         div.className = 'work-card';
         if (hidden) div.setAttribute('aria-hidden', 'true');
         var img = document.createElement('img');
-        img.src = item.url;
+        img.src = cdnUrl(item.url);
         img.loading = hidden ? 'lazy' : 'eager';
         if (item.crop && item.crop.x !== undefined) {
           img.style.objectPosition = item.crop.x + '% ' + item.crop.y + '%';

@@ -54,7 +54,7 @@
         '</div>';
 
       if (item.cover_url) {
-        card.querySelector('.pg-card-thumb').src = item.cover_url;
+        card.querySelector('.pg-card-thumb').src = cdnUrl(item.cover_url);
       }
 
       grid.appendChild(card);
@@ -92,14 +92,14 @@
         el.playsInline = true;
         el.className   = 'pg-modal-video';
         mediaWrap.appendChild(el);
-        el.src = item.media_url;
+        el.src = cdnUrl(item.media_url);
         el.load();
         el.play().catch(function () {});
       } else {
         el           = document.createElement('img');
         el.alt       = item.title || '';
         el.className = 'pg-modal-img';
-        el.src       = item.media_url;
+        el.src       = cdnUrl(item.media_url);
         mediaWrap.appendChild(el);
       }
     }

@@ -47,7 +47,7 @@ var ARTICLES_FALLBACK = [
       });
     } else if (article.img) {
       var img = document.createElement('img');
-      img.src = article.img; img.alt = article.title || ''; img.loading = 'lazy';
+      img.src = cdnUrl(article.img); img.alt = article.title || ''; img.loading = 'lazy';
       imgEl.appendChild(img);
     }
 
