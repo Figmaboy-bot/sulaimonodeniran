@@ -403,25 +403,31 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   // ── File upload ───────────────────────────────
   var MAX_FILE_BYTES = 100 * 1024 * 1024; // 100 MB
 
-  async function handleFiles(files) {
-    if (!files || !files.length) return;
+  async function handleFiles(fileList) {
+    if (!fileList || !fileList.length) return;
+    // Snapshot: a live FileList is emptied when the input's value is reset,
+    // which would truncate this loop to a single file after the first await.
+    var files = Array.prototype.slice.call(fileList);
+    var done  = 0;
     for (var fi = 0; fi < files.length; fi++) {
       var file    = files[fi];
       var isVideo = file.type.startsWith('video/');
       var isImage = file.type.startsWith('image/');
       if (!isImage && !isVideo) continue;
-      if (file.size > MAX_FILE_BYTES) { toast('File too large — max 100 MB'); continue; }
-      toast('Uploading…');
+      if (file.size > MAX_FILE_BYTES) { toast(file.name + ' is too large — max 100 MB'); continue; }
+      toast(files.length > 1 ? 'Uploading ' + (fi + 1) + ' of ' + files.length + '…' : 'Uploading…');
       try {
         var url = await uploadFile(file, isVideo ? 'videos' : 'images', 'gallery-upload-progress');
         state.gallery.push({ src: url, alt: file.name.replace(/\.[^.]+$/, ''), layout: 'full', mediaType: isVideo ? 'video' : 'image' });
         if (!state.activeCoverUrl && isImage) state.activeCoverUrl = url;
         renderGalleryGrid();
-        toast('Uploaded ✓');
+        done++;
+        if (files.length === 1) toast('Uploaded ✓');
       } catch (e) {
         toast('Upload failed: ' + e.message);
       }
     }
+    if (files.length > 1 && done) toast('Uploaded ' + done + ' of ' + files.length + ' ✓');
   }
 
   // ── Read form ─────────────────────────────────
@@ -1315,8 +1321,10 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     }
   }
 
-  async function handleCarUpload(files, page) {
+  async function handleCarUpload(fileList, page) {
     var progressId = 'car-' + page + '-progress';
+    // Snapshot before any await — resetting the input empties the live FileList.
+    var files = Array.prototype.slice.call(fileList);
     for (var i = 0; i < files.length; i++) {
       var file = files[i];
       if (file.size > CAR_MAX) { carToast(file.name + ' is too large (max 100 MB)'); continue; }
