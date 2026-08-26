@@ -429,6 +429,9 @@ main.project-main {
     height: auto;
     overflow: visible;
     padding: 20px 20px 40px;
+    /* height:auto leaves space-between nothing to distribute, so the
+       About block would sit flush against Industry — space it explicitly */
+    gap: 40px;
   }
 
   .project-gallery {
