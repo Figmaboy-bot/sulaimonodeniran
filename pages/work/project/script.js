@@ -178,9 +178,13 @@
   var sidebar = document.querySelector('.project-sidebar');
   var layout  = document.querySelector('.project-layout');
 
+  // docking only applies while the sidebar is a fixed column (desktop);
+  // below 768px it sits in normal flow above the gallery
+  var canDock = window.matchMedia('(min-width: 769px)');
+
   function updateSidebar() {
     if (!sidebar || !layout) return;
-    if (layout.getBoundingClientRect().bottom <= window.innerHeight) {
+    if (canDock.matches && layout.getBoundingClientRect().bottom <= window.innerHeight) {
       sidebar.classList.add('is-docked');
     } else {
       sidebar.classList.remove('is-docked');
@@ -188,6 +192,7 @@
   }
 
   window.addEventListener('scroll', updateSidebar, { passive: true });
+  canDock.addEventListener('change', updateSidebar);
   updateSidebar();
 
   // ── Back button exit ────────────────────────

@@ -420,12 +420,18 @@ main.project-main {
     padding-top: 20px;
   }
 
-  .project-sidebar {
+  /* .is-docked must not win here — it would rip the sidebar out of flow
+     and float it over the gallery once the page bottom comes into view */
+  .project-sidebar,
+  .project-sidebar.is-docked {
     position: static;
     width: 100%;
     height: auto;
     overflow: visible;
     padding: 20px 20px 40px;
+    /* height:auto leaves space-between nothing to distribute, so the
+       About block would sit flush against Industry — space it explicitly */
+    gap: 40px;
   }
 
   .project-gallery {
