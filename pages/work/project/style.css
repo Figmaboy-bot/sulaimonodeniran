@@ -420,7 +420,10 @@ main.project-main {
     padding-top: 20px;
   }
 
-  .project-sidebar {
+  /* .is-docked must not win here — it would rip the sidebar out of flow
+     and float it over the gallery once the page bottom comes into view */
+  .project-sidebar,
+  .project-sidebar.is-docked {
     position: static;
     width: 100%;
     height: auto;
