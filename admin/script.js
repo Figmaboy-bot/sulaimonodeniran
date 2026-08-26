@@ -787,35 +787,80 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   // ── File upload ──────────────────────────────────────────────────────────────
 
-  async function handlePgCoverFile(file) {
-    if (!file.type.startsWith('image/')) return;
-    pgToast('Uploading…');
-    try {
-      var url = await uploadFile(file, 'covers');
-      var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
-      if (idx === -1) return;
-      pgState.items[idx].cover_url = url;
-      renderPgCoverPreview(pgState.items[idx]);
-      pgToast('Cover uploaded');
-    } catch (e) { pgToast('Upload failed: ' + e.message); }
+  // A playground row holds one media + one cover, so a multi-file pick fills the
+  // item being edited with the first file and spins up a new item per extra.
+  function titleFromFilename(name) {
+    return String(name || '').replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ').trim() || 'Untitled';
   }
 
-  async function handlePgFile(file) {
-    var isVideo = file.type.startsWith('video/');
-    var isImage = file.type.startsWith('image/');
-    if (!isImage && !isVideo) return;
-    if (file.size > PG_MAX_FILE_BYTES) { pgToast('File too large — max 100 MB'); return; }
-    pgToast('Uploading…');
-    try {
-      var url = await uploadFile(file, isVideo ? 'videos' : 'images', 'pg-upload-progress');
-      var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
-      if (idx === -1) return;
-      pgState.items[idx].media_url  = url;
-      pgState.items[idx].media_type = isVideo ? 'video' : 'image';
-      renderPgMediaPreview(pgState.items[idx]);
-      renderPgList();
-      pgToast('Media uploaded');
-    } catch (e) { pgToast('Upload failed: ' + e.message); }
+  async function createPgItemFrom(fields, filename) {
+    var item = Object.assign({
+      id: pgUid(), title: titleFromFilename(filename), description: '', live_url: null,
+      media_url: null, media_type: null, cover_url: null, sort_order: pgState.items.length
+    }, fields);
+    var { error } = await _sb.from('playground_items').upsert(item);
+    if (error) throw new Error(error.message);
+    pgState.items.push(item);
+    return item;
+  }
+
+  function activePgIndex() {
+    return pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
+  }
+
+  async function handlePgCoverFiles(fileList) {
+    var files = Array.prototype.slice.call(fileList)
+      .filter(function (f) { return f.type.startsWith('image/'); });
+    if (!files.length) return;
+
+    var target  = activePgIndex();
+    var created = 0;
+    for (var i = 0; i < files.length; i++) {
+      try {
+        pgToast(files.length > 1 ? 'Uploading ' + (i + 1) + ' of ' + files.length + '…' : 'Uploading…');
+        var url = await uploadFile(files[i], 'covers');
+        if (i === 0 && target !== -1) {
+          pgState.items[target].cover_url = url;
+          renderPgCoverPreview(pgState.items[target]);
+        } else {
+          await createPgItemFrom({ cover_url: url }, files[i].name);
+          created++;
+        }
+      } catch (e) { pgToast('Upload failed: ' + e.message); }
+    }
+    if (created) renderPgList();
+    pgToast(created ? 'Uploaded · ' + created + ' new item' + (created > 1 ? 's' : '') + ' created'
+                    : 'Cover uploaded');
+  }
+
+  async function handlePgFiles(fileList) {
+    var files = Array.prototype.slice.call(fileList).filter(function (f) {
+      return f.type.startsWith('image/') || f.type.startsWith('video/');
+    });
+    if (!files.length) return;
+
+    var target  = activePgIndex();
+    var created = 0;
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      if (file.size > PG_MAX_FILE_BYTES) { pgToast(file.name + ' is too large — max 100 MB'); continue; }
+      var kind = file.type.startsWith('video/') ? 'video' : 'image';
+      try {
+        pgToast(files.length > 1 ? 'Uploading ' + (i + 1) + ' of ' + files.length + '…' : 'Uploading…');
+        var url = await uploadFile(file, kind === 'video' ? 'videos' : 'images', 'pg-upload-progress');
+        if (i === 0 && target !== -1) {
+          pgState.items[target].media_url  = url;
+          pgState.items[target].media_type = kind;
+          renderPgMediaPreview(pgState.items[target]);
+        } else {
+          await createPgItemFrom({ media_url: url, media_type: kind }, file.name);
+          created++;
+        }
+      } catch (e) { pgToast('Upload failed: ' + e.message); }
+    }
+    renderPgList();
+    pgToast(created ? 'Uploaded · ' + created + ' new item' + (created > 1 ? 's' : '') + ' created'
+                    : 'Media uploaded');
   }
 
   // ── CRUD ─────────────────────────────────────────────────────────────────────
@@ -871,20 +916,20 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     var zone  = document.getElementById('pg-upload-zone');
     var input = document.getElementById('pg-upload-input');
 
-    coverInput.addEventListener('change', function () { if (this.files[0]) handlePgCoverFile(this.files[0]); this.value = ''; });
+    coverInput.addEventListener('change', function () { if (this.files.length) handlePgCoverFiles(this.files); this.value = ''; });
     coverZone.addEventListener('dragover',  function (e) { e.preventDefault(); this.classList.add('drag-over'); });
     coverZone.addEventListener('dragleave', function ()  { this.classList.remove('drag-over'); });
     coverZone.addEventListener('drop',      function (e) {
       e.preventDefault(); this.classList.remove('drag-over');
-      if (e.dataTransfer.files[0]) handlePgCoverFile(e.dataTransfer.files[0]);
+      if (e.dataTransfer.files.length) handlePgCoverFiles(e.dataTransfer.files);
     });
 
-    input.addEventListener('change', function () { if (this.files[0]) handlePgFile(this.files[0]); this.value = ''; });
+    input.addEventListener('change', function () { if (this.files.length) handlePgFiles(this.files); this.value = ''; });
     zone.addEventListener('dragover',  function (e) { e.preventDefault(); this.classList.add('drag-over'); });
     zone.addEventListener('dragleave', function ()  { this.classList.remove('drag-over'); });
     zone.addEventListener('drop',      function (e) {
       e.preventDefault(); this.classList.remove('drag-over');
-      if (e.dataTransfer.files[0]) handlePgFile(e.dataTransfer.files[0]);
+      if (e.dataTransfer.files.length) handlePgFiles(e.dataTransfer.files);
     });
 
     document.getElementById('pg-f-title').addEventListener('input', function () {
@@ -1028,18 +1073,48 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   // ── Cover upload ───────────────────────────────────────────────────────────
 
-  async function handleArtCover(file) {
-    if (!file.type.startsWith('image/')) return;
-    artToast('Uploading…');
-    try {
-      var url = await artUploadFile(file);
-      var idx = artState.items.findIndex(function (x) { return x.id === artState.activeId; });
-      if (idx === -1) return;
-      if (artState.items[idx].cover_url) await artDeleteFile(artState.items[idx].cover_url);
-      artState.items[idx].cover_url = url;
-      renderArtCoverPreview(artState.items[idx]);
-      artToast('Cover uploaded');
-    } catch (e) { artToast('Upload failed: ' + e.message); }
+  function artTitleFromFilename(name) {
+    return String(name || '').replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ').trim() || 'Untitled';
+  }
+
+  async function createArtItemFrom(coverUrl, filename) {
+    var item = {
+      id: 'art_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7),
+      title: artTitleFromFilename(filename), description: '', date: '', url: '',
+      cover_url: coverUrl, sort_order: artState.items.length
+    };
+    var { error } = await _sb.from('articles').upsert(item);
+    if (error) throw new Error(error.message);
+    artState.items.push(item);
+    return item;
+  }
+
+  // An article has one cover, so extra files in a multi-pick become new articles.
+  async function handleArtCovers(fileList) {
+    var files = Array.prototype.slice.call(fileList)
+      .filter(function (f) { return f.type.startsWith('image/'); });
+    if (!files.length) return;
+
+    var target  = artState.items.findIndex(function (x) { return x.id === artState.activeId; });
+    var created = 0;
+    for (var i = 0; i < files.length; i++) {
+      try {
+        artToast(files.length > 1 ? 'Uploading ' + (i + 1) + ' of ' + files.length + '…' : 'Uploading…');
+        var url = await artUploadFile(files[i]);
+        if (i === 0 && target !== -1) {
+          // Only the replaced cover is orphaned — delete it, not the new ones.
+          if (artState.items[target].cover_url) await artDeleteFile(artState.items[target].cover_url);
+          artState.items[target].cover_url = url;
+          renderArtCoverPreview(artState.items[target]);
+        } else {
+          await createArtItemFrom(url, files[i].name);
+          created++;
+        }
+      } catch (e) { artToast('Upload failed: ' + e.message); }
+    }
+    if (created) renderArtList();
+    artToast(created ? 'Uploaded · ' + created + ' new article' + (created > 1 ? 's' : '') + ' created'
+                     : 'Cover uploaded');
   }
 
   // ── CRUD ───────────────────────────────────────────────────────────────────
@@ -1091,12 +1166,12 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   function bindArtEvents() {
     var zone  = document.getElementById('art-cover-zone');
     var input = document.getElementById('art-cover-input');
-    input.addEventListener('change', function () { if (this.files[0]) handleArtCover(this.files[0]); this.value = ''; });
+    input.addEventListener('change', function () { if (this.files.length) handleArtCovers(this.files); this.value = ''; });
     zone.addEventListener('dragover',  function (e) { e.preventDefault(); this.classList.add('drag-over'); });
     zone.addEventListener('dragleave', function ()  { this.classList.remove('drag-over'); });
     zone.addEventListener('drop',      function (e) {
       e.preventDefault(); this.classList.remove('drag-over');
-      if (e.dataTransfer.files[0]) handleArtCover(e.dataTransfer.files[0]);
+      if (e.dataTransfer.files.length) handleArtCovers(e.dataTransfer.files);
     });
     document.getElementById('art-f-title').addEventListener('input', function () {
       document.getElementById('art-editor-heading').textContent = this.value || 'Untitled';
@@ -1142,6 +1217,93 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   var BUCKET = 'carousel';
   var CAR_MAX = 100 * 1024 * 1024;
 
+  // ── Format normalisation ────────────────────────────────────────────────────
+  // Only these render in every browser, so anything else (HEIC, TIFF, BMP…) is
+  // transcoded to JPEG here rather than being served broken to visitors.
+  var WEB_SAFE = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/avif', 'image/svg+xml'];
+  var MIME_BY_EXT = {
+    jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp',
+    gif: 'image/gif', avif: 'image/avif', svg: 'image/svg+xml', bmp: 'image/bmp',
+    tif: 'image/tiff', tiff: 'image/tiff', heic: 'image/heic', heif: 'image/heif'
+  };
+  var HEIC2ANY_SRC = 'https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js';
+
+  function fileExt(file) {
+    var m = /\.([^.]+)$/.exec(file.name || '');
+    return m ? m[1].toLowerCase() : '';
+  }
+
+  // Browsers hand back an empty or wrong type for HEIC on several platforms,
+  // so the extension is the more reliable signal.
+  function carMimeOf(file) {
+    var t = (file.type || '').toLowerCase();
+    if (t && t.indexOf('image/') === 0) return t;
+    return MIME_BY_EXT[fileExt(file)] || t || 'application/octet-stream';
+  }
+
+  function isWebSafe(file) {
+    return WEB_SAFE.indexOf(carMimeOf(file)) !== -1;
+  }
+
+  var heicLibPromise = null;
+  function loadHeicLib() {
+    if (window.heic2any) return Promise.resolve(window.heic2any);
+    if (heicLibPromise) return heicLibPromise;
+    heicLibPromise = new Promise(function (resolve, reject) {
+      var el = document.createElement('script');
+      el.src = HEIC2ANY_SRC;
+      el.onload  = function () {
+        if (window.heic2any) resolve(window.heic2any);
+        else { heicLibPromise = null; reject(new Error('HEIC converter did not initialise')); }
+      };
+      el.onerror = function () { heicLibPromise = null; reject(new Error('Could not load the HEIC converter — check your connection')); };
+      document.head.appendChild(el);
+    });
+    return heicLibPromise;
+  }
+
+  function jpegFrom(blob, originalName) {
+    var base = (originalName || 'image').replace(/\.[^.]+$/, '');
+    return new File([blob], base + '.jpg', { type: 'image/jpeg' });
+  }
+
+  // Fast path: Safari decodes HEIC natively, so re-encode through a canvas and
+  // skip the ~1.5 MB library download entirely. Rejects on Chrome/Firefox.
+  function nativeTranscode(file) {
+    if (!window.createImageBitmap) return Promise.reject(new Error('no createImageBitmap'));
+    return createImageBitmap(file, { imageOrientation: 'from-image' }).then(function (bmp) {
+      var canvas = document.createElement('canvas');
+      canvas.width  = bmp.width;
+      canvas.height = bmp.height;
+      canvas.getContext('2d').drawImage(bmp, 0, 0);
+      if (bmp.close) bmp.close();
+      return new Promise(function (resolve, reject) {
+        canvas.toBlob(function (out) {
+          if (out) resolve(jpegFrom(out, file.name));
+          else reject(new Error('canvas encode failed'));
+        }, 'image/jpeg', 0.92);
+      });
+    });
+  }
+
+  function heicTranscode(file) {
+    return loadHeicLib().then(function (lib) {
+      return lib({ blob: file, toType: 'image/jpeg', quality: 0.92 });
+    }).then(function (out) {
+      return jpegFrom(Array.isArray(out) ? out[0] : out, file.name);
+    });
+  }
+
+  // Returns a file every browser can display, or throws with a usable message.
+  function toWebSafeImage(file) {
+    if (isWebSafe(file)) return Promise.resolve(file);
+    return nativeTranscode(file).catch(function () {
+      var mime = carMimeOf(file);
+      if (mime.indexOf('heic') !== -1 || mime.indexOf('heif') !== -1) return heicTranscode(file);
+      throw new Error('this browser cannot read ' + (fileExt(file) || 'that format').toUpperCase());
+    });
+  }
+
   var carState = { home: [], about: [] };
   var carDrag  = { page: null, fromIndex: -1 };
 
@@ -1173,7 +1335,7 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
       xhr.open('POST', endpoint);
       xhr.setRequestHeader('apikey', SUPABASE_ANON_KEY);
       xhr.setRequestHeader('Authorization', 'Bearer ' + SUPABASE_ANON_KEY);
-      xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+      xhr.setRequestHeader('Content-Type', carMimeOf(file));
       xhr.setRequestHeader('cache-control', 'max-age=31536000, immutable');
 
       xhr.upload.addEventListener('progress', function (e) {
@@ -1329,6 +1491,11 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
       var file = files[i];
       if (file.size > CAR_MAX) { carToast(file.name + ' is too large (max 100 MB)'); continue; }
       try {
+        if (!isWebSafe(file)) {
+          carToast('Converting ' + file.name + '…');
+          file = await toWebSafeImage(file);
+          if (file.size > CAR_MAX) throw new Error('converted file is over 100 MB');
+        }
         carToast('Uploading ' + (i + 1) + ' of ' + files.length + '…');
         var url = await carUploadFile(file, page, progressId);
         var existing = carState[page];
