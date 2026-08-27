@@ -1936,21 +1936,48 @@ async function compressImage(file) {
     return html + '</tbody></table>';
   }
 
+  // PostgREST caps a plain select at 1000 rows, so counting the returned array
+  // silently reported 1000 no matter how many views existed — and because the
+  // capped page was the oldest rows, "Today" and every breakdown were wrong too.
+  // Page through the table instead, newest first, with a unique tiebreaker so
+  // rows sharing a timestamp can't be skipped or double-counted across pages.
+  var VIEWS_PAGE_SIZE = 1000;
+  var VIEWS_MAX_PAGES = 200; // ~200k views; a guard against an endless loop
+
+  async function fetchAllViews() {
+    var rows = [];
+    for (var page = 0; page < VIEWS_MAX_PAGES; page++) {
+      var query = _sb.from('page_views')
+        .select('page, referrer, country, created_at')
+        .order('created_at', { ascending: false })
+        .order('id', { ascending: false })
+        .range(page * VIEWS_PAGE_SIZE, (page + 1) * VIEWS_PAGE_SIZE - 1);
+
+      if (activeRange !== 'all') {
+        var days = activeRange === '7d' ? 7 : 30;
+        var from = new Date(Date.now() - days * 86400000).toISOString();
+        query = query.gte('created_at', from);
+      }
+
+      var { data, error } = await query;
+      if (error) throw error;
+
+      rows = rows.concat(data);
+      if (data.length < VIEWS_PAGE_SIZE) break;
+    }
+    return rows;
+  }
+
   async function analyticsLoad() {
     document.getElementById('analytics-updated').textContent = 'Loading…';
     document.getElementById('analytics-table-wrap').innerHTML   = '<p class="analytics-loading">Loading…</p>';
     document.getElementById('analytics-ref-wrap').innerHTML     = '<p class="analytics-loading">Loading…</p>';
     document.getElementById('analytics-country-wrap').innerHTML = '<p class="analytics-loading">Loading…</p>';
 
-    var query = _sb.from('page_views').select('page, referrer, country, created_at');
-    if (activeRange !== 'all') {
-      var days = activeRange === '7d' ? 7 : 30;
-      var from = new Date(Date.now() - days * 86400000).toISOString();
-      query = query.gte('created_at', from);
-    }
-
-    var { data, error } = await query;
-    if (error) {
+    var data;
+    try {
+      data = await fetchAllViews();
+    } catch (error) {
       document.getElementById('analytics-updated').textContent = 'Error: ' + error.message;
       return;
     }
