@@ -1,5 +1,57 @@
 var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+// ── Image compression ────────────────────────────────────────────────────────
+// Uploads used to carry the raw file straight from the file picker — a single
+// gallery could run to tens of megabytes of 7000px JPEGs displayed at ~1000px.
+// Everything raster is downscaled and re-encoded to WebP before it leaves the
+// browser. Videos, SVGs and GIFs pass through untouched, and any decode we
+// can't handle (HEIC in some browsers) falls back to the original file.
+var IMG_MAX_W   = 2000;
+var IMG_MAX_H   = 4000;
+var IMG_QUALITY = 0.82;
+var IMG_SKIP    = /^image\/(svg\+xml|gif)$/;
+
+async function compressImage(file) {
+  var plain = { file: file, width: null, height: null };
+  if (!file.type.startsWith('image/') || IMG_SKIP.test(file.type)) return plain;
+
+  var bitmap;
+  try {
+    bitmap = await createImageBitmap(file);
+  } catch (e) {
+    return plain; // undecodable (e.g. HEIC) — upload as-is
+  }
+
+  var w = bitmap.width;
+  var h = bitmap.height;
+  var scale = Math.min(1, IMG_MAX_W / w, IMG_MAX_H / h);
+  var outW = Math.max(1, Math.round(w * scale));
+  var outH = Math.max(1, Math.round(h * scale));
+
+  var canvas = document.createElement('canvas');
+  canvas.width  = outW;
+  canvas.height = outH;
+  var ctx = canvas.getContext('2d');
+  ctx.imageSmoothingQuality = 'high';
+  ctx.drawImage(bitmap, 0, 0, outW, outH);
+  bitmap.close();
+
+  var blob = await new Promise(function (resolve) {
+    canvas.toBlob(resolve, 'image/webp', IMG_QUALITY);
+  });
+  canvas.width = canvas.height = 0;
+
+  // A re-encode that isn't actually smaller is not worth the quality loss.
+  if (!blob || blob.size >= file.size) return { file: file, width: w, height: h };
+
+  var name = file.name.replace(/\.[^.]+$/, '') + '.webp';
+  return {
+    file:   new File([blob], name, { type: 'image/webp' }),
+    width:  outW,
+    height: outH
+  };
+}
+
 // ── Projects tab ─────────────────────────────────────────────────────────────
 (function () {
 
@@ -81,7 +133,12 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   var sidebarDragSrc = null;
 
   // ── Storage helpers ───────────────────────────
-  function uploadFile(file, folder, progressId) {
+  async function uploadFile(file, folder, progressId) {
+    var shrunk = await compressImage(file);
+    return uploadBlob(shrunk.file, folder, progressId, shrunk.width, shrunk.height);
+  }
+
+  function uploadBlob(file, folder, progressId, width, height) {
     return new Promise(function (resolve, reject) {
       var ext  = file.name.split('.').pop().toLowerCase();
       var path = folder + '/' + Date.now() + '_' + Math.random().toString(36).slice(2, 7) + '.' + ext;
@@ -113,7 +170,11 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
       xhr.addEventListener('load', function () {
         if (bar) bar.classList.remove('active');
         if (xhr.status >= 200 && xhr.status < 300) {
-          resolve(SUPABASE_URL + '/storage/v1/object/public/' + PROJ_BUCKET + '/' + path);
+          resolve({
+            url: SUPABASE_URL + '/storage/v1/object/public/' + PROJ_BUCKET + '/' + path,
+            w:   width  || null,
+            h:   height || null
+          });
         } else {
           var msg = 'Upload failed (' + xhr.status + ')';
           try { var body = JSON.parse(xhr.responseText); msg = body.error || body.message || msg; } catch (_) {}
@@ -164,10 +225,10 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     var flat = [];
     (dbGallery || []).forEach(function (section) {
       if (section.type === 'full') {
-        flat.push({ src: section.src || null, alt: section.alt || '', layout: 'full', mediaType: section.mediaType || 'image' });
+        flat.push({ src: section.src || null, w: section.w || null, h: section.h || null, alt: section.alt || '', layout: 'full', mediaType: section.mediaType || 'image' });
       } else if (section.type === 'pair') {
         (section.images || []).forEach(function (img) {
-          flat.push({ src: img.src || null, alt: img.alt || '', layout: 'half', mediaType: img.mediaType || 'image' });
+          flat.push({ src: img.src || null, w: img.w || null, h: img.h || null, alt: img.alt || '', layout: 'half', mediaType: img.mediaType || 'image' });
         });
       }
     });
@@ -180,13 +241,14 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     while (i < state.gallery.length) {
       var item = state.gallery[i];
       if (item.layout === 'half' && state.gallery[i + 1] && state.gallery[i + 1].layout === 'half') {
+        var next = state.gallery[i + 1];
         result.push({ type: 'pair', images: [
-          { src: item.src, alt: item.alt, mediaType: item.mediaType || 'image' },
-          { src: state.gallery[i + 1].src, alt: state.gallery[i + 1].alt, mediaType: state.gallery[i + 1].mediaType || 'image' }
+          { src: item.src, w: item.w || null, h: item.h || null, alt: item.alt, mediaType: item.mediaType || 'image' },
+          { src: next.src, w: next.w || null, h: next.h || null, alt: next.alt, mediaType: next.mediaType || 'image' }
         ]});
         i += 2;
       } else {
-        result.push({ type: 'full', src: item.src, alt: item.alt, mediaType: item.mediaType || 'image' });
+        result.push({ type: 'full', src: item.src, w: item.w || null, h: item.h || null, alt: item.alt, mediaType: item.mediaType || 'image' });
         i++;
       }
     }
@@ -417,9 +479,9 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
       if (file.size > MAX_FILE_BYTES) { toast(file.name + ' is too large — max 100 MB'); continue; }
       toast(files.length > 1 ? 'Uploading ' + (fi + 1) + ' of ' + files.length + '…' : 'Uploading…');
       try {
-        var url = await uploadFile(file, isVideo ? 'videos' : 'images', 'gallery-upload-progress');
-        state.gallery.push({ src: url, alt: file.name.replace(/\.[^.]+$/, ''), layout: 'full', mediaType: isVideo ? 'video' : 'image' });
-        if (!state.activeCoverUrl && isImage) state.activeCoverUrl = url;
+        var up = await uploadFile(file, isVideo ? 'videos' : 'images', 'gallery-upload-progress');
+        state.gallery.push({ src: up.url, w: up.w, h: up.h, alt: file.name.replace(/\.[^.]+$/, ''), layout: 'full', mediaType: isVideo ? 'video' : 'image' });
+        if (!state.activeCoverUrl && isImage) state.activeCoverUrl = up.url;
         renderGalleryGrid();
         done++;
         if (files.length === 1) toast('Uploaded ✓');
@@ -610,7 +672,11 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   var PG_MAX_FILE_BYTES = 100 * 1024 * 1024; // 100 MB
 
-  function uploadFile(file, folder, progressId) {
+  async function uploadFile(file, folder, progressId) {
+    return uploadBlob((await compressImage(file)).file, folder, progressId);
+  }
+
+  function uploadBlob(file, folder, progressId) {
     return new Promise(function (resolve, reject) {
       var ext  = file.name.split('.').pop().toLowerCase();
       var path = folder + '/' + Date.now() + '_' + Math.random().toString(36).slice(2, 7) + '.' + ext;
@@ -991,7 +1057,8 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     clearTimeout(el._t); el._t = setTimeout(function () { el.classList.remove('show'); }, 2400);
   }
 
-  async function artUploadFile(file) {
+  async function artUploadFile(rawFile) {
+    var file = (await compressImage(rawFile)).file;
     var ext  = file.name.split('.').pop().toLowerCase();
     var path = 'covers/' + Date.now() + '_' + Math.random().toString(36).slice(2, 7) + '.' + ext;
     var { error } = await _sb.storage.from(ART_BUCKET).upload(path, file, { cacheControl: '31536000', upsert: false });
