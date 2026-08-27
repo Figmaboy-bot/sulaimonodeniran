@@ -21,6 +21,7 @@ import argparse
 import concurrent.futures
 import io
 import json
+import math
 import os
 import re
 import sys
@@ -32,7 +33,10 @@ from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-MAX_W, MAX_H = 2000, 4000
+MAX_W = 2000
+# A tall full-page screenshot shouldn't be squeezed to a useless width by a hard
+# height cap, so overall size is bounded by a pixel budget instead.
+MAX_PX = 12_000_000
 QUALITY = 82
 BUCKET = "projects"
 PUBLIC_MARKER = "/storage/v1/object/public/"
@@ -88,8 +92,14 @@ def image_urls(project):
     return out
 
 
-def is_convertible(url):
-    return PUBLIC_MARKER in url and not url.lower().endswith(SKIP_EXT)
+def is_convertible(url, force=False):
+    if PUBLIC_MARKER not in url or url.lower().endswith(SKIP_EXT):
+        return False
+    # Already-converted files are within limits by construction; re-encoding
+    # them would compound generation loss and overwrite them in place.
+    if url.lower().endswith(".webp") and not force:
+        return False
+    return True
 
 
 def object_path(url):
@@ -108,7 +118,7 @@ def shrink(raw):
     im = Image.open(io.BytesIO(raw))
     im.load()
     w, h = im.size
-    scale = min(1.0, MAX_W / w, MAX_H / h)
+    scale = min(1.0, MAX_W / w, math.sqrt(MAX_PX / (w * h)))
     out_w, out_h = max(1, round(w * scale)), max(1, round(h * scale))
     if im.mode not in ("RGB", "RGBA"):
         im = im.convert("RGBA" if "A" in im.mode or im.mode == "P" else "RGB")
@@ -173,13 +183,15 @@ def save(project):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="report only, change nothing")
+    ap.add_argument("--force", action="store_true",
+                    help="also re-encode .webp files already produced by a previous run")
     args = ap.parse_args()
 
     projects = fetch_projects()
     targets = []
     for p in projects:
         for url in image_urls(p):
-            if is_convertible(url) and url not in targets:
+            if is_convertible(url, args.force) and url not in targets:
                 targets.append(url)
 
     print("%d projects, %d unique images\n" % (len(projects), len(targets)))

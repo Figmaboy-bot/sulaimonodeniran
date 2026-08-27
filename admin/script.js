@@ -7,7 +7,9 @@ var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 // browser. Videos, SVGs and GIFs pass through untouched, and any decode we
 // can't handle (HEIC in some browsers) falls back to the original file.
 var IMG_MAX_W   = 2000;
-var IMG_MAX_H   = 4000;
+// A tall full-page screenshot shouldn't be squeezed to a useless width by a
+// hard height cap, so overall size is bounded by a pixel budget instead.
+var IMG_MAX_PX  = 12e6;
 var IMG_QUALITY = 0.82;
 var IMG_SKIP    = /^image\/(svg\+xml|gif)$/;
 
@@ -24,7 +26,7 @@ async function compressImage(file) {
 
   var w = bitmap.width;
   var h = bitmap.height;
-  var scale = Math.min(1, IMG_MAX_W / w, IMG_MAX_H / h);
+  var scale = Math.min(1, IMG_MAX_W / w, Math.sqrt(IMG_MAX_PX / (w * h)));
   var outW = Math.max(1, Math.round(w * scale));
   var outH = Math.max(1, Math.round(h * scale));
 
@@ -1830,7 +1832,9 @@ async function compressImage(file) {
   }
 
   function fmtNum(n) {
-    return n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(n);
+    // Grouped digits, not a 'k' abbreviation — rounding to one decimal hid the
+    // real count (everything from 1000 to 1049 read as "1k").
+    return Number(n || 0).toLocaleString('en-US');
   }
 
   function renderPageTable(rows, max) {
