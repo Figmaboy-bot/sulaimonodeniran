@@ -74,6 +74,12 @@
         </button>
       </div>
 
+      <!-- CTA -->
+      <a href="https://mail.google.com/mail/?view=cm&to=odeniransulaimon18@gmail.com" target="_blank" rel="noopener" class="btn-primary">
+        Work With Me
+        <img src="/image/Icons/Arrow.svg" alt="" class="btn-arrow" />
+      </a>
+
       <!-- Experience -->
       <div class="about-experience">
         <p class="exp-label">Experience</p>
@@ -101,11 +107,31 @@
         </ul>
       </div>
 
-      <!-- CTA -->
-      <a href="https://mail.google.com/mail/?view=cm&to=odeniransulaimon18@gmail.com" target="_blank" rel="noopener" class="btn-primary">
-        Work With Me
-        <img src="/image/Icons/Arrow.svg" alt="" class="btn-arrow" />
-      </a>
+      <!-- GitHub contributions — hidden until /api/github-contributions answers -->
+      <section class="about-github" id="github-graph" hidden>
+        <div class="gh-head">
+          <p class="exp-label">GitHub</p>
+          <p class="gh-count"></p>
+        </div>
+        <div class="gh-scroll">
+          <div class="gh-cal">
+            <div class="gh-months" aria-hidden="true"></div>
+            <div class="gh-grid" role="img" aria-label="GitHub contribution calendar for the last year"></div>
+          </div>
+        </div>
+        <div class="gh-foot">
+          <a class="gh-link" href="https://github.com/Figmaboy-bot" target="_blank" rel="noopener">@Figmaboy-bot</a>
+          <div class="gh-legend" aria-hidden="true">
+            <span>Less</span>
+            <span class="gh-day" data-level="0"></span>
+            <span class="gh-day" data-level="1"></span>
+            <span class="gh-day" data-level="2"></span>
+            <span class="gh-day" data-level="3"></span>
+            <span class="gh-day" data-level="4"></span>
+            <span>More</span>
+          </div>
+        </div>
+      </section>
 
     </section>
   </main>
@@ -119,6 +145,7 @@
   <script defer src="/components/footer/footer.js"></script>
   <script defer src="/components/nav/nav.js"></script>
   <script defer src="/pages/about/carousel.js"></script>
+  <script defer src="/scripts/github-graph.js"></script>
   <script defer src="script.js"></script>
   <script defer src="/scripts/load-components.js"></script>
   <script defer src="/scripts/track.js"></script>
