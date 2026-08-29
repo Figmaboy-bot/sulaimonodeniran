@@ -88,7 +88,9 @@
     if (scroller) scroller.scrollLeft = scroller.scrollWidth;
   }
 
-  fetch('/api/github-contributions')
+  // no-cache forces a revalidation on every load, so a day spent on the tab
+  // never leaves a stale count on screen.
+  fetch('/api/github-contributions', { cache: 'no-cache' })
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (data) { if (data && !data.error) render(data); })
     .catch(function () { /* block stays hidden */ });

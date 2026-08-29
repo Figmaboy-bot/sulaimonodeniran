@@ -138,6 +138,9 @@ export default async function handler(req, res) {
     return res.status(502).json({ error: String(e.message || e) });
   }
 
-  res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
+  // max-age=0 keeps the browser from serving its own stale copy — without it
+  // the count visibly freezes for a day. s-maxage lets Vercel's edge absorb
+  // the traffic instead, so GitHub sees at most a handful of calls an hour.
+  res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=600');
   return res.status(200).json(data);
 }
