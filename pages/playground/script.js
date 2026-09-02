@@ -1,6 +1,5 @@
 (async function () {
 
-  var _sb  = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   var grid = document.getElementById('playground-grid');
   if (!grid) return;
 
@@ -28,11 +27,7 @@
 
   var items = [];
   try {
-    var { data, error } = await _sb
-      .from('playground_items')
-      .select('*')
-      .order('sort_order', { ascending: true });
-    if (!error && data) items = data;
+    items = await sbSelect('playground_items', 'select=*&order=sort_order.asc');
   } catch (e) {}
 
   clearSkeletons();
@@ -47,7 +42,7 @@
       card.dataset.id = item.id;
 
       card.innerHTML =
-        '<div class="pg-image"><img class="pg-card-thumb" src="" alt="' + esc(item.title || '') + '" loading="lazy" /></div>' +
+        '<div class="pg-image"><img class="pg-card-thumb" src="" alt="' + esc(item.title || '') + '" loading="lazy" decoding="async" /></div>' +
         '<div class="pg-info">' +
           '<p class="pg-title">' + esc(item.title       || '') + '</p>' +
           '<p class="pg-desc">'  + esc(item.description || '') + '</p>' +

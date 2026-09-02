@@ -5,12 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Playground — Ola</title>
-  <script>!function(){var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');t==='light'&&document.documentElement.setAttribute('data-theme','light')}()</script>
-  <script>(function(){var img=new Image();img.onload=function(){var c=document.createElement('canvas');c.width=c.height=64;var ctx=c.getContext('2d');ctx.beginPath();ctx.arc(32,32,32,0,Math.PI*2);ctx.clip();ctx.drawImage(img,0,0,64,64);var link=document.querySelector("link[rel='icon']")||document.createElement('link');link.rel='icon';link.href=c.toDataURL();document.head.appendChild(link);};img.src='/image/Me.jpg';})()</script>
+  <meta name="description" content="Experiments, explorations, and side projects by Ola.">
+  <meta name="theme-color" content="#1a1a1a">
+  <link rel="icon" type="image/png" sizes="64x64" href="/image/favicon-64.png">
+  <link rel="apple-touch-icon" href="/image/apple-touch-icon.png">
+  <script>!function(){var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');if(t==='light'){document.documentElement.setAttribute('data-theme','light');var m=document.querySelector('meta[name=theme-color]');m&&m.setAttribute('content','#f0eeeb')}}()</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://axpgphfcjzhyoimxxwrz.supabase.co">
+  <link rel="preconnect" href="https://portfolio-storage-cdn.sulaimonodeniran.workers.dev">
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hepta+Slab:wght@100..900&display=swap" rel="stylesheet"></noscript>
+  <!-- Fetch the shared nav/footer markup alongside the stylesheets instead of after all scripts have run -->
+  <link rel="preload" href="/components/nav/nav.html" as="fetch" crossorigin>
+  <link rel="preload" href="/components/footer/footer.html" as="fetch" crossorigin>
   <link rel="stylesheet" href="/components/nav/nav.css">
   <link rel="stylesheet" href="/components/footer/footer.css">
   <link rel="stylesheet" href="/portfolio.css">
@@ -54,26 +62,15 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-  <script src="/supabase-config.js"></script>
-  <script src="/scripts/cdn.js"></script>
-  <script src="/scripts/transitions.js"></script>
-  <script src="/components/footer/footer.js"></script>
-  <script src="/components/nav/nav.js"></script>
-  <script src="script.js"></script>
-  <script>
-    function loadComponent(id, path, callback) {
-      fetch(path)
-        .then(r => r.text())
-        .then(html => {
-          document.getElementById(id).innerHTML = html;
-          if (callback) callback();
-        });
-    }
-    loadComponent('nav-component', '/components/nav/nav.html', initNav);
-    loadComponent('footer-component', '/components/footer/footer.html', startWATClock);
-  </script>
-  <script src="/scripts/track.js"></script>
+  <script defer src="/components/nav/nav.js"></script>
+  <script defer src="/components/footer/footer.js"></script>
+  <script defer src="/scripts/load-components.js"></script>
+  <script defer src="/scripts/transitions.js"></script>
+  <script defer src="/supabase-config.js"></script>
+  <script defer src="/scripts/sb.js"></script>
+  <script defer src="/scripts/cdn.js"></script>
+  <script defer src="script.js"></script>
+  <script defer src="/scripts/track.js"></script>
 
 </body>
 

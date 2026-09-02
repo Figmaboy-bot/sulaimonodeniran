@@ -20,6 +20,8 @@ function initNav() {
       const img = btn.querySelector('img');
       if (img) img.src = isLight ? MOON_ICON : SUN_ICON;
     });
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeMeta) themeMeta.setAttribute('content', isLight ? '#f0eeeb' : '#1a1a1a');
     localStorage.setItem('theme', theme);
   }
 
@@ -139,9 +141,9 @@ function initNav() {
     link.classList.remove('active');
     const href = link.getAttribute('href');
     if (!href) return;
-    const isHome = href === '/portfolio.html' || href === '/';
+    const isHome = href === '/' || href === '/index.html';
     if (isHome) {
-      if (path === '/' || path === '/portfolio.html') link.classList.add('active');
+      if (path === '/' || path === '/index.html') link.classList.add('active');
     } else {
       const base = href.replace(/\/$/, '');
       if (path === base || path === base + '/' || path.startsWith(base + '/')) {

@@ -1,25 +1,23 @@
+// Records one page view per load via /api/track, which adds the visitor's
+// country from Vercel's geo header and writes the row to Supabase.
+// sendBeacon survives the tab closing mid-request, so quick bounces still count.
 (function () {
-  var SUPABASE_URL = 'https://axpgphfcjzhyoimxxwrz.supabase.co';
-  var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF4cGdwaGZjanpoeW9pbXh4d3J6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc1ODU0MjIsImV4cCI6MjA5MzE2MTQyMn0.sZSJA58Uqr67vNBTNin2SGi5jQlBhouVC1baofaVN-o';
-
-  function record(country) {
-    fetch(SUPABASE_URL + '/rest/v1/page_views', {
+  var payload = JSON.stringify({
+    page: location.pathname,
+    referrer: document.referrer || null
+  });
+  var sent = false;
+  if (navigator.sendBeacon) {
+    try {
+      sent = navigator.sendBeacon('/api/track', new Blob([payload], { type: 'application/json' }));
+    } catch (e) {}
+  }
+  if (!sent) {
+    fetch('/api/track', {
       method: 'POST',
-      headers: {
-        'apikey': SUPABASE_KEY,
-        'Content-Type': 'application/json',
-        'Prefer': 'return=minimal'
-      },
-      body: JSON.stringify({
-        page: window.location.pathname,
-        referrer: document.referrer || null,
-        country: country || null
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: payload,
+      keepalive: true
     }).catch(function () {});
   }
-
-  fetch('/api/geo')
-    .then(function (r) { return r.json(); })
-    .then(function (geo) { record(geo.country); })
-    .catch(function () { record(null); });
 })();

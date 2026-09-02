@@ -1,12 +1,29 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
-    { "source": "/pages/work/project", "destination": "/api/project" },
-    { "source": "/pages/work/project/", "destination": "/api/project" }
+    {
+      "source": "/pages/work/project",
+      "destination": "/api/project"
+    },
+    {
+      "source": "/pages/work/project/",
+      "destination": "/api/project"
+    }
   ],
   "functions": {
     "api/project.js": {
       "includeFiles": "pages/work/project/template.html"
     }
-  }
+  },
+  "headers": [
+    {
+      "source": "/image/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
+    }
+  ]
 }

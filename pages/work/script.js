@@ -3,8 +3,6 @@
   var list = document.getElementById('case-studies-list');
   if (!list) return;
 
-  var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
   // ── Skeletons ────────────────────────────────
   function showSkeletons(n) {
     for (var i = 0; i < n; i++) {
@@ -44,7 +42,7 @@
     clearSkeletons();
     if (!projects.length) return;
 
-    projects.forEach(function (p) {
+    projects.forEach(function (p, index) {
       var meta       = p.meta || ((p.industry || '') + (p.year ? ' · ' + p.year : ''));
       var id         = p.id;
       var isComingSoon = !!p.coming_soon;
@@ -67,7 +65,9 @@
           '</div>' +
         '</div>' +
         '<div class="case-study-image">' +
-          '<img src="' + esc(cdnUrl(coverSrc(p))) + '" alt="' + esc(p.title || '') + '" loading="lazy" />' +
+          // the first cover is above the fold and usually the page's largest paint
+          '<img src="' + esc(cdnUrl(coverSrc(p))) + '" alt="' + esc(p.title || '') + '" decoding="async"' +
+            (index === 0 ? ' loading="eager" fetchpriority="high"' : ' loading="lazy"') + ' />' +
           (isComingSoon ? '<div class="coming-soon-badge">Coming Soon</div>' : '') +
         '</div>';
 
@@ -130,12 +130,12 @@
   // ── Fetch ────────────────────────────────────
   showSkeletons(3);
 
-  _sb.from('projects').select('*').order('sort_order', { ascending: true })
-    .then(function (res) {
-      if (!res.error && res.data && res.data.length) {
-        renderProjects(res.data);
+  sbSelect('projects', 'select=*&order=sort_order.asc')
+    .then(function (rows) {
+      if (rows && rows.length) {
+        renderProjects(rows);
         var cache = {};
-        res.data.forEach(function (p) { cache[p.id] = p; });
+        rows.forEach(function (p) { cache[p.id] = p; });
         try { localStorage.setItem('portfolio_projects', JSON.stringify(cache)); } catch (e) {}
       } else {
         renderProjects(fromStatic());
