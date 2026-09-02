@@ -9,18 +9,3 @@ backfill-images.map.json
 .vscode
 .claude
 README.md
-
-# Source photos that nothing on the site links to (~34 MB). The pages use the
-# small WebP/PNG variants generated from them (me-168.webp, favicon-64.png, …).
-image/My pictures
-image/Home (Light).jpg
-image/iPhone 16 Pro.jpg
-image/MacBook Pro 16_ - 9.jpg
-image/image.png
-image/scene 15.jpg
-image/Card mockup.jpg
-image/Dashborad.jpg
-image/Me.jpg
-image/Me 2.jpg
-image/Me 3.jpg
-image/avatar-left.jpg
