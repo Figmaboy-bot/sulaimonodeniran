@@ -21,16 +21,20 @@ let _template = null;
 
 function loadTemplate(req) {
   if (_template) return Promise.resolve(_template);
-  try {
-    _template = readFileSync(join(process.cwd(), TEMPLATE), 'utf8');
-    return Promise.resolve(_template);
-  } catch (e) {
-    // includeFiles missed it — the shell is still a public static file
-    const host = req.headers['x-forwarded-host'] || req.headers.host;
-    return fetch('https://' + host + '/' + TEMPLATE)
-      .then(function (r) { return r.text(); })
-      .then(function (html) { _template = html; return html; });
+  // Prefer the built copy (scripts/build.js stamps its stylesheet/script
+  // references with cache-busting hashes); fall back to the source file.
+  const candidates = [join(process.cwd(), 'dist', TEMPLATE), join(process.cwd(), TEMPLATE)];
+  for (const file of candidates) {
+    try {
+      _template = readFileSync(file, 'utf8');
+      return Promise.resolve(_template);
+    } catch (e) { /* try the next one */ }
   }
+  // includeFiles missed it — the shell is still a public static file
+  const host = req.headers['x-forwarded-host'] || req.headers.host;
+  return fetch('https://' + host + '/' + TEMPLATE)
+    .then(function (r) { return r.text(); })
+    .then(function (html) { _template = html; return html; });
 }
 
 // Same rewrite as scripts/cdn.js: put the Cloudflare cache in front of the

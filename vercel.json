@@ -1,6 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "node scripts/stamp-assets.js",
+  "buildCommand": "node scripts/build.js",
+  "outputDirectory": "dist",
   "rewrites": [
     {
       "source": "/pages/work/project",
@@ -13,7 +14,7 @@
   ],
   "functions": {
     "api/project.js": {
-      "includeFiles": "pages/work/project/template.html"
+      "includeFiles": "{dist/,}pages/work/project/template.html"
     }
   },
   "headers": [
