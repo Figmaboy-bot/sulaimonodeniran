@@ -1,8 +1,12 @@
 .menu-overlay {
   position: fixed;
   top: 24px;
-  left: 50%;
-  transform: translateX(-50%);
+  /* Centred with auto margins rather than translateX(-50%): a transform on
+     this ancestor stops backdrop-filter from blurring the page behind the
+     pill in Safari, which is why scrolled text used to show through it sharp. */
+  left: 0;
+  right: 0;
+  margin: 0 auto;
   z-index: 200;
   width: 420px;
   max-width: calc(100vw - 48px);
@@ -14,8 +18,8 @@
   justify-content: space-between;
   gap: 80px;
   background: var(--nav-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
   border-radius: 200px;
   padding: 6px 6px 6px 20px;
   width: 100%;
@@ -183,8 +187,8 @@
 
 .menu-overlay.is-open .menu-panel {
   background: var(--menu-panel-bg);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
   border-radius: 40px;
   padding-bottom: 32px;
 }
@@ -371,5 +375,12 @@
 
   .menu-panel {
     max-width: 100%;
+  }
+}
+/* Browsers without backdrop-filter get a solid pill so text never shows through */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .nav-pill,
+  .menu-overlay.is-open .menu-panel {
+    background: var(--menu-panel-bg);
   }
 }
