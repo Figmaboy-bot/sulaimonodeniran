@@ -52,7 +52,10 @@ body {
   font-family: var(--font-slab);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
-  animation: page-enter 0.2s ease both;
+  /* `backwards`, not `both`: a forward-filling opacity animation keeps <body>
+     on its own compositing layer, which stops the nav pill's backdrop-filter
+     from blurring anything behind it (text showed through sharp). */
+  animation: page-enter 0.2s ease backwards;
 }
 
 body.theme-ready {

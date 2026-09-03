@@ -1,9 +1,8 @@
 .menu-overlay {
   position: fixed;
   top: 24px;
-  /* Centred with auto margins rather than translateX(-50%): a transform on
-     this ancestor stops backdrop-filter from blurring the page behind the
-     pill in Safari, which is why scrolled text used to show through it sharp. */
+  /* Centred with auto margins rather than translateX(-50%) so the blurred
+     backdrop is never affected by a transformed ancestor. */
   left: 0;
   right: 0;
   margin: 0 auto;
