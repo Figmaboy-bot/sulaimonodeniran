@@ -66,31 +66,50 @@
     return el && !el.classList.contains('gh-day--pad') && el.dataset.label ? el : null;
   }
 
+  var current = null;
+
+  function point(cell) {
+    if (cell === current) return;
+    current = cell;
+    if (cell) showTip(cell); else hideTip();
+  }
+
   function bindTooltip() {
+    // Following the pointer's position (rather than only enter/leave events)
+    // keeps the tooltip in step with whichever cell is actually under it.
+    gridEl.addEventListener('mousemove', function (e) {
+      point(cellFrom(e.target));
+    });
     gridEl.addEventListener('mouseover', function (e) {
-      var cell = cellFrom(e.target);
-      if (cell) showTip(cell);
+      point(cellFrom(e.target));
     });
-    gridEl.addEventListener('mouseout', function (e) {
-      if (!cellFrom(e.relatedTarget)) hideTip();
-    });
+    gridEl.addEventListener('mouseleave', function () { point(null); });
+
     gridEl.addEventListener('focusin', function (e) {
       var cell = cellFrom(e.target);
-      if (cell) showTip(cell);
+      if (cell) point(cell);
     });
-    gridEl.addEventListener('focusout', hideTip);
-    // Tapping a cell on touch screens shows it; tapping elsewhere clears it.
-    gridEl.addEventListener('touchstart', function (e) {
-      var cell = cellFrom(e.target);
-      if (cell) showTip(cell);
-    }, { passive: true });
+    gridEl.addEventListener('focusout', function () { point(null); });
+
+    // No hover on touch screens: a tap shows a day and a finger sliding
+    // across the grid moves the tooltip with it.
+    function fromTouch(e) {
+      var t = e.touches[0];
+      return t ? cellFrom(document.elementFromPoint(t.clientX, t.clientY)) : null;
+    }
+    gridEl.addEventListener('touchstart', function (e) { point(fromTouch(e)); }, { passive: true });
+    gridEl.addEventListener('touchmove',  function (e) { point(fromTouch(e)); }, { passive: true });
     document.addEventListener('touchstart', function (e) {
-      if (!cellFrom(e.target)) hideTip();
+      if (!cellFrom(e.target)) point(null);
     }, { passive: true });
-    // The tooltip is fixed, so any scroll would leave it floating in place.
-    window.addEventListener('scroll', hideTip, { passive: true });
+
+    // The tooltip is fixed, so a page scroll would leave it floating in place.
+    window.addEventListener('scroll', function () { point(null); }, { passive: true });
+    // Scrolling the calendar sideways just moves the tooltip with its cell.
     var scroller = root.querySelector('.gh-scroll');
-    if (scroller) scroller.addEventListener('scroll', hideTip, { passive: true });
+    if (scroller) scroller.addEventListener('scroll', function () {
+      if (current) showTip(current);
+    }, { passive: true });
   }
 
   function render(data) {
