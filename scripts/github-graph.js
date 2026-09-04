@@ -29,6 +29,70 @@
     return count + (count === 1 ? ' contribution on ' : ' contributions on ') + when;
   }
 
+  // One shared tooltip lives on <body> so the horizontal scroller's overflow
+  // can't clip it. It's positioned from the hovered cell's screen rect.
+  var tip = null;
+
+  function showTip(cell) {
+    if (!tip) {
+      tip = document.createElement('div');
+      tip.className = 'gh-tip';
+      tip.setAttribute('role', 'tooltip');
+      document.body.appendChild(tip);
+    }
+    tip.textContent = cell.dataset.label;
+    tip.classList.add('is-visible');
+
+    var r   = cell.getBoundingClientRect();
+    var w   = tip.offsetWidth;
+    var pad = 8;
+    var x   = r.left + r.width / 2 - w / 2;
+    x = Math.max(pad, Math.min(x, window.innerWidth - w - pad));
+    var above = r.top - tip.offsetHeight - 8;
+    var below = r.bottom + 8;
+    var flip  = above < pad;
+    tip.classList.toggle('is-below', flip);
+    tip.style.left = x + 'px';
+    tip.style.top  = (flip ? below : above) + 'px';
+    tip.style.setProperty('--gh-tip-arrow', (r.left + r.width / 2 - x) + 'px');
+  }
+
+  function hideTip() {
+    if (tip) tip.classList.remove('is-visible');
+  }
+
+  function cellFrom(target) {
+    var el = target && target.closest ? target.closest('.gh-day') : null;
+    return el && !el.classList.contains('gh-day--pad') && el.dataset.label ? el : null;
+  }
+
+  function bindTooltip() {
+    gridEl.addEventListener('mouseover', function (e) {
+      var cell = cellFrom(e.target);
+      if (cell) showTip(cell);
+    });
+    gridEl.addEventListener('mouseout', function (e) {
+      if (!cellFrom(e.relatedTarget)) hideTip();
+    });
+    gridEl.addEventListener('focusin', function (e) {
+      var cell = cellFrom(e.target);
+      if (cell) showTip(cell);
+    });
+    gridEl.addEventListener('focusout', hideTip);
+    // Tapping a cell on touch screens shows it; tapping elsewhere clears it.
+    gridEl.addEventListener('touchstart', function (e) {
+      var cell = cellFrom(e.target);
+      if (cell) showTip(cell);
+    }, { passive: true });
+    document.addEventListener('touchstart', function (e) {
+      if (!cellFrom(e.target)) hideTip();
+    }, { passive: true });
+    // The tooltip is fixed, so any scroll would leave it floating in place.
+    window.addEventListener('scroll', hideTip, { passive: true });
+    var scroller = root.querySelector('.gh-scroll');
+    if (scroller) scroller.addEventListener('scroll', hideTip, { passive: true });
+  }
+
   function render(data) {
     var days = data.days || [];
     if (!days.length) return;
@@ -50,10 +114,12 @@
       var cell = document.createElement('span');
       cell.className = 'gh-day';
       cell.dataset.level = d.level;
-      cell.title = label(parseDate(d.date), d.count);
+      cell.dataset.label = label(parseDate(d.date), d.count);
+      cell.tabIndex = 0;
       frag.appendChild(cell);
     });
     gridEl.appendChild(frag);
+    bindTooltip();
 
     // One label per month, placed on the column where that month first appears.
     var labels = document.createDocumentFragment();
