@@ -36,6 +36,24 @@ import urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PUBLIC_MARKER = "/storage/v1/object/public/"
 
+
+def load_dotenv_local():
+    """Populate os.environ from .env.local (KEY=VALUE per line) if present.
+    Doesn't overwrite anything already exported in the shell."""
+    path = os.path.join(ROOT, ".env.local")
+    if not os.path.exists(path):
+        return
+    for line in open(path):
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        key, value = key.strip(), value.strip().strip('"').strip("'")
+        os.environ.setdefault(key, value)
+
+
+load_dotenv_local()
+
 CONTENT_TYPES = {
     "webp": "image/webp", "jpg": "image/jpeg", "jpeg": "image/jpeg",
     "png": "image/png", "gif": "image/gif", "svg": "image/svg+xml",

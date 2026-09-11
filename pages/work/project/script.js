@@ -100,11 +100,14 @@
       var el;
       if (mediaType === 'video') {
         el = document.createElement('video');
-        el.autoplay = true;
         el.muted    = true;
         el.loop     = true;
         el.setAttribute('playsinline', '');
-        el.setAttribute('preload', 'auto');
+        // 'none' + no src until the observer below sees this element near the
+        // viewport — previously 'auto' + autoplay meant every video in the
+        // gallery downloaded in full on page load, regardless of scroll
+        // position. That was the single biggest source of repeat egress.
+        el.setAttribute('preload', 'none');
       } else {
         el = document.createElement('img');
         el.alt      = alt;
@@ -183,10 +186,47 @@
       return wrap;
     }
 
-    function resolveMedia(el, imageId, src) {
-      // cdnUrl() puts the Cloudflare cache in front of Supabase Storage; without
-      // it every visit re-downloads the whole gallery (Supabase sends no-cache).
+    // Videos: only fetch + play once the element is near the viewport, instead
+    // of every gallery video downloading in full on page load. rootMargin
+    // starts the fetch a little before it's visible so playback is ready by
+    // the time it scrolls into view, without loading everything up front.
+    var lazyVideoObserver = 'IntersectionObserver' in window
+      ? new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            var el = entry.target;
+            if (entry.isIntersecting) {
+              if (!el.src && el.dataset.src) {
+                el.src = el.dataset.src;
+                el.load();
+              }
+              el.play().catch(function () {});
+            } else {
+              el.pause();
+            }
+          });
+        }, { rootMargin: '200px 0px' })
+      : null;
+
+    function resolveMedia(el, imageId, src, mediaType) {
+      // cdnUrl() puts the Cloudflare cache (now R2-backed) in front of
+      // Supabase Storage; without it every visit re-downloads the whole
+      // gallery (Supabase sends no-cache).
       var url = typeof cdnUrl === 'function' ? cdnUrl(src) : src;
+
+      if (mediaType === 'video') {
+        if (!url) return;
+        if (lazyVideoObserver) {
+          el.dataset.src = url;
+          lazyVideoObserver.observe(el);
+        } else {
+          // no IntersectionObserver support — fall back to eager, still better
+          // than nothing
+          el.src = url;
+          el.play().catch(function () {});
+        }
+        return;
+      }
+
       if (imageId) {
         ImageDB.get(imageId).then(function (rec) {
           if (rec) el.src = rec.dataUrl;
@@ -201,14 +241,14 @@
       if (section.type === 'full') {
         var wrap = makeMedia(section.mediaType || 'image', section.alt || '', i === 0, section.w, section.h);
         if (i === 0) wrap.classList.add('gallery-img--full'); // only cover gets fixed height
-        resolveMedia(wrap.firstChild, section.imageId, section.src);
+        resolveMedia(wrap.firstChild, section.imageId, section.src, section.mediaType);
         gallery.appendChild(wrap);
       } else if (section.type === 'pair') {
         var row = document.createElement('div');
         row.className = 'gallery-row';
         (section.images || []).forEach(function (item) {
           var w = makeMedia(item.mediaType || 'image', item.alt || '', false, item.w, item.h);
-          resolveMedia(w.firstChild, item.imageId, item.src);
+          resolveMedia(w.firstChild, item.imageId, item.src, item.mediaType);
           row.appendChild(w);
         });
         gallery.appendChild(row);
