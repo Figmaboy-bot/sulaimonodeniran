@@ -1,3 +1,8 @@
 name = "portfolio-storage-cdn"
 main = "worker.js"
 compatibility_date = "2024-11-01"
+
+# Bucket name must match whatever you create in the R2 dashboard.
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "portfolio-media"
