@@ -13,6 +13,13 @@ var SUPABASE_ORIGIN   = 'https://axpgphfcjzhyoimxxwrz.supabase.co';
 var ALLOWED_PREFIX    = '/storage/v1/object/public/';
 var CACHE_TTL_SECONDS = 31536000; // 1 year — uploaded filenames are unique/immutable
 
+// Filenames are immutable, so the edge cache is keyed by URL and held for a
+// year. scripts/optimize-r2.py breaks that assumption: it rewrites an object
+// in place under its existing key, which a warm POP would otherwise keep
+// serving the old, heavy copy of until the entry is evicted. Bump this after
+// any in-place rewrite and redeploy to retire every cached copy at once.
+var CACHE_VERSION     = 2;
+
 function contentType(key) {
   var ext = (key.split('.').pop() || '').toLowerCase();
   return {
@@ -33,8 +40,14 @@ export default {
       return new Response('Not found', { status: 404 });
     }
 
+    // Versioned key: same object, new key whenever CACHE_VERSION moves.
+    var cacheKey = new Request(
+      url.toString() + (url.search ? '&' : '?') + 'cv=' + CACHE_VERSION,
+      { method: 'GET', headers: request.headers }
+    );
+
     var cache = caches.default;
-    var cached = await cache.match(request);
+    var cached = await cache.match(cacheKey);
     if (cached) return cached;
 
     // R2 key is everything after the public marker, e.g.
@@ -63,7 +76,7 @@ export default {
       response.headers.set('Access-Control-Allow-Origin', '*');
     }
 
-    ctx.waitUntil(cache.put(request, response.clone()));
+    ctx.waitUntil(cache.put(cacheKey, response.clone()));
     return response;
   }
 };
