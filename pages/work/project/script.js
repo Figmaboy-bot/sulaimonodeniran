@@ -19,8 +19,19 @@
     return (source && source[id]) || null;
   }
 
-  // Last resort: the server render was skipped (local static preview, or the
-  // function errored) and this browser has never loaded the work index.
+  // The copy that ships with the build (data/snapshot.json via scripts/sb.js),
+  // so a cold link still renders when the server render was skipped.
+  function fromSnapshot() {
+    var snap = typeof PORTFOLIO_SNAPSHOT !== 'undefined' ? PORTFOLIO_SNAPSHOT : null;
+    var rows = (snap && snap.projects) || [];
+    for (var i = 0; i < rows.length; i++) {
+      if (String(rows[i].id) === String(id)) return rows[i];
+    }
+    return null;
+  }
+
+  // Last resort: nothing local knows this id — it may have been published
+  // after this build went out.
   function fromSupabase() {
     if (typeof SUPABASE_URL === 'undefined' || !id) return Promise.resolve(null);
     return fetch(SUPABASE_URL + '/rest/v1/projects?select=*&limit=1&id=eq.' + encodeURIComponent(id), {
@@ -31,7 +42,7 @@
       .catch(function () { return null; });
   }
 
-  var project = fromServer() || fromCache();
+  var project = fromServer() || fromCache() || fromSnapshot();
 
   if (project) {
     render(project);

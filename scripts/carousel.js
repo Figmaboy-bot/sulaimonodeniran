@@ -5,34 +5,41 @@
   if (!track) return;
   var page = track.getAttribute('data-carousel');
 
-  sbSelect('carousel_settings', 'select=duration&page=eq.' + page + '&limit=1')
-    .then(function (rows) {
-      if (rows[0] && rows[0].duration) track.style.animationDuration = rows[0].duration + 's';
-    }).catch(function () {});
+  function applyDuration(rows) {
+    if (rows[0] && rows[0].duration) track.style.animationDuration = rows[0].duration + 's';
+  }
 
-  sbSelect('carousel_images', 'select=url,crop&page=eq.' + page + '&order=sort_order.asc')
-    .then(function (rows) {
-      if (!rows.length) return;
-      var frag = document.createDocumentFragment();
-      function addCard(item, hidden) {
-        var div = document.createElement('div');
-        div.className = 'work-card';
-        if (hidden) div.setAttribute('aria-hidden', 'true');
-        var img = document.createElement('img');
-        img.src = cdnUrl(item.url);
-        img.alt = '';
-        img.decoding = 'async';
-        // the duplicate half of the strip only scrolls into view later
-        img.loading = hidden ? 'lazy' : 'eager';
-        if (item.crop && item.crop.x !== undefined) {
-          img.style.objectPosition = item.crop.x + '% ' + item.crop.y + '%';
-        }
-        div.appendChild(img);
-        frag.appendChild(div);
+  sbSelect('carousel_settings', 'select=duration&page=eq.' + page + '&limit=1', applyDuration)
+    .then(applyDuration).catch(function () {});
+
+  function renderImages(rows) {
+    if (!rows.length) return;
+    var frag = document.createDocumentFragment();
+
+    function addCard(item, index, hidden) {
+      var div = document.createElement('div');
+      div.className = 'work-card';
+      if (hidden) div.setAttribute('aria-hidden', 'true');
+      var img = document.createElement('img');
+      img.src = cdnUrl(item.url);
+      img.alt = '';
+      img.decoding = 'async';
+      // Only the cards on screen at rest are worth blocking on. The rest of
+      // the strip — and the duplicate half — scrolls into view later.
+      img.loading = (!hidden && index < 3) ? 'eager' : 'lazy';
+      if (item.crop && item.crop.x !== undefined) {
+        img.style.objectPosition = item.crop.x + '% ' + item.crop.y + '%';
       }
-      rows.forEach(function (item) { addCard(item, false); });
-      rows.forEach(function (item) { addCard(item, true); });
-      track.innerHTML = '';
-      track.appendChild(frag);
-    }).catch(function () {});
+      div.appendChild(img);
+      frag.appendChild(div);
+    }
+
+    rows.forEach(function (item, i) { addCard(item, i, false); });
+    rows.forEach(function (item, i) { addCard(item, i, true); });
+    track.innerHTML = '';
+    track.appendChild(frag);
+  }
+
+  sbSelect('carousel_images', 'select=url,crop&page=eq.' + page + '&order=sort_order.asc', renderImages)
+    .then(renderImages).catch(function () {});
 })();

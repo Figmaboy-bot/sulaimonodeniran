@@ -66,6 +66,33 @@ function truncate(text, max) {
   return s.slice(0, max - 1).replace(/\s+\S*$/, '') + '…';
 }
 
+// The committed copy of the public tables that the browser also paints from
+// (data/snapshot.json, written by scripts/snapshot.js). Read once per cold
+// start; it ships with the deployment, so it can't go stale mid-request.
+let _snapshot;
+function snapshot() {
+  if (_snapshot === undefined) {
+    const candidates = [
+      join(process.cwd(), 'dist', 'data', 'snapshot.json'),
+      join(process.cwd(), 'data', 'snapshot.json')
+    ];
+    _snapshot = null;
+    for (const file of candidates) {
+      try { _snapshot = JSON.parse(readFileSync(file, 'utf8')); break; } catch (e) { /* next */ }
+    }
+  }
+  return _snapshot;
+}
+
+function snapshotProject(id) {
+  const rows = (snapshot() || {}).projects || [];
+  return rows.find(function (p) { return String(p.id) === String(id); }) || null;
+}
+
+// Prefers live data so a just-published edit unfurls correctly, but never lets
+// Supabase decide whether the page renders: a non-200 (the project being over
+// its egress quota returns 402), a network error or a slow origin all fall
+// through to the snapshot that shipped with the build.
 function fetchProject(id) {
   const url = SUPABASE_URL + '/rest/v1/projects?select=*&id=eq.' +
     encodeURIComponent(id) + '&limit=1';
@@ -73,11 +100,12 @@ function fetchProject(id) {
     headers: {
       apikey: SUPABASE_ANON_KEY,
       Authorization: 'Bearer ' + SUPABASE_ANON_KEY
-    }
+    },
+    signal: AbortSignal.timeout(2000)
   })
     .then(function (r) { return r.ok ? r.json() : []; })
-    .then(function (rows) { return (rows && rows[0]) || null; })
-    .catch(function () { return null; });
+    .then(function (rows) { return (rows && rows[0]) || snapshotProject(id); })
+    .catch(function () { return snapshotProject(id); });
 }
 
 function coverOf(project) {

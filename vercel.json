@@ -14,7 +14,7 @@
   ],
   "functions": {
     "api/project.js": {
-      "includeFiles": "{dist/,}pages/work/project/template.html"
+      "includeFiles": "{dist/,}{pages/work/project/template.html,data/snapshot.json}"
     }
   },
   "headers": [

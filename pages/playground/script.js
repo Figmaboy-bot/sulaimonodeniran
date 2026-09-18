@@ -25,17 +25,19 @@
   // ── Load items ───────────────────────────────
   showSkeletons(8);
 
+  // The click handler below reads `items` rather than closing over a snapshot
+  // of it, so a background refresh can swap the data and repaint in place.
   var items = [];
-  try {
-    items = await sbSelect('playground_items', 'select=*&order=sort_order.asc');
-  } catch (e) {}
-
-  clearSkeletons();
 
   // ── Build grid ───────────────────────────────
-  if (!items.length) {
-    grid.innerHTML = '<p class="pg-empty">No items yet — add some in the admin panel.</p>';
-  } else {
+  function renderGrid() {
+    grid.innerHTML = '';
+
+    if (!items.length) {
+      grid.innerHTML = '<p class="pg-empty">No items yet — add some in the admin panel.</p>';
+      return;
+    }
+
     items.forEach(function (item) {
       var card = document.createElement('div');
       card.className  = 'pg-item';
@@ -55,6 +57,18 @@
       grid.appendChild(card);
     });
   }
+
+  function onRefresh(rows) {
+    items = rows;
+    renderGrid();
+  }
+
+  try {
+    items = await sbSelect('playground_items', 'select=*&order=sort_order.asc', onRefresh);
+  } catch (e) {}
+
+  clearSkeletons();
+  renderGrid();
 
   // ── Modal ────────────────────────────────────
   var overlay   = document.getElementById('pg-modal-overlay');

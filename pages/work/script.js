@@ -130,19 +130,19 @@
   // ── Fetch ────────────────────────────────────
   showSkeletons(3);
 
-  sbSelect('projects', 'select=*&order=sort_order.asc')
-    .then(function (rows) {
-      if (rows && rows.length) {
-        renderProjects(rows);
-        var cache = {};
-        rows.forEach(function (p) { cache[p.id] = p; });
-        try { localStorage.setItem('portfolio_projects', JSON.stringify(cache)); } catch (e) {}
-      } else {
-        renderProjects(fromStatic());
-      }
-    })
-    .catch(function () {
+  function show(rows) {
+    if (rows && rows.length) {
+      renderProjects(rows);
+      var cache = {};
+      rows.forEach(function (p) { cache[p.id] = p; });
+      try { localStorage.setItem('portfolio_projects', JSON.stringify(cache)); } catch (e) {}
+    } else {
       renderProjects(fromStatic());
-    });
+    }
+  }
+
+  sbSelect('projects', 'select=*&order=sort_order.asc', show)
+    .then(show)
+    .catch(function () { renderProjects(fromStatic()); });
 
 })();
