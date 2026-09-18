@@ -35,8 +35,11 @@ const INCLUDE = [
 ];
 const EXCLUDE = new Set([
   'scripts/build.js',
+  'scripts/snapshot.js',
+  'scripts/import-snapshot.js',
   'scripts/get-spotify-token.js',
   'scripts/backfill-images.py',
+  'scripts/migrate-to-r2.py',
   '.DS_Store'
 ]);
 
@@ -82,6 +85,19 @@ function copy(rel) {
   fileCount++;
 }
 
+// data/snapshot.json is the committed copy of the four public tables (see
+// scripts/snapshot.js). Ship it as a script rather than something the page has
+// to fetch: it lands with the HTML, and the ?v= stamping below gives it an
+// immutable URL that changes the moment the data does.
+const SNAPSHOT_JSON = path.join(ROOT, 'data', 'snapshot.json');
+const SNAPSHOT_JS   = path.join(ROOT, 'data', 'snapshot.js');
+const snapshot = JSON.parse(fs.readFileSync(SNAPSHOT_JSON, 'utf8'));
+fs.writeFileSync(SNAPSHOT_JS, 'var PORTFOLIO_SNAPSHOT = ' + JSON.stringify(snapshot) + ';\n');
+const rowCounts = Object.keys(snapshot)
+  .map(function (t) { return t + '=' + snapshot[t].length; })
+  .join(' ');
+
 fs.rmSync(OUT, { recursive: true, force: true });
 INCLUDE.forEach(copy);
 console.log('build: copied ' + fileCount + ' files to dist/, versioned ' + refCount + ' stylesheet/script references');
+console.log('build: snapshot rows ' + rowCounts);
