@@ -37,13 +37,17 @@ function loadTemplate(req) {
     .then(function (html) { _template = html; return html; });
 }
 
-// Same rewrite as scripts/cdn.js: put the Cloudflare cache in front of the
-// bucket so crawler traffic doesn't bill against the Supabase egress quota.
+// Same rewrite as scripts/cdn.js, MEDIA_VERSION included — keep the two in
+// step so a crawler and a browser are pointed at the same cache entry.
+const MEDIA_VERSION = 2;
+
 function cdnUrl(url) {
   if (!STORAGE_CDN || !url) return url;
   const marker = '/storage/v1/object/public/';
   const i = url.indexOf(marker);
-  return i === -1 ? url : STORAGE_CDN + url.slice(i);
+  if (i === -1) return url;
+  const out = STORAGE_CDN + url.slice(i);
+  return out + (out.indexOf('?') === -1 ? '?' : '&') + 'v=' + MEDIA_VERSION;
 }
 
 function esc(s) {

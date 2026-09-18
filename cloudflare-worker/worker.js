@@ -13,12 +13,6 @@ var SUPABASE_ORIGIN   = 'https://axpgphfcjzhyoimxxwrz.supabase.co';
 var ALLOWED_PREFIX    = '/storage/v1/object/public/';
 var CACHE_TTL_SECONDS = 31536000; // 1 year — uploaded filenames are unique/immutable
 
-// Filenames are immutable, so the edge cache is keyed by URL and held for a
-// year. scripts/optimize-r2.py breaks that assumption: it rewrites an object
-// in place under its existing key, which a warm POP would otherwise keep
-// serving the old, heavy copy of until the entry is evicted. Bump this after
-// any in-place rewrite and redeploy to retire every cached copy at once.
-var CACHE_VERSION     = 2;
 
 function contentType(key) {
   var ext = (key.split('.').pop() || '').toLowerCase();
@@ -40,11 +34,11 @@ export default {
       return new Response('Not found', { status: 404 });
     }
 
-    // Versioned key: same object, new key whenever CACHE_VERSION moves.
-    var cacheKey = new Request(
-      url.toString() + (url.search ? '&' : '?') + 'cv=' + CACHE_VERSION,
-      { method: 'GET', headers: request.headers }
-    );
+    // Always cache under a GET key: cache.put() rejects a HEAD request, and
+    // a HEAD should be answered from whatever the GET already cached. The ?v=
+    // the site appends (scripts/cdn.js) rides along in the URL, so re-encoding
+    // an object in place retires every stale copy without a worker deploy.
+    var cacheKey = new Request(url.toString(), { method: 'GET', headers: request.headers });
 
     var cache = caches.default;
     var cached = await cache.match(cacheKey);
