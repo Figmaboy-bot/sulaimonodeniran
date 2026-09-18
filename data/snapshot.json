@@ -1,6 +1,1145 @@
 {
-  "projects": [],
-  "playground_items": [],
-  "carousel_images": [],
-  "carousel_settings": []
+  "projects": [
+    {
+      "id": "wager365",
+      "title": "Wager365",
+      "tagline": "Live sports odds and a multi-currency wallet, designed and built end-to-end.",
+      "about": "Wager365 is a sports betting app bringing live football, basketball and tennis odds into one board, with a bet slip that supports parlays and a wallet that takes bank transfer, card or crypto deposits, settling in whatever currency the user sets for their account. I designed the full product from onboarding through settlement, then built it as a working React Native app with a Firebase backend, including a tested settlement engine and a staged migration path for moving money logic server-side.",
+      "industry": "Sports Betting",
+      "role": "Product Design & Development",
+      "year": "2026",
+      "meta": "Sports Betting · 2026",
+      "live_url": null,
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783589940734_quot1.webp",
+      "gallery": [
+        {
+          "h": 1551,
+          "w": 2000,
+          "alt": "Portfolio Cover",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783589940734_quot1.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1453,
+          "w": 2000,
+          "alt": "Splash Screen",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787684039194_kqr30.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1458,
+          "w": 2000,
+          "alt": "Onboarding Screen",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787683539081_r6w8f.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1458,
+          "w": 2000,
+          "alt": "Create Account Screen",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787682437873_hv9fn.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 2640,
+          "w": 2000,
+          "alt": "OTP and Onboarding Screen",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787683879215_zv2rd.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1453,
+          "w": 2000,
+          "alt": "Log In Screen",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787683134538_svypj.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 2640,
+          "w": 2000,
+          "alt": "Forgot Password Screen",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787682505035_ypgz7.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1453,
+          "w": 2000,
+          "alt": "Home, Search, Notification Screen",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787686440905_dg5zx.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1453,
+          "w": 2000,
+          "alt": "Live games, Betslip, Match Details Screen",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787854178468_o4fju.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1453,
+          "w": 2000,
+          "alt": "Bet Slip Screen",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787684135256_jldmb.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1453,
+          "w": 2000,
+          "alt": "Wallet Screen",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787684065941_ezocz.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 2630,
+          "w": 2000,
+          "alt": "Bank Deposit Method Screen",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787682279473_69q12.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1453,
+          "w": 2000,
+          "alt": "Bitcoin Deposit Method Screen",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787682400738_qcgvk.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 2067,
+          "w": 2000,
+          "alt": "Profile Screen",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787683979007_h5qiz.webp",
+          "type": "full",
+          "mediaType": "image"
+        }
+      ],
+      "sort_order": 0,
+      "created_at": "2026-07-05T20:41:07.009223+00:00",
+      "coming_soon": false
+    },
+    {
+      "id": "orbit---website",
+      "title": "Orbit - Website",
+      "tagline": "Orbit is a modern financial platform built to make managing money across borders effortless.",
+      "about": "Orbit is a modern financial platform built to make managing money across borders effortless. We bring together traditional currencies and stablecoins in one intuitive app, giving you the freedom to send, receive, save, spend, and convert money without the complexity of multiple accounts or platforms.\n\nWhether you're a freelancer getting paid internationally, a traveler spending abroad, or someone protecting savings with stablecoins, Orbit gives you the tools to move money confidently and securely.\n\nWith support for Naira (NGN), US Dollar (USD), Euro (EUR), USDT, and USDC, Orbit combines fast transfers, transparent exchange rates, secure virtual cards, and intelligent money management into one seamless experience.",
+      "industry": "",
+      "role": "Web Design & Dev",
+      "year": "2026",
+      "meta": "Fintech · 2026",
+      "live_url": "https://orbit-website-lovat.vercel.app/",
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783094057905_w21y3.webp",
+      "gallery": [
+        {
+          "h": 1500,
+          "w": 2000,
+          "alt": "Screenshot 2026-05-06 at 11.40.08 PM",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783094057905_w21y3.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1293,
+          "w": 2000,
+          "alt": "Hero",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783095113562_4rz1v.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1250,
+          "w": 2000,
+          "alt": "Features",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783095125183_l6it3.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1562,
+          "w": 2000,
+          "alt": "How it works",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783095174534_02h5h.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 988,
+          "w": 2000,
+          "alt": "Smarter Money",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783095252333_twjt5.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1780,
+          "w": 2000,
+          "alt": "Send",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783095274639_phydh.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1551,
+          "w": 2000,
+          "alt": "Security",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783095259294_yd7rj.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 2391,
+          "w": 2000,
+          "alt": "Card",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783095210861_s4nn5.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1141,
+          "w": 2000,
+          "alt": "Faq",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783095201633_vbnfe.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 2660,
+          "w": 2000,
+          "alt": "Footer",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783095241141_9cc5g.webp",
+          "type": "full",
+          "mediaType": "image"
+        }
+      ],
+      "sort_order": 1,
+      "created_at": "2026-07-03T16:17:48.277832+00:00",
+      "coming_soon": false
+    },
+    {
+      "id": "task-hive-landing-page",
+      "title": "Task Hive - Landing Page",
+      "tagline": "A modern task management platform designed for teams and individuals",
+      "about": "TaskHive is a modern task management platform designed for teams and individuals who want to stay organized, hit deadlines, and work smarter. With powerful features like Kanban boards, AI task suggestions, and real-time team activity, TaskHive simplifies collaboration and boosts productivity—all in one intuitive workspace.",
+      "industry": "CRM",
+      "role": "UI/UX Design & Web Dev",
+      "year": "2025",
+      "meta": "CRM · 2025",
+      "live_url": "https://taskhive-21eff5.webflow.io/",
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628294732_ezj30.webp",
+      "gallery": [
+        {
+          "h": 1500,
+          "w": 2000,
+          "alt": "RnCljM1WRpcafd6NUGXeTRgysI (1)",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628296764_23a5o.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "alt": "CbudueseXBQi6wC7AdAcfxos",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628297442_at4a7.mp4",
+          "type": "full",
+          "mediaType": "video"
+        },
+        {
+          "h": 1333,
+          "w": 2000,
+          "alt": "XDSlC9RHpLnntGnwv4PXZp7kbxI",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628300819_x8qw9.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 8866,
+          "w": 1354,
+          "alt": "Frame 1000011562",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628307543_gorgi.webp",
+          "type": "full",
+          "mediaType": "image"
+        }
+      ],
+      "sort_order": 2,
+      "created_at": "2026-05-01T09:37:59.310904+00:00",
+      "coming_soon": false
+    },
+    {
+      "id": "coin-compass",
+      "title": "Coin Compass",
+      "tagline": "Your smart financial guide, built to help you navigate money management with confidence.",
+      "about": "CoinCompass is your smart financial guide, built to help you navigate money management with confidence. Designed for the modern user, CoinCompass combines intelligent insights, intuitive tools, and real-time tracking to help you make smarter decisions about your finances.\nWhether you're budgeting, investing, or just trying to stay on top of your spending, CoinCompass empowers you to take control with ease. Our sleek interface, personalized recommendations, and seamless experience make managing money less stressful—and a lot more rewarding.",
+      "industry": "Fintech",
+      "role": "UI/UX Design, Brand Design",
+      "year": "2023",
+      "meta": "Fintech · 2024",
+      "live_url": null,
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628311381_ohyw8.webp",
+      "gallery": [
+        {
+          "h": 1200,
+          "w": 1600,
+          "alt": "MacBook Pro 16_ - 3",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628313461_xvid8.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "alt": "coin compass video",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628314119_c2fun.mp4",
+          "type": "full",
+          "mediaType": "video"
+        },
+        {
+          "h": 1333,
+          "w": 2000,
+          "alt": "bnN2HUzdjB1ojpN4vliiV47zM",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628320133_h5o7u.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1667,
+          "w": 2000,
+          "alt": "Onboarding",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628320835_f7a48.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1667,
+          "w": 2000,
+          "alt": "Sign up and Sign In",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628321778_nwmyk.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1667,
+          "w": 2000,
+          "alt": "OTP",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628322338_8uyzg.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1667,
+          "w": 2000,
+          "alt": "Home and Goal screen",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628328660_qcx33.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1667,
+          "w": 2000,
+          "alt": "Send screen",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628329695_grdkd.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1667,
+          "w": 2000,
+          "alt": "CashBuddy",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628330478_zc7an.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1667,
+          "w": 2000,
+          "alt": "Add screen",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628331556_iv8cg.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1667,
+          "w": 2000,
+          "alt": "Notifications and profit",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628332280_ex88i.webp",
+          "type": "full",
+          "mediaType": "image"
+        }
+      ],
+      "sort_order": 3,
+      "created_at": "2026-05-01T09:38:53.602026+00:00",
+      "coming_soon": false
+    },
+    {
+      "id": "ecowave",
+      "title": "Ecowave",
+      "tagline": "A bold visual identity crafted to make a lasting impression.",
+      "about": "Ecowave is a forward-thinking renewable energy brand dedicated to harnessing nature’s power for a sustainable future. Focused on delivering clean energy solutions through solar, wind, and hydro power, Ecowave empowers communities with accessible, eco-friendly alternatives to traditional energy sources.\n\nBuilt on the principles of innovation, sustainability, and impact, Ecowave integrates cutting-edge technology with environmentally responsible practices to reduce carbon footprints and drive a greener tomorrow. Through thoughtful branding and strategic positioning, Ecowave aims to not only provide energy solutions but also inspire a global shift toward renewable power.",
+      "industry": "Renewable energy",
+      "role": "Brand Identity",
+      "year": "2024",
+      "meta": "Renewable energy · 2024",
+      "live_url": null,
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834754542_zlfjf.webp",
+      "gallery": [
+        {
+          "h": 1364,
+          "w": 2000,
+          "alt": "Free Banners on Building Mockup 1",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834754542_zlfjf.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "alt": "jOul2FmuQxgDpSZlBvaXZS5Kvc",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/videos/1778836794324_zax3y.mp4",
+          "type": "full",
+          "mediaType": "video"
+        },
+        {
+          "h": 1667,
+          "w": 2000,
+          "alt": "Color",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834731017_gk2rq.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1156,
+          "w": 2000,
+          "alt": "Logo Dark green",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834789019_r5ai0.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1156,
+          "w": 2000,
+          "alt": "Logo green",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834797805_j48is.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1156,
+          "w": 2000,
+          "alt": "Logo Yellow",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834804050_pd8qx.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1156,
+          "w": 2000,
+          "alt": "MacBook Air - 4",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834809572_eir6k.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1334,
+          "w": 2000,
+          "alt": "Container Mockup 1",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834745835_62wzp.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1335,
+          "w": 2000,
+          "alt": "FREE-Tote-Bag-Mockup-Studio-Series_01_By-Mocku 1",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834762935_vwiwc.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1501,
+          "w": 2000,
+          "alt": "Fence_Billboard_Mockup_3-Recovered 4",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834749427_lft42.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1156,
+          "w": 2000,
+          "alt": "MacBook Air - 8",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834817494_eyvpx.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1251,
+          "w": 2000,
+          "alt": "MacBook Air - 10",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834824178_2fo7y.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1390,
+          "w": 2000,
+          "alt": "MacBook Air - 11",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834837845_yfzan.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1601,
+          "w": 2000,
+          "alt": "Mockup 2-1 1",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834844096_t42j0.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1335,
+          "w": 2000,
+          "alt": "tape-mockup-glued-to-the-floor-isometric 1",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834856063_4kvl1.webp",
+          "type": "full",
+          "mediaType": "image"
+        }
+      ],
+      "sort_order": 4,
+      "created_at": "2026-05-15T08:49:25.908566+00:00",
+      "coming_soon": false
+    },
+    {
+      "id": "nexflo-website",
+      "title": "Nexflo - Website",
+      "tagline": "A website for an automation platform that simplifies connecting apps, tools, and workflows.",
+      "about": "Similar to platforms like Zapier and n8n, Nexflo empowers users to automate repetitive tasks, streamline operations, and improve productivity without needing to write code.\n\nWith a focus on flexibility, speed, and ease of use, Nexflo helps users build powerful workflows that move data seamlessly across applications, trigger actions in real time, and eliminate manual work. Whether it’s syncing data between CRMs, automating notifications, or integrating payment systems, Nexflo ensures that workflows run reliably and efficiently.\n\nBuilt with scalability in mind, Nexflo caters to both individual creators looking to save time and teams or businessesaiming to optimize their processes.",
+      "industry": "CRM",
+      "role": "UIUX design, Web dev",
+      "year": "2025",
+      "meta": "CRM · 2025",
+      "live_url": "https://nexflo-automation.webflow.io/",
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628333894_mf0uc.webp",
+      "gallery": [
+        {
+          "h": 1500,
+          "w": 2000,
+          "alt": "Hand and iPhone 16 Prdo",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628335250_ypfvq.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "alt": "Timeline 1",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628337191_1nu6j.mp4",
+          "type": "full",
+          "mediaType": "video"
+        },
+        {
+          "h": 1293,
+          "w": 2000,
+          "alt": "MacBook Pro 16_ - 3",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628345363_39ae0.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 464,
+          "w": 2000,
+          "alt": "Brands",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628347163_lqr9a.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1906,
+          "w": 2000,
+          "alt": "Features",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628347608_ram7z.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1027,
+          "w": 2000,
+          "alt": "Benefits Dark",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628348821_iywjl.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1057,
+          "w": 2000,
+          "alt": "Automation (Dark)",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628349848_aguhg.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1531,
+          "w": 2000,
+          "alt": "Testiomial",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628350371_7e8hk.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1131,
+          "w": 2000,
+          "alt": "Pricing",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628351862_bm4pf.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1309,
+          "w": 2000,
+          "alt": "Faq",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628352506_5l3tm.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1330,
+          "w": 2000,
+          "alt": "Footer",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628353190_sza24.webp",
+          "type": "full",
+          "mediaType": "image"
+        }
+      ],
+      "sort_order": 5,
+      "created_at": "2026-05-01T09:39:14.531838+00:00",
+      "coming_soon": false
+    },
+    {
+      "id": "orbit",
+      "title": "Orbit",
+      "tagline": "Orbit is a multi-currency fintech app that allows users to send, receive, and hold Naira, USD, Euro, and stablecoins seamlessly in one place.",
+      "about": "Orbit is a modern multi-currency finance app built for a borderless world.\nWe help people send, receive, convert, and manage money seamlessly across Naira, USD, Euro, and stablecoins all from one secure platform.\n\nDesigned for freelancers, global professionals, travelers, and digital-first users, Orbit combines the simplicity of modern banking with the flexibility of digital assets. Whether you’re paying internationally, saving in stable currencies, or transferring funds instantly, Orbit keeps your money moving without limits.",
+      "industry": "Fintech",
+      "role": "UIUX Design",
+      "year": "2026",
+      "meta": "Fintech · 2026",
+      "live_url": null,
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778939778946_6x243.webp",
+      "gallery": [
+        {
+          "h": 1500,
+          "w": 2000,
+          "alt": "Cover",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778939778946_6x243.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1500,
+          "w": 2000,
+          "alt": "Home Dark mockup",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778938696675_bwi0o.webp",
+          "type": "full",
+          "mediaType": "image"
+        }
+      ],
+      "sort_order": 6,
+      "created_at": "2026-05-16T13:43:30.550027+00:00",
+      "coming_soon": true
+    },
+    {
+      "id": "scholara",
+      "title": "Scholara",
+      "tagline": "Scholara is a forward-thinking platform designed to empower people with smarter, more accessible digital tools.",
+      "about": "Scholara is a forward-thinking platform designed to empower people with smarter, more accessible digital tools. Built on the belief that innovation should simplify and elevate everyday experiences, Scholara introduces an intelligent education chatbot that helps learners study, ask questions, and gain clarity in real time. \nWhile the platform began with education at its core, Scholara’s vision goes beyond a single industry. The chatbot is just the beginning, our brand is designed to evolve, ready to expand into new spaces where innovation, clarity, and empowerment are needed.",
+      "industry": "Edutech",
+      "role": "Brand Design",
+      "year": "2025",
+      "meta": "Edutech · 2025",
+      "live_url": null,
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778944528570_0b34w.webp",
+      "gallery": [
+        {
+          "h": 1500,
+          "w": 2000,
+          "alt": "Free_Notebook_Mockup_4",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778944528570_0b34w.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1250,
+          "w": 2000,
+          "alt": "Application",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779865947344_bsdkg.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1334,
+          "w": 2000,
+          "alt": "business card_10 1",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779865958630_a93fa.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1334,
+          "w": 2000,
+          "alt": "Free Canvas Bag on Chair Mockup 2",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779865963614_x2iv8.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1500,
+          "w": 2000,
+          "alt": "Free_Baseball_Cap_Mockup_2 1",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779865970947_7lb2u.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1500,
+          "w": 2000,
+          "alt": "Free_Notebook_Mockup_4 1",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779865979240_5enz4.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1500,
+          "w": 2000,
+          "alt": "Free_Pen_Mockup_1 1",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779866021171_56pf2.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 2667,
+          "w": 2000,
+          "alt": "Lanyard_ID_badge_mockup_3 2",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779866032619_z9nma.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1293,
+          "w": 2000,
+          "alt": "MacBook Pro 16_ - 1",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779866038054_7px46.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1293,
+          "w": 2000,
+          "alt": "MacBook Pro 16_ - 2",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779866044338_d1r6t.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1600,
+          "w": 2000,
+          "alt": "Mockup 3 1",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779866052746_e4fzn.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1600,
+          "w": 2000,
+          "alt": "skateboarder t-shirt mockup 1",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779866063218_r9p8j.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1638,
+          "w": 2000,
+          "alt": "Sticker on Laptop Mockup 1",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779866071803_yixzq.webp",
+          "type": "full",
+          "mediaType": "image"
+        }
+      ],
+      "sort_order": 7,
+      "created_at": "2026-05-16T15:13:06.337063+00:00",
+      "coming_soon": true
+    }
+  ],
+  "playground_items": [
+    {
+      "id": "pg_1777612385736_2732c",
+      "title": "Mobile Chat Interaction",
+      "description": "A short chat interaction built with React and Tailwind",
+      "live_url": "https://mobile-chat-lemon.vercel.app/",
+      "media_type": "video",
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/covers/1777612654105_qvf62.jpg",
+      "media_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/videos/1778805277861_nnj9k.mp4",
+      "sort_order": 0,
+      "created_at": "2026-05-01T05:13:23.538004+00:00"
+    },
+    {
+      "id": "pg_1777683447314_xa8zb",
+      "title": "Pill Hover",
+      "description": "Hovering interaction on a pill built with react",
+      "live_url": "https://pills-smoky.vercel.app/",
+      "media_type": "video",
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/covers/1777683744131_j0p7e.jpg",
+      "media_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/videos/1777683522661_8m5uf.mp4",
+      "sort_order": 1,
+      "created_at": "2026-05-02T01:02:55.366007+00:00"
+    },
+    {
+      "id": "pg_1777741311707_bzzii",
+      "title": "Set amount animation",
+      "description": "A set amount interaction, built with React",
+      "live_url": "https://set-amount-gilt.vercel.app/",
+      "media_type": "video",
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/covers/1777742321119_od3zz.jpg",
+      "media_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/videos/1777743106418_paxs1.mp4",
+      "sort_order": 2,
+      "created_at": "2026-05-02T17:32:23.809325+00:00"
+    },
+    {
+      "id": "pg_1778838313112_ajcct",
+      "title": "Account Setup",
+      "description": "An account setup flow built with ReactJS",
+      "live_url": "https://account-setup-six.vercel.app/",
+      "media_type": "video",
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/covers/1778838333596_q18s2.jpg",
+      "media_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/videos/1778838550641_ufb9z.mp4",
+      "sort_order": 3,
+      "created_at": "2026-05-15T09:51:44.542601+00:00"
+    },
+    {
+      "id": "pg_1778884972317_czd8g",
+      "title": "Scratch & Win",
+      "description": "A scratch interaction built with Js",
+      "live_url": "https://scratch-and-win-five.vercel.app/",
+      "media_type": "video",
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/covers/1778885215554_jelya.png",
+      "media_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/videos/1778885608754_cd4kb.mp4",
+      "sort_order": 4,
+      "created_at": "2026-05-15T22:54:09.618741+00:00"
+    },
+    {
+      "id": "pg_1779552363798_rdcnf",
+      "title": "Interactive ID card",
+      "description": "An ID card with real-time physics simulation",
+      "live_url": "https://id-card-lilac-eta.vercel.app/",
+      "media_type": "video",
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/covers/1779552471314_cehg9.jpg",
+      "media_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/videos/1779552493328_yrad0.mp4",
+      "sort_order": 5,
+      "created_at": "2026-05-23T16:08:46.594699+00:00"
+    },
+    {
+      "id": "pg_1782580298777_34pro",
+      "title": "Wager365 Logo Animation",
+      "description": "Short logo animation for Wager365 brand",
+      "live_url": null,
+      "media_type": "video",
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/covers/1782580412391_892yk.jpg",
+      "media_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/videos/1782583772153_kl26p.mp4",
+      "sort_order": 6,
+      "created_at": "2026-06-27T17:29:10.25036+00:00"
+    }
+  ],
+  "carousel_images": [
+    {
+      "id": "about_1778809049495_hyza5",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809048545_oyoqy.jpg",
+      "page": "about",
+      "sort_order": 0,
+      "crop": {
+        "x": 50,
+        "y": 75
+      }
+    },
+    {
+      "id": "home_1778934779597_zh5kr",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778934769864_c8t4x.jpg",
+      "page": "home",
+      "sort_order": 0,
+      "crop": null
+    },
+    {
+      "id": "home_1778934910133_fl5en",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778934889613_hweos.jpg",
+      "page": "home",
+      "sort_order": 1,
+      "crop": null
+    },
+    {
+      "id": "about_1778809057841_90p4y",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809057359_hvvs8.jpg",
+      "page": "about",
+      "sort_order": 1,
+      "crop": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "about_1787742812670_w2akf",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1787742811020_007nx.jpg",
+      "page": "about",
+      "sort_order": 2,
+      "crop": null
+    },
+    {
+      "id": "home_1778934275984_qqxyv",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778934267028_5pftt.jpg",
+      "page": "home",
+      "sort_order": 3,
+      "crop": null
+    },
+    {
+      "id": "about_1778809177289_58nki",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809175763_bkbw7.jpg",
+      "page": "about",
+      "sort_order": 3,
+      "crop": {
+        "x": 50,
+        "y": 43
+      }
+    },
+    {
+      "id": "about_1778809542269_m24xi",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809540607_ylq4q.jpg",
+      "page": "about",
+      "sort_order": 4,
+      "crop": {
+        "x": 50,
+        "y": 58
+      }
+    },
+    {
+      "id": "home_1778809681180_eyvwz",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778809678844_0905k.jpg",
+      "page": "home",
+      "sort_order": 4,
+      "crop": {
+        "x": 50,
+        "y": 35
+      }
+    },
+    {
+      "id": "home_1778809700620_jaxbq",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778809686536_d8e0k.jpg",
+      "page": "home",
+      "sort_order": 5,
+      "crop": null
+    },
+    {
+      "id": "about_1778809069181_zidk9",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809068545_464wd.jpg",
+      "page": "about",
+      "sort_order": 5,
+      "crop": null
+    },
+    {
+      "id": "home_1778934938397_6ojq0",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778934921973_l3879.jpg",
+      "page": "home",
+      "sort_order": 6,
+      "crop": null
+    },
+    {
+      "id": "about_1787742846629_rw485",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1787742845487_z8pwn.jpg",
+      "page": "about",
+      "sort_order": 6,
+      "crop": null
+    },
+    {
+      "id": "home_1778934575291_w9ox5",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778934567142_rjg0b.jpg",
+      "page": "home",
+      "sort_order": 7,
+      "crop": null
+    },
+    {
+      "id": "about_1778809166131_5v5f5",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809164297_mnfm6.jpg",
+      "page": "about",
+      "sort_order": 7,
+      "crop": null
+    },
+    {
+      "id": "about_1778809170904_g80a7",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809169453_tfq5t.jpg",
+      "page": "about",
+      "sort_order": 8,
+      "crop": null
+    },
+    {
+      "id": "home_1778934971664_aemty",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778934964587_5my5d.jpg",
+      "page": "home",
+      "sort_order": 8,
+      "crop": null
+    },
+    {
+      "id": "home_1778809713815_guasu",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778809704274_xhnf6.jpg",
+      "page": "home",
+      "sort_order": 9,
+      "crop": null
+    },
+    {
+      "id": "about_1787742377217_m9rm7",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1787742367830_dj8rs.png",
+      "page": "about",
+      "sort_order": 9,
+      "crop": null
+    },
+    {
+      "id": "home_1782640760430_pzs41",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1782640754853_0omwu.jpg",
+      "page": "home",
+      "sort_order": 10,
+      "crop": null
+    },
+    {
+      "id": "about_1778809184669_5bi5u",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809183306_vh853.jpg",
+      "page": "about",
+      "sort_order": 10,
+      "crop": {
+        "x": 50,
+        "y": 43
+      }
+    },
+    {
+      "id": "about_1778809218524_1uqgx",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809195299_8my3v.jpg",
+      "page": "about",
+      "sort_order": 11,
+      "crop": null
+    },
+    {
+      "id": "home_1778809751356_wlz0o",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778809749027_3og62.jpg",
+      "page": "home",
+      "sort_order": 11,
+      "crop": null
+    },
+    {
+      "id": "about_1778809218524_fvtxl",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809190039_nzr2o.jpg",
+      "page": "about",
+      "sort_order": 12,
+      "crop": null
+    },
+    {
+      "id": "home_1778934029740_7b75c",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778934006963_52t5k.jpg",
+      "page": "home",
+      "sort_order": 12,
+      "crop": null
+    },
+    {
+      "id": "about_1778809507002_fqzin",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809505334_qnoru.jpg",
+      "page": "about",
+      "sort_order": 13,
+      "crop": {
+        "x": 50,
+        "y": 44
+      }
+    },
+    {
+      "id": "home_1778934280951_0kj13",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778934273825_bfzug.jpg",
+      "page": "home",
+      "sort_order": 13,
+      "crop": null
+    },
+    {
+      "id": "about_1778809515691_6bled",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809514711_2ew1l.jpg",
+      "page": "about",
+      "sort_order": 14,
+      "crop": {
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "home_1778935042964_14d6w",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778935036215_tremd.jpg",
+      "page": "home",
+      "sort_order": 14,
+      "crop": {
+        "x": 50,
+        "y": 61
+      }
+    },
+    {
+      "id": "home_1778935146633_8ucmu",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778935139611_q0g0q.jpg",
+      "page": "home",
+      "sort_order": 15,
+      "crop": null
+    },
+    {
+      "id": "about_1778809531250_tidik",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809529710_2w0t8.jpg",
+      "page": "about",
+      "sort_order": 15,
+      "crop": {
+        "x": 50,
+        "y": 36
+      }
+    },
+    {
+      "id": "home_1782640717547_cc744",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1782640712715_2uyxm.jpg",
+      "page": "home",
+      "sort_order": 16,
+      "crop": null
+    },
+    {
+      "id": "about_1787741151354_4m50l",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1787741142042_tkqdq.jpg",
+      "page": "about",
+      "sort_order": 16,
+      "crop": null
+    },
+    {
+      "id": "about_1787742353760_h6o5z",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1787742350982_ibi6p.jpg",
+      "page": "about",
+      "sort_order": 17,
+      "crop": null
+    },
+    {
+      "id": "about_1787742367394_99kak",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1787742364494_ksonl.jpg",
+      "page": "about",
+      "sort_order": 18,
+      "crop": null
+    },
+    {
+      "id": "about_1787742845143_er8ro",
+      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1787742843581_10rl1.jpg",
+      "page": "about",
+      "sort_order": 19,
+      "crop": null
+    }
+  ],
+  "carousel_settings": [
+    {
+      "page": "home",
+      "duration": 80
+    },
+    {
+      "page": "about",
+      "duration": 85
+    }
+  ]
 }

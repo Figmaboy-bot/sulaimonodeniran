@@ -9,8 +9,10 @@
 //   node scripts/import-snapshot.js ~/Downloads/export.json
 //
 // Accepts whatever shape the editor hands back: the bare object, the single
-// {"snapshot": {...}} row, or the [{...}] array the "Copy as JSON" button
-// produces.
+// {"snapshot": {...}} row, the [{...}] array the "Copy as JSON" button
+// produces, or the one-cell CSV that "Download CSV" writes.
+//
+// Quote the path — the dashboard's filenames contain spaces.
 
 const fs   = require('fs');
 const path = require('path');
@@ -18,6 +20,28 @@ const path = require('path');
 const ROOT   = path.resolve(__dirname, '..');
 const OUT    = path.join(ROOT, 'data', 'snapshot.json');
 const TABLES = ['projects', 'playground_items', 'carousel_images', 'carousel_settings'];
+
+// "Download CSV" writes a header line and one quoted cell holding the whole
+// JSON document, with every internal quote doubled per RFC 4180.
+function fromCsv(text) {
+  const nl = text.indexOf('\n');
+  let cell = (nl === -1 ? '' : text.slice(nl + 1)).trim();
+  if (cell.startsWith('"')) {
+    const end = cell.lastIndexOf('"');
+    cell = cell.slice(1, end === 0 ? undefined : end).replace(/""/g, '"');
+  }
+  return cell;
+}
+
+function parseExport(raw) {
+  try {
+    return JSON.parse(raw);
+  } catch (e) {
+    const cell = fromCsv(raw);
+    if (!cell) throw e;
+    return JSON.parse(cell);
+  }
+}
 
 function unwrap(parsed) {
   let value = parsed;
@@ -37,14 +61,17 @@ function unwrap(parsed) {
 }
 
 const file = process.argv[2];
-if (!file) {
-  console.error('usage: node scripts/import-snapshot.js <export.json>');
+if (!file || process.argv.length > 3) {
+  console.error('usage: node scripts/import-snapshot.js "<export.csv|.json>"');
+  if (process.argv.length > 3) {
+    console.error('(got ' + (process.argv.length - 2) + ' arguments — quote the path, it has spaces in it)');
+  }
   process.exit(1);
 }
 
 let snapshot;
 try {
-  snapshot = unwrap(JSON.parse(fs.readFileSync(file, 'utf8')));
+  snapshot = unwrap(parseExport(fs.readFileSync(file, 'utf8')));
 } catch (err) {
   console.error('could not read the export:', err.message);
   process.exit(1);
