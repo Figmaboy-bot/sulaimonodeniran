@@ -40,6 +40,8 @@ const EXCLUDE = new Set([
   'scripts/get-spotify-token.js',
   'scripts/backfill-images.py',
   'scripts/migrate-to-r2.py',
+  'scripts/optimize-r2.py',
+  'scripts/import-analytics.py',
   '.DS_Store'
 ]);
 
