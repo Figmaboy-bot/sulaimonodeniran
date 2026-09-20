@@ -90,6 +90,13 @@ async function putToR2(key, body) {
     body,
     signal: AbortSignal.timeout(4000)
   });
+
+  if (!res.ok) {
+    // Swallowing this is what let the original data loss go unnoticed for
+    // days. It stays non-fatal for the visitor, but it must leave a trace.
+    const detail = await res.text().catch(() => '');
+    console.error('[track] R2 put failed', res.status, detail.slice(0, 300));
+  }
   return res.ok;
 }
 
@@ -145,9 +152,16 @@ export default async function handler(req, res) {
       // created_at is set by the database on a normal insert; park it on the
       // row here so a replayed view keeps the time it actually happened.
       const parked = Object.assign({}, row, { created_at: new Date().toISOString() });
-      await putToR2(pendingKey(parked), JSON.stringify(parked));
+      const missing = ['R2_ACCOUNT_ID', 'R2_ACCESS_KEY_ID', 'R2_SECRET_ACCESS_KEY', 'R2_BUCKET']
+        .filter(function (n) { return !process.env[n]; });
+      if (missing.length) {
+        console.error('[track] cannot park view, missing env:', missing.join(','));
+      } else if (!(await putToR2(pendingKey(parked), JSON.stringify(parked)))) {
+        console.error('[track] view dropped for', parked.page);
+      }
     } catch (e) {
       // analytics must never surface as an error to the visitor
+      console.error('[track] park threw', String(e && e.message || e).slice(0, 200));
     }
   }
 
