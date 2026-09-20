@@ -38,11 +38,19 @@ function encodeKey(key) {
   return key.split('/').map(encodeURIComponent).join('/');
 }
 
+// Trimmed, always: a value pasted or piped in with padding produces a host
+// like "abc123   .r2.cloudflarestorage.com", which fetch rejects outright —
+// and a padded secret silently breaks the signature instead, which is worse.
+function env(name) {
+  const v = process.env[name];
+  return typeof v === 'string' ? v.trim() : '';
+}
+
 async function putToR2(key, body) {
-  const account = process.env.R2_ACCOUNT_ID;
-  const access  = process.env.R2_ACCESS_KEY_ID;
-  const secret  = process.env.R2_SECRET_ACCESS_KEY;
-  const bucket  = process.env.R2_BUCKET;
+  const account = env('R2_ACCOUNT_ID');
+  const access  = env('R2_ACCESS_KEY_ID');
+  const secret  = env('R2_SECRET_ACCESS_KEY');
+  const bucket  = env('R2_BUCKET');
   if (!account || !access || !secret || !bucket) return false;
 
   const host   = account + '.r2.cloudflarestorage.com';
@@ -153,7 +161,7 @@ export default async function handler(req, res) {
       // row here so a replayed view keeps the time it actually happened.
       const parked = Object.assign({}, row, { created_at: new Date().toISOString() });
       const missing = ['R2_ACCOUNT_ID', 'R2_ACCESS_KEY_ID', 'R2_SECRET_ACCESS_KEY', 'R2_BUCKET']
-        .filter(function (n) { return !process.env[n]; });
+        .filter(function (n) { return !env(n); });
       if (missing.length) {
         console.error('[track] cannot park view, missing env:', missing.join(','));
       } else if (!(await putToR2(pendingKey(parked), JSON.stringify(parked)))) {
