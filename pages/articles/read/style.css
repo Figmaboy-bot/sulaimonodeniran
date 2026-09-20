@@ -1,0 +1,215 @@
+/* Reader view for a single post. Keeps the site's type scale — serif for
+   headings, slab for body — so writing pulled in from the feed doesn't read
+   like a foreign page. */
+
+.read-main {
+  max-width: 720px;
+  margin: 0 auto;
+  /* Top padding clears the fixed nav pill, matching .articles-main. */
+  padding: 158px 20px 80px;
+}
+
+/* ── Back link ──────────────────────────────── */
+
+.read-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 40px;
+  font-family: var(--font-slab);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.read-back:hover {
+  color: var(--text);
+}
+
+.read-back-arrow {
+  width: 14px;
+  transform: rotate(180deg);
+  opacity: 0.6;
+}
+
+/* ── Header ─────────────────────────────────── */
+
+.read-date {
+  font-family: var(--font-slab);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.read-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 36px;
+}
+
+.read-cover {
+  margin-bottom: 44px;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background: rgba(245, 245, 245, 0.08);
+}
+
+.read-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ── Body ───────────────────────────────────── */
+
+.read-body {
+  font-family: var(--font-slab);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--text-soft);
+}
+
+.read-body p {
+  margin: 0 0 1.4em;
+}
+
+.read-body h2,
+.read-body h3,
+.read-body h4 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.2;
+  margin: 2.2em 0 0.7em;
+}
+
+.read-body h2 { font-size: 1.75rem; }
+.read-body h3 { font-size: 1.4rem; }
+.read-body h4 { font-size: 1.15rem; }
+
+/* Substack bolds its own subheadings inside the h2, which doubles up with the
+   serif face — let the heading style carry the weight instead. */
+.read-body h2 strong,
+.read-body h3 strong,
+.read-body h4 strong {
+  font-weight: 400;
+}
+
+.read-body strong { color: var(--text); font-weight: 600; }
+.read-body em { font-style: italic; }
+
+.read-body a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--text-muted);
+  transition: text-decoration-color 0.2s ease;
+}
+
+.read-body a:hover { text-decoration-color: var(--text); }
+
+.read-body ul,
+.read-body ol {
+  margin: 0 0 1.4em;
+  padding-left: 1.3em;
+}
+
+.read-body li { margin-bottom: 0.5em; }
+
+.read-body blockquote {
+  margin: 2em 0;
+  padding: 2px 0 2px 20px;
+  border-left: 2px solid var(--border);
+  color: var(--text-muted);
+}
+
+.read-body blockquote p:last-child { margin-bottom: 0; }
+
+.read-body hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2.6em 0;
+}
+
+.read-body figure {
+  margin: 2.2em 0;
+}
+
+.read-body img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  background: rgba(245, 245, 245, 0.08);
+}
+
+.read-body figcaption {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.read-body code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.875em;
+  background: rgba(245, 245, 245, 0.08);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+
+.read-body pre {
+  overflow-x: auto;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  background: rgba(245, 245, 245, 0.08);
+  margin: 0 0 1.4em;
+}
+
+.read-body pre code { background: none; padding: 0; }
+
+/* ── Footer ─────────────────────────────────── */
+
+.read-foot {
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.read-foot-note {
+  font-family: var(--font-slab);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.read-foot-note a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.read-error {
+  font-family: var(--font-slab);
+  color: var(--text-muted);
+}
+
+.read-error a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── Loading ────────────────────────────────── */
+
+.sk-line {
+  height: 14px;
+  border-radius: 4px;
+  margin-bottom: 14px;
+}
+
+.sk-line-short { width: 60%; }

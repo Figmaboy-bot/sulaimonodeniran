@@ -130,3 +130,42 @@
     height: 340px;
   }
 }
+/* ── Loading / empty states ─────────────────── */
+
+.article-item.is-skeleton {
+  cursor: default;
+  pointer-events: none;
+}
+
+.sk-cover {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.article-item.is-skeleton .sk-title {
+  height: 20px;
+  width: 55%;
+  border-radius: 4px;
+}
+
+.article-item.is-skeleton .sk-desc {
+  height: 13px;
+  width: 85%;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.articles-empty {
+  grid-column: 1 / -1;
+  padding: 0 20px;
+  font-family: var(--font-slab);
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.articles-empty a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

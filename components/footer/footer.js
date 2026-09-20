@@ -12,7 +12,9 @@ function initSpotify() {
     disc.src = DEFAULT_DISC;
     disc.classList.remove('playing');
     track.textContent  = 'Not Playing';
+    track.title        = '';
     artist.textContent = '';
+    artist.title       = '';
     widget.href = '#';
   }
 
@@ -26,6 +28,10 @@ function initSpotify() {
         disc.classList.add('playing');
         track.textContent  = data.title;
         artist.textContent = data.artist;
+        // Both lines are truncated to one line in CSS, so keep the full text
+        // reachable on hover.
+        track.title        = data.title || '';
+        artist.title       = data.artist || '';
         widget.href        = data.songUrl || '#';
       } else {
         setIdle();

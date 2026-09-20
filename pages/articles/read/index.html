@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Articles — Ola</title>
+  <title>Reading — Ola</title>
   <meta name="description" content="Writing by Ola on design, career, and building things.">
   <meta name="theme-color" content="#1a1a1a">
   <link rel="icon" type="image/png" sizes="64x64" href="/image/favicon-64.png">
@@ -16,23 +16,42 @@
   <!-- Fetch the shared nav/footer markup alongside the stylesheets instead of after all scripts have run -->
   <link rel="preload" href="/components/nav/nav.html" as="fetch" crossorigin>
   <link rel="preload" href="/components/footer/footer.html" as="fetch" crossorigin>
+  <link rel="preconnect" href="https://substackcdn.com">
   <link rel="stylesheet" href="/components/nav/nav.css">
   <link rel="stylesheet" href="/components/footer/footer.css">
   <link rel="stylesheet" href="/portfolio.css">
   <link rel="stylesheet" href="/pages/articles/style.css">
+  <link rel="stylesheet" href="/pages/articles/read/style.css">
 </head>
 
 <body>
 
   <div id="nav-component"></div>
 
-  <main class="articles-main">
+  <main class="read-main">
 
-    <div class="articles-label-row">
-      <p class="articles-label">Articles</p>
-    </div>
+    <a class="read-back" href="/pages/articles/">
+      <img src="/image/Icons/Arrow.svg" alt="" class="read-back-arrow" />
+      Articles
+    </a>
 
-    <div class="articles-list" id="articles-list"></div>
+    <article class="read-article">
+      <header class="read-header">
+        <p class="read-date" id="read-date"></p>
+        <h1 class="read-title" id="read-title"></h1>
+      </header>
+
+      <div class="read-cover" id="read-cover" hidden></div>
+
+      <div class="read-body" id="read-body"></div>
+
+      <footer class="read-foot" id="read-foot" hidden>
+        <p class="read-foot-note">
+          Originally published on
+          <a id="read-canonical" href="https://sulaimonodeniran.substack.com" target="_blank" rel="noopener noreferrer">Substack</a>.
+        </p>
+      </footer>
+    </article>
 
   </main>
 
@@ -42,7 +61,7 @@
   <script defer src="/components/footer/footer.js"></script>
   <script defer src="/scripts/load-components.js"></script>
   <script defer src="/scripts/transitions.js"></script>
-  <script defer src="/pages/articles/script.js"></script>
+  <script defer src="/pages/articles/read/script.js"></script>
   <script defer src="/scripts/track.js"></script>
 
 </body>
