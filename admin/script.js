@@ -1978,7 +1978,15 @@ async function compressImage(file) {
     try {
       data = await fetchAllViews();
     } catch (error) {
-      document.getElementById('analytics-updated').textContent = 'Error: ' + error.message;
+      // Bailing out here used to leave all three sections showing "Loading…"
+      // for good, which reads as a hang rather than a failure.
+      var note = /exceed_cached_egress_quota/.test(error.message || '')
+        ? 'Analytics unavailable — the database is over its monthly quota. Views resume when it resets.'
+        : 'Analytics unavailable — ' + error.message;
+      document.getElementById('analytics-updated').textContent = note;
+      ['analytics-table-wrap', 'analytics-ref-wrap', 'analytics-country-wrap'].forEach(function (id) {
+        document.getElementById(id).innerHTML = '<p class="analytics-empty">Unavailable</p>';
+      });
       return;
     }
 
