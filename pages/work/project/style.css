@@ -40,25 +40,26 @@ main.project-main {
 /* ── Project detail page ───────────────────── */
 
 .project-main {
-  padding-top: 40px;
-  padding-bottom: 80px;
-  max-width: 1600px;
+  max-width: 1704px;
   margin: 0 auto;
+  padding: 40px 12px 164px;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
 }
 
 /* ── Back link ─────────────────────────────── */
 
-.project-back-row {
-  padding-bottom: 8px;
-}
-
 .project-back {
+  align-self: flex-start;
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  padding: 10px 20px;
   font-family: var(--font-slab);
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 400;
+  line-height: 32px;
   color: var(--text-soft);
   text-decoration: none;
   transition: color 0.2s ease;
@@ -68,8 +69,9 @@ main.project-main {
   color: var(--text);
 }
 
-.back-arrow {
-  width: 19px;
+.back-arrow,
+.pager-arrow {
+  width: 19.2px;
   height: 12px;
   filter: invert(1) opacity(0.8);
   transform: rotate(180deg);
@@ -77,7 +79,8 @@ main.project-main {
   flex-shrink: 0;
 }
 
-[data-theme="light"] .back-arrow {
+[data-theme="light"] .back-arrow,
+[data-theme="light"] .pager-arrow {
   filter: invert(0) opacity(0.8);
 }
 
@@ -85,54 +88,9 @@ main.project-main {
   transform: rotate(180deg) translateX(4px);
 }
 
-/* ── Two-column layout ─────────────────────── */
+/* ── Content column ────────────────────────── */
 
-.project-layout {
-  display: block;
-  position: relative;
-  min-height: 100vh;
-}
-
-/* ── Fixed sidebar ─────────────────────────── */
-
-.project-sidebar {
-  position: fixed;
-  left: max(0px, calc(50vw - 800px));
-  top: 0;
-  width: 540px;
-  height: 100vh;
-  padding: 40px 40px 60px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  /* space-between only separates the blocks while there is free height to
-     distribute; a long About fills the sidebar and leaves none, so keep an
-     explicit minimum between the View more button and Industry */
-  gap: 40px;
-  overflow-y: auto;
-  scrollbar-width: none;
-  z-index: 1;
-}
-
-.project-sidebar::-webkit-scrollbar {
-  display: none;
-}
-
-/* when gallery ends, sidebar docks to the bottom of the layout */
-.project-sidebar.is-docked {
-  position: absolute;
-  left: 0;
-  top: auto;
-  bottom: 0;
-}
-
-.sidebar-top {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.sidebar-bottom {
+.project-content {
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -143,7 +101,8 @@ main.project-main {
 .project-header {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 12px;
+  padding: 0 40px;
 }
 
 .project-title {
@@ -152,7 +111,7 @@ main.project-main {
   font-weight: 400;
   font-style: normal;
   color: var(--text);
-  line-height: 1.2;
+  line-height: 48px;
 }
 
 .project-tagline {
@@ -160,82 +119,35 @@ main.project-main {
   font-size: 1rem;
   font-weight: 400;
   color: var(--text-soft);
-  line-height: 1.6;
-  max-width: 500px;
+  line-height: 24px;
 }
 
-/* ── About block ───────────────────────────── */
+/* ── Info row + text rows ──────────────────── */
 
-.project-about {
+/* two 500px columns pushed to either edge; a single column sits left */
+.project-info,
+.project-text {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 0 40px;
+}
+
+.text-col {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: 40px;
+  width: 500px;
+  max-width: 100%;
 }
-
-.meta-body.is-collapsed {
-  display: -webkit-box;
-  -webkit-line-clamp: 7;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.about-toggle-btn {
-  align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: none;
-  border: none;
-  padding: 0;
-  font-family: var(--font-slab);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-soft);
-  cursor: pointer;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  transition: color 0.2s ease;
-}
-
-.about-toggle-btn:hover {
-  color: var(--text);
-}
-
-.toggle-arrow {
-  width: 14px;
-  height: auto;
-  filter: invert(1) opacity(0.6);
-  transform: rotate(90deg);
-  transition: transform 0.25s ease, filter 0.2s ease;
-  flex-shrink: 0;
-}
-
-[data-theme="light"] .toggle-arrow {
-  filter: invert(0) opacity(0.6);
-}
-
-.about-toggle-btn.is-expanded .toggle-arrow {
-  transform: rotate(-90deg);
-}
-
-.about-toggle-btn:hover .toggle-arrow {
-  filter: invert(1) opacity(0.9);
-}
-
-[data-theme="light"] .about-toggle-btn:hover .toggle-arrow {
-  filter: invert(0) opacity(0.9);
-}
-
-/* ── Meta labels/values ────────────────────── */
 
 .meta-label {
   font-family: var(--font-slab);
   font-size: 1rem;
   font-weight: 700;
   color: var(--text-soft);
-  line-height: 1.5;
-  max-width: 500px;
+  line-height: 24px;
 }
 
 .meta-body {
@@ -243,11 +155,18 @@ main.project-main {
   font-size: 1rem;
   font-weight: 400;
   color: var(--text-soft);
-  line-height: 1.6;
-  max-width: 500px;
+  line-height: 24px;
+  /* keep the paragraph breaks typed in admin */
+  white-space: pre-line;
 }
 
-/* ── Project metadata ──────────────────────── */
+.project-side {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 500px;
+  max-width: 100%;
+}
 
 .project-meta {
   display: flex;
@@ -266,7 +185,7 @@ main.project-main {
   font-size: 1rem;
   font-weight: 400;
   color: var(--text-soft);
-  line-height: 1.5;
+  line-height: 24px;
 }
 
 .meta-year {
@@ -275,33 +194,36 @@ main.project-main {
   font-weight: 400;
   font-style: normal;
   color: var(--text);
-  line-height: 1.2;
+  line-height: 28px;
 }
 
 /* ── CTA buttons ───────────────────────────── */
 
-.sidebar-ctas {
+.project-ctas {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-
-.btn-live-project {
+.btn-live-project,
+.btn-work-with-me {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 20px;
   width: 100%;
   padding: 16px 24px;
-  background: transparent;
-  color: var(--text);
-  border: 1px solid var(--border);
   font-family: var(--font-slab);
   font-size: 0.75rem;
   font-weight: 500;
   text-decoration: none;
   border-radius: 12px;
+}
+
+.btn-live-project {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
   transition: border-color 0.2s ease, background 0.2s ease;
 }
 
@@ -310,9 +232,13 @@ main.project-main {
   background: rgba(245, 245, 245, 0.05);
 }
 
-.btn-live-project img {
-  width: 19px;
+.btn-live-project img,
+.btn-work-with-me img {
+  width: 19.2px;
   height: 12px;
+}
+
+.btn-live-project img {
   filter: invert(1) opacity(0.8);
 }
 
@@ -321,29 +247,13 @@ main.project-main {
 }
 
 .btn-work-with-me {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  width: 100%;
-  padding: 16px 24px;
   background: var(--text);
   color: var(--bg);
-  font-family: var(--font-slab);
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-decoration: none;
-  border-radius: 12px;
   transition: opacity 0.2s ease;
 }
 
 .btn-work-with-me:hover {
   opacity: 0.85;
-}
-
-.btn-work-with-me img {
-  width: 19px;
-  height: 12px;
 }
 
 /* invert arrow to match button bg */
@@ -353,8 +263,7 @@ main.project-main {
 
 /* ── Gallery ───────────────────────────────── */
 
-.project-gallery {
-  margin-left: 540px;
+.media-stack {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -370,7 +279,7 @@ main.project-main {
 
 .gallery-img--full {
   width: 100%;
-  height: 800px;
+  height: 1000px;
   flex: none;
 }
 
@@ -404,39 +313,102 @@ main.project-main {
 .gallery-row {
   display: flex;
   gap: 12px;
-  height: 800px;
+  height: 1000px;
 }
 
 .gallery-row .gallery-img {
   height: 100%;
 }
 
+.gallery-row .gallery-img img,
+.gallery-row .gallery-img video {
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* ── Previous / next ───────────────────────── */
+
+.project-pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 64px; /* 100px column gap + 64px = the design's 164px */
+}
+
+.project-pager:empty {
+  display: none;
+}
+
+.pager-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-slab);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.pager-link--next {
+  margin-left: auto;
+}
+
+.pager-link--next .pager-arrow {
+  transform: none;
+}
+
+.pager-link:hover .pager-arrow {
+  transform: rotate(180deg) translateX(4px);
+}
+
+.pager-link--next:hover .pager-arrow {
+  transform: translateX(4px);
+}
+
 /* ── Responsive ────────────────────────────── */
 
-@media (max-width: 1024px) {
-  .project-sidebar {
-    flex: 0 0 380px;
+@media (max-width: 1280px) {
+  .gallery-img--full,
+  .gallery-row {
+    height: 72vw;
   }
 }
 
 @media (max-width: 768px) {
   .project-main {
-    padding-top: 20px;
+    padding: 20px 12px 100px;
+    gap: 48px;
   }
 
-  /* .is-docked must not win here — it would rip the sidebar out of flow
-     and float it over the gallery once the page bottom comes into view */
-  .project-sidebar,
-  .project-sidebar.is-docked {
-    position: static;
+  .project-back {
+    padding: 10px 8px;
+    font-size: 1rem;
+  }
+
+  .project-header,
+  .project-info,
+  .project-text {
+    padding: 0 8px;
+  }
+
+  .project-title {
+    font-size: 2rem;
+    line-height: 40px;
+  }
+
+  .project-info,
+  .project-text {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .text-col,
+  .project-side {
     width: 100%;
-    height: auto;
-    overflow: visible;
-    padding: 20px 20px 40px;
-  }
-
-  .project-gallery {
-    margin-left: 0;
   }
 
   .gallery-img--full {
@@ -445,6 +417,14 @@ main.project-main {
 
   .gallery-row {
     height: 260px;
+  }
+
+  .project-pager {
+    margin-top: 32px;
+  }
+
+  .pager-link {
+    font-size: 1rem;
   }
 }
 
@@ -456,6 +436,7 @@ main.project-main {
 
   .gallery-row .gallery-img {
     height: 260px;
+    flex: none;
   }
 }
 

@@ -232,9 +232,20 @@ async function compressImage(file) {
         (section.images || []).forEach(function (img) {
           flat.push({ src: img.src || null, w: img.w || null, h: img.h || null, alt: img.alt || '', layout: 'half', mediaType: img.mediaType || 'image' });
         });
+      } else if (section.type === 'text') {
+        flat.push({ kind: 'text', columns: textColumns(section.columns) });
       }
     });
     return flat;
+  }
+
+  // A text block always carries two column slots in the editor; empty ones are
+  // dropped on save, so a block can hold one column or two.
+  function textColumns(cols) {
+    cols = cols || [];
+    return [0, 1].map(function (k) {
+      return { heading: (cols[k] && cols[k].heading) || '', body: (cols[k] && cols[k].body) || '' };
+    });
   }
 
   function galleryToProjectFormat() {
@@ -242,7 +253,13 @@ async function compressImage(file) {
     var i = 0;
     while (i < state.gallery.length) {
       var item = state.gallery[i];
-      if (item.layout === 'half' && state.gallery[i + 1] && state.gallery[i + 1].layout === 'half') {
+      if (item.kind === 'text') {
+        var cols = item.columns.map(function (c) {
+          return { heading: c.heading.trim(), body: c.body.trim() };
+        }).filter(function (c) { return c.heading || c.body; });
+        if (cols.length) result.push({ type: 'text', columns: cols });
+        i++;
+      } else if (item.layout === 'half' && state.gallery[i + 1] && state.gallery[i + 1].layout === 'half') {
         var next = state.gallery[i + 1];
         result.push({ type: 'pair', images: [
           { src: item.src, w: item.w || null, h: item.h || null, alt: item.alt, mediaType: item.mediaType || 'image' },
@@ -364,43 +381,11 @@ async function compressImage(file) {
     var grid = document.getElementById('gallery-grid');
     grid.innerHTML = '';
 
-    state.gallery.forEach(function (item, idx) {
-      var isVideo  = item.mediaType === 'video';
-      var isCover  = !!(state.activeCoverUrl && item.src && item.src === state.activeCoverUrl);
-      var card     = document.createElement('div');
-      card.className   = 'gcard' + (isCover ? ' is-cover' : '');
-      card.dataset.idx = idx;
-
-      var mediaHtml      = isVideo
-        ? '<video class="gcard-img" muted preload="metadata" loop playsinline></video>'
-        : '<img class="gcard-img" src="" alt="" />';
-      var coverBtnHtml   = isVideo ? '' : '<button class="gcard-cover-btn" title="Set as cover">★</button>';
-      var videoBadgeHtml = isVideo ? '<span class="gcard-video-badge">Video</span>' : '';
-
+    function wireDrag(card, idx) {
       card.draggable = true;
-
-      card.innerHTML =
-        '<div class="gcard-drag-handle" title="Drag to reorder">' +
-          '<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><circle cx="4" cy="3" r="1.3"/><circle cx="10" cy="3" r="1.3"/><circle cx="4" cy="7" r="1.3"/><circle cx="10" cy="7" r="1.3"/><circle cx="4" cy="11" r="1.3"/><circle cx="10" cy="11" r="1.3"/></svg>' +
-        '</div>' +
-        '<div class="gcard-img-wrap">' +
-          mediaHtml +
-          '<div class="gcard-overlay">' +
-            coverBtnHtml +
-            '<button class="gcard-remove-btn" title="Remove">✕</button>' +
-          '</div>' +
-          '<span class="gcard-cover-badge">Cover</span>' +
-          videoBadgeHtml +
-        '</div>' +
-        '<div class="gcard-meta">' +
-          '<input class="field-input gcard-alt" type="text" placeholder="' + (isVideo ? 'Video label' : 'Alt text') + '" value="' + esc(item.alt) + '" />' +
-          '<div class="gcard-layout">' +
-            '<button class="gcard-layout-btn' + (item.layout !== 'half' ? ' active' : '') + '" data-layout="full">Full</button>' +
-            '<button class="gcard-layout-btn' + (item.layout === 'half' ? ' active' : '') + '" data-layout="half">Half</button>' +
-          '</div>' +
-        '</div>';
-
       card.addEventListener('dragstart', function (e) {
+        // typing in a text block must not start a drag
+        if (e.target.closest && e.target.closest('input, textarea')) { e.preventDefault(); return; }
         dragSrcIdx = idx;
         e.dataTransfer.effectAllowed = 'move';
         setTimeout(function () { card.classList.add('is-dragging'); }, 0);
@@ -423,6 +408,82 @@ async function compressImage(file) {
         state.gallery.splice(idx, 0, moved);
         renderGalleryGrid();
       });
+    }
+
+    var DRAG_ICON = '<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><circle cx="4" cy="3" r="1.3"/><circle cx="10" cy="3" r="1.3"/><circle cx="4" cy="7" r="1.3"/><circle cx="10" cy="7" r="1.3"/><circle cx="4" cy="11" r="1.3"/><circle cx="10" cy="11" r="1.3"/></svg>';
+
+    function renderTextCard(item, idx) {
+      var card = document.createElement('div');
+      card.className   = 'gcard gcard--text';
+      card.dataset.idx = idx;
+
+      var colsHtml = item.columns.map(function (c, k) {
+        return '<div class="gcard-text-col" data-col="' + k + '">' +
+          '<input class="field-input gcard-text-heading" type="text" placeholder="' + (k === 0 ? 'Heading, e.g. The Goal' : 'Second heading (optional)') + '" value="' + esc(c.heading) + '" />' +
+          '<textarea class="field-input field-textarea gcard-text-body" rows="4" placeholder="' + (k === 0 ? 'Text' : 'Second column text (optional)') + '">' + esc(c.body) + '</textarea>' +
+        '</div>';
+      }).join('');
+
+      card.innerHTML =
+        '<div class="gcard-drag-handle gcard-text-bar" title="Drag to reorder">' +
+          '<span class="gcard-text-label">Text</span>' +
+          DRAG_ICON +
+          '<button class="gcard-remove-btn" title="Remove">✕</button>' +
+        '</div>' +
+        '<div class="gcard-text-cols">' + colsHtml + '</div>';
+
+      wireDrag(card, idx);
+
+      card.querySelector('.gcard-remove-btn').addEventListener('click', function () {
+        state.gallery.splice(idx, 1);
+        renderGalleryGrid();
+      });
+
+      card.querySelectorAll('.gcard-text-col').forEach(function (colEl) {
+        var col = state.gallery[idx].columns[+colEl.dataset.col];
+        colEl.querySelector('.gcard-text-heading').addEventListener('input', function () { col.heading = this.value; });
+        colEl.querySelector('.gcard-text-body').addEventListener('input', function () { col.body = this.value; });
+      });
+
+      grid.appendChild(card);
+    }
+
+    state.gallery.forEach(function (item, idx) {
+      if (item.kind === 'text') { renderTextCard(item, idx); return; }
+      var isVideo  = item.mediaType === 'video';
+      var isCover  = !!(state.activeCoverUrl && item.src && item.src === state.activeCoverUrl);
+      var card     = document.createElement('div');
+      card.className   = 'gcard' + (isCover ? ' is-cover' : '');
+      card.dataset.idx = idx;
+
+      var mediaHtml      = isVideo
+        ? '<video class="gcard-img" muted preload="metadata" loop playsinline></video>'
+        : '<img class="gcard-img" src="" alt="" />';
+      var coverBtnHtml   = isVideo ? '' : '<button class="gcard-cover-btn" title="Set as cover">★</button>';
+      var videoBadgeHtml = isVideo ? '<span class="gcard-video-badge">Video</span>' : '';
+
+      card.innerHTML =
+        '<div class="gcard-drag-handle" title="Drag to reorder">' +
+          DRAG_ICON +
+        '</div>' +
+        '<div class="gcard-img-wrap">' +
+          mediaHtml +
+          '<div class="gcard-overlay">' +
+            coverBtnHtml +
+            '<button class="gcard-remove-btn" title="Remove">✕</button>' +
+          '</div>' +
+          '<span class="gcard-cover-badge">Cover</span>' +
+          videoBadgeHtml +
+        '</div>' +
+        '<div class="gcard-meta">' +
+          '<input class="field-input gcard-alt" type="text" placeholder="' + (isVideo ? 'Video label' : 'Alt text') + '" value="' + esc(item.alt) + '" />' +
+          '<div class="gcard-layout">' +
+            '<button class="gcard-layout-btn' + (item.layout !== 'half' ? ' active' : '') + '" data-layout="full">Full</button>' +
+            '<button class="gcard-layout-btn' + (item.layout === 'half' ? ' active' : '') + '" data-layout="half">Half</button>' +
+          '</div>' +
+        '</div>';
+
+      wireDrag(card, idx);
 
       var mediaEl = card.querySelector('.gcard-img');
       if (item.src) mediaEl.src = item.src;
@@ -592,6 +653,14 @@ async function compressImage(file) {
     var input = document.getElementById('upload-input');
 
     input.addEventListener('change', function () { handleFiles(this.files); this.value = ''; });
+
+    document.getElementById('btn-add-text').addEventListener('click', function () {
+      state.gallery.push({ kind: 'text', columns: textColumns() });
+      renderGalleryGrid();
+      var cards = document.querySelectorAll('#gallery-grid .gcard--text');
+      var last  = cards[cards.length - 1];
+      if (last) { last.scrollIntoView({ block: 'center', behavior: 'smooth' }); last.querySelector('input').focus({ preventScroll: true }); }
+    });
     zone.addEventListener('dragover',  function (e) { e.preventDefault(); this.classList.add('drag-over'); });
     zone.addEventListener('dragleave', function ()  { this.classList.remove('drag-over'); });
     zone.addEventListener('drop',      function (e) {

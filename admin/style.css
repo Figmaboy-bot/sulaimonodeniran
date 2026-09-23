@@ -874,6 +874,65 @@ body {
   color: var(--text);
 }
 
+/* ── Text block card ───────────────────────── */
+
+.gcard--text {
+  grid-column: 1 / -1;
+}
+
+.gcard-text-bar {
+  justify-content: space-between;
+  padding: 6px 10px;
+}
+
+.gcard-text-label {
+  font-family: var(--font-slab);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.gcard-text-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 12px;
+}
+
+.gcard-text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gcard-text-heading,
+.gcard-text-body {
+  font-size: 0.8rem;
+  padding: 7px 10px;
+}
+
+.btn-add-text {
+  margin-top: 14px;
+  width: 100%;
+  background: transparent;
+  border: 1px dashed var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  font-family: var(--font-slab);
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.btn-add-text:hover {
+  border-color: rgba(245,245,245,0.4);
+  color: var(--text);
+}
+
+@media (max-width: 640px) {
+  .gcard-text-cols { grid-template-columns: 1fr; }
+}
+
 /* ── Buttons ───────────────────────────────── */
 
 .btn-primary {

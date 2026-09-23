@@ -116,7 +116,7 @@ function coverOf(project) {
   if (project.cover_url) return project.cover_url;
   if (project.coverSrc)  return project.coverSrc;
   if (project.cardImg)   return project.cardImg;
-  const first = (project.gallery || [])[0];
+  const first = (project.gallery || []).find((s) => s.type !== 'text');
   if (!first) return '';
   if (first.type === 'full') return first.src || '';
   return (first.images && first.images[0] && first.images[0].src) || '';

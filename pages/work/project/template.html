@@ -28,31 +28,26 @@
 <body>
 
   <main class="project-main">
-    <div class="project-layout">
 
-      <!-- Left fixed sidebar -->
-      <aside class="project-sidebar">
-        <div class="sidebar-top">
-          <div class="project-back-row">
-            <a href="/pages/work/" class="project-back" id="back-btn">
-              <img src="/image/Icons/Arrow.svg" alt="" class="back-arrow" />
-              Back
-            </a>
-          </div>
-          <div class="project-header">
-            <h1 class="project-title" id="project-title"></h1>
-          </div>
-          <div class="project-about">
-            <p class="meta-label">About</p>
-            <p class="meta-body" id="project-about"></p>
-            <button class="about-toggle-btn" id="about-toggle" style="display:none;">
-              <span>View more</span>
-              <img src="/image/Icons/Arrow.svg" alt="" class="toggle-arrow" />
-            </button>
-          </div>
+    <a href="/pages/work/" class="project-back" id="back-btn">
+      <img src="/image/Icons/Arrow.svg" alt="" class="back-arrow" />
+      Back
+    </a>
+
+    <!-- Header, then the gallery: images, text rows and the project info
+         (placed right after the cover by script.js), in the order set in admin -->
+    <div class="project-content" id="project-gallery">
+      <header class="project-header">
+        <h1 class="project-title" id="project-title"></h1>
+        <p class="project-tagline" id="project-tagline"></p>
+      </header>
+
+      <section class="project-info" id="project-info">
+        <div class="text-col">
+          <p class="meta-label">About</p>
+          <p class="meta-body" id="project-about"></p>
         </div>
-
-        <div class="sidebar-bottom">
+        <div class="project-side">
           <div class="project-meta">
             <div class="meta-row">
               <p class="meta-label">Industry</p>
@@ -67,7 +62,7 @@
               <p class="meta-year" id="project-year"></p>
             </div>
           </div>
-          <div class="sidebar-ctas">
+          <div class="project-ctas">
             <a href="#" class="btn-live-project" id="btn-live" style="display:none;" target="_blank" rel="noopener">
               View Live Project
               <img src="/image/Icons/Arrow.svg" alt="" />
@@ -78,12 +73,12 @@
             </a>
           </div>
         </div>
-      </aside>
-
-      <!-- Right scrollable gallery -->
-      <div class="project-gallery" id="project-gallery"></div>
-
+      </section>
     </div>
+
+    <!-- Previous / next project, filled by script.js -->
+    <nav class="project-pager" id="project-pager" aria-label="More projects"></nav>
+
   </main>
 
   <div id="footer-component"></div>

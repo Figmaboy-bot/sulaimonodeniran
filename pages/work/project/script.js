@@ -55,40 +55,16 @@
 
   function render(project) {
 
-    // ── Populate sidebar ────────────────────────
+    // ── Populate header + info ──────────────────
     document.title = project.title + ' — Ola';
     document.getElementById('project-title').textContent    = project.title;
-    var aboutEl   = document.getElementById('project-about');
-    var toggleBtn = document.getElementById('about-toggle');
-    aboutEl.textContent = project.about;
-
-    var shortScreen = window.matchMedia('(max-height: 960px)');
-
-    function syncAboutCollapse() {
-      if (shortScreen.matches) {
-        aboutEl.classList.add('is-collapsed');
-        var overflows = aboutEl.scrollHeight > aboutEl.clientHeight + 2;
-        toggleBtn.style.display = overflows ? '' : 'none';
-        if (!overflows) aboutEl.classList.remove('is-collapsed');
-      } else {
-        aboutEl.classList.remove('is-collapsed');
-        toggleBtn.style.display = 'none';
-        toggleBtn.querySelector('span').textContent = 'View more';
-        toggleBtn.classList.remove('is-expanded');
-      }
-    }
-
-    toggleBtn.addEventListener('click', function () {
-      var collapsed = aboutEl.classList.toggle('is-collapsed');
-      toggleBtn.querySelector('span').textContent = collapsed ? 'View more' : 'Show less';
-      toggleBtn.classList.toggle('is-expanded', !collapsed);
-    });
-
-    syncAboutCollapse();
-    shortScreen.addEventListener('change', syncAboutCollapse);
-    document.getElementById('project-industry').textContent = project.industry;
-    document.getElementById('project-role').textContent     = project.role;
-    document.getElementById('project-year').textContent     = project.year;
+    var taglineEl = document.getElementById('project-tagline');
+    taglineEl.textContent = project.tagline || '';
+    if (!project.tagline) taglineEl.style.display = 'none';
+    document.getElementById('project-about').textContent    = project.about || '';
+    document.getElementById('project-industry').textContent = project.industry || '';
+    document.getElementById('project-role').textContent     = project.role || '';
+    document.getElementById('project-year').textContent     = project.year || '';
 
     var liveBtn = document.getElementById('btn-live');
     var liveUrl = project.live_url || project.liveUrl;
@@ -248,13 +224,76 @@
       }
     }
 
+    // Text row: one or two heading + body columns set side by side.
+    function makeText(section) {
+      var row = document.createElement('section');
+      row.className = 'project-text';
+      (section.columns || []).forEach(function (col) {
+        if (!col || (!col.heading && !col.body)) return;
+        var c = document.createElement('div');
+        c.className = 'text-col';
+        if (col.heading) {
+          var h = document.createElement('h2');
+          h.className   = 'meta-label';
+          h.textContent = col.heading;
+          c.appendChild(h);
+        }
+        if (col.body) {
+          var body = document.createElement('p');
+          body.className   = 'meta-body';
+          body.textContent = col.body;
+          c.appendChild(body);
+        }
+        row.appendChild(c);
+      });
+      return row.children.length ? row : null;
+    }
+
+    // Consecutive images sit 12px apart; text rows and the info block get the
+    // wider 40px rhythm of the content column, so images are grouped into stacks.
+    var info  = document.getElementById('project-info');
+    var stack = null;
+    var infoPlaced = false;
+
+    function placeInfo() {
+      if (infoPlaced) return;
+      gallery.appendChild(info);
+      infoPlaced = true;
+    }
+
+    function mediaStack() {
+      if (!stack) {
+        stack = document.createElement('div');
+        stack.className = 'media-stack';
+        gallery.appendChild(stack);
+      }
+      return stack;
+    }
+
     (project.gallery || []).forEach(function (section, i) {
+      if (section.type === 'text') {
+        var t = makeText(section);
+        if (!t) return;
+        placeInfo();
+        stack = null;
+        gallery.appendChild(t);
+        return;
+      }
+
       if (section.type === 'full') {
         var wrap = makeMedia(section.mediaType || 'image', section.alt || '', i === 0, section.w, section.h);
-        if (i === 0) wrap.classList.add('gallery-img--full'); // only cover gets fixed height
         resolveMedia(wrap.firstChild, section.imageId, section.src, section.mediaType);
-        gallery.appendChild(wrap);
+        if (i === 0) {
+          // the cover gets a fixed-height frame with the project info right below
+          wrap.classList.add('gallery-img--full');
+          gallery.insertBefore(wrap, info);
+          placeInfo();
+          return;
+        }
+        placeInfo();
+        mediaStack().appendChild(wrap);
       } else if (section.type === 'pair') {
+        placeInfo();
         var row = document.createElement('div');
         row.className = 'gallery-row';
         (section.images || []).forEach(function (item) {
@@ -262,30 +301,50 @@
           resolveMedia(w.firstChild, item.imageId, item.src, item.mediaType);
           row.appendChild(w);
         });
-        gallery.appendChild(row);
+        mediaStack().appendChild(row);
       }
     });
+    placeInfo();
 
-    // ── Sidebar dock on scroll ──────────────────
-    var sidebar = document.querySelector('.project-sidebar');
-    var layout  = document.querySelector('.project-layout');
+    // ── Previous / next project ─────────────────
+    var pager = document.getElementById('project-pager');
+    var ARROW = '<img src="/image/Icons/Arrow.svg" alt="" class="pager-arrow" />';
 
-    // docking only applies while the sidebar is a fixed column (desktop);
-    // below 768px it sits in normal flow above the gallery
-    var canDock = window.matchMedia('(min-width: 769px)');
-
-    function updateSidebar() {
-      if (!sidebar || !layout) return;
-      if (canDock.matches && layout.getBoundingClientRect().bottom <= window.innerHeight) {
-        sidebar.classList.add('is-docked');
-      } else {
-        sidebar.classList.remove('is-docked');
-      }
+    function pagerLink(p, dir) {
+      var a = document.createElement('a');
+      a.className = 'pager-link pager-link--' + dir;
+      a.href = '/pages/work/project/?id=' + encodeURIComponent(p.id);
+      var label = document.createElement('span');
+      label.textContent = p.title || '';
+      a.innerHTML = dir === 'prev' ? ARROW : '';
+      a.appendChild(label);
+      if (dir === 'next') a.insertAdjacentHTML('beforeend', ARROW);
+      a.setAttribute('aria-label', (dir === 'prev' ? 'Previous project: ' : 'Next project: ') + (p.title || ''));
+      return a;
     }
 
-    window.addEventListener('scroll', updateSidebar, { passive: true });
-    canDock.addEventListener('change', updateSidebar);
-    updateSidebar();
+    function renderPager(rows) {
+      var list = (rows || []).filter(function (p) {
+        return p && p.id && (!p.coming_soon || String(p.id) === String(project.id || id));
+      });
+      var at = -1;
+      for (var k = 0; k < list.length; k++) {
+        if (String(list[k].id) === String(project.id || id)) { at = k; break; }
+      }
+      pager.innerHTML = '';
+      if (at === -1 || list.length < 2) return;
+      // wraps around, so the first and last projects still point somewhere
+      var prev = list[(at - 1 + list.length) % list.length];
+      var next = list[(at + 1) % list.length];
+      pager.appendChild(pagerLink(prev, 'prev'));
+      if (next !== prev) pager.appendChild(pagerLink(next, 'next'));
+    }
+
+    if (typeof sbSelect === 'function') {
+      sbSelect('projects', 'select=id,title,coming_soon,sort_order&order=sort_order.asc', renderPager)
+        .then(renderPager)
+        .catch(function () {});
+    }
 
     // ── Back button exit ────────────────────────
     var backBtn = document.getElementById('back-btn');
