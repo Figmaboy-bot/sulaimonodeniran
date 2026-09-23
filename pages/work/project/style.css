@@ -160,9 +160,16 @@ main.project-main {
   white-space: pre-line;
 }
 
+/* stretch to the About column's height: meta at the top, buttons at the
+   bottom; the gap stays as the minimum when About is short */
+.project-info {
+  align-items: stretch;
+}
+
 .project-side {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 40px;
   width: 500px;
   max-width: 100%;
