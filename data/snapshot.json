@@ -945,6 +945,54 @@
       "sort_order": 7,
       "created_at": "2026-05-16T15:13:06.337063+00:00",
       "coming_soon": true
+    },
+    {
+      "id": "nexflo",
+      "sort_order": 8,
+      "title": "Nexflo",
+      "tagline": "Automate your workflows. Connect your tools. Get more done.",
+      "about": "Nexflo is a modern workflow automation platform designed to help teams connect their favorite tools and automate repetitive processes without complex setup. I worked on the brand identity and product experience, creating a cohesive visual system and intuitive interfaces across onboarding, authentication, workflow management, and pricing.",
+      "industry": "SaaS / Workflow Automation",
+      "role": "Product Designer · UI/UX · Brand Identity",
+      "year": "2026",
+      "meta": "SaaS / Workflow Automation · 2026",
+      "live_url": null,
+      "coming_soon": true,
+      "cover_url": "/image/uploads/images/1790283513542_tpui9.webp",
+      "gallery": [
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790283513542_tpui9.webp",
+          "w": 2000,
+          "h": 1500,
+          "alt": "MacBook Air (2022)",
+          "mediaType": "image"
+        }
+      ]
+    },
+    {
+      "id": "scribe",
+      "sort_order": 9,
+      "title": "Scribe",
+      "tagline": "A modern doc editor for writing, organizing, and managing your ideas.",
+      "about": "Scribe is a cross-platform document editor and workspace designed to bring writing, organization, and collaboration into one focused environment. I designed the product experience from the ground up, exploring the desktop workspace, document editor, navigation, onboarding, authentication, and supporting product ecosystem. The experience is designed desktop-first, with a flexible foundation that can extend naturally to mobile and other platforms.",
+      "industry": "Productivity / SaaS",
+      "role": "Product Designer · UI/UX",
+      "year": "2026",
+      "meta": "Productivity / SaaS · 2026",
+      "live_url": null,
+      "coming_soon": true,
+      "cover_url": "/image/uploads/images/1790284595600_lhpib.webp",
+      "gallery": [
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790284595600_lhpib.webp",
+          "w": 2000,
+          "h": 1500,
+          "alt": "MacBook_Mockup_3",
+          "mediaType": "image"
+        }
+      ]
     }
   ],
   "playground_items": [
