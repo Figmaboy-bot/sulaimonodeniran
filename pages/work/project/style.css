@@ -142,6 +142,11 @@ main.project-main {
   max-width: 100%;
 }
 
+/* a one-column text row spans the full content width */
+.project-text .text-col:only-child {
+  width: 100%;
+}
+
 .meta-label {
   font-family: var(--font-slab);
   font-size: 1rem;
