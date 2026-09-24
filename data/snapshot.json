@@ -260,394 +260,6 @@
       "coming_soon": false
     },
     {
-      "id": "task-hive-landing-page",
-      "title": "Task Hive - Landing Page",
-      "tagline": "A modern task management platform designed for teams and individuals",
-      "about": "TaskHive is a modern task management platform designed for teams and individuals who want to stay organized, hit deadlines, and work smarter. With powerful features like Kanban boards, AI task suggestions, and real-time team activity, TaskHive simplifies collaboration and boosts productivity—all in one intuitive workspace.",
-      "industry": "CRM",
-      "role": "UI/UX Design & Web Dev",
-      "year": "2025",
-      "meta": "CRM · 2025",
-      "live_url": "https://taskhive-21eff5.webflow.io/",
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628294732_ezj30.webp",
-      "gallery": [
-        {
-          "h": 1500,
-          "w": 2000,
-          "alt": "RnCljM1WRpcafd6NUGXeTRgysI (1)",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628296764_23a5o.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "alt": "CbudueseXBQi6wC7AdAcfxos",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628297442_at4a7.mp4",
-          "type": "full",
-          "mediaType": "video"
-        },
-        {
-          "h": 1333,
-          "w": 2000,
-          "alt": "XDSlC9RHpLnntGnwv4PXZp7kbxI",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628300819_x8qw9.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 8866,
-          "w": 1354,
-          "alt": "Frame 1000011562",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628307543_gorgi.webp",
-          "type": "full",
-          "mediaType": "image"
-        }
-      ],
-      "sort_order": 2,
-      "created_at": "2026-05-01T09:37:59.310904+00:00",
-      "coming_soon": false
-    },
-    {
-      "id": "coin-compass",
-      "title": "Coin Compass",
-      "tagline": "Your smart financial guide, built to help you navigate money management with confidence.",
-      "about": "CoinCompass is your smart financial guide, built to help you navigate money management with confidence. Designed for the modern user, CoinCompass combines intelligent insights, intuitive tools, and real-time tracking to help you make smarter decisions about your finances.\nWhether you're budgeting, investing, or just trying to stay on top of your spending, CoinCompass empowers you to take control with ease. Our sleek interface, personalized recommendations, and seamless experience make managing money less stressful—and a lot more rewarding.",
-      "industry": "Fintech",
-      "role": "UI/UX Design, Brand Design",
-      "year": "2023",
-      "meta": "Fintech · 2024",
-      "live_url": null,
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628311381_ohyw8.webp",
-      "gallery": [
-        {
-          "h": 1200,
-          "w": 1600,
-          "alt": "MacBook Pro 16_ - 3",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628313461_xvid8.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "alt": "coin compass video",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628314119_c2fun.mp4",
-          "type": "full",
-          "mediaType": "video"
-        },
-        {
-          "h": 1333,
-          "w": 2000,
-          "alt": "bnN2HUzdjB1ojpN4vliiV47zM",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628320133_h5o7u.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1667,
-          "w": 2000,
-          "alt": "Onboarding",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628320835_f7a48.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1667,
-          "w": 2000,
-          "alt": "Sign up and Sign In",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628321778_nwmyk.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1667,
-          "w": 2000,
-          "alt": "OTP",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628322338_8uyzg.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1667,
-          "w": 2000,
-          "alt": "Home and Goal screen",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628328660_qcx33.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1667,
-          "w": 2000,
-          "alt": "Send screen",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628329695_grdkd.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1667,
-          "w": 2000,
-          "alt": "CashBuddy",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628330478_zc7an.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1667,
-          "w": 2000,
-          "alt": "Add screen",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628331556_iv8cg.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1667,
-          "w": 2000,
-          "alt": "Notifications and profit",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628332280_ex88i.webp",
-          "type": "full",
-          "mediaType": "image"
-        }
-      ],
-      "sort_order": 3,
-      "created_at": "2026-05-01T09:38:53.602026+00:00",
-      "coming_soon": false
-    },
-    {
-      "id": "ecowave",
-      "title": "Ecowave",
-      "tagline": "A bold visual identity crafted to make a lasting impression.",
-      "about": "Ecowave is a forward-thinking renewable energy brand dedicated to harnessing nature’s power for a sustainable future. Focused on delivering clean energy solutions through solar, wind, and hydro power, Ecowave empowers communities with accessible, eco-friendly alternatives to traditional energy sources.\n\nBuilt on the principles of innovation, sustainability, and impact, Ecowave integrates cutting-edge technology with environmentally responsible practices to reduce carbon footprints and drive a greener tomorrow. Through thoughtful branding and strategic positioning, Ecowave aims to not only provide energy solutions but also inspire a global shift toward renewable power.",
-      "industry": "Renewable energy",
-      "role": "Brand Identity",
-      "year": "2024",
-      "meta": "Renewable energy · 2024",
-      "live_url": null,
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834754542_zlfjf.webp",
-      "gallery": [
-        {
-          "h": 1364,
-          "w": 2000,
-          "alt": "Free Banners on Building Mockup 1",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834754542_zlfjf.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "alt": "jOul2FmuQxgDpSZlBvaXZS5Kvc",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/videos/1778836794324_zax3y.mp4",
-          "type": "full",
-          "mediaType": "video"
-        },
-        {
-          "h": 1667,
-          "w": 2000,
-          "alt": "Color",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834731017_gk2rq.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1156,
-          "w": 2000,
-          "alt": "Logo Dark green",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834789019_r5ai0.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1156,
-          "w": 2000,
-          "alt": "Logo green",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834797805_j48is.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1156,
-          "w": 2000,
-          "alt": "Logo Yellow",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834804050_pd8qx.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1156,
-          "w": 2000,
-          "alt": "MacBook Air - 4",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834809572_eir6k.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1334,
-          "w": 2000,
-          "alt": "Container Mockup 1",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834745835_62wzp.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1335,
-          "w": 2000,
-          "alt": "FREE-Tote-Bag-Mockup-Studio-Series_01_By-Mocku 1",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834762935_vwiwc.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1501,
-          "w": 2000,
-          "alt": "Fence_Billboard_Mockup_3-Recovered 4",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834749427_lft42.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1156,
-          "w": 2000,
-          "alt": "MacBook Air - 8",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834817494_eyvpx.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1251,
-          "w": 2000,
-          "alt": "MacBook Air - 10",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834824178_2fo7y.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1390,
-          "w": 2000,
-          "alt": "MacBook Air - 11",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834837845_yfzan.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1601,
-          "w": 2000,
-          "alt": "Mockup 2-1 1",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834844096_t42j0.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1335,
-          "w": 2000,
-          "alt": "tape-mockup-glued-to-the-floor-isometric 1",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834856063_4kvl1.webp",
-          "type": "full",
-          "mediaType": "image"
-        }
-      ],
-      "sort_order": 4,
-      "created_at": "2026-05-15T08:49:25.908566+00:00",
-      "coming_soon": false
-    },
-    {
-      "id": "nexflo-website",
-      "title": "Nexflo - Website",
-      "tagline": "A website for an automation platform that simplifies connecting apps, tools, and workflows.",
-      "about": "Similar to platforms like Zapier and n8n, Nexflo empowers users to automate repetitive tasks, streamline operations, and improve productivity without needing to write code.\n\nWith a focus on flexibility, speed, and ease of use, Nexflo helps users build powerful workflows that move data seamlessly across applications, trigger actions in real time, and eliminate manual work. Whether it’s syncing data between CRMs, automating notifications, or integrating payment systems, Nexflo ensures that workflows run reliably and efficiently.\n\nBuilt with scalability in mind, Nexflo caters to both individual creators looking to save time and teams or businessesaiming to optimize their processes.",
-      "industry": "CRM",
-      "role": "UIUX design, Web dev",
-      "year": "2025",
-      "meta": "CRM · 2025",
-      "live_url": "https://nexflo-automation.webflow.io/",
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628333894_mf0uc.webp",
-      "gallery": [
-        {
-          "h": 1500,
-          "w": 2000,
-          "alt": "Hand and iPhone 16 Prdo",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628335250_ypfvq.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "alt": "Timeline 1",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628337191_1nu6j.mp4",
-          "type": "full",
-          "mediaType": "video"
-        },
-        {
-          "h": 1293,
-          "w": 2000,
-          "alt": "MacBook Pro 16_ - 3",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628345363_39ae0.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 464,
-          "w": 2000,
-          "alt": "Brands",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628347163_lqr9a.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1906,
-          "w": 2000,
-          "alt": "Features",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628347608_ram7z.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1027,
-          "w": 2000,
-          "alt": "Benefits Dark",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628348821_iywjl.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1057,
-          "w": 2000,
-          "alt": "Automation (Dark)",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628349848_aguhg.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1531,
-          "w": 2000,
-          "alt": "Testiomial",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628350371_7e8hk.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1131,
-          "w": 2000,
-          "alt": "Pricing",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628351862_bm4pf.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1309,
-          "w": 2000,
-          "alt": "Faq",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628352506_5l3tm.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1330,
-          "w": 2000,
-          "alt": "Footer",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628353190_sza24.webp",
-          "type": "full",
-          "mediaType": "image"
-        }
-      ],
-      "sort_order": 5,
-      "created_at": "2026-05-01T09:39:14.531838+00:00",
-      "coming_soon": false
-    },
-    {
       "id": "orbit",
       "title": "Orbit",
       "tagline": "Orbit is a multi-currency fintech app that allows users to send, receive, and hold Naira, USD, Euro, and stablecoins seamlessly in one place.",
@@ -821,8 +433,396 @@
           ]
         }
       ],
-      "sort_order": 6,
+      "sort_order": 2,
       "created_at": "2026-05-16T13:43:30.550027+00:00",
+      "coming_soon": false
+    },
+    {
+      "id": "task-hive-landing-page",
+      "title": "Task Hive - Landing Page",
+      "tagline": "A modern task management platform designed for teams and individuals",
+      "about": "TaskHive is a modern task management platform designed for teams and individuals who want to stay organized, hit deadlines, and work smarter. With powerful features like Kanban boards, AI task suggestions, and real-time team activity, TaskHive simplifies collaboration and boosts productivity—all in one intuitive workspace.",
+      "industry": "CRM",
+      "role": "UI/UX Design & Web Dev",
+      "year": "2025",
+      "meta": "CRM · 2025",
+      "live_url": "https://taskhive-21eff5.webflow.io/",
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628294732_ezj30.webp",
+      "gallery": [
+        {
+          "h": 1500,
+          "w": 2000,
+          "alt": "RnCljM1WRpcafd6NUGXeTRgysI (1)",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628296764_23a5o.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "alt": "CbudueseXBQi6wC7AdAcfxos",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628297442_at4a7.mp4",
+          "type": "full",
+          "mediaType": "video"
+        },
+        {
+          "h": 1333,
+          "w": 2000,
+          "alt": "XDSlC9RHpLnntGnwv4PXZp7kbxI",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628300819_x8qw9.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 8866,
+          "w": 1354,
+          "alt": "Frame 1000011562",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628307543_gorgi.webp",
+          "type": "full",
+          "mediaType": "image"
+        }
+      ],
+      "sort_order": 3,
+      "created_at": "2026-05-01T09:37:59.310904+00:00",
+      "coming_soon": false
+    },
+    {
+      "id": "coin-compass",
+      "title": "Coin Compass",
+      "tagline": "Your smart financial guide, built to help you navigate money management with confidence.",
+      "about": "CoinCompass is your smart financial guide, built to help you navigate money management with confidence. Designed for the modern user, CoinCompass combines intelligent insights, intuitive tools, and real-time tracking to help you make smarter decisions about your finances.\nWhether you're budgeting, investing, or just trying to stay on top of your spending, CoinCompass empowers you to take control with ease. Our sleek interface, personalized recommendations, and seamless experience make managing money less stressful—and a lot more rewarding.",
+      "industry": "Fintech",
+      "role": "UI/UX Design, Brand Design",
+      "year": "2023",
+      "meta": "Fintech · 2024",
+      "live_url": null,
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628311381_ohyw8.webp",
+      "gallery": [
+        {
+          "h": 1200,
+          "w": 1600,
+          "alt": "MacBook Pro 16_ - 3",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628313461_xvid8.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "alt": "coin compass video",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628314119_c2fun.mp4",
+          "type": "full",
+          "mediaType": "video"
+        },
+        {
+          "h": 1333,
+          "w": 2000,
+          "alt": "bnN2HUzdjB1ojpN4vliiV47zM",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628320133_h5o7u.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1667,
+          "w": 2000,
+          "alt": "Onboarding",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628320835_f7a48.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1667,
+          "w": 2000,
+          "alt": "Sign up and Sign In",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628321778_nwmyk.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1667,
+          "w": 2000,
+          "alt": "OTP",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628322338_8uyzg.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1667,
+          "w": 2000,
+          "alt": "Home and Goal screen",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628328660_qcx33.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1667,
+          "w": 2000,
+          "alt": "Send screen",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628329695_grdkd.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1667,
+          "w": 2000,
+          "alt": "CashBuddy",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628330478_zc7an.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1667,
+          "w": 2000,
+          "alt": "Add screen",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628331556_iv8cg.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1667,
+          "w": 2000,
+          "alt": "Notifications and profit",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628332280_ex88i.webp",
+          "type": "full",
+          "mediaType": "image"
+        }
+      ],
+      "sort_order": 4,
+      "created_at": "2026-05-01T09:38:53.602026+00:00",
+      "coming_soon": false
+    },
+    {
+      "id": "ecowave",
+      "title": "Ecowave",
+      "tagline": "A bold visual identity crafted to make a lasting impression.",
+      "about": "Ecowave is a forward-thinking renewable energy brand dedicated to harnessing nature’s power for a sustainable future. Focused on delivering clean energy solutions through solar, wind, and hydro power, Ecowave empowers communities with accessible, eco-friendly alternatives to traditional energy sources.\n\nBuilt on the principles of innovation, sustainability, and impact, Ecowave integrates cutting-edge technology with environmentally responsible practices to reduce carbon footprints and drive a greener tomorrow. Through thoughtful branding and strategic positioning, Ecowave aims to not only provide energy solutions but also inspire a global shift toward renewable power.",
+      "industry": "Renewable energy",
+      "role": "Brand Identity",
+      "year": "2024",
+      "meta": "Renewable energy · 2024",
+      "live_url": null,
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834754542_zlfjf.webp",
+      "gallery": [
+        {
+          "h": 1364,
+          "w": 2000,
+          "alt": "Free Banners on Building Mockup 1",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834754542_zlfjf.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "alt": "jOul2FmuQxgDpSZlBvaXZS5Kvc",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/videos/1778836794324_zax3y.mp4",
+          "type": "full",
+          "mediaType": "video"
+        },
+        {
+          "h": 1667,
+          "w": 2000,
+          "alt": "Color",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834731017_gk2rq.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1156,
+          "w": 2000,
+          "alt": "Logo Dark green",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834789019_r5ai0.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1156,
+          "w": 2000,
+          "alt": "Logo green",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834797805_j48is.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1156,
+          "w": 2000,
+          "alt": "Logo Yellow",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834804050_pd8qx.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1156,
+          "w": 2000,
+          "alt": "MacBook Air - 4",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834809572_eir6k.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1334,
+          "w": 2000,
+          "alt": "Container Mockup 1",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834745835_62wzp.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1335,
+          "w": 2000,
+          "alt": "FREE-Tote-Bag-Mockup-Studio-Series_01_By-Mocku 1",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834762935_vwiwc.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1501,
+          "w": 2000,
+          "alt": "Fence_Billboard_Mockup_3-Recovered 4",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834749427_lft42.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1156,
+          "w": 2000,
+          "alt": "MacBook Air - 8",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834817494_eyvpx.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1251,
+          "w": 2000,
+          "alt": "MacBook Air - 10",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834824178_2fo7y.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1390,
+          "w": 2000,
+          "alt": "MacBook Air - 11",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834837845_yfzan.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1601,
+          "w": 2000,
+          "alt": "Mockup 2-1 1",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834844096_t42j0.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1335,
+          "w": 2000,
+          "alt": "tape-mockup-glued-to-the-floor-isometric 1",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834856063_4kvl1.webp",
+          "type": "full",
+          "mediaType": "image"
+        }
+      ],
+      "sort_order": 5,
+      "created_at": "2026-05-15T08:49:25.908566+00:00",
+      "coming_soon": false
+    },
+    {
+      "id": "nexflo-website",
+      "title": "Nexflo - Website",
+      "tagline": "A website for an automation platform that simplifies connecting apps, tools, and workflows.",
+      "about": "Similar to platforms like Zapier and n8n, Nexflo empowers users to automate repetitive tasks, streamline operations, and improve productivity without needing to write code.\n\nWith a focus on flexibility, speed, and ease of use, Nexflo helps users build powerful workflows that move data seamlessly across applications, trigger actions in real time, and eliminate manual work. Whether it’s syncing data between CRMs, automating notifications, or integrating payment systems, Nexflo ensures that workflows run reliably and efficiently.\n\nBuilt with scalability in mind, Nexflo caters to both individual creators looking to save time and teams or businessesaiming to optimize their processes.",
+      "industry": "CRM",
+      "role": "UIUX design, Web dev",
+      "year": "2025",
+      "meta": "CRM · 2025",
+      "live_url": "https://nexflo-automation.webflow.io/",
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628333894_mf0uc.webp",
+      "gallery": [
+        {
+          "h": 1500,
+          "w": 2000,
+          "alt": "Hand and iPhone 16 Prdo",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628335250_ypfvq.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "alt": "Timeline 1",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628337191_1nu6j.mp4",
+          "type": "full",
+          "mediaType": "video"
+        },
+        {
+          "h": 1293,
+          "w": 2000,
+          "alt": "MacBook Pro 16_ - 3",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628345363_39ae0.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 464,
+          "w": 2000,
+          "alt": "Brands",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628347163_lqr9a.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1906,
+          "w": 2000,
+          "alt": "Features",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628347608_ram7z.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1027,
+          "w": 2000,
+          "alt": "Benefits Dark",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628348821_iywjl.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1057,
+          "w": 2000,
+          "alt": "Automation (Dark)",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628349848_aguhg.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1531,
+          "w": 2000,
+          "alt": "Testiomial",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628350371_7e8hk.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1131,
+          "w": 2000,
+          "alt": "Pricing",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628351862_bm4pf.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1309,
+          "w": 2000,
+          "alt": "Faq",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628352506_5l3tm.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 1330,
+          "w": 2000,
+          "alt": "Footer",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628353190_sza24.webp",
+          "type": "full",
+          "mediaType": "image"
+        }
+      ],
+      "sort_order": 6,
+      "created_at": "2026-05-01T09:39:14.531838+00:00",
       "coming_soon": false
     },
     {
