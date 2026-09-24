@@ -37,6 +37,7 @@ const EXCLUDE = new Set([
   'scripts/build.js',
   'scripts/snapshot.js',
   'scripts/import-snapshot.js',
+  'scripts/admin-local.js',
   'scripts/get-spotify-token.js',
   'scripts/backfill-images.py',
   'scripts/migrate-to-r2.py',

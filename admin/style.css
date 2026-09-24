@@ -1621,3 +1621,8 @@ body {
   line-height: 1.4;
   text-align: center;
 }
+
+.snapshot-banner--local {
+  background: #14432f;
+  color: #c9f2dc;
+}

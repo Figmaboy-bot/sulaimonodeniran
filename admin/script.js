@@ -19,13 +19,56 @@ function showSnapshotBanner(reason) {
   el.id = 'snapshot-banner';
   el.className = 'snapshot-banner';
   el.setAttribute('role', 'status');
-  el.textContent = 'Supabase is unavailable' + (reason ? ' (' + reason + ')' : '') +
-    ' — showing the site snapshot. Changes can\'t be saved until Supabase is back.';
   document.body.insertBefore(el, document.body.firstChild);
+  // local mode keeps Projects saveable, so only the other tabs are stuck
+  localSaveReady.then(function (local) {
+    el.textContent = 'Supabase is unavailable' + (reason ? ' (' + reason + ')' : '') +
+      ' — showing the site snapshot. ' +
+      (local ? 'Projects save locally; the other tabs can\'t save until Supabase is back.'
+             : 'Changes can\'t be saved until Supabase is back.');
+  });
+}
+
+// ── Local save mode ──────────────────────────────────────────────────────────
+// Opened through `node scripts/admin-local.js`, the Projects tab reads and
+// writes data/snapshot.json (plus image/uploads/) via that server instead of
+// Supabase; the repo's commit-and-push then ships the edit. Anywhere else the
+// ping never answers and nothing changes.
+var LOCAL_TABLES = ['projects'];
+var localSaveReady = /^(localhost|127\.0\.0\.1)$/.test(location.hostname)
+  ? fetch('/api/local/ping', { cache: 'no-store' })
+      .then(function (r) { return r.ok; })
+      .catch(function () { return false; })
+  : Promise.resolve(false);
+
+localSaveReady.then(function (on) {
+  if (!on) return;
+  var el = document.createElement('div');
+  el.className = 'snapshot-banner snapshot-banner--local';
+  el.setAttribute('role', 'status');
+  el.textContent = 'Local mode — project saves go to data/snapshot.json in this folder and ship with the next push. Supabase is not updated.';
+  document.body.insertBefore(el, document.body.firstChild);
+});
+
+// Resolves like a supabase-js write: { error } on failure.
+async function localApi(route, body) {
+  try {
+    var r = await fetch('/api/local/' + route, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    var out = await r.json().catch(function () { return {}; });
+    return r.ok ? { data: out } : { error: { message: out.error || ('Local save failed (' + r.status + ')') } };
+  } catch (e) {
+    return { error: { message: 'Local admin server not reachable — is `node scripts/admin-local.js` still running?' } };
+  }
 }
 
 // Runs a Supabase select; on any failure returns the snapshot rows instead.
+// In local mode, tables the local server owns skip Supabase entirely.
 async function selectOrSnapshot(table, query) {
+  if (LOCAL_TABLES.indexOf(table) !== -1 && await localSaveReady) return snapshotRows(table);
   try {
     var res = await query;
     if (!res.error && res.data) return res.data;
@@ -176,11 +219,14 @@ async function compressImage(file) {
     return uploadBlob(shrunk.file, folder, progressId, shrunk.width, shrunk.height);
   }
 
-  function uploadBlob(file, folder, progressId, width, height) {
+  async function uploadBlob(file, folder, progressId, width, height) {
+    var local = await localSaveReady;
     return new Promise(function (resolve, reject) {
       var ext  = file.name.split('.').pop().toLowerCase();
       var path = folder + '/' + Date.now() + '_' + Math.random().toString(36).slice(2, 7) + '.' + ext;
-      var endpoint = SUPABASE_URL + '/storage/v1/object/' + PROJ_BUCKET + '/' + path;
+      var endpoint = local
+        ? '/api/local/upload?folder=' + encodeURIComponent(folder) + '&ext=' + encodeURIComponent(ext)
+        : SUPABASE_URL + '/storage/v1/object/' + PROJ_BUCKET + '/' + path;
 
       var bar  = progressId ? document.getElementById(progressId) : null;
       var fill = bar ? bar.querySelector('.upload-progress-fill') : null;
@@ -193,10 +239,12 @@ async function compressImage(file) {
 
       var xhr = new XMLHttpRequest();
       xhr.open('POST', endpoint);
-      xhr.setRequestHeader('apikey', SUPABASE_ANON_KEY);
-      xhr.setRequestHeader('Authorization', 'Bearer ' + SUPABASE_ANON_KEY);
+      if (!local) {
+        xhr.setRequestHeader('apikey', SUPABASE_ANON_KEY);
+        xhr.setRequestHeader('Authorization', 'Bearer ' + SUPABASE_ANON_KEY);
+        xhr.setRequestHeader('cache-control', 'max-age=31536000, immutable');
+      }
       xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
-      xhr.setRequestHeader('cache-control', 'max-age=31536000, immutable');
 
       xhr.upload.addEventListener('progress', function (e) {
         if (!e.lengthComputable) return;
@@ -208,15 +256,17 @@ async function compressImage(file) {
       xhr.addEventListener('load', function () {
         if (bar) bar.classList.remove('active');
         if (xhr.status >= 200 && xhr.status < 300) {
+          var localUrl = null;
+          if (local) { try { localUrl = JSON.parse(xhr.responseText).url; } catch (_) {} }
           resolve({
-            url: SUPABASE_URL + '/storage/v1/object/public/' + PROJ_BUCKET + '/' + path,
+            url: localUrl || SUPABASE_URL + '/storage/v1/object/public/' + PROJ_BUCKET + '/' + path,
             w:   width  || null,
             h:   height || null
           });
         } else {
           var msg = 'Upload failed (' + xhr.status + ')';
           try { var body = JSON.parse(xhr.responseText); msg = body.error || body.message || msg; } catch (_) {}
-          if (xhr.status === 413 || (msg && msg.toLowerCase().includes('size'))) {
+          if (!local && (xhr.status === 413 || (msg && msg.toLowerCase().includes('size')))) {
             msg = 'File too large for the bucket — increase the max file size in your Supabase dashboard (Storage → Buckets → Edit)';
           }
           reject(new Error(msg));
@@ -232,8 +282,20 @@ async function compressImage(file) {
     });
   }
 
+  // Project writes go through these so local mode can swap the destination.
+  async function projUpsert(rows) {
+    if (await localSaveReady) return localApi('upsert', { table: 'projects', rows: [].concat(rows) });
+    return _sb.from('projects').upsert(rows);
+  }
+
+  async function projDelete(id) {
+    if (await localSaveReady) return localApi('delete', { table: 'projects', id: id });
+    return _sb.from('projects').delete().eq('id', id);
+  }
+
   async function deleteStorageFile(url) {
     if (!url) return;
+    if (await localSaveReady) { await localApi('remove-file', { url: url }); return; }
     try {
       var marker = '/object/public/' + PROJ_BUCKET + '/';
       var i = url.indexOf(marker);
@@ -368,7 +430,10 @@ async function compressImage(file) {
         var updates = state.order
           .filter(function (oid) { return !!state.projects[oid] && !oid.startsWith('new-project-'); })
           .map(function (oid, i) { return { id: oid, sort_order: i }; });
-        if (updates.length) await _sb.from('projects').upsert(updates);
+        if (updates.length) {
+          var ord = await projUpsert(updates);
+          if (ord.error) { toast('Order not saved: ' + ord.error.message); return; }
+        }
         toast('Order saved');
       });
 
@@ -622,14 +687,14 @@ async function compressImage(file) {
       else state.order.push(newSlug);
       delete state.projects[oldId];
       if (oldId && !oldId.startsWith('new-project-')) {
-        await _sb.from('projects').delete().eq('id', oldId);
+        await projDelete(oldId);
       }
     }
 
     var sortIdx = state.order.indexOf(newSlug);
     var row = Object.assign({ id: newSlug, sort_order: sortIdx !== -1 ? sortIdx : 0 }, data);
 
-    var { error } = await _sb.from('projects').upsert(row);
+    var { error } = await projUpsert(row);
     if (error) { toast('Save failed: ' + error.message); return; }
 
     state.projects[newSlug] = Object.assign({}, row);
@@ -656,7 +721,7 @@ async function compressImage(file) {
       if (p.cover_url && urls.indexOf(p.cover_url) === -1) urls.push(p.cover_url);
       for (var u = 0; u < urls.length; u++) await deleteStorageFile(urls[u]);
 
-      var { error } = await _sb.from('projects').delete().eq('id', state.activeId);
+      var { error } = await projDelete(state.activeId);
       if (error) { toast('Delete failed: ' + error.message); return; }
     }
 
