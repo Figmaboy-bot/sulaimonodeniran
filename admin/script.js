@@ -1,5 +1,41 @@
 var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+// ── Snapshot fallback ────────────────────────────────────────────────────────
+// When Supabase refuses reads (quota exceeded, project paused) the tabs used to
+// come up empty. They now fall back to data/snapshot.js — the same copy the
+// public site renders from — so content can still be browsed. Writes still go
+// to Supabase and will fail until it's back, which the banner says up front.
+function snapshotRows(table) {
+  var snap = typeof PORTFOLIO_SNAPSHOT !== 'undefined' ? PORTFOLIO_SNAPSHOT : null;
+  var rows = (snap && snap[table]) || [];
+  return JSON.parse(JSON.stringify(rows)).sort(function (a, b) {
+    return (a.sort_order == null ? Infinity : a.sort_order) - (b.sort_order == null ? Infinity : b.sort_order);
+  });
+}
+
+function showSnapshotBanner(reason) {
+  if (document.getElementById('snapshot-banner')) return;
+  var el = document.createElement('div');
+  el.id = 'snapshot-banner';
+  el.className = 'snapshot-banner';
+  el.setAttribute('role', 'status');
+  el.textContent = 'Supabase is unavailable' + (reason ? ' (' + reason + ')' : '') +
+    ' — showing the site snapshot. Changes can\'t be saved until Supabase is back.';
+  document.body.insertBefore(el, document.body.firstChild);
+}
+
+// Runs a Supabase select; on any failure returns the snapshot rows instead.
+async function selectOrSnapshot(table, query) {
+  try {
+    var res = await query;
+    if (!res.error && res.data) return res.data;
+    showSnapshotBanner(res.error && res.error.message);
+  } catch (e) {
+    showSnapshotBanner(e && e.message);
+  }
+  return snapshotRows(table);
+}
+
 // ── Image compression ────────────────────────────────────────────────────────
 // Uploads used to carry the raw file straight from the file picker — a single
 // gallery could run to tens of megabytes of 7000px JPEGs displayed at ~1000px.
@@ -695,15 +731,11 @@ async function compressImage(file) {
 
   // ── Init ──────────────────────────────────────
   async function init() {
-    var { data, error } = await _sb.from('projects').select('*').order('sort_order', { ascending: true });
-    if (!error && data) {
-      data.forEach(function (row) {
-        state.projects[row.id] = row;
-        state.order.push(row.id);
-      });
-    } else if (error) {
-      toast('DB error: ' + error.message);
-    }
+    var data = await selectOrSnapshot('projects', _sb.from('projects').select('*').order('sort_order', { ascending: true }));
+    data.forEach(function (row) {
+      state.projects[row.id] = row;
+      state.order.push(row.id);
+    });
     renderList();
     if (state.order.length) selectProject(state.order[0]);
     bindGlobalEvents();
@@ -1095,15 +1127,8 @@ async function compressImage(file) {
   async function pgInit() {
     initTabs();
     bindPgEvents();
-    try {
-      var { data, error } = await _sb.from('playground_items')
-        .select('*')
-        .order('sort_order', { ascending: true });
-      if (!error && data) pgState.items = data;
-      else if (error) pgToast('DB error: ' + error.message);
-    } catch (e) {
-      pgToast('Could not connect to Supabase — check supabase-config.js');
-    }
+    pgState.items = await selectOrSnapshot('playground_items',
+      _sb.from('playground_items').select('*').order('sort_order', { ascending: true }));
     renderPgList();
   }
 
@@ -1684,9 +1709,8 @@ async function compressImage(file) {
 
   async function loadSpeedSettings() {
     try {
-      var res = await _sb.from('carousel_settings').select('page,duration');
-      if (res.error || !res.data) return;
-      res.data.forEach(function (row) {
+      var rows = await selectOrSnapshot('carousel_settings', _sb.from('carousel_settings').select('page,duration'));
+      rows.forEach(function (row) {
         if (row.page === 'home' || row.page === 'about') {
           carSpeed[row.page] = row.duration;
         }
@@ -1867,14 +1891,10 @@ async function compressImage(file) {
     bindCropDrag();
     await loadSpeedSettings();
     initSpeedControls();
-    try {
-      var res = await _sb.from('carousel_images').select('*').order('sort_order', { ascending: true });
-      if (res.error) throw res.error;
-      carState.home  = (res.data || []).filter(function (i) { return i.page === 'home'; });
-      carState.about = (res.data || []).filter(function (i) { return i.page === 'about'; });
-    } catch (e) {
-      carToast('Could not load carousel images');
-    }
+    var carRows = await selectOrSnapshot('carousel_images',
+      _sb.from('carousel_images').select('*').order('sort_order', { ascending: true }));
+    carState.home  = carRows.filter(function (i) { return i.page === 'home'; });
+    carState.about = carRows.filter(function (i) { return i.page === 'about'; });
     renderCarGrid('home');
     renderCarGrid('about');
   }

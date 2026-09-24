@@ -1606,3 +1606,18 @@ body {
 [data-theme="light"] .analytics-bar {
   background: var(--text);
 }
+
+/* ── Snapshot fallback banner ──────────────── */
+
+.snapshot-banner {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 10px 20px;
+  background: #5a3a12;
+  color: #ffe2b8;
+  font-family: var(--font-slab);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  text-align: center;
+}
