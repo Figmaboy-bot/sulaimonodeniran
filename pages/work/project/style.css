@@ -57,7 +57,7 @@ main.project-main {
   gap: 10px;
   padding: 10px 20px;
   font-family: var(--font-slab);
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 400;
   line-height: 32px;
   color: var(--text-soft);
@@ -341,7 +341,8 @@ main.project-main {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  margin-top: 64px; /* 100px column gap + 64px = the design's 164px */
+  margin-top: 64px;
+  /* 100px column gap + 64px = the design's 164px */
 }
 
 .project-pager:empty {
@@ -353,7 +354,7 @@ main.project-main {
   align-items: center;
   gap: 12px;
   font-family: var(--font-slab);
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--text);
   text-decoration: none;
@@ -379,6 +380,7 @@ main.project-main {
 /* ── Responsive ────────────────────────────── */
 
 @media (max-width: 1280px) {
+
   .gallery-img--full,
   .gallery-row {
     height: 72vw;
