@@ -21,7 +21,7 @@
 
 .section-label {
   font-family: var(--font-slab);
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 400;
   color: var(--text-soft);
   line-height: 1.6;
@@ -216,12 +216,37 @@
   gap: 16px;
 }
 
-.case-study-skeleton .sk-meta   { height: 14px; width: 110px; }
-.case-study-skeleton .sk-title  { height: 36px; width: 78%; margin-top: 4px; }
-.case-study-skeleton .sk-desc   { height: 14px; width: 92%; }
-.case-study-skeleton .sk-desc2  { height: 14px; width: 68%; }
-.case-study-skeleton .sk-rlabel { height: 13px; width: 36px; margin-top: 4px; }
-.case-study-skeleton .sk-rval   { height: 14px; width: 150px; }
+.case-study-skeleton .sk-meta {
+  height: 14px;
+  width: 110px;
+}
+
+.case-study-skeleton .sk-title {
+  height: 36px;
+  width: 78%;
+  margin-top: 4px;
+}
+
+.case-study-skeleton .sk-desc {
+  height: 14px;
+  width: 92%;
+}
+
+.case-study-skeleton .sk-desc2 {
+  height: 14px;
+  width: 68%;
+}
+
+.case-study-skeleton .sk-rlabel {
+  height: 13px;
+  width: 36px;
+  margin-top: 4px;
+}
+
+.case-study-skeleton .sk-rval {
+  height: 14px;
+  width: 150px;
+}
 
 .case-study-skeleton .sk-image {
   flex: 1;
