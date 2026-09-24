@@ -197,8 +197,10 @@ main.project-main {
   color: var(--text);
 }
 
+/* lighter than .meta-label so inline headings don't compete with the
+   section header */
 .rich-text strong {
-  font-weight: 700;
+  font-weight: 500;
   color: var(--text);
 }
 
