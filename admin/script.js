@@ -766,6 +766,7 @@ async function compressImage(file) {
           mediaHtml +
           '<div class="gcard-overlay">' +
             coverBtnHtml +
+            '<button type="button" class="gcard-replace-btn" title="Replace with a new file">Replace</button>' +
             '<button class="gcard-remove-btn" title="Remove">✕</button>' +
           '</div>' +
           '<span class="gcard-cover-badge">Cover</span>' +
@@ -799,6 +800,16 @@ async function compressImage(file) {
           toast('Cover image set');
         });
       }
+
+      card.querySelector('.gcard-replace-btn').addEventListener('click', function () {
+        var picker = document.createElement('input');
+        picker.type   = 'file';
+        picker.accept = 'image/*,video/*';
+        picker.addEventListener('change', function () {
+          if (picker.files && picker.files[0]) replaceGalleryMedia(item, picker.files[0]);
+        });
+        picker.click();
+      });
 
       card.querySelector('.gcard-remove-btn').addEventListener('click', function () {
         if (item.src === state.activeCoverUrl) state.activeCoverUrl = null;
@@ -851,6 +862,29 @@ async function compressImage(file) {
       }
     }
     if (files.length > 1 && done) toast('Uploaded ' + done + ' of ' + files.length + ' ✓');
+  }
+
+  // Swap an image/video card's file in place: position, alt text and layout
+  // stay; the cover follows the card when the new file is an image.
+  async function replaceGalleryMedia(item, file) {
+    var isVideo = file.type.startsWith('video/');
+    var isImage = file.type.startsWith('image/');
+    if (!isImage && !isVideo) { toast('Choose an image or video'); return; }
+    if (file.size > MAX_FILE_BYTES) { toast(file.name + ' is too large — max 100 MB'); return; }
+    toast('Uploading…');
+    try {
+      var up = await uploadFile(file, isVideo ? 'videos' : 'images', 'gallery-upload-progress');
+      var wasCover = !!item.src && item.src === state.activeCoverUrl;
+      item.src       = up.url;
+      item.w         = up.w;
+      item.h         = up.h;
+      item.mediaType = isVideo ? 'video' : 'image';
+      if (wasCover) state.activeCoverUrl = isImage ? up.url : null;
+      renderGalleryGrid();
+      toast(wasCover && isVideo ? 'Replaced ✓ — pick a new cover image' : 'Replaced ✓ — save to publish');
+    } catch (e) {
+      toast('Upload failed: ' + e.message);
+    }
   }
 
   // ── Read form ─────────────────────────────────

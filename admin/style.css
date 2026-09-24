@@ -804,6 +804,21 @@ body {
 
 .gcard-remove-btn:hover { color: #ff6b6b; }
 
+.gcard-replace-btn {
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.72rem;
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px 10px;
+  transition: background 0.15s;
+}
+
+.gcard-replace-btn:hover { background: rgba(0,0,0,0.8); }
+
 .gcard-cover-badge {
   position: absolute;
   bottom: 8px;
