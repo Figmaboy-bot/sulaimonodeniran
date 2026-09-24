@@ -93,11 +93,14 @@ function snapshotProject(id) {
   return rows.find(function (p) { return String(p.id) === String(id); }) || null;
 }
 
-// Prefers live data so a just-published edit unfurls correctly, but never lets
-// Supabase decide whether the page renders: a non-200 (the project being over
-// its egress quota returns 402), a network error or a slow origin all fall
-// through to the snapshot that shipped with the build.
+// The snapshot that shipped with the build is the published copy: projects are
+// edited in the admin's local mode, which never writes Supabase, so Supabase is
+// only asked about ids the snapshot doesn't know. A non-200 (the project being
+// over its egress quota returns 402), a network error or a slow origin all
+// resolve to null.
 function fetchProject(id) {
+  const shipped = snapshotProject(id);
+  if (shipped) return Promise.resolve(shipped);
   const url = SUPABASE_URL + '/rest/v1/projects?select=*&id=eq.' +
     encodeURIComponent(id) + '&limit=1';
   return fetch(url, {
@@ -108,8 +111,8 @@ function fetchProject(id) {
     signal: AbortSignal.timeout(2000)
   })
     .then(function (r) { return r.ok ? r.json() : []; })
-    .then(function (rows) { return (rows && rows[0]) || snapshotProject(id); })
-    .catch(function () { return snapshotProject(id); });
+    .then(function (rows) { return (rows && rows[0]) || null; })
+    .catch(function () { return null; });
 }
 
 function coverOf(project) {

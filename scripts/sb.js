@@ -95,8 +95,15 @@ function sbFetchLive(table, params) {
 
 // Resolves with the snapshot rows straight away. onRefresh, when given, may be
 // called once more with live rows if Supabase is reachable and has newer data.
+//
+// Projects are edited in the admin's local mode, which writes the snapshot and
+// never Supabase, so Supabase holds an older copy of them. Revalidating would
+// swap that stale copy over the published one, so projects skip it.
+var SB_SNAPSHOT_ONLY = ['projects'];
+
 function sbSelect(table, params, onRefresh) {
   var local = sbApplyParams(sbSnapshotTable(table), params);
+  if (SB_SNAPSHOT_ONLY.indexOf(table) !== -1) onRefresh = null;
 
   // Nothing in the snapshot for this table yet: wait on Supabase like before,
   // so a half-filled snapshot degrades to the old behaviour instead of a blank.
