@@ -478,6 +478,16 @@ async function compressImage(file) {
   }
 
   // ── Gallery grid ──────────────────────────────
+  function insertTextBlock(at) {
+    state.gallery.splice(at, 0, { kind: 'text', columns: textColumns() });
+    renderGalleryGrid();
+    var card = document.querySelector('#gallery-grid .gcard[data-idx="' + at + '"]');
+    if (card) {
+      card.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      card.querySelector('input').focus({ preventScroll: true });
+    }
+  }
+
   function renderGalleryGrid() {
     var grid = document.getElementById('gallery-grid');
     grid.innerHTML = '';
@@ -511,6 +521,38 @@ async function compressImage(file) {
       });
     }
 
+    function moveItem(from, to) {
+      if (to < 0 || to >= state.gallery.length || to === from) return;
+      var moved = state.gallery.splice(from, 1)[0];
+      state.gallery.splice(to, 0, moved);
+      renderGalleryGrid();
+    }
+
+    // Top bar shared by every card: position, move earlier/later, drag grip.
+    function cardBar(idx, label, extra) {
+      var last = state.gallery.length - 1;
+      return '<div class="gcard-drag-handle gcard-bar" title="Drag to reorder">' +
+          '<span class="gcard-pos">' + (idx + 1) + (label ? ' · ' + label : '') + '</span>' +
+          '<span class="gcard-bar-actions">' +
+            '<button type="button" class="gcard-move-btn" data-move="-1" title="Move earlier"' + (idx === 0 ? ' disabled' : '') + '>←</button>' +
+            DRAG_ICON +
+            '<button type="button" class="gcard-move-btn" data-move="1" title="Move later"' + (idx === last ? ' disabled' : '') + '>→</button>' +
+            (extra || '') +
+          '</span>' +
+        '</div>';
+    }
+
+    function wireCardControls(card, idx) {
+      card.querySelectorAll('.gcard-move-btn').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          moveItem(idx, idx + Number(this.dataset.move));
+        });
+      });
+      var addAfter = card.querySelector('.gcard-add-text-after');
+      if (addAfter) addAfter.addEventListener('click', function () { insertTextBlock(idx + 1); });
+    }
+
     var DRAG_ICON = '<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><circle cx="4" cy="3" r="1.3"/><circle cx="10" cy="3" r="1.3"/><circle cx="4" cy="7" r="1.3"/><circle cx="10" cy="7" r="1.3"/><circle cx="4" cy="11" r="1.3"/><circle cx="10" cy="11" r="1.3"/></svg>';
 
     function renderTextCard(item, idx) {
@@ -518,25 +560,50 @@ async function compressImage(file) {
       card.className   = 'gcard gcard--text';
       card.dataset.idx = idx;
 
-      var colsHtml = item.columns.map(function (c, k) {
+      // One heading + paragraph by default; the design's side-by-side second
+      // column only appears when asked for (or when it already has content).
+      var second = item.columns[1];
+      var showSecond = item.showSecond || !!(second.heading || second.body);
+
+      function colHtml(c, k) {
         return '<div class="gcard-text-col" data-col="' + k + '">' +
-          '<input class="field-input gcard-text-heading" type="text" placeholder="' + (k === 0 ? 'Heading, e.g. The Goal' : 'Second heading (optional)') + '" value="' + esc(c.heading) + '" />' +
-          '<textarea class="field-input field-textarea gcard-text-body" rows="4" placeholder="' + (k === 0 ? 'Text' : 'Second column text (optional)') + '">' + esc(c.body) + '</textarea>' +
+          '<label class="gcard-text-field"><span class="field-label">Heading</span>' +
+            '<input class="field-input gcard-text-heading" type="text" placeholder="e.g. The Goal" value="' + esc(c.heading) + '" /></label>' +
+          '<label class="gcard-text-field"><span class="field-label">Paragraph</span>' +
+            '<textarea class="field-input field-textarea gcard-text-body" rows="5" placeholder="Write the paragraph…">' + esc(c.body) + '</textarea></label>' +
+          (k === 1 ? '<button type="button" class="gcard-text-link gcard-remove-col">Remove second column</button>' : '') +
         '</div>';
-      }).join('');
+      }
 
       card.innerHTML =
-        '<div class="gcard-drag-handle gcard-text-bar" title="Drag to reorder">' +
-          '<span class="gcard-text-label">Text</span>' +
-          DRAG_ICON +
-          '<button class="gcard-remove-btn" title="Remove">✕</button>' +
+        cardBar(idx, 'Text', '<button type="button" class="gcard-remove-btn" title="Remove text block">✕</button>') +
+        '<div class="gcard-text-cols' + (showSecond ? ' has-two' : '') + '">' +
+          colHtml(item.columns[0], 0) +
+          (showSecond ? colHtml(second, 1) : '') +
         '</div>' +
-        '<div class="gcard-text-cols">' + colsHtml + '</div>';
+        '<div class="gcard-text-footer">' +
+          (showSecond ? '' : '<button type="button" class="gcard-text-link gcard-add-col">+ Add second column (side by side)</button>') +
+          '<button type="button" class="gcard-text-link gcard-add-text-after">+ Text after</button>' +
+        '</div>';
 
       wireDrag(card, idx);
+      wireCardControls(card, idx);
 
       card.querySelector('.gcard-remove-btn').addEventListener('click', function () {
         state.gallery.splice(idx, 1);
+        renderGalleryGrid();
+      });
+
+      var addCol = card.querySelector('.gcard-add-col');
+      if (addCol) addCol.addEventListener('click', function () {
+        state.gallery[idx].showSecond = true;
+        renderGalleryGrid();
+      });
+
+      var removeCol = card.querySelector('.gcard-remove-col');
+      if (removeCol) removeCol.addEventListener('click', function () {
+        state.gallery[idx].columns[1] = { heading: '', body: '' };
+        state.gallery[idx].showSecond = false;
         renderGalleryGrid();
       });
 
@@ -564,9 +631,7 @@ async function compressImage(file) {
       var videoBadgeHtml = isVideo ? '<span class="gcard-video-badge">Video</span>' : '';
 
       card.innerHTML =
-        '<div class="gcard-drag-handle" title="Drag to reorder">' +
-          DRAG_ICON +
-        '</div>' +
+        cardBar(idx, isVideo ? 'Video' : 'Image') +
         '<div class="gcard-img-wrap">' +
           mediaHtml +
           '<div class="gcard-overlay">' +
@@ -582,9 +647,11 @@ async function compressImage(file) {
             '<button class="gcard-layout-btn' + (item.layout !== 'half' ? ' active' : '') + '" data-layout="full">Full</button>' +
             '<button class="gcard-layout-btn' + (item.layout === 'half' ? ' active' : '') + '" data-layout="half">Half</button>' +
           '</div>' +
+          '<button type="button" class="gcard-add-text-after" title="Insert a text block right after this image">+ Text after</button>' +
         '</div>';
 
       wireDrag(card, idx);
+      wireCardControls(card, idx);
 
       var mediaEl = card.querySelector('.gcard-img');
       if (item.src) mediaEl.src = item.src;
@@ -755,12 +822,10 @@ async function compressImage(file) {
 
     input.addEventListener('change', function () { handleFiles(this.files); this.value = ''; });
 
-    document.getElementById('btn-add-text').addEventListener('click', function () {
-      state.gallery.push({ kind: 'text', columns: textColumns() });
-      renderGalleryGrid();
-      var cards = document.querySelectorAll('#gallery-grid .gcard--text');
-      var last  = cards[cards.length - 1];
-      if (last) { last.scrollIntoView({ block: 'center', behavior: 'smooth' }); last.querySelector('input').focus({ preventScroll: true }); }
+    ['btn-add-text', 'btn-add-text-top'].forEach(function (btnId) {
+      document.getElementById(btnId).addEventListener('click', function () {
+        insertTextBlock(state.gallery.length);
+      });
     });
     zone.addEventListener('dragover',  function (e) { e.preventDefault(); this.classList.add('drag-over'); });
     zone.addEventListener('dragleave', function ()  { this.classList.remove('drag-over'); });
