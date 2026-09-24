@@ -29,6 +29,19 @@
           "mediaType": "image"
         },
         {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "The Problem",
+              "body": "Traditional betting platforms can often feel cluttered and overwhelming.\n\nUsers may need to navigate through:\n\n- Large numbers of betting markets\n\n- Complicated odds\n\n- Using Crypto to deposit \n\n- Difficult-to-understand bet slips\n\n- Fragmented transaction experiences\n\nFor a crypto-powered platform, these problems become even more important because users need to understand **both their bets and their money**."
+            },
+            {
+              "heading": "Design Goals",
+              "body": "The product experience was designed around four key goals:\n\n**Clarity**\nMake odds, markets, balances, and potential winnings easy to understand.\n\n**Speed**\nReduce the number of steps required to discover a match and place a wager.\n\n**Deposit**\nMake deposit across different cryptocurrencies, stablecoins and fiat currency.\n\n**Trust**\nCreate an interface that feels reliable enough for users to confidently manage funds and bets.\n\n**Simplicity**\nHide unnecessary complexity without limiting functionality for experienced users."
+            }
+          ]
+        },
+        {
           "type": "full",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787683539081_r6w8f.webp",
           "w": 2000,
@@ -43,6 +56,19 @@
           "h": 1458,
           "alt": "Create Account Screen",
           "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Design Decisions",
+              "body": "**Why fintech-inspired UI?**\n\nMoney-related products require a strong sense of clarity and trust. Wager365 therefore borrows interaction patterns from fintech products rather than relying entirely on traditional sportsbook conventions.\n\n**Why a simplified bet slip?**\n\nThe bet slip is where a user's selections become an actual wager. Reducing unnecessary information and emphasizing the stake and potential return makes the final decision easier to understand.\n\n**Why strong information hierarchy?**\n\nSports betting interfaces contain a huge amount of numerical information. Typography, spacing, grouping, and contrast were therefore used to create a clear hierarchy between matches, markets, odds, and secondary information."
+            },
+            {
+              "heading": "Outcome",
+              "body": "Wager365 demonstrates how a complex sports betting product can be approached through the lens of **product design, fintech UX, and Web3**.\n\nThe project allowed me to explore:\n\n- Sports betting UX\n\n- Financial product interfaces\n\n- Crypto wallet experiences\n\n- Information-heavy dashboards\n\n- Responsive product design\n\n- Complex interaction flows\n\n- Design systems and visual hierarchy\n\nMore importantly, the project challenged me to design for a product where **speed, clarity, and trust directly influence the user's experience.**"
+            }
+          ]
         },
         {
           "type": "full",
@@ -128,8 +154,8 @@
           "type": "text",
           "columns": [
             {
-              "heading": "The Problem",
-              "body": "Traditional betting platforms can often feel cluttered and overwhelming.\n\nUsers may need to navigate through:\n\n- Large numbers of betting markets\n\n- Complicated odds\n\n- Using Crypto to deposit \n\n- Difficult-to-understand bet slips\n\n- Fragmented transaction experiences\n\nFor a crypto-powered platform, these problems become even more important because users need to understand **both their bets and their money**."
+              "heading": "Final Statement",
+              "body": "Wager365 was an exploration of what a modern crypto-powered sportsbook could look and feel like combining the speed of digital assets with the familiarity of a well-designed sports betting platform."
             }
           ]
         }
