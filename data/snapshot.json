@@ -42,6 +42,25 @@
           ]
         },
         {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790271236629_qey35.webp",
+              "w": 2000,
+              "h": 3345,
+              "alt": "Home Screen",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790271235711_9oc8m.webp",
+              "w": 2000,
+              "h": 3345,
+              "alt": "Bet Slip Screen",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
           "type": "full",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787683539081_r6w8f.webp",
           "w": 2000,

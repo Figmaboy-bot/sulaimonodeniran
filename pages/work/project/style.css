@@ -375,19 +375,15 @@ main.project-main {
 
 .gallery-row {
   display: flex;
+  align-items: flex-start;
   gap: 12px;
-  height: 1000px;
 }
 
+/* images keep their full frame: each grows in proportion to its aspect
+   ratio (--ar, set from the stored size), so a pair lines up at the same
+   height without cropping */
 .gallery-row .gallery-img {
-  height: 100%;
-}
-
-.gallery-row .gallery-img img,
-.gallery-row .gallery-img video {
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  flex: var(--ar, 1) 1 0;
 }
 
 /* ── Previous / next ───────────────────────── */
@@ -437,8 +433,7 @@ main.project-main {
 
 @media (max-width: 1280px) {
 
-  .gallery-img--full,
-  .gallery-row {
+  .gallery-img--full {
     height: 72vw;
   }
 }
@@ -480,10 +475,6 @@ main.project-main {
     height: 320px;
   }
 
-  .gallery-row {
-    height: 260px;
-  }
-
   .project-pager {
     margin-top: 32px;
   }
@@ -496,12 +487,11 @@ main.project-main {
 @media (max-width: 480px) {
   .gallery-row {
     flex-direction: column;
-    height: auto;
   }
 
   .gallery-row .gallery-img {
-    height: 260px;
     flex: none;
+    width: 100%;
   }
 }
 

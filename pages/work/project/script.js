@@ -364,6 +364,7 @@
         row.className = 'gallery-row';
         (section.images || []).forEach(function (item) {
           var w = makeMedia(item.mediaType || 'image', item.alt || '', false, item.w, item.h);
+          if (item.w && item.h) w.style.setProperty('--ar', item.w / item.h);
           resolveMedia(w.firstChild, item.imageId, item.src, item.mediaType);
           row.appendChild(w);
         });
