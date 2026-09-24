@@ -948,6 +948,11 @@ body {
   border-color: rgba(245,245,245,0.25);
 }
 
+.gcard-text-layout {
+  padding: 14px 14px 0;
+  max-width: 320px;
+}
+
 .gcard-text-cols {
   display: grid;
   grid-template-columns: 1fr;

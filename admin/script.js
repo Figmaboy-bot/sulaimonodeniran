@@ -479,7 +479,7 @@ async function compressImage(file) {
 
   // ── Gallery grid ──────────────────────────────
   function insertTextBlock(at) {
-    state.gallery.splice(at, 0, { kind: 'text', columns: textColumns() });
+    state.gallery.splice(at, 0, { kind: 'text', columns: textColumns(), showSecond: true });
     renderGalleryGrid();
     var card = document.querySelector('#gallery-grid .gcard[data-idx="' + at + '"]');
     if (card) {
@@ -560,10 +560,10 @@ async function compressImage(file) {
       card.className   = 'gcard gcard--text';
       card.dataset.idx = idx;
 
-      // One heading + paragraph by default; the design's side-by-side second
-      // column only appears when asked for (or when it already has content).
+      // Side by side (two heading + paragraph pairs, as in the design) or a
+      // single column. An empty second column is dropped on save either way.
       var second = item.columns[1];
-      var showSecond = item.showSecond || !!(second.heading || second.body);
+      var showSecond = item.showSecond !== undefined ? item.showSecond : !!(second.heading || second.body);
 
       function colHtml(c, k) {
         return '<div class="gcard-text-col" data-col="' + k + '">' +
@@ -571,18 +571,20 @@ async function compressImage(file) {
             '<input class="field-input gcard-text-heading" type="text" placeholder="e.g. The Goal" value="' + esc(c.heading) + '" /></label>' +
           '<label class="gcard-text-field"><span class="field-label">Paragraph</span>' +
             '<textarea class="field-input field-textarea gcard-text-body" rows="5" placeholder="Write the paragraph…">' + esc(c.body) + '</textarea></label>' +
-          (k === 1 ? '<button type="button" class="gcard-text-link gcard-remove-col">Remove second column</button>' : '') +
         '</div>';
       }
 
       card.innerHTML =
         cardBar(idx, 'Text', '<button type="button" class="gcard-remove-btn" title="Remove text block">✕</button>') +
+        '<div class="gcard-layout gcard-text-layout">' +
+          '<button type="button" class="gcard-layout-btn' + (showSecond ? '' : ' active') + '" data-cols="1">One column</button>' +
+          '<button type="button" class="gcard-layout-btn' + (showSecond ? ' active' : '') + '" data-cols="2">Side by side</button>' +
+        '</div>' +
         '<div class="gcard-text-cols' + (showSecond ? ' has-two' : '') + '">' +
           colHtml(item.columns[0], 0) +
           (showSecond ? colHtml(second, 1) : '') +
         '</div>' +
         '<div class="gcard-text-footer">' +
-          (showSecond ? '' : '<button type="button" class="gcard-text-link gcard-add-col">+ Add second column (side by side)</button>') +
           '<button type="button" class="gcard-text-link gcard-add-text-after">+ Text after</button>' +
         '</div>';
 
@@ -594,17 +596,19 @@ async function compressImage(file) {
         renderGalleryGrid();
       });
 
-      var addCol = card.querySelector('.gcard-add-col');
-      if (addCol) addCol.addEventListener('click', function () {
-        state.gallery[idx].showSecond = true;
-        renderGalleryGrid();
-      });
-
-      var removeCol = card.querySelector('.gcard-remove-col');
-      if (removeCol) removeCol.addEventListener('click', function () {
-        state.gallery[idx].columns[1] = { heading: '', body: '' };
-        state.gallery[idx].showSecond = false;
-        renderGalleryGrid();
+      card.querySelectorAll('.gcard-text-layout .gcard-layout-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var two = this.dataset.cols === '2';
+          var block = state.gallery[idx];
+          if (two === showSecond) return;
+          if (!two) {
+            var right = block.columns[1];
+            if ((right.heading || right.body) && !confirm('Switch to one column? The right-hand text will be removed.')) return;
+            block.columns[1] = { heading: '', body: '' };
+          }
+          block.showSecond = two;
+          renderGalleryGrid();
+        });
       });
 
       card.querySelectorAll('.gcard-text-col').forEach(function (colEl) {
