@@ -145,9 +145,18 @@ main.project-main {
 .meta-label {
   font-family: var(--font-slab);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-soft);
   line-height: 24px;
+}
+
+/* text block headings stand out from the soft body copy */
+.project-text .meta-label {
+  color: #fff;
+}
+
+[data-theme="light"] .project-text .meta-label {
+  color: var(--text);
 }
 
 .meta-body {
@@ -197,10 +206,8 @@ main.project-main {
   color: var(--text);
 }
 
-/* lighter than .meta-label so inline headings don't compete with the
-   section header */
 .rich-text strong {
-  font-weight: 500;
+  font-weight: 700;
   color: var(--text);
 }
 
