@@ -22,9 +22,9 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787684039194_kqr30.webp",
+          "src": "/image/uploads/images/1790274701709_1icl2.webp",
           "w": 2000,
-          "h": 1453,
+          "h": 1263,
           "alt": "Splash Screen",
           "mediaType": "image"
         },
@@ -45,17 +45,17 @@
           "type": "pair",
           "images": [
             {
-              "src": "/image/uploads/images/1790271747404_zq77i.webp",
+              "src": "/image/uploads/images/1790274074208_zbwjf.webp",
               "w": 2000,
-              "h": 2641,
+              "h": 2459,
               "alt": "Home Screen",
               "mediaType": "image"
             },
             {
-              "src": "/image/uploads/images/1790271751863_8rax6.webp",
+              "src": "/image/uploads/images/1790274079475_ocdrj.webp",
               "w": 2000,
               "h": 2641,
-              "alt": "Bet Slip Screen",
+              "alt": "Bets Screen",
               "mediaType": "image"
             }
           ]
@@ -64,36 +64,20 @@
           "type": "pair",
           "images": [
             {
-              "src": "/image/uploads/images/1790271758282_ps5dz.webp",
+              "src": "/image/uploads/images/1790274091330_3c549.webp",
               "w": 2000,
-              "h": 2641,
+              "h": 2459,
               "alt": "Wallet Screen",
               "mediaType": "image"
             },
             {
-              "src": "/image/uploads/images/1790271763459_lql3x.webp",
+              "src": "/image/uploads/images/1790274100168_uia32.webp",
               "w": 2000,
-              "h": 2641,
+              "h": 2459,
               "alt": "Profile Screen",
               "mediaType": "image"
             }
           ]
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787683539081_r6w8f.webp",
-          "w": 2000,
-          "h": 1458,
-          "alt": "Onboarding Screen",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787682437873_hv9fn.webp",
-          "w": 2000,
-          "h": 1458,
-          "alt": "Create Account Screen",
-          "mediaType": "image"
         },
         {
           "type": "text",
@@ -110,82 +94,58 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787683879215_zv2rd.webp",
+          "src": "/image/uploads/images/1790274717420_7i0rd.webp",
           "w": 2000,
-          "h": 2640,
+          "h": 1263,
           "alt": "OTP and Onboarding Screen",
           "mediaType": "image"
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787683134538_svypj.webp",
+          "src": "/image/uploads/images/1790274710036_b70hz.webp",
           "w": 2000,
-          "h": 1453,
+          "h": 1263,
+          "alt": "",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790274120587_d9hmb.webp",
+          "w": 2000,
+          "h": 1263,
+          "alt": "Create Account Screen",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790274125886_52vvu.webp",
+          "w": 2000,
+          "h": 1263,
+          "alt": "Onboarding Screen",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790274106831_c1xde.webp",
+          "w": 2000,
+          "h": 1263,
+          "alt": "Screens 1",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790274112214_vh5tn.webp",
+          "w": 2000,
+          "h": 1263,
+          "alt": "Screens 2",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790274608138_0p4yt.webp",
+          "w": 2000,
+          "h": 1357,
           "alt": "Log In Screen",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787682505035_ypgz7.webp",
-          "w": 2000,
-          "h": 2640,
-          "alt": "Forgot Password Screen",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787686440905_dg5zx.webp",
-          "w": 2000,
-          "h": 1453,
-          "alt": "Home, Search, Notification Screen",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787854178468_o4fju.webp",
-          "w": 2000,
-          "h": 1453,
-          "alt": "Live games, Betslip, Match Details Screen",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787684135256_jldmb.webp",
-          "w": 2000,
-          "h": 1453,
-          "alt": "Bet Slip Screen",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787684065941_ezocz.webp",
-          "w": 2000,
-          "h": 1453,
-          "alt": "Wallet Screen",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787682279473_69q12.webp",
-          "w": 2000,
-          "h": 2630,
-          "alt": "Bank Deposit Method Screen",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787682400738_qcgvk.webp",
-          "w": 2000,
-          "h": 1453,
-          "alt": "Bitcoin Deposit Method Screen",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787683979007_h5qiz.webp",
-          "w": 2000,
-          "h": 2067,
-          "alt": "Profile Screen",
           "mediaType": "image"
         },
         {
