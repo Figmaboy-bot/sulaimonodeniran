@@ -1011,6 +1011,42 @@ body {
   text-decoration: none;
 }
 
+/* ── Paragraph formatting toolbar ──────────── */
+
+.rich-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.rich-btn {
+  min-width: 30px;
+  height: 28px;
+  padding: 0 8px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: var(--font-slab);
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.rich-btn:hover {
+  background: rgba(245,245,245,0.08);
+  border-color: rgba(245,245,245,0.3);
+  color: var(--text);
+}
+
+.rich-hint {
+  margin-left: 6px;
+  font-family: var(--font-slab);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
 /* ── Add text buttons ──────────────────────── */
 
 .btn-add-text-top {

@@ -160,6 +160,48 @@ main.project-main {
   white-space: pre-line;
 }
 
+/* text block paragraphs: formatting is rendered to real markup, so line
+   breaks come from <p>/<br> rather than pre-line */
+.rich-text {
+  white-space: normal;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.rich-text p,
+.rich-text ol,
+.rich-text ul {
+  margin: 0;
+}
+
+.rich-text ol,
+.rich-text ul {
+  padding-left: 1.4em;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* bullets are usually short points; numbered items often carry a paragraph */
+.rich-text ul {
+  gap: 8px;
+}
+
+.rich-text li {
+  padding-left: 0.2em;
+}
+
+.rich-text li::marker {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.rich-text strong {
+  font-weight: 700;
+  color: var(--text);
+}
+
 /* stretch to the About column's height: meta at the top, buttons at the
    bottom; the gap stays as the minimum when About is short */
 .project-info {

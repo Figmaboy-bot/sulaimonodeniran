@@ -477,6 +477,124 @@ async function compressImage(file) {
     renderGalleryGrid();
   }
 
+  // ── Paragraph formatting ──────────────────────
+  // Text block paragraphs hold a small markdown subset — **bold**, "1." and
+  // "-" list lines — which the project page renders (pages/work/project).
+  function setArea(ta, value, selStart, selEnd) {
+    ta.value = value;
+    ta.focus();
+    ta.setSelectionRange(selStart, selEnd);
+    ta.dispatchEvent(new Event('input'));
+  }
+
+  function toggleBold(ta) {
+    var v = ta.value, s = ta.selectionStart, e = ta.selectionEnd, sel = v.slice(s, e);
+    if (v.slice(s - 2, s) === '**' && v.slice(e, e + 2) === '**') {
+      return setArea(ta, v.slice(0, s - 2) + sel + v.slice(e + 2), s - 2, e - 2);
+    }
+    if (sel.length >= 4 && sel.slice(0, 2) === '**' && sel.slice(-2) === '**') {
+      return setArea(ta, v.slice(0, s) + sel.slice(2, -2) + v.slice(e), s, e - 4);
+    }
+    // keep surrounding spaces outside the markers, or ** won't pair up
+    var lead = sel.match(/^\s*/)[0], trail = sel.match(/\s*$/)[0];
+    var inner = sel.trim() || 'bold text';
+    var out = lead + '**' + inner + '**' + (sel.trim() ? trail : '');
+    var at = s + lead.length + 2;
+    setArea(ta, v.slice(0, s) + out + v.slice(e), at, at + inner.length);
+  }
+
+  // Numbers (or bullets) the selected lines. With blank lines in the
+  // selection, only the first line of each paragraph gets a marker, so a
+  // title line and its explanation stay one list item. Toggles off when
+  // every selected item already has that marker.
+  function toggleList(ta, ordered) {
+    var v  = ta.value, s = ta.selectionStart, e = ta.selectionEnd;
+    if (e > s && v[e - 1] === '\n') e--;
+    var ls = v.lastIndexOf('\n', s - 1) + 1;
+    var le = v.indexOf('\n', e); if (le === -1) le = v.length;
+    var lines   = v.slice(ls, le).split('\n');
+    var chunked = lines.some(function (l) { return !l.trim(); });
+    var heads   = lines.map(function (l, k) {
+      return !!l.trim() && (!chunked || k === 0 || !lines[k - 1].trim());
+    });
+    var mark = ordered ? /^\s*\d+[.)]\s+/ : /^\s*[-•*]\s+/;
+    var off  = lines.every(function (l, k) { return !heads[k] || mark.test(l); });
+    var n = 0;
+    var out = lines.map(function (l, k) {
+      if (!heads[k]) return l;
+      if (off) return l.replace(mark, '');
+      var bare = l.replace(/^\s*(\d+[.)]|[-•*])\s+/, '');
+      return (ordered ? (++n) + '. ' : '- ') + bare;
+    }).join('\n');
+    setArea(ta, v.slice(0, ls) + out + v.slice(le), ls, ls + out.length);
+  }
+
+  // Clipboard HTML (ChatGPT, Google Docs, Notion, web pages) → the same
+  // markdown subset, so bold and numbering survive a paste into the textarea.
+  function htmlToRich(html) {
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    function kids(n) { return Array.prototype.map.call(n.childNodes, walk).join(''); }
+    function isBold(n) {
+      var tag = n.tagName.toLowerCase();
+      var fw  = n.style && n.style.fontWeight;
+      if (fw === 'normal' || fw === '400') return false; // Google Docs wraps everything in <b style="font-weight:normal">
+      return tag === 'strong' || tag === 'b' || fw === 'bold' || parseInt(fw, 10) >= 600;
+    }
+    function walk(n) {
+      if (n.nodeType === 3) return n.nodeValue.replace(/\s+/g, ' ');
+      if (n.nodeType !== 1) return '';
+      var tag = n.tagName.toLowerCase();
+      if (tag === 'script' || tag === 'style' || tag === 'head') return '';
+      if (tag === 'br') return '\n';
+      if (tag === 'ol' || tag === 'ul') {
+        var num = parseInt(n.getAttribute('start'), 10) || 1;
+        return '\n\n' + Array.prototype.filter.call(n.children, function (c) { return c.tagName === 'LI'; })
+          .map(function (li) {
+            var body = kids(li).trim().replace(/\n{2,}/g, '\n');
+            return (tag === 'ol' ? (num++) + '. ' : '- ') + body;
+          }).join('\n\n') + '\n\n';
+      }
+      var inner = kids(n);
+      if (isBold(n) && inner.trim()) {
+        return inner.match(/^\s*/)[0] + '**' + inner.trim() + '**' + inner.match(/\s*$/)[0];
+      }
+      if (/^(p|div|h[1-6]|li|section|article|blockquote|pre)$/.test(tag)) return '\n\n' + inner.trim() + '\n\n';
+      return inner;
+    }
+    return kids(doc.body)
+      .replace(/\*\*\*\*/g, '')          // bold nested in bold
+      .replace(/\*\*(\s*)\*\*/g, '$1')   // adjacent bold runs
+      .replace(/[ \t]+\n/g, '\n').replace(/\n[ \t]+/g, '\n')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
+  }
+
+  function wireRichArea(ta, toolbar) {
+    toolbar.querySelectorAll('.rich-btn').forEach(function (btn) {
+      // keep the textarea's selection: don't let the button take focus
+      btn.addEventListener('mousedown', function (e) { e.preventDefault(); });
+      btn.addEventListener('click', function () {
+        if (this.dataset.fmt === 'bold') toggleBold(ta);
+        else toggleList(ta, this.dataset.fmt === 'ol');
+      });
+    });
+    ta.addEventListener('keydown', function (e) {
+      if ((e.metaKey || e.ctrlKey) && !e.shiftKey && !e.altKey && e.key.toLowerCase() === 'b') {
+        e.preventDefault();
+        toggleBold(ta);
+      }
+    });
+    ta.addEventListener('paste', function (e) {
+      var html = e.clipboardData && e.clipboardData.getData('text/html');
+      if (!html) return;
+      var text = htmlToRich(html);
+      if (!text) return;
+      e.preventDefault();
+      var s = ta.selectionStart;
+      setArea(ta, ta.value.slice(0, s) + text + ta.value.slice(ta.selectionEnd), s + text.length, s + text.length);
+    });
+  }
+
   // ── Gallery grid ──────────────────────────────
   function insertTextBlock(at) {
     state.gallery.splice(at, 0, { kind: 'text', columns: textColumns(), showSecond: true });
@@ -569,8 +687,14 @@ async function compressImage(file) {
         return '<div class="gcard-text-col" data-col="' + k + '">' +
           '<label class="gcard-text-field"><span class="field-label">Heading</span>' +
             '<input class="field-input gcard-text-heading" type="text" placeholder="e.g. The Goal" value="' + esc(c.heading) + '" /></label>' +
-          '<label class="gcard-text-field"><span class="field-label">Paragraph</span>' +
-            '<textarea class="field-input field-textarea gcard-text-body" rows="5" placeholder="Write the paragraph…">' + esc(c.body) + '</textarea></label>' +
+          '<div class="gcard-text-field"><span class="field-label">Paragraph</span>' +
+            '<div class="rich-toolbar">' +
+              '<button type="button" class="rich-btn" data-fmt="bold" title="Bold (⌘B)"><b>B</b></button>' +
+              '<button type="button" class="rich-btn" data-fmt="ol" title="Numbered list">1.</button>' +
+              '<button type="button" class="rich-btn" data-fmt="ul" title="Bullet list">•</button>' +
+              '<span class="rich-hint">Select text, then B · pasted bold and lists are kept</span>' +
+            '</div>' +
+            '<textarea class="field-input field-textarea gcard-text-body" rows="7" placeholder="Write the paragraph…">' + esc(c.body) + '</textarea></div>' +
         '</div>';
       }
 
@@ -614,7 +738,9 @@ async function compressImage(file) {
       card.querySelectorAll('.gcard-text-col').forEach(function (colEl) {
         var col = state.gallery[idx].columns[+colEl.dataset.col];
         colEl.querySelector('.gcard-text-heading').addEventListener('input', function () { col.heading = this.value; });
-        colEl.querySelector('.gcard-text-body').addEventListener('input', function () { col.body = this.value; });
+        var area = colEl.querySelector('.gcard-text-body');
+        area.addEventListener('input', function () { col.body = this.value; });
+        wireRichArea(area, colEl.querySelector('.rich-toolbar'));
       });
 
       grid.appendChild(card);

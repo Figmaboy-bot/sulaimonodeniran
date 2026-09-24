@@ -224,6 +224,72 @@
       }
     }
 
+    // ── Paragraph formatting ──────────────────
+    // Text blocks carry a small markdown subset typed or pasted in admin:
+    // **bold**, lines starting "1." (numbered list) or "-" / "•" (bullets),
+    // and blank lines between paragraphs. Everything is escaped first, so the
+    // only markup that can reach the page is the handful of tags added here.
+    function escHtml(s) {
+      return String(s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function inlineRich(s) {
+      return escHtml(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    }
+
+    var OL_ITEM = /^\s*(\d+)[.)]\s+(.*)$/;
+    var UL_ITEM = /^\s*[-•*]\s+(.*)$/;
+
+    function renderRich(text) {
+      var lines = String(text).replace(/\r\n?/g, '\n').split('\n');
+      var html  = '';
+      var i     = 0;
+
+      function blank(k) { return k < lines.length && !lines[k].trim(); }
+      function nextFilled(k) { while (blank(k)) k++; return k; }
+
+      while (i < lines.length) {
+        if (blank(i)) { i++; continue; }
+
+        var ordered = OL_ITEM.test(lines[i]);
+        if (ordered || UL_ITEM.test(lines[i])) {
+          var marker = ordered ? OL_ITEM : UL_ITEM;
+          var start  = ordered ? parseInt(lines[i].match(OL_ITEM)[1], 10) : 1;
+          var items  = [];
+          // an item runs until a blank line or the next marker; a blank line
+          // only ends the list when the next text isn't another item
+          while (i < lines.length) {
+            if (blank(i)) {
+              var k = nextFilled(i);
+              if (k < lines.length && marker.test(lines[k])) { i = k; continue; }
+              break;
+            }
+            var m = lines[i].match(marker);
+            if (m) items.push([ordered ? m[2] : m[1]]);
+            else items[items.length - 1].push(lines[i].trim());
+            i++;
+          }
+          var tag = ordered ? 'ol' : 'ul';
+          html += '<' + tag + (ordered && start !== 1 ? ' start="' + start + '"' : '') + '>' +
+            items.map(function (it) {
+              return '<li>' + it.map(inlineRich).join('<br>') + '</li>';
+            }).join('') +
+            '</' + tag + '>';
+          continue;
+        }
+
+        var para = [];
+        while (i < lines.length && !blank(i) && !OL_ITEM.test(lines[i]) && !UL_ITEM.test(lines[i])) {
+          para.push(inlineRich(lines[i].trim()));
+          i++;
+        }
+        html += '<p>' + para.join('<br>') + '</p>';
+      }
+      return html;
+    }
+
     // Text row: one or two heading + body columns set side by side.
     function makeText(section) {
       var row = document.createElement('section');
@@ -239,9 +305,9 @@
           c.appendChild(h);
         }
         if (col.body) {
-          var body = document.createElement('p');
-          body.className   = 'meta-body';
-          body.textContent = col.body;
+          var body = document.createElement('div');
+          body.className = 'meta-body rich-text';
+          body.innerHTML = renderRich(col.body);
           c.appendChild(body);
         }
         row.appendChild(c);

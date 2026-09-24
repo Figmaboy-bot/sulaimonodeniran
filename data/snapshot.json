@@ -13,116 +13,125 @@
       "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783589940734_quot1.webp",
       "gallery": [
         {
-          "h": 1551,
-          "w": 2000,
-          "alt": "Portfolio Cover",
+          "type": "full",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783589940734_quot1.webp",
-          "type": "full",
+          "w": 2000,
+          "h": 1551,
+          "alt": "Portfolio Cover",
           "mediaType": "image"
         },
         {
-          "h": 1453,
-          "w": 2000,
-          "alt": "Splash Screen",
+          "type": "full",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787684039194_kqr30.webp",
-          "type": "full",
+          "w": 2000,
+          "h": 1453,
+          "alt": "Splash Screen",
           "mediaType": "image"
         },
         {
-          "h": 1458,
-          "w": 2000,
-          "alt": "Onboarding Screen",
+          "type": "full",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787683539081_r6w8f.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
+          "w": 2000,
           "h": 1458,
-          "w": 2000,
-          "alt": "Create Account Screen",
+          "alt": "Onboarding Screen",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787682437873_hv9fn.webp",
-          "type": "full",
+          "w": 2000,
+          "h": 1458,
+          "alt": "Create Account Screen",
           "mediaType": "image"
         },
         {
-          "h": 2640,
-          "w": 2000,
-          "alt": "OTP and Onboarding Screen",
+          "type": "full",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787683879215_zv2rd.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1453,
           "w": 2000,
-          "alt": "Log In Screen",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787683134538_svypj.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
           "h": 2640,
+          "alt": "OTP and Onboarding Screen",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787683134538_svypj.webp",
           "w": 2000,
-          "alt": "Forgot Password Screen",
+          "h": 1453,
+          "alt": "Log In Screen",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787682505035_ypgz7.webp",
-          "type": "full",
+          "w": 2000,
+          "h": 2640,
+          "alt": "Forgot Password Screen",
           "mediaType": "image"
         },
         {
-          "h": 1453,
-          "w": 2000,
-          "alt": "Home, Search, Notification Screen",
+          "type": "full",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787686440905_dg5zx.webp",
-          "type": "full",
+          "w": 2000,
+          "h": 1453,
+          "alt": "Home, Search, Notification Screen",
           "mediaType": "image"
         },
         {
-          "h": 1453,
-          "w": 2000,
-          "alt": "Live games, Betslip, Match Details Screen",
+          "type": "full",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787854178468_o4fju.webp",
-          "type": "full",
+          "w": 2000,
+          "h": 1453,
+          "alt": "Live games, Betslip, Match Details Screen",
           "mediaType": "image"
         },
         {
-          "h": 1453,
-          "w": 2000,
-          "alt": "Bet Slip Screen",
+          "type": "full",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787684135256_jldmb.webp",
-          "type": "full",
+          "w": 2000,
+          "h": 1453,
+          "alt": "Bet Slip Screen",
           "mediaType": "image"
         },
         {
-          "h": 1453,
-          "w": 2000,
-          "alt": "Wallet Screen",
+          "type": "full",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787684065941_ezocz.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 2630,
           "w": 2000,
-          "alt": "Bank Deposit Method Screen",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787682279473_69q12.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
           "h": 1453,
-          "w": 2000,
-          "alt": "Bitcoin Deposit Method Screen",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787682400738_qcgvk.webp",
-          "type": "full",
+          "alt": "Wallet Screen",
           "mediaType": "image"
         },
         {
-          "h": 2067,
-          "w": 2000,
-          "alt": "Profile Screen",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787683979007_h5qiz.webp",
           "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787682279473_69q12.webp",
+          "w": 2000,
+          "h": 2630,
+          "alt": "Bank Deposit Method Screen",
           "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787682400738_qcgvk.webp",
+          "w": 2000,
+          "h": 1453,
+          "alt": "Bitcoin Deposit Method Screen",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1787683979007_h5qiz.webp",
+          "w": 2000,
+          "h": 2067,
+          "alt": "Profile Screen",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "The Problem",
+              "body": "Traditional betting platforms can often feel cluttered and overwhelming.\n\nUsers may need to navigate through:\n\n- Large numbers of betting markets\n\n- Complicated odds\n\n- Using Crypto to deposit \n\n- Difficult-to-understand bet slips\n\n- Fragmented transaction experiences\n\nFor a crypto-powered platform, these problems become even more important because users need to understand **both their bets and their money**."
+            }
+          ]
         }
       ],
       "sort_order": 0,
