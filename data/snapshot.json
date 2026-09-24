@@ -657,28 +657,165 @@
       "year": "2026",
       "meta": "Fintech · 2026",
       "live_url": null,
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778939778946_6x243.webp",
+      "cover_url": "/image/uploads/images/1790280020715_u5773.webp",
       "gallery": [
         {
-          "h": 1500,
-          "w": 2000,
-          "alt": "Cover",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778939778946_6x243.webp",
           "type": "full",
+          "src": "/image/uploads/images/1790280020715_u5773.webp",
+          "w": 2000,
+          "h": 2000,
+          "alt": "Cover",
           "mediaType": "image"
         },
         {
-          "h": 1500,
-          "w": 2000,
-          "alt": "Home Dark mockup",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778938696675_bwi0o.webp",
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790275493959_wiywn.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Home Screen",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790276168795_2hxeb.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Home Dark mockup",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790275493115_6debl.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Cards Screen",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790275494831_m97z8.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Profile Screen",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "The Problem",
+              "body": "The modern financial ecosystem is fragmented.\n\nUsers managing money across borders often have to move between:\n\n- Traditional bank accounts\n\n- Crypto wallets\n\n- Currency exchange platforms\n\n- Payment apps\n\n- Stablecoin wallets\n\n- International transfer services\n\nEach platform introduces its own interface, terminology, and transaction flow.\n\nThis creates unnecessary friction, especially for users who simply want to **hold, move, exchange, and spend their money.**"
+            },
+            {
+              "heading": "The Opportunity",
+              "body": "Stablecoins create an interesting bridge between traditional finance and digital assets.\n\nBut the underlying technology can be complicated.\n\nUsers shouldn't need to understand:\n\n- Blockchain networks\n\n- Gas fees\n\n- Wallet infrastructure\n\n- Token standards\n\n- On-chain transactions\n\njust to move money.\n\nThe opportunity was to abstract that complexity behind a familiar financial experience."
+            }
+          ]
+        },
+        {
           "type": "full",
+          "src": "/image/uploads/images/1790278832359_3mpm7.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Screens 3",
           "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278831802_vqn16.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Screens 2",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278832920_65zp2.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Screens 4",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278830980_6vsl5.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Screens 1",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Design Goals",
+              "body": "**01. Simplify**\n\nReduce the complexity of managing multiple currencies and financial accounts.\n\n**02. Connect**\n\nBring fiat and stablecoins together within one wallet experience.\n\n**03. Build Trust**\n\nMake balances, transactions, rates, and financial actions clear.\n\n**04. Enable Movement**\n\nMake sending money across currencies feel as easy as sending a local transfer."
+            },
+            {
+              "heading": "Product Experience",
+              "body": "Orbit revolves around four core experiences:\n\n**Multi-Currency Wallet**\n\nUsers can manage their ₦, $, €, USDT, and USDC balances from one place.\n\n**Global Transfers**\n\nUsers can send money to other people without needing to understand the underlying financial infrastructure.\n\n**Currency Conversion**\n\nUsers can move between supported currencies while clearly seeing the amount, rate, and fees before confirming.\n\n**Financial Insights**\n\nOrbit provides users with a clearer picture of how they're using and moving their money."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278833495_uy4eq.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Screens 5",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278834066_yf2ck.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Screens 6",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278834633_ezw0m.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Screens 7",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278835209_dm6hp.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Screens 8",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278835765_wlbdu.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Screens 9",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Final Outcome",
+              "body": "Orbit explores what a financial platform could look like when **traditional money and digital assets are treated as parts of the same ecosystem.**\n\nThe project allowed me to explore:\n\n- Fintech product design\n\n- Stablecoin experiences\n\n- Multi-currency wallets\n\n- Payment infrastructure\n\n- Financial dashboards\n\n- Transaction UX\n\n- Web3 abstraction\n\n- Responsive product design\n\n- Design systems\n\nUltimately, Orbit isn't about making crypto more complicated. It's about making the complexity **disappear.**"
+            }
+          ]
         }
       ],
       "sort_order": 6,
       "created_at": "2026-05-16T13:43:30.550027+00:00",
-      "coming_soon": true
+      "coming_soon": false
     },
     {
       "id": "scholara",

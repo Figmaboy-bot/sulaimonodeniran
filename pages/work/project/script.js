@@ -42,7 +42,11 @@
       .catch(function () { return null; });
   }
 
-  var project = fromServer() || fromCache() || fromSnapshot();
+  // Locally (the admin's preview) the snapshot is the file just saved, so it
+  // beats the listing cache, which only refreshes on a visit to /pages/work/.
+  var isLocal = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  var project = fromServer() ||
+    (isLocal ? fromSnapshot() || fromCache() : fromCache() || fromSnapshot());
 
   if (project) {
     render(project);
