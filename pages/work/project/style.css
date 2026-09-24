@@ -208,7 +208,7 @@ main.project-main {
 
 .rich-text strong {
   font-weight: 700;
-  color: var(--text);
+  color: inherit;
 }
 
 /* stretch to the About column's height: meta at the top, buttons at the
