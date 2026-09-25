@@ -246,8 +246,25 @@
     var OL_ITEM = /^\s*(\d+)[.)]\s+(.*)$/;
     var UL_ITEM = /^\s*[-•*]\s+(.*)$/;
 
+    // Bold opened on one line and closed lines later (a bolded run of short
+    // paragraphs) is closed and reopened per line, so each line renders on its
+    // own instead of leaving literal ** on the page. List markers stay first.
+    var LINE_PREFIX = /^(\s*(?:\d+[.)]|[-•*])\s+)?([\s\S]*)$/;
+
+    function balanceBold(lines) {
+      var open = false;
+      return lines.map(function (line) {
+        if (!line.trim()) return line;
+        var m    = line.match(LINE_PREFIX);
+        var body = (open ? '**' : '') + m[2];
+        if ((body.match(/\*\*/g) || []).length % 2) { body += '**'; open = true; }
+        else open = false;
+        return (m[1] || '') + body;
+      });
+    }
+
     function renderRich(text) {
-      var lines = String(text).replace(/\r\n?/g, '\n').split('\n');
+      var lines = balanceBold(String(text).replace(/\r\n?/g, '\n').split('\n'));
       var html  = '';
       var i     = 0;
 

@@ -6,7 +6,7 @@
       "tagline": "Live sports odds and a multi-currency wallet, designed and built end-to-end.",
       "about": "Wager365 is a sports betting app bringing live football, basketball and tennis odds into one board, with a bet slip that supports parlays and a wallet that takes bank transfer, card or crypto deposits, settling in whatever currency the user sets for their account. I designed the full product from onboarding through settlement, then built it as a working React Native app with a Firebase backend, including a tested settlement engine and a staged migration path for moving money logic server-side.",
       "industry": "Sports Betting",
-      "role": "Product Design & Development",
+      "role": "Product Design · Development",
       "year": "2026",
       "meta": "Sports Betting · 2026",
       "live_url": null,
@@ -17,7 +17,7 @@
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783589940734_quot1.webp",
           "w": 2000,
           "h": 1551,
-          "alt": "Portfolio Cover",
+          "alt": "Wager365 home screen on a phone in hand",
           "mediaType": "image"
         },
         {
@@ -25,7 +25,7 @@
           "src": "/image/uploads/images/1790274701709_1icl2.webp",
           "w": 2000,
           "h": 1263,
-          "alt": "Splash Screen",
+          "alt": "Wager365 splash screen",
           "mediaType": "image"
         },
         {
@@ -33,11 +33,11 @@
           "columns": [
             {
               "heading": "The Problem",
-              "body": "Traditional betting platforms can often feel cluttered and overwhelming.\n\nUsers may need to navigate through:\n\n- Large numbers of betting markets\n\n- Complicated odds\n\n- Using Crypto to deposit \n\n- Difficult-to-understand bet slips\n\n- Fragmented transaction experiences\n\nFor a crypto-powered platform, these problems become even more important because users need to understand **both their bets and their money**."
+              "body": "Traditional betting platforms can often feel cluttered and overwhelming.\n\nUsers may need to navigate through:\n\n- Large numbers of betting markets\n\n- Complicated odds\n\n- Depositing with crypto\n\n- Difficult-to-understand bet slips\n\n- Fragmented transaction experiences\n\nFor a crypto-powered platform, these problems become even more important because users need to understand **both their bets and their money**."
             },
             {
               "heading": "Design Goals",
-              "body": "The product experience was designed around four key goals:\n\n**Clarity**\nMake odds, markets, balances, and potential winnings easy to understand.\n\n**Speed**\nReduce the number of steps required to discover a match and place a wager.\n\n**Deposit**\nMake deposit across different cryptocurrencies, stablecoins and fiat currency.\n\n**Trust**\nCreate an interface that feels reliable enough for users to confidently manage funds and bets.\n\n**Simplicity**\nHide unnecessary complexity without limiting functionality for experienced users."
+              "body": "The product experience was designed around five key goals:\n\n**Clarity**\nMake odds, markets, balances, and potential winnings easy to understand.\n\n**Speed**\nReduce the number of steps required to discover a match and place a wager.\n\n**Deposit**\nMake deposits easy across cryptocurrencies, stablecoins and fiat currency.\n\n**Trust**\nCreate an interface that feels reliable enough for users to confidently manage funds and bets.\n\n**Simplicity**\nHide unnecessary complexity without limiting functionality for experienced users."
             }
           ]
         },
@@ -105,7 +105,7 @@
           "src": "/image/uploads/images/1790274710036_b70hz.webp",
           "w": 2000,
           "h": 1263,
-          "alt": "",
+          "alt": "Wager365 create account and log in screens",
           "mediaType": "image"
         },
         {
@@ -129,7 +129,7 @@
           "src": "/image/uploads/images/1790274106831_c1xde.webp",
           "w": 2000,
           "h": 1263,
-          "alt": "Screens 1",
+          "alt": "Wager365 search, live games, bet slip and match detail screens",
           "mediaType": "image"
         },
         {
@@ -137,7 +137,7 @@
           "src": "/image/uploads/images/1790274112214_vh5tn.webp",
           "w": 2000,
           "h": 1263,
-          "alt": "Screens 2",
+          "alt": "Wager365 won, lost, deposit method and notification screens",
           "mediaType": "image"
         },
         {
@@ -145,7 +145,7 @@
           "src": "/image/uploads/images/1790274608138_0p4yt.webp",
           "w": 2000,
           "h": 1357,
-          "alt": "Log In Screen",
+          "alt": "Wager365 log in screen",
           "mediaType": "image"
         },
         {
@@ -168,7 +168,7 @@
       "tagline": "Orbit is a modern financial platform built to make managing money across borders effortless.",
       "about": "Orbit is a modern financial platform built to make managing money across borders effortless. We bring together traditional currencies and stablecoins in one intuitive app, giving you the freedom to send, receive, save, spend, and convert money without the complexity of multiple accounts or platforms.\n\nWhether you're a freelancer getting paid internationally, a traveler spending abroad, or someone protecting savings with stablecoins, Orbit gives you the tools to move money confidently and securely.\n\nWith support for Naira (NGN), US Dollar (USD), Euro (EUR), USDT, and USDC, Orbit combines fast transfers, transparent exchange rates, secure virtual cards, and intelligent money management into one seamless experience.",
       "industry": "Fintech",
-      "role": "Web Design & Dev",
+      "role": "Web Design · Development",
       "year": "2026",
       "meta": "Fintech · 2026",
       "live_url": "https://orbit-website-lovat.vercel.app/",
@@ -177,7 +177,7 @@
         {
           "h": 1500,
           "w": 2000,
-          "alt": "Screenshot 2026-05-06 at 11.40.08 PM",
+          "alt": "Orbit website hero on a laptop",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783094057905_w21y3.webp",
           "type": "full",
           "mediaType": "image"
@@ -241,7 +241,7 @@
         {
           "h": 1141,
           "w": 2000,
-          "alt": "Faq",
+          "alt": "FAQ",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783095201633_vbnfe.webp",
           "type": "full",
           "mediaType": "image"
@@ -265,7 +265,7 @@
       "tagline": "Orbit is a multi-currency fintech app that allows users to send, receive, and hold Naira, USD, Euro, and stablecoins seamlessly in one place.",
       "about": "Orbit is a modern multi-currency finance app built for a borderless world.\nWe help people send, receive, convert, and manage money seamlessly across Naira, USD, Euro, and stablecoins all from one secure platform.\n\nDesigned for freelancers, global professionals, travelers, and digital-first users, Orbit combines the simplicity of modern banking with the flexibility of digital assets. Whether you’re paying internationally, saving in stable currencies, or transferring funds instantly, Orbit keeps your money moving without limits.",
       "industry": "Fintech",
-      "role": "UIUX Design",
+      "role": "UI/UX Design",
       "year": "2026",
       "meta": "Fintech · 2026",
       "live_url": null,
@@ -276,7 +276,7 @@
           "src": "/image/uploads/images/1790325111007_4p43d.webp",
           "w": 2000,
           "h": 1384,
-          "alt": "Cover",
+          "alt": "Orbit home screen on a phone in hand",
           "mediaType": "image"
         },
         {
@@ -284,7 +284,7 @@
           "src": "/image/uploads/videos/1790281927529_m4ucf.mp4",
           "w": null,
           "h": null,
-          "alt": "Orbit Screens (web)",
+          "alt": "Orbit app screens video",
           "mediaType": "video"
         },
         {
@@ -301,7 +301,7 @@
               "src": "/image/uploads/images/1790276168795_2hxeb.webp",
               "w": 2000,
               "h": 2444,
-              "alt": "Home Dark mockup",
+              "alt": "Home screen, dark mode",
               "mediaType": "image"
             }
           ]
@@ -343,7 +343,7 @@
           "src": "/image/uploads/images/1790278832359_3mpm7.webp",
           "w": 2000,
           "h": 1256,
-          "alt": "Screens 3",
+          "alt": "Orbit splash screens",
           "mediaType": "image"
         },
         {
@@ -351,7 +351,7 @@
           "src": "/image/uploads/images/1790278831802_vqn16.webp",
           "w": 2000,
           "h": 1256,
-          "alt": "Screens 2",
+          "alt": "Orbit onboarding screens",
           "mediaType": "image"
         },
         {
@@ -359,7 +359,7 @@
           "src": "/image/uploads/images/1790278832920_65zp2.webp",
           "w": 2000,
           "h": 1256,
-          "alt": "Screens 4",
+          "alt": "Orbit create account and log in screens",
           "mediaType": "image"
         },
         {
@@ -367,7 +367,7 @@
           "src": "/image/uploads/images/1790278830980_6vsl5.webp",
           "w": 2000,
           "h": 1256,
-          "alt": "Screens 1",
+          "alt": "Orbit email verification screens",
           "mediaType": "image"
         },
         {
@@ -388,7 +388,7 @@
           "src": "/image/uploads/images/1790278833495_uy4eq.webp",
           "w": 2000,
           "h": 1256,
-          "alt": "Screens 5",
+          "alt": "Orbit send money: recipient, country and bank account details",
           "mediaType": "image"
         },
         {
@@ -396,7 +396,7 @@
           "src": "/image/uploads/images/1790278834066_yf2ck.webp",
           "w": 2000,
           "h": 1256,
-          "alt": "Screens 6",
+          "alt": "Orbit transfer details, PIN, success and transaction details screens",
           "mediaType": "image"
         },
         {
@@ -404,7 +404,7 @@
           "src": "/image/uploads/images/1790278834633_ezw0m.webp",
           "w": 2000,
           "h": 1256,
-          "alt": "Screens 7",
+          "alt": "Orbit transfer to an Orbit user, from recipient to transaction details",
           "mediaType": "image"
         },
         {
@@ -412,7 +412,7 @@
           "src": "/image/uploads/images/1790278835209_dm6hp.webp",
           "w": 2000,
           "h": 1256,
-          "alt": "Screens 8",
+          "alt": "Orbit crypto transfer: network, address, details and confirmation",
           "mediaType": "image"
         },
         {
@@ -420,7 +420,7 @@
           "src": "/image/uploads/images/1790278835765_wlbdu.webp",
           "w": 2000,
           "h": 1256,
-          "alt": "Screens 9",
+          "alt": "Orbit crypto transfer success and transaction details",
           "mediaType": "image"
         },
         {
@@ -440,25 +440,25 @@
     {
       "id": "task-hive-landing-page",
       "title": "Task Hive - Landing Page",
-      "tagline": "A modern task management platform designed for teams and individuals",
+      "tagline": "A modern task management platform designed for teams and individuals.",
       "about": "TaskHive is a modern task management platform designed for teams and individuals who want to stay organized, hit deadlines, and work smarter. With powerful features like Kanban boards, AI task suggestions, and real-time team activity, TaskHive simplifies collaboration and boosts productivity—all in one intuitive workspace.",
-      "industry": "CRM",
-      "role": "UI/UX Design & Web Dev",
+      "industry": "Productivity / SaaS",
+      "role": "UI/UX Design · Web Development",
       "year": "2025",
-      "meta": "CRM · 2025",
+      "meta": "Productivity / SaaS · 2025",
       "live_url": "https://taskhive-21eff5.webflow.io/",
       "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628294732_ezj30.webp",
       "gallery": [
         {
           "h": 1500,
           "w": 2000,
-          "alt": "RnCljM1WRpcafd6NUGXeTRgysI (1)",
+          "alt": "TaskHive landing page on a laptop",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628296764_23a5o.webp",
           "type": "full",
           "mediaType": "image"
         },
         {
-          "alt": "CbudueseXBQi6wC7AdAcfxos",
+          "alt": "TaskHive landing page video",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628297442_at4a7.mp4",
           "type": "full",
           "mediaType": "video"
@@ -466,7 +466,7 @@
         {
           "h": 1333,
           "w": 2000,
-          "alt": "XDSlC9RHpLnntGnwv4PXZp7kbxI",
+          "alt": "TaskHive landing page on a phone",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628300819_x8qw9.webp",
           "type": "full",
           "mediaType": "image"
@@ -474,7 +474,7 @@
         {
           "h": 8866,
           "w": 1354,
-          "alt": "Frame 1000011562",
+          "alt": "TaskHive full landing page",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628307543_gorgi.webp",
           "type": "full",
           "mediaType": "image"
@@ -490,8 +490,8 @@
       "tagline": "Your smart financial guide, built to help you navigate money management with confidence.",
       "about": "CoinCompass is your smart financial guide, built to help you navigate money management with confidence. Designed for the modern user, CoinCompass combines intelligent insights, intuitive tools, and real-time tracking to help you make smarter decisions about your finances.\nWhether you're budgeting, investing, or just trying to stay on top of your spending, CoinCompass empowers you to take control with ease. Our sleek interface, personalized recommendations, and seamless experience make managing money less stressful—and a lot more rewarding.",
       "industry": "Fintech",
-      "role": "UI/UX Design, Brand Design",
-      "year": "2023",
+      "role": "UI/UX Design · Brand Design",
+      "year": "2024",
       "meta": "Fintech · 2024",
       "live_url": null,
       "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628311381_ohyw8.webp",
@@ -501,7 +501,7 @@
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628313461_xvid8.webp",
           "w": 1600,
           "h": 1200,
-          "alt": "MacBook Pro 16_ - 3",
+          "alt": "Coin Compass home, insights and profile screens",
           "mediaType": "image"
         },
         {
@@ -509,19 +509,19 @@
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628314119_c2fun.mp4",
           "w": null,
           "h": null,
-          "alt": "coin compass video",
+          "alt": "Coin Compass app video",
           "mediaType": "video"
         },
         {
           "type": "text",
           "columns": [
             {
-              "heading": "The problem",
-              "body": "Managing personal finances can quickly become complicated.\n\nPeople often have their money spread across different accounts, while financial information is presented as disconnected numbers.\n\nUsers may struggle with:\n\n- Understanding where their money goes\n\n- Tracking spending\n\n- Setting realistic financial goals\n\n- Knowing how much they can afford to spend\n\n- Planning for future expenses\n\n- Understanding their overall financial position\n\nThe challenge wasn't simply to create another budgeting app."
+              "heading": "The Problem",
+              "body": "Managing personal finances can quickly become complicated.\n\nPeople often have their money spread across different accounts, while financial information is presented as disconnected numbers.\n\nUsers may struggle with:\n\n- Understanding where their money goes\n\n- Tracking spending\n\n- Setting realistic financial goals\n\n- Knowing how much they can afford to spend\n\n- Planning for future expenses\n\n- Understanding their overall financial position\n\nThe challenge wasn't simply to create another budgeting app. It was to help people understand what their money is doing, and what to do next."
             },
             {
               "heading": "The Opportunity",
-              "body": "CoinCompass explores the idea of combining **personal finance management with intelligent financial guidance**.\n\nInstead of simply showing:\n\n**Income → Expenses → Balance**\n\nthe product helps users understand the relationship between those numbers.\n\nFor example:\n\n**You're spending more on dining this month.\n\nYour savings goal is 68% complete.\n\nYou have ₦XX available after your upcoming expenses.**\n\nThis turns financial data into something users can actually understand and act on."
+              "body": "CoinCompass explores the idea of combining **personal finance management with intelligent financial guidance**.\n\nInstead of simply showing:\n\n**Income → Expenses → Balance**\n\nthe product helps users understand the relationship between those numbers.\n\nFor example:\n\n**You're spending more on dining this month.\n\nYour savings goal is 68% complete.\n\nYou have ₦45,000 available after your upcoming expenses.**\n\nThis turns financial data into something users can actually understand and act on."
             }
           ]
         },
@@ -532,14 +532,14 @@
               "src": "/image/uploads/images/1790324159999_fz8jv.webp",
               "w": 2000,
               "h": 2444,
-              "alt": "bnN2HUzdjB1ojpN4vliiV47zM",
+              "alt": "Coin Compass home screen",
               "mediaType": "image"
             },
             {
               "src": "/image/uploads/images/1790324166809_6kr1t.webp",
               "w": 2000,
               "h": 2444,
-              "alt": "Onboarding",
+              "alt": "Onboarding screen",
               "mediaType": "image"
             }
           ]
@@ -558,7 +558,7 @@
               "src": "/image/uploads/images/1790324175412_4whcg.webp",
               "w": 2000,
               "h": 2444,
-              "alt": "Sign up and Sign In",
+              "alt": "Sign up and sign in screens",
               "mediaType": "image"
             }
           ]
@@ -570,14 +570,14 @@
               "src": "/image/uploads/images/1790324182546_k1zw2.webp",
               "w": 2000,
               "h": 2444,
-              "alt": "OTP",
+              "alt": "OTP screen",
               "mediaType": "image"
             },
             {
               "src": "/image/uploads/images/1790324188243_dvt0q.webp",
               "w": 2000,
               "h": 2444,
-              "alt": "Home and Goal screen",
+              "alt": "Home and goal screens",
               "mediaType": "image"
             }
           ]
@@ -585,10 +585,6 @@
         {
           "type": "text",
           "columns": [
-            {
-              "heading": "The Problem",
-              "body": "Managing personal finances can quickly become complicated.\n\nPeople often have their money spread across different accounts, while financial information is presented as disconnected numbers.\n\nUsers may struggle with:\n\n- Understanding where their money goes\n\n- Tracking spending\n\n- Setting realistic financial goals\n\n- Knowing how much they can afford to spend\n\n- Planning for future expenses\n\n- Understanding their overall financial position\n\nThe challenge wasn't simply to create another budgeting app."
-            },
             {
               "heading": "Design Goals",
               "body": "**01. Make finance understandable**\n\nPresent financial information in a way that feels simple and approachable.\n\n**02. Give users context**\n\nDon't just show numbers. Help users understand what those numbers mean.\n\n**03. Encourage better financial habits**\n\nHelp users stay aware of their spending, savings, and goals.\n\n**04. Personalize the experience**\n\nUse intelligent insights to make the product feel relevant to each user's financial situation."
@@ -600,7 +596,7 @@
           "src": "/image/uploads/images/1790324237788_ew986.webp",
           "w": 2000,
           "h": 1254,
-          "alt": "CashBuddy",
+          "alt": "Coin Compass splash screens",
           "mediaType": "image"
         },
         {
@@ -624,7 +620,7 @@
           "src": "/image/uploads/images/1790324256934_8gjj8.webp",
           "w": 2000,
           "h": 1256,
-          "alt": "Screens 4",
+          "alt": "Coin Compass OTP verification screens",
           "mediaType": "image"
         },
         {
@@ -632,7 +628,7 @@
           "src": "/image/uploads/images/1790324257554_hds8s.webp",
           "w": 2000,
           "h": 1256,
-          "alt": "Screens 5",
+          "alt": "Coin Compass send and request money screens",
           "mediaType": "image"
         },
         {
@@ -653,7 +649,7 @@
           "src": "/image/uploads/images/1790324258143_sodrd.webp",
           "w": 2000,
           "h": 1256,
-          "alt": "Screens 6",
+          "alt": "Coin Compass request and add funds screens",
           "mediaType": "image"
         },
         {
@@ -661,7 +657,7 @@
           "src": "/image/uploads/images/1790324258729_ywwkp.webp",
           "w": 2000,
           "h": 1256,
-          "alt": "Screens 7",
+          "alt": "Coin Compass savings goal screens",
           "mediaType": "image"
         },
         {
@@ -669,7 +665,7 @@
           "src": "/image/uploads/images/1790324259329_20kax.webp",
           "w": 2000,
           "h": 1256,
-          "alt": "Screens 8",
+          "alt": "Coin Compass CashBuddy AI advisor and notification screens",
           "mediaType": "image"
         },
         {
@@ -695,23 +691,23 @@
       "title": "Ecowave",
       "tagline": "A bold visual identity crafted to make a lasting impression.",
       "about": "Ecowave is a forward-thinking renewable energy brand dedicated to harnessing nature’s power for a sustainable future. Focused on delivering clean energy solutions through solar, wind, and hydro power, Ecowave empowers communities with accessible, eco-friendly alternatives to traditional energy sources.\n\nBuilt on the principles of innovation, sustainability, and impact, Ecowave integrates cutting-edge technology with environmentally responsible practices to reduce carbon footprints and drive a greener tomorrow. Through thoughtful branding and strategic positioning, Ecowave aims to not only provide energy solutions but also inspire a global shift toward renewable power.",
-      "industry": "Renewable energy",
+      "industry": "Renewable Energy",
       "role": "Brand Identity",
       "year": "2024",
-      "meta": "Renewable energy · 2024",
+      "meta": "Renewable Energy · 2024",
       "live_url": null,
       "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834754542_zlfjf.webp",
       "gallery": [
         {
           "h": 1364,
           "w": 2000,
-          "alt": "Free Banners on Building Mockup 1",
+          "alt": "Ecowave billboard on a city building",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834754542_zlfjf.webp",
           "type": "full",
           "mediaType": "image"
         },
         {
-          "alt": "jOul2FmuQxgDpSZlBvaXZS5Kvc",
+          "alt": "Ecowave brand video",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/videos/1778836794324_zax3y.mp4",
           "type": "full",
           "mediaType": "video"
@@ -719,7 +715,7 @@
         {
           "h": 1667,
           "w": 2000,
-          "alt": "Color",
+          "alt": "Ecowave colour palette",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834731017_gk2rq.webp",
           "type": "full",
           "mediaType": "image"
@@ -727,7 +723,7 @@
         {
           "h": 1156,
           "w": 2000,
-          "alt": "Logo Dark green",
+          "alt": "Ecowave logo on dark green",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834789019_r5ai0.webp",
           "type": "full",
           "mediaType": "image"
@@ -735,7 +731,7 @@
         {
           "h": 1156,
           "w": 2000,
-          "alt": "Logo green",
+          "alt": "Ecowave logo on green",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834797805_j48is.webp",
           "type": "full",
           "mediaType": "image"
@@ -743,7 +739,7 @@
         {
           "h": 1156,
           "w": 2000,
-          "alt": "Logo Yellow",
+          "alt": "Ecowave logo on yellow",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834804050_pd8qx.webp",
           "type": "full",
           "mediaType": "image"
@@ -751,7 +747,7 @@
         {
           "h": 1156,
           "w": 2000,
-          "alt": "MacBook Air - 4",
+          "alt": "Ecowave sun logo pattern",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834809572_eir6k.webp",
           "type": "full",
           "mediaType": "image"
@@ -759,7 +755,7 @@
         {
           "h": 1334,
           "w": 2000,
-          "alt": "Container Mockup 1",
+          "alt": "Ecowave shipping container",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834745835_62wzp.webp",
           "type": "full",
           "mediaType": "image"
@@ -767,7 +763,7 @@
         {
           "h": 1335,
           "w": 2000,
-          "alt": "FREE-Tote-Bag-Mockup-Studio-Series_01_By-Mocku 1",
+          "alt": "Ecowave tote bag",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834762935_vwiwc.webp",
           "type": "full",
           "mediaType": "image"
@@ -775,7 +771,7 @@
         {
           "h": 1501,
           "w": 2000,
-          "alt": "Fence_Billboard_Mockup_3-Recovered 4",
+          "alt": "Ecowave billboard on a fence",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834749427_lft42.webp",
           "type": "full",
           "mediaType": "image"
@@ -783,7 +779,7 @@
         {
           "h": 1156,
           "w": 2000,
-          "alt": "MacBook Air - 8",
+          "alt": "Ecowave Instagram profile",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834817494_eyvpx.webp",
           "type": "full",
           "mediaType": "image"
@@ -791,7 +787,7 @@
         {
           "h": 1251,
           "w": 2000,
-          "alt": "MacBook Air - 10",
+          "alt": "Ecowave branded hard hats",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834824178_2fo7y.webp",
           "type": "full",
           "mediaType": "image"
@@ -799,7 +795,7 @@
         {
           "h": 1390,
           "w": 2000,
-          "alt": "MacBook Air - 11",
+          "alt": "Ecowave branded lanyards",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834837845_yfzan.webp",
           "type": "full",
           "mediaType": "image"
@@ -807,7 +803,7 @@
         {
           "h": 1601,
           "w": 2000,
-          "alt": "Mockup 2-1 1",
+          "alt": "Ecowave branded wristbands",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834844096_t42j0.webp",
           "type": "full",
           "mediaType": "image"
@@ -815,7 +811,7 @@
         {
           "h": 1335,
           "w": 2000,
-          "alt": "tape-mockup-glued-to-the-floor-isometric 1",
+          "alt": "Ecowave branded tape on the floor",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834856063_4kvl1.webp",
           "type": "full",
           "mediaType": "image"
@@ -830,23 +826,23 @@
       "title": "Nexflo - Website",
       "tagline": "A website for an automation platform that simplifies connecting apps, tools, and workflows.",
       "about": "Similar to platforms like Zapier and n8n, Nexflo empowers users to automate repetitive tasks, streamline operations, and improve productivity without needing to write code.\n\nWith a focus on flexibility, speed, and ease of use, Nexflo helps users build powerful workflows that move data seamlessly across applications, trigger actions in real time, and eliminate manual work. Whether it’s syncing data between CRMs, automating notifications, or integrating payment systems, Nexflo ensures that workflows run reliably and efficiently.\n\nBuilt with scalability in mind, Nexflo caters to both individual creators looking to save time and teams or businessesaiming to optimize their processes.",
-      "industry": "CRM",
-      "role": "UIUX design, Web dev",
+      "industry": "SaaS / Workflow Automation",
+      "role": "UI/UX Design · Web Development",
       "year": "2025",
-      "meta": "CRM · 2025",
+      "meta": "SaaS / Workflow Automation · 2025",
       "live_url": "https://nexflo-automation.webflow.io/",
       "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628333894_mf0uc.webp",
       "gallery": [
         {
           "h": 1500,
           "w": 2000,
-          "alt": "Hand and iPhone 16 Prdo",
+          "alt": "Nexflo website on a laptop",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628335250_ypfvq.webp",
           "type": "full",
           "mediaType": "image"
         },
         {
-          "alt": "Timeline 1",
+          "alt": "Nexflo website video",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628337191_1nu6j.mp4",
           "type": "full",
           "mediaType": "video"
@@ -854,7 +850,7 @@
         {
           "h": 1293,
           "w": 2000,
-          "alt": "MacBook Pro 16_ - 3",
+          "alt": "Nexflo website hero",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628345363_39ae0.webp",
           "type": "full",
           "mediaType": "image"
@@ -894,7 +890,7 @@
         {
           "h": 1531,
           "w": 2000,
-          "alt": "Testiomial",
+          "alt": "Testimonials",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628350371_7e8hk.webp",
           "type": "full",
           "mediaType": "image"
@@ -910,7 +906,7 @@
         {
           "h": 1309,
           "w": 2000,
-          "alt": "Faq",
+          "alt": "FAQ",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628352506_5l3tm.webp",
           "type": "full",
           "mediaType": "image"
@@ -932,18 +928,18 @@
       "id": "scholara",
       "title": "Scholara",
       "tagline": "Scholara is a forward-thinking platform designed to empower people with smarter, more accessible digital tools.",
-      "about": "Scholara is a forward-thinking platform designed to empower people with smarter, more accessible digital tools. Built on the belief that innovation should simplify and elevate everyday experiences, Scholara introduces an intelligent education chatbot that helps learners study, ask questions, and gain clarity in real time. \nWhile the platform began with education at its core, Scholara’s vision goes beyond a single industry. The chatbot is just the beginning, our brand is designed to evolve, ready to expand into new spaces where innovation, clarity, and empowerment are needed.",
-      "industry": "Edutech",
+      "about": "Scholara is a forward-thinking platform designed to empower people with smarter, more accessible digital tools. Built on the belief that innovation should simplify and elevate everyday experiences, Scholara introduces an intelligent education chatbot that helps learners study, ask questions, and gain clarity in real time.\nWhile the platform began with education at its core, Scholara’s vision goes beyond a single industry. The chatbot is just the beginning, our brand is designed to evolve, ready to expand into new spaces where innovation, clarity, and empowerment are needed.",
+      "industry": "EdTech",
       "role": "Brand Design",
       "year": "2025",
-      "meta": "Edutech · 2025",
+      "meta": "EdTech · 2025",
       "live_url": null,
       "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778944528570_0b34w.webp",
       "gallery": [
         {
           "h": 1500,
           "w": 2000,
-          "alt": "Free_Notebook_Mockup_4",
+          "alt": "Scholara branded notebooks",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778944528570_0b34w.webp",
           "type": "full",
           "mediaType": "image"
@@ -951,7 +947,7 @@
         {
           "h": 1250,
           "w": 2000,
-          "alt": "Application",
+          "alt": "Scholara app",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779865947344_bsdkg.webp",
           "type": "full",
           "mediaType": "image"
@@ -959,7 +955,7 @@
         {
           "h": 1334,
           "w": 2000,
-          "alt": "business card_10 1",
+          "alt": "Scholara business cards",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779865958630_a93fa.webp",
           "type": "full",
           "mediaType": "image"
@@ -967,7 +963,7 @@
         {
           "h": 1334,
           "w": 2000,
-          "alt": "Free Canvas Bag on Chair Mockup 2",
+          "alt": "Scholara canvas bag",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779865963614_x2iv8.webp",
           "type": "full",
           "mediaType": "image"
@@ -975,7 +971,7 @@
         {
           "h": 1500,
           "w": 2000,
-          "alt": "Free_Baseball_Cap_Mockup_2 1",
+          "alt": "Scholara baseball cap",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779865970947_7lb2u.webp",
           "type": "full",
           "mediaType": "image"
@@ -983,7 +979,7 @@
         {
           "h": 1500,
           "w": 2000,
-          "alt": "Free_Notebook_Mockup_4 1",
+          "alt": "Scholara notebook",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779865979240_5enz4.webp",
           "type": "full",
           "mediaType": "image"
@@ -991,7 +987,7 @@
         {
           "h": 1500,
           "w": 2000,
-          "alt": "Free_Pen_Mockup_1 1",
+          "alt": "Scholara pen",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779866021171_56pf2.webp",
           "type": "full",
           "mediaType": "image"
@@ -999,7 +995,7 @@
         {
           "h": 2667,
           "w": 2000,
-          "alt": "Lanyard_ID_badge_mockup_3 2",
+          "alt": "Scholara lanyard and ID badge",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779866032619_z9nma.webp",
           "type": "full",
           "mediaType": "image"
@@ -1007,7 +1003,7 @@
         {
           "h": 1293,
           "w": 2000,
-          "alt": "MacBook Pro 16_ - 1",
+          "alt": "Scholara app icon and browser tab",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779866038054_7px46.webp",
           "type": "full",
           "mediaType": "image"
@@ -1015,7 +1011,7 @@
         {
           "h": 1293,
           "w": 2000,
-          "alt": "MacBook Pro 16_ - 2",
+          "alt": "Scholara social media profiles",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779866044338_d1r6t.webp",
           "type": "full",
           "mediaType": "image"
@@ -1023,7 +1019,7 @@
         {
           "h": 1600,
           "w": 2000,
-          "alt": "Mockup 3 1",
+          "alt": "Scholara branded wristbands",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779866052746_e4fzn.webp",
           "type": "full",
           "mediaType": "image"
@@ -1031,7 +1027,7 @@
         {
           "h": 1600,
           "w": 2000,
-          "alt": "skateboarder t-shirt mockup 1",
+          "alt": "Scholara t-shirt",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779866063218_r9p8j.webp",
           "type": "full",
           "mediaType": "image"
@@ -1039,7 +1035,7 @@
         {
           "h": 1638,
           "w": 2000,
-          "alt": "Sticker on Laptop Mockup 1",
+          "alt": "Scholara sticker on a laptop",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1779866071803_yixzq.webp",
           "type": "full",
           "mediaType": "image"
@@ -1056,7 +1052,7 @@
       "tagline": "Automate your workflows. Connect your tools. Get more done.",
       "about": "Nexflo is a modern workflow automation platform designed to help teams connect their favorite tools and automate repetitive processes without complex setup. I worked on the brand identity and product experience, creating a cohesive visual system and intuitive interfaces across onboarding, authentication, workflow management, and pricing.",
       "industry": "SaaS / Workflow Automation",
-      "role": "Product Designer · UI/UX · Brand Identity",
+      "role": "Product Design · UI/UX · Brand Identity",
       "year": "2026",
       "meta": "SaaS / Workflow Automation · 2026",
       "live_url": null,
@@ -1068,7 +1064,7 @@
           "src": "/image/uploads/images/1790283513542_tpui9.webp",
           "w": 2000,
           "h": 1500,
-          "alt": "MacBook Air (2022)",
+          "alt": "Nexflo dashboard on a laptop",
           "mediaType": "image"
         }
       ]
@@ -1080,7 +1076,7 @@
       "tagline": "A modern doc editor for writing, organizing, and managing your ideas.",
       "about": "Scribe is a cross-platform document editor and workspace designed to bring writing, organization, and collaboration into one focused environment. I designed the product experience from the ground up, exploring the desktop workspace, document editor, navigation, onboarding, authentication, and supporting product ecosystem. The experience is designed desktop-first, with a flexible foundation that can extend naturally to mobile and other platforms.",
       "industry": "Productivity / SaaS",
-      "role": "Product Designer · UI/UX",
+      "role": "Product Design · UI/UX",
       "year": "2026",
       "meta": "Productivity / SaaS · 2026",
       "live_url": null,
@@ -1092,7 +1088,7 @@
           "src": "/image/uploads/images/1790284595600_lhpib.webp",
           "w": 2000,
           "h": 1500,
-          "alt": "MacBook_Mockup_3",
+          "alt": "Scribe document editor on a laptop",
           "mediaType": "image"
         }
       ]
