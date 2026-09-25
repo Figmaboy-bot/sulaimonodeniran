@@ -23,6 +23,7 @@ const OUT  = path.join(ROOT, 'dist');
 // What the browser can request. Everything else stays out of the deployment.
 const INCLUDE = [
   'index.html',
+  'favicon.ico',
   'portfolio.css',
   'supabase-config.js',
   'components',
