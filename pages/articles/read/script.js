@@ -37,7 +37,7 @@
       return r.json();
     })
     .then(function (post) {
-      document.title = post.title + ' — Ola';
+      document.title = post.title + ' — Sulaimon Odeniran';
 
       titleEl.textContent = post.title;
       dateEl.textContent  = post.dateLabel || '';

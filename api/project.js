@@ -133,17 +133,17 @@ function absolute(url) {
 
 function metaTags(project, id) {
   const title = project
-    ? project.title + ' — Ola'
-    : 'Work — Ola';
+    ? project.title + ' — Sulaimon Odeniran'
+    : 'Work — Sulaimon Odeniran';
   const description = project
     ? truncate(project.tagline || project.about, 200)
-    : 'Selected work by Ola, design engineer.';
+    : 'Selected work by Sulaimon Odeniran (Ola), product designer and design engineer.';
   const image = absolute(cdnUrl(project ? coverOf(project) : '')) || OG_FALLBACK;
   const url   = SITE + '/pages/work/project/?id=' + encodeURIComponent(id || '');
 
   return [
     '<meta property="og:type" content="article" />',
-    '<meta property="og:site_name" content="Ola — Design Engineer" />',
+    '<meta property="og:site_name" content="Sulaimon Odeniran" />',
     '<meta property="og:url" content="' + esc(url) + '" />',
     '<meta property="og:title" content="' + esc(title) + '" />',
     '<meta property="og:description" content="' + esc(description) + '" />',
@@ -172,6 +172,11 @@ export default async function handler(req, res) {
 
   html = html.replace('<!--OG_META-->', metaTags(project, id));
   if (project) {
+    // the tab title and heading are what search results show; the client
+    // render fills the rest of the page from the same project
+    html = html
+      .replace(/<title>[^<]*<\/title>/, '<title>' + esc(project.title + ' — Sulaimon Odeniran') + '</title>')
+      .replace(/(<h1 class="project-title" id="project-title">)(<\/h1>)/, '$1' + esc(project.title) + '$2');
     html = html.replace(
       '<!--PROJECT_DATA-->',
       '<script>window.__PROJECT__=' + jsonForScript(project) + ';</script>'

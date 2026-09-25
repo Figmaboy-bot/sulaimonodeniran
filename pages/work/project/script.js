@@ -60,7 +60,7 @@
   function render(project) {
 
     // ── Populate header + info ──────────────────
-    document.title = project.title + ' — Ola';
+    document.title = project.title + ' — Sulaimon Odeniran';
     document.getElementById('project-title').textContent    = project.title;
     var taglineEl = document.getElementById('project-tagline');
     taglineEl.textContent = project.tagline || '';

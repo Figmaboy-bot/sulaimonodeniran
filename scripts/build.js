@@ -102,5 +102,26 @@ const rowCounts = Object.keys(snapshot)
 
 fs.rmSync(OUT, { recursive: true, force: true });
 INCLUDE.forEach(copy);
+
+// Search engines: the project pages are only linked from script-rendered
+// cards, so the sitemap lists them outright. Coming-soon projects stay out
+// until they have a case study.
+const SITE = 'https://www.sulaimonodeniran.com';
+const xmlEsc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const sitemapUrls = ['/', '/pages/work/', '/pages/about/', '/pages/playground/', '/pages/articles/']
+  .concat((snapshot.projects || [])
+    .filter(function (p) { return p.id && !p.coming_soon; })
+    .sort(function (a, b) { return (a.sort_order || 0) - (b.sort_order || 0); })
+    .map(function (p) { return '/pages/work/project/?id=' + encodeURIComponent(p.id); }));
+fs.writeFileSync(path.join(OUT, 'sitemap.xml'),
+  '<?xml version="1.0" encoding="UTF-8"?>\n' +
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+  sitemapUrls.map(function (u) { return '  <url><loc>' + xmlEsc(SITE + u) + '</loc></url>'; }).join('\n') +
+  '\n</urlset>\n');
+fs.writeFileSync(path.join(OUT, 'robots.txt'),
+  // /admin/ is kept out by its noindex tag; blocking it here would stop
+  // crawlers from ever reading that tag
+  'User-agent: *\nAllow: /\n\nSitemap: ' + SITE + '/sitemap.xml\n');
+console.log('build: sitemap.xml with ' + sitemapUrls.length + ' URLs, robots.txt');
 console.log('build: copied ' + fileCount + ' files to dist/, versioned ' + refCount + ' stylesheet/script references');
 console.log('build: snapshot rows ' + rowCounts);

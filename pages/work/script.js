@@ -64,18 +64,23 @@
             '</div>' +
           '</div>' +
         '</div>' +
-        '<div class="case-study-image">' +
+        (isComingSoon
+          ? '<div class="case-study-image">'
+          : '<a class="case-study-image" href="' + esc(article.dataset.href) + '" aria-label="View ' + esc(p.title || 'project') + ' case study">') +
           // the first cover is above the fold and usually the page's largest paint
           '<img src="' + esc(cdnUrl(coverSrc(p))) + '" alt="' + esc(p.title || '') + '" decoding="async"' +
             (index === 0 ? ' loading="eager" fetchpriority="high"' : ' loading="lazy"') + ' />' +
           (isComingSoon ? '<div class="coming-soon-badge">Coming Soon</div>' : '') +
-        '</div>';
+        (isComingSoon ? '</div>' : '</a>');
 
       list.appendChild(article);
 
       if (!isComingSoon) {
         var imgWrap = article.querySelector('.case-study-image');
-        imgWrap.addEventListener('click', function () {
+        imgWrap.addEventListener('click', function (e) {
+          // new-tab / modifier clicks keep the browser's default
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+          e.preventDefault();
           var href = article.dataset.href;
           var main = document.querySelector('main');
           if (main) {
