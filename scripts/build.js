@@ -103,6 +103,34 @@ const rowCounts = Object.keys(snapshot)
 fs.rmSync(OUT, { recursive: true, force: true });
 INCLUDE.forEach(copy);
 
+// Each page's largest paint is an image the browser only learns about once a
+// script has built the page: the first Work card's cover, and the first
+// carousel cards on Home and About. Preload them from the <head>. The URL
+// rewrite mirrors scripts/cdn.js (MEDIA_VERSION included) so it hits the same
+// cache entry the page then asks for.
+function mediaUrl(url) {
+  const marker = '/storage/v1/object/public/';
+  const i = url.indexOf(marker);
+  return i === -1 ? url : 'https://portfolio-storage-cdn.sulaimonodeniran.workers.dev' + url.slice(i) + '?v=2';
+}
+function preloadImages(page, urls) {
+  const file = path.join(OUT, page);
+  const tags = urls.filter(Boolean).map(function (u) {
+    return '  <link rel="preload" as="image" href="' + mediaUrl(u).replace(/"/g, '&quot;') + '" fetchpriority="high">\n';
+  }).join('');
+  if (tags) fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replace('</head>', tags + '</head>'));
+}
+const bySort = function (a, b) { return (a.sort_order || 0) - (b.sort_order || 0); };
+const firstProject = (snapshot.projects || []).slice().sort(bySort)[0];
+preloadImages('pages/work/index.html', [firstProject && firstProject.cover_url]);
+// carousel.js loads the first three cards eagerly; those are the ones on screen
+function carouselFirst(page) {
+  return (snapshot.carousel_images || []).filter(function (r) { return r.page === page; })
+    .sort(bySort).slice(0, 3).map(function (r) { return r.url; });
+}
+preloadImages('index.html', carouselFirst('home'));
+preloadImages('pages/about/index.html', carouselFirst('about'));
+
 // Search engines: the project pages are only linked from script-rendered
 // cards, so the sitemap lists them outright. Coming-soon projects stay out
 // until they have a case study.

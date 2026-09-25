@@ -1375,7 +1375,7 @@
   "carousel_images": [
     {
       "id": "about_1778809049495_hyza5",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809048545_oyoqy.jpg",
+      "url": "/image/uploads/carousel/about/1778809048545_oyoqy.webp",
       "page": "about",
       "sort_order": 0,
       "crop": {
@@ -1385,21 +1385,21 @@
     },
     {
       "id": "home_1778934779597_zh5kr",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778934769864_c8t4x.jpg",
+      "url": "/image/uploads/carousel/home/1778934769864_c8t4x.webp",
       "page": "home",
       "sort_order": 0,
       "crop": null
     },
     {
       "id": "home_1778934910133_fl5en",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778934889613_hweos.jpg",
+      "url": "/image/uploads/carousel/home/1778934889613_hweos.webp",
       "page": "home",
       "sort_order": 1,
       "crop": null
     },
     {
       "id": "about_1778809057841_90p4y",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809057359_hvvs8.jpg",
+      "url": "/image/uploads/carousel/about/1778809057359_hvvs8.webp",
       "page": "about",
       "sort_order": 1,
       "crop": {
@@ -1409,21 +1409,21 @@
     },
     {
       "id": "about_1787742812670_w2akf",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1787742811020_007nx.jpg",
+      "url": "/image/uploads/carousel/about/1787742811020_007nx.webp",
       "page": "about",
       "sort_order": 2,
       "crop": null
     },
     {
       "id": "home_1778934275984_qqxyv",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778934267028_5pftt.jpg",
+      "url": "/image/uploads/carousel/home/1778934267028_5pftt.webp",
       "page": "home",
       "sort_order": 3,
       "crop": null
     },
     {
       "id": "about_1778809177289_58nki",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809175763_bkbw7.jpg",
+      "url": "/image/uploads/carousel/about/1778809175763_bkbw7.webp",
       "page": "about",
       "sort_order": 3,
       "crop": {
@@ -1433,7 +1433,7 @@
     },
     {
       "id": "about_1778809542269_m24xi",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809540607_ylq4q.jpg",
+      "url": "/image/uploads/carousel/about/1778809540607_ylq4q.webp",
       "page": "about",
       "sort_order": 4,
       "crop": {
@@ -1443,7 +1443,7 @@
     },
     {
       "id": "home_1778809681180_eyvwz",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778809678844_0905k.jpg",
+      "url": "/image/uploads/carousel/home/1778809678844_0905k.webp",
       "page": "home",
       "sort_order": 4,
       "crop": {
@@ -1453,84 +1453,84 @@
     },
     {
       "id": "home_1778809700620_jaxbq",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778809686536_d8e0k.jpg",
+      "url": "/image/uploads/carousel/home/1778809686536_d8e0k.webp",
       "page": "home",
       "sort_order": 5,
       "crop": null
     },
     {
       "id": "about_1778809069181_zidk9",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809068545_464wd.jpg",
+      "url": "/image/uploads/carousel/about/1778809068545_464wd.webp",
       "page": "about",
       "sort_order": 5,
       "crop": null
     },
     {
       "id": "home_1778934938397_6ojq0",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778934921973_l3879.jpg",
+      "url": "/image/uploads/carousel/home/1778934921973_l3879.webp",
       "page": "home",
       "sort_order": 6,
       "crop": null
     },
     {
       "id": "about_1787742846629_rw485",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1787742845487_z8pwn.jpg",
+      "url": "/image/uploads/carousel/about/1787742845487_z8pwn.webp",
       "page": "about",
       "sort_order": 6,
       "crop": null
     },
     {
       "id": "home_1778934575291_w9ox5",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778934567142_rjg0b.jpg",
+      "url": "/image/uploads/carousel/home/1778934567142_rjg0b.webp",
       "page": "home",
       "sort_order": 7,
       "crop": null
     },
     {
       "id": "about_1778809166131_5v5f5",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809164297_mnfm6.jpg",
+      "url": "/image/uploads/carousel/about/1778809164297_mnfm6.webp",
       "page": "about",
       "sort_order": 7,
       "crop": null
     },
     {
       "id": "about_1778809170904_g80a7",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809169453_tfq5t.jpg",
+      "url": "/image/uploads/carousel/about/1778809169453_tfq5t.webp",
       "page": "about",
       "sort_order": 8,
       "crop": null
     },
     {
       "id": "home_1778934971664_aemty",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778934964587_5my5d.jpg",
+      "url": "/image/uploads/carousel/home/1778934964587_5my5d.webp",
       "page": "home",
       "sort_order": 8,
       "crop": null
     },
     {
       "id": "home_1778809713815_guasu",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778809704274_xhnf6.jpg",
+      "url": "/image/uploads/carousel/home/1778809704274_xhnf6.webp",
       "page": "home",
       "sort_order": 9,
       "crop": null
     },
     {
       "id": "about_1787742377217_m9rm7",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1787742367830_dj8rs.png",
+      "url": "/image/uploads/carousel/about/1787742367830_dj8rs.webp",
       "page": "about",
       "sort_order": 9,
       "crop": null
     },
     {
       "id": "home_1782640760430_pzs41",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1782640754853_0omwu.jpg",
+      "url": "/image/uploads/carousel/home/1782640754853_0omwu.webp",
       "page": "home",
       "sort_order": 10,
       "crop": null
     },
     {
       "id": "about_1778809184669_5bi5u",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809183306_vh853.jpg",
+      "url": "/image/uploads/carousel/about/1778809183306_vh853.webp",
       "page": "about",
       "sort_order": 10,
       "crop": {
@@ -1540,35 +1540,35 @@
     },
     {
       "id": "about_1778809218524_1uqgx",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809195299_8my3v.jpg",
+      "url": "/image/uploads/carousel/about/1778809195299_8my3v.webp",
       "page": "about",
       "sort_order": 11,
       "crop": null
     },
     {
       "id": "home_1778809751356_wlz0o",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778809749027_3og62.jpg",
+      "url": "/image/uploads/carousel/home/1778809749027_3og62.webp",
       "page": "home",
       "sort_order": 11,
       "crop": null
     },
     {
       "id": "about_1778809218524_fvtxl",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809190039_nzr2o.jpg",
+      "url": "/image/uploads/carousel/about/1778809190039_nzr2o.webp",
       "page": "about",
       "sort_order": 12,
       "crop": null
     },
     {
       "id": "home_1778934029740_7b75c",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778934006963_52t5k.jpg",
+      "url": "/image/uploads/carousel/home/1778934006963_52t5k.webp",
       "page": "home",
       "sort_order": 12,
       "crop": null
     },
     {
       "id": "about_1778809507002_fqzin",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809505334_qnoru.jpg",
+      "url": "/image/uploads/carousel/about/1778809505334_qnoru.webp",
       "page": "about",
       "sort_order": 13,
       "crop": {
@@ -1578,14 +1578,14 @@
     },
     {
       "id": "home_1778934280951_0kj13",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778934273825_bfzug.jpg",
+      "url": "/image/uploads/carousel/home/1778934273825_bfzug.webp",
       "page": "home",
       "sort_order": 13,
       "crop": null
     },
     {
       "id": "about_1778809515691_6bled",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809514711_2ew1l.jpg",
+      "url": "/image/uploads/carousel/about/1778809514711_2ew1l.webp",
       "page": "about",
       "sort_order": 14,
       "crop": {
@@ -1595,7 +1595,7 @@
     },
     {
       "id": "home_1778935042964_14d6w",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778935036215_tremd.jpg",
+      "url": "/image/uploads/carousel/home/1778935036215_tremd.webp",
       "page": "home",
       "sort_order": 14,
       "crop": {
@@ -1605,14 +1605,14 @@
     },
     {
       "id": "home_1778935146633_8ucmu",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1778935139611_q0g0q.jpg",
+      "url": "/image/uploads/carousel/home/1778935139611_q0g0q.webp",
       "page": "home",
       "sort_order": 15,
       "crop": null
     },
     {
       "id": "about_1778809531250_tidik",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1778809529710_2w0t8.jpg",
+      "url": "/image/uploads/carousel/about/1778809529710_2w0t8.webp",
       "page": "about",
       "sort_order": 15,
       "crop": {
@@ -1622,35 +1622,35 @@
     },
     {
       "id": "home_1782640717547_cc744",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/home/1782640712715_2uyxm.jpg",
+      "url": "/image/uploads/carousel/home/1782640712715_2uyxm.webp",
       "page": "home",
       "sort_order": 16,
       "crop": null
     },
     {
       "id": "about_1787741151354_4m50l",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1787741142042_tkqdq.jpg",
+      "url": "/image/uploads/carousel/about/1787741142042_tkqdq.webp",
       "page": "about",
       "sort_order": 16,
       "crop": null
     },
     {
       "id": "about_1787742353760_h6o5z",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1787742350982_ibi6p.jpg",
+      "url": "/image/uploads/carousel/about/1787742350982_ibi6p.webp",
       "page": "about",
       "sort_order": 17,
       "crop": null
     },
     {
       "id": "about_1787742367394_99kak",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1787742364494_ksonl.jpg",
+      "url": "/image/uploads/carousel/about/1787742364494_ksonl.webp",
       "page": "about",
       "sort_order": 18,
       "crop": null
     },
     {
       "id": "about_1787742845143_er8ro",
-      "url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/carousel/about/1787742843581_10rl1.jpg",
+      "url": "/image/uploads/carousel/about/1787742843581_10rl1.webp",
       "page": "about",
       "sort_order": 19,
       "crop": null

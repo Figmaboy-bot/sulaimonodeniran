@@ -70,6 +70,9 @@ function initFooterHeading() {
 
   const wrap = document.createElement('div');
   wrap.className = 'footer-heading-wrap';
+  // both letter layers are aria-hidden, so the wrap stands in as the heading
+  wrap.setAttribute('role', 'heading');
+  wrap.setAttribute('aria-level', '2');
   wrap.setAttribute('aria-label', text);
 
   function buildLayer(cls) {

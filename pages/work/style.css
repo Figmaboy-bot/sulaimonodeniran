@@ -324,12 +324,19 @@
 
 @media (max-width: 480px) {
 
+  /* a fixed shape, so the card doesn't grow when its cover arrives */
   .case-study-image {
     height: auto;
     min-height: auto;
+    aspect-ratio: 4 / 3;
   }
 
   .case-study-desc {
     max-width: 100%;
   }
+}
+/* ── Loading ───────────────────────────────── */
+
+.work-loading #footer-component {
+  display: none;
 }

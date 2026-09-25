@@ -3,6 +3,9 @@
   var list = document.getElementById('case-studies-list');
   if (!list) return;
 
+  // the footer waits for the cards, so it doesn't jump down as they land
+  document.body.classList.add('work-loading');
+
   // ── Skeletons ────────────────────────────────
   function showSkeletons(n) {
     for (var i = 0; i < n; i++) {
@@ -40,6 +43,7 @@
 
   function renderProjects(projects) {
     clearSkeletons();
+    document.body.classList.remove('work-loading');
     if (!projects.length) return;
 
     projects.forEach(function (p, index) {

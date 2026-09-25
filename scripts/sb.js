@@ -98,8 +98,10 @@ function sbFetchLive(table, params) {
 //
 // Projects are edited in the admin's local mode, which writes the snapshot and
 // never Supabase, so Supabase holds an older copy of them. Revalidating would
-// swap that stale copy over the published one, so projects skip it.
-var SB_SNAPSHOT_ONLY = ['projects'];
+// swap that stale copy over the published one, so projects skip it. The
+// carousel images now ship as optimised local files in the snapshot, so the
+// carousel skips it too.
+var SB_SNAPSHOT_ONLY = ['projects', 'carousel_images', 'carousel_settings'];
 
 function sbSelect(table, params, onRefresh) {
   var local = sbApplyParams(sbSnapshotTable(table), params);
