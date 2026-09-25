@@ -269,13 +269,13 @@
       "year": "2026",
       "meta": "Fintech · 2026",
       "live_url": null,
-      "cover_url": "/image/uploads/images/1790280611571_gk7xn.webp",
+      "cover_url": "/image/uploads/images/1790325111007_4p43d.webp",
       "gallery": [
         {
           "type": "full",
-          "src": "/image/uploads/images/1790280611571_gk7xn.webp",
+          "src": "/image/uploads/images/1790325111007_4p43d.webp",
           "w": 2000,
-          "h": 1638,
+          "h": 1384,
           "alt": "Cover",
           "mediaType": "image"
         },
@@ -497,90 +497,193 @@
       "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628311381_ohyw8.webp",
       "gallery": [
         {
-          "h": 1200,
-          "w": 1600,
-          "alt": "MacBook Pro 16_ - 3",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628313461_xvid8.webp",
           "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628313461_xvid8.webp",
+          "w": 1600,
+          "h": 1200,
+          "alt": "MacBook Pro 16_ - 3",
           "mediaType": "image"
         },
         {
-          "alt": "coin compass video",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628314119_c2fun.mp4",
           "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628314119_c2fun.mp4",
+          "w": null,
+          "h": null,
+          "alt": "coin compass video",
           "mediaType": "video"
         },
         {
-          "h": 1333,
-          "w": 2000,
-          "alt": "bnN2HUzdjB1ojpN4vliiV47zM",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628320133_h5o7u.webp",
-          "type": "full",
-          "mediaType": "image"
+          "type": "text",
+          "columns": [
+            {
+              "heading": "The problem",
+              "body": "Managing personal finances can quickly become complicated.\n\nPeople often have their money spread across different accounts, while financial information is presented as disconnected numbers.\n\nUsers may struggle with:\n\n- Understanding where their money goes\n\n- Tracking spending\n\n- Setting realistic financial goals\n\n- Knowing how much they can afford to spend\n\n- Planning for future expenses\n\n- Understanding their overall financial position\n\nThe challenge wasn't simply to create another budgeting app."
+            },
+            {
+              "heading": "The Opportunity",
+              "body": "CoinCompass explores the idea of combining **personal finance management with intelligent financial guidance**.\n\nInstead of simply showing:\n\n**Income → Expenses → Balance**\n\nthe product helps users understand the relationship between those numbers.\n\nFor example:\n\n**You're spending more on dining this month.\n\nYour savings goal is 68% complete.\n\nYou have ₦XX available after your upcoming expenses.**\n\nThis turns financial data into something users can actually understand and act on."
+            }
+          ]
         },
         {
-          "h": 1667,
-          "w": 2000,
-          "alt": "Onboarding",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628320835_f7a48.webp",
-          "type": "full",
-          "mediaType": "image"
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790324159999_fz8jv.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "bnN2HUzdjB1ojpN4vliiV47zM",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790324166809_6kr1t.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Onboarding",
+              "mediaType": "image"
+            }
+          ]
         },
         {
-          "h": 1667,
-          "w": 2000,
-          "alt": "Sign up and Sign In",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628321778_nwmyk.webp",
-          "type": "full",
-          "mediaType": "image"
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790324217765_ikpt5.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Send screen",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790324175412_4whcg.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Sign up and Sign In",
+              "mediaType": "image"
+            }
+          ]
         },
         {
-          "h": 1667,
-          "w": 2000,
-          "alt": "OTP",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628322338_8uyzg.webp",
-          "type": "full",
-          "mediaType": "image"
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790324182546_k1zw2.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "OTP",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790324188243_dvt0q.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Home and Goal screen",
+              "mediaType": "image"
+            }
+          ]
         },
         {
-          "h": 1667,
-          "w": 2000,
-          "alt": "Home and Goal screen",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628328660_qcx33.webp",
-          "type": "full",
-          "mediaType": "image"
+          "type": "text",
+          "columns": [
+            {
+              "heading": "The Problem",
+              "body": "Managing personal finances can quickly become complicated.\n\nPeople often have their money spread across different accounts, while financial information is presented as disconnected numbers.\n\nUsers may struggle with:\n\n- Understanding where their money goes\n\n- Tracking spending\n\n- Setting realistic financial goals\n\n- Knowing how much they can afford to spend\n\n- Planning for future expenses\n\n- Understanding their overall financial position\n\nThe challenge wasn't simply to create another budgeting app."
+            },
+            {
+              "heading": "Design Goals",
+              "body": "**01. Make finance understandable**\n\nPresent financial information in a way that feels simple and approachable.\n\n**02. Give users context**\n\nDon't just show numbers. Help users understand what those numbers mean.\n\n**03. Encourage better financial habits**\n\nHelp users stay aware of their spending, savings, and goals.\n\n**04. Personalize the experience**\n\nUse intelligent insights to make the product feel relevant to each user's financial situation."
+            }
+          ]
         },
         {
-          "h": 1667,
-          "w": 2000,
-          "alt": "Send screen",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628329695_grdkd.webp",
           "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1667,
+          "src": "/image/uploads/images/1790324237788_ew986.webp",
           "w": 2000,
+          "h": 1254,
           "alt": "CashBuddy",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628330478_zc7an.webp",
-          "type": "full",
           "mediaType": "image"
         },
         {
-          "h": 1667,
+          "type": "full",
+          "src": "/image/uploads/images/1790324241937_9g18d.webp",
           "w": 2000,
+          "h": 1254,
           "alt": "Add screen",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628331556_iv8cg.webp",
-          "type": "full",
           "mediaType": "image"
         },
         {
-          "h": 1667,
-          "w": 2000,
-          "alt": "Notifications and profit",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628332280_ex88i.webp",
           "type": "full",
+          "src": "/image/uploads/images/1790324245714_1o1iz.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Notifications and profit",
           "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790324256934_8gjj8.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Screens 4",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790324257554_hds8s.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Screens 5",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "The Product Experience",
+              "body": "CoinCompass is centered around four major experiences:\n\n**Financial Overview**\n\nA single place to understand the user's current financial position.\n\n**Spending**\n\nTrack transactions and understand spending patterns.\n\n**Goals**\n\nCreate and monitor financial goals.\n\n**AI Financial Advisor**\n\nAsk questions and receive personalized financial insights.\n\nThe experience is designed around a simple cycle:\n\n**Understand → Plan → Act → Improve**"
+            },
+            {
+              "heading": "AI Financial Advisor",
+              "body": "The AI advisor is one of the key parts of CoinCompass.\n\nInstead of navigating through financial dashboards to find answers, users can interact with their finances conversationally.\n\nFor example:\n\n**“How much did I spend this month?”\n\n“Where am I spending the most?”\n\n“How much should I save each month for my goal?”\n\n“Can I afford this purchase based on my current spending?”**\n\nThe AI layer makes financial information more accessible by allowing users to interact with it naturally."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790324258143_sodrd.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Screens 6",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790324258729_ywwkp.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Screens 7",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790324259329_20kax.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Screens 8",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Key Design Decisions",
+              "body": "**Information hierarchy over information density**\n\nFinancial apps can easily become dashboards full of numbers.\n\nCoinCompass prioritizes the information users need first and progressively reveals deeper details.\n\n**Insights alongside data**\n\nInstead of making users interpret every chart themselves, the product introduces contextual insights alongside financial information.\n\n**Goals as a first-class experience**\n\nSaving isn't treated as an afterthought. Goals are integrated directly into the user's financial overview.\n\n**Conversational finance**\n\nThe AI advisor gives users another way to interact with their finances without requiring them to understand complicated financial terminology."
+            },
+            {
+              "heading": "Outcome",
+              "body": "CoinCompass became an exploration of how **AI can make personal finance more understandable and personalized.**\n\nRather than building a product that simply tells users how much money they have, the concept focuses on helping users understand:\n\n**Where their money goes.\n\nWhat they're working toward.\n\nWhat their financial patterns look like.**\n\nAnd ultimately:\n\n**What they can do next.**"
+            }
+          ]
         }
       ],
       "sort_order": 4,
