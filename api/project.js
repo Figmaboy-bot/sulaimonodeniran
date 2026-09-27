@@ -158,8 +158,24 @@ function metaTags(project, id) {
   ].join('\n  ');
 }
 
+// Slugs that have been renamed. Old links — search results, shared URLs,
+// /work/<slug> shortcuts — get a permanent redirect to the current page.
+const RENAMED = {
+  'wager365': 'wager365---mobile-app',
+  'orbit': 'orbit---mobile-app',
+  'coin-compass': 'coin-compass---mobile-app',
+  'scribe': 'scribe---web-app',
+  'nexflo': 'nexflo---web-app'
+};
+
 export default async function handler(req, res) {
   const id = (req.query && req.query.id) || '';
+
+  if (RENAMED[id]) {
+    res.setHeader('Location', '/pages/work/project/?id=' + encodeURIComponent(RENAMED[id]));
+    res.setHeader('Cache-Control', 'public, max-age=86400');
+    return res.status(308).end();
+  }
 
   let html;
   try {
