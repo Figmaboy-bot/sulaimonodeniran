@@ -163,6 +163,292 @@
       "coming_soon": false
     },
     {
+      "id": "echoyou",
+      "sort_order": 1,
+      "title": "EchoYou",
+      "tagline": "An AI-powered communication assistant designed to help people take control of their inbox.",
+      "about": "Email is still one of the most important communication tools for modern professionals, but managing an inbox can quickly become overwhelming.\n\nEchoYou is an AI-powered productivity platform designed to help users understand, organize, and act on their emails without constantly working through their inbox manually.\n\nThe product combines email management, AI assistance, calendar intelligence, and automated actions into one experience.",
+      "industry": "AI / Productivity",
+      "role": "UI/UX Design",
+      "year": "2026",
+      "meta": "AI / Productivity · 2026",
+      "live_url": null,
+      "coming_soon": false,
+      "cover_url": "/image/uploads/images/1790522423029_ot8t2.webp",
+      "gallery": [
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790522423029_ot8t2.webp",
+          "w": 2000,
+          "h": 1500,
+          "alt": "EchoYou inbox and AI assistant on a laptop",
+          "mediaType": "image"
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790526166797_p2adq.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Create Your Account",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790526177966_knwtl.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Verify your email",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790526175671_h7may.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Verification Successful",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790526170811_xm0yb.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Login",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "The Problem",
+              "body": "The modern inbox is more than a place for receiving messages.\n\nIt's where people manage:\n\n- Work conversations\n\n- Meetings\n\n- Tasks\n\n- Documents\n\n- Follow-ups\n\n- Notifications\n\n- Personal communication\n\n- Important deadlines\n\nAs the number of emails increases, users spend more time **sorting and processing information** instead of actually acting on it."
+            },
+            {
+              "heading": "The Opportunity",
+              "body": "Most email tools focus primarily on helping users **write or organize emails**.\n\nEchoYou explores a broader approach.\n\nInstead of being another email client, it acts as an **intelligent layer on top of communication**.\n\nIt can help users:\n\n**Understand → Prioritize → Respond → Schedule → Act**\n\nThis makes email management feel less like administrative work and more like having a personal communication assistant."
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790527403002_peihw.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Connect Your Inbox",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790527403980_fuw88.webp",
+              "w": 2000,
+              "h": 1531,
+              "alt": "Enter OTP Code",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790527663765_dikac.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "OTP Filled",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790527230225_fqxj8.webp",
+              "w": 2000,
+              "h": 1531,
+              "alt": "Inbox Connected",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Design Goals",
+              "body": "**01. Reduce inbox overload**\n\nHelp users quickly understand what deserves their attention.\n\n**02. Turn emails into actions**\n\nIdentify tasks, meetings, follow-ups, and important information inside conversations.\n\n**03. Save time**\n\nAutomate repetitive communication tasks where appropriate.\n\n**04. Keep users in control**\n\nAI should assist the user rather than silently making important decisions on their behalf."
+            },
+            {
+              "heading": "Understanding the User",
+              "body": "EchoYou is designed for people who deal with high volumes of communication.\n\n**The Professional**\n\nReceives dozens of emails every day and needs to quickly identify what requires attention.\n\n**The Founder / Manager**\n\nManages conversations, meetings, clients, and follow-ups across multiple projects.\n\n**The Freelancer**\n\nUses email for client communication, proposals, scheduling, and project coordination.\n\nAcross these users, the problem is similar:\n\n**“I don't want to spend my day managing my inbox.”**"
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790527020022_l31ws.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Home",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790527024121_mokba.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Notifications",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Product Experience",
+              "body": "EchoYou brings several workflows together:\n\n**Inbox Intelligence**\n\nAI categorizes and prioritizes incoming emails.\n\n**Email Summaries**\n\nLong conversations are condensed into useful summaries.\n\n**Smart Replies**\n\nAI generates contextual responses that users can review and edit.\n\n**Action Extraction**\n\nImportant tasks, deadlines, and requests can be identified from emails.\n\n**Calendar Intelligence**\n\nEchoYou detects scheduling-related conversations and connects them with the user's calendar.\n\n**Agent Mode**\n\nUsers can give EchoYou permission to perform specific low-risk actions on their behalf."
+            },
+            {
+              "heading": "Inbox Experience",
+              "body": "The inbox was designed around **priority rather than chronology alone**.\n\nInstead of presenting every email with equal visual weight, EchoYou can help surface the conversations that require attention.\n\nFor each conversation, users can quickly understand:\n\n**Who sent it → What it's about → Why it matters → What action is required**\n\nAI-generated summaries reduce the need to open every message just to understand its context."
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790527025105_hg1rn.webp",
+              "w": 2000,
+              "h": 1738,
+              "alt": "Opened Email",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790527014919_hlmzn.webp",
+              "w": 2000,
+              "h": 1738,
+              "alt": "AI Email Summary",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "AI Email Summaries",
+              "body": "Long email threads can contain dozens of messages and multiple topics.\n\nEchoYou condenses these conversations into concise summaries.\n\nFor example:\n\n**Project Update — Client\n\nSummary**\n\nThe client approved the latest design direction and requested the final assets by Friday.\n\n**Action required**\n\nSend final assets before Friday.\n\nThis transforms a long conversation into something the user can understand in seconds."
+            },
+            {
+              "heading": "Smart Replies",
+              "body": "EchoYou can generate contextual responses based on the conversation.\n\nInstead of producing generic AI-generated text, the experience is designed around the actual context of the email.\n\nUsers can:\n\n- Generate a response\n\n- Adjust the tone\n\n- Shorten the response\n\n- Expand the response\n\n- Edit manually\n\n- Review before sending\n\nThe user remains the final decision-maker."
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790527015605_thmy0.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Calendar (Agenda)",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790527012468_sx8a8.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "About Event",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Turning Emails Into Tasks",
+              "body": "One of the core ideas behind EchoYou is that **emails often contain hidden tasks**.\n\nFor example:\n\n“Could you send the revised proposal before Thursday?”\n\nEchoYou can identify:\n\n**Task:** Send revised proposal\n**Deadline:** Thursday\n\nThe user can then add it to their task workflow instead of relying on memory.\n\nThis connects communication with execution."
+            },
+            {
+              "heading": "Calendar Intelligence",
+              "body": "Scheduling conversations often involve multiple back-and-forth emails.\n\nEchoYou can identify scheduling intent and surface useful information.\n\nFor example:\n\n“Are you available for a meeting next Tuesday?”\n\nInstead of manually opening a calendar and checking availability, EchoYou can surface relevant available times.\n\nUsers can review the suggested schedule before confirming."
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790527016370_s2nne.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Calendar (Map)",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790527019181_yd9rx.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "General Settings",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Agent Mode",
+              "body": "Agent Mode extends EchoYou beyond suggestions.\n\nUsers can define what EchoYou is allowed to do automatically.\n\nFor example:\n\n**Allowed**\n\n- Categorize newsletters\n\n- Archive promotional emails\n\n- Draft routine replies\n\n- Identify follow-up tasks\n\n**Requires Approval**\n\n- Send an important email\n\n- Schedule a meeting\n\n- Reply to a client\n\n- Modify an existing calendar event\n\nThe design makes permissions explicit so users understand **what the AI can and cannot do.**"
+            },
+            {
+              "heading": "AI Assistant",
+              "body": "EchoYou also provides a conversational interface for interacting with the inbox.\n\nUsers can ask:\n\n**“What do I need to respond to today?”\n\n“Summarize my conversation with John.”\n\n“Which emails are waiting for my response?”\n\n“What meetings were mentioned in my emails this week?”**\n\nThe assistant becomes a natural interface for navigating large amounts of communication."
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790527020724_538g3.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Inbox & Automation Settings",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790527013928_bhbc9.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Agent Mode Permissions",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Key Design Decisions",
+              "body": "**AI should explain, not just act**\n\nUsers should understand what the AI has identified or intends to do.\n\n**Human approval for important actions**\n\nActions involving external communication or important calendar changes can require user confirmation.\n\n**Progressive automation**\n\nUsers can start with AI suggestions and gradually give EchoYou more permissions as they become comfortable.\n\n**Context over commands**\n\nRather than forcing users to learn complicated AI prompts, EchoYou surfaces relevant actions directly within their workflow."
+            },
+            {
+              "heading": "Reflection",
+              "body": "Designing EchoYou pushed me to think beyond the traditional email interface.\n\nThe key question throughout the project was:\n\n**What if your inbox could understand what needs to happen next?**\n\nThat led to an experience where emails aren't treated as isolated messages, but as potential **tasks, conversations, meetings, and actions**.\n\nThe design ultimately explores a future where AI handles the repetitive parts of communication while users remain in control of the decisions that matter."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "orbit---website",
       "title": "Orbit - Website",
       "tagline": "Orbit is a modern financial platform built to make managing money across borders effortless.",
@@ -255,7 +541,7 @@
           "mediaType": "image"
         }
       ],
-      "sort_order": 1,
+      "sort_order": 2,
       "created_at": "2026-07-03T16:17:48.277832+00:00",
       "coming_soon": false
     },
@@ -433,7 +719,7 @@
           ]
         }
       ],
-      "sort_order": 2,
+      "sort_order": 3,
       "created_at": "2026-05-16T13:43:30.550027+00:00",
       "coming_soon": false
     },
@@ -753,7 +1039,7 @@
           "mediaType": "image"
         }
       ],
-      "sort_order": 3,
+      "sort_order": 4,
       "created_at": "2026-05-16T15:13:06.337063+00:00",
       "coming_soon": false
     },
@@ -800,7 +1086,7 @@
           "mediaType": "image"
         }
       ],
-      "sort_order": 4,
+      "sort_order": 5,
       "created_at": "2026-05-01T09:37:59.310904+00:00",
       "coming_soon": false
     },
@@ -1002,7 +1288,7 @@
           ]
         }
       ],
-      "sort_order": 5,
+      "sort_order": 6,
       "created_at": "2026-05-01T09:38:53.602026+00:00",
       "coming_soon": false
     },
@@ -1137,7 +1423,7 @@
           "mediaType": "image"
         }
       ],
-      "sort_order": 6,
+      "sort_order": 7,
       "created_at": "2026-05-15T08:49:25.908566+00:00",
       "coming_soon": false
     },
@@ -1240,13 +1526,13 @@
           "mediaType": "image"
         }
       ],
-      "sort_order": 7,
+      "sort_order": 8,
       "created_at": "2026-05-01T09:39:14.531838+00:00",
       "coming_soon": false
     },
     {
       "id": "nexflo",
-      "sort_order": 8,
+      "sort_order": 9,
       "title": "Nexflo",
       "tagline": "Automate your workflows. Connect your tools. Get more done.",
       "about": "Nexflo is a modern workflow automation platform designed to help teams connect their favorite tools and automate repetitive processes without complex setup. I worked on the brand identity and product experience, creating a cohesive visual system and intuitive interfaces across onboarding, authentication, workflow management, and pricing.",
@@ -1270,7 +1556,7 @@
     },
     {
       "id": "scribe",
-      "sort_order": 9,
+      "sort_order": 10,
       "title": "Scribe",
       "tagline": "A modern doc editor for writing, organizing, and managing your ideas.",
       "about": "Scribe is a cross-platform document editor and workspace designed to bring writing, organization, and collaboration into one focused environment. I designed the product experience from the ground up, exploring the desktop workspace, document editor, navigation, onboarding, authentication, and supporting product ecosystem. The experience is designed desktop-first, with a flexible foundation that can extend naturally to mobile and other platforms.",
