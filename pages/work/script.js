@@ -45,6 +45,8 @@
   }
 
   function renderProjects(projects) {
+    // coming-soon projects stay off the page until they have a case study
+    projects = projects.filter(function (p) { return !p.coming_soon; });
     clearSkeletons();
     document.body.classList.remove('work-loading');
     if (!projects.length) return;

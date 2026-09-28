@@ -123,7 +123,8 @@ function preloadImages(page, urls) {
   if (tags) fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replace('</head>', tags + '</head>'));
 }
 const bySort = function (a, b) { return (a.sort_order || 0) - (b.sort_order || 0); };
-const firstProject = (snapshot.projects || []).slice().sort(bySort)[0];
+const firstProject = (snapshot.projects || []).filter(function (p) { return !p.coming_soon; })
+  .sort(bySort)[0];
 preloadImages('pages/work/index.html', [firstProject && firstProject.cover_url]);
 // carousel.js loads the first three cards eagerly; those are the ones on screen
 function carouselFirst(page) {
