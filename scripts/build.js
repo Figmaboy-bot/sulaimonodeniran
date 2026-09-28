@@ -131,7 +131,8 @@ function carouselFirst(page) {
     .sort(bySort).slice(0, 3).map(function (r) { return r.url; });
 }
 // home-grid.js loads its first row of three covers eagerly
-preloadImages('index.html', (snapshot.projects || []).slice().sort(bySort).slice(0, 3)
+preloadImages('index.html', (snapshot.projects || []).filter(function (p) { return !p.coming_soon; })
+  .sort(bySort).slice(0, 3)
   .map(function (p) { return p.cover_url; }));
 preloadImages('pages/about/index.html', carouselFirst('about'));
 

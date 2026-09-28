@@ -42,25 +42,23 @@
   }
 
   function card(p, size, index) {
-    var soon = !!p.coming_soon;
     var href = '/pages/work/project/?id=' + encodeURIComponent(p.id);
-    var tag  = soon ? 'div' : 'a';
-    return '<' + tag + ' class="case-card case-card--' + size + (soon ? ' is-coming-soon' : '') + '"' +
-        (soon ? '' : ' href="' + esc(href) + '"') + '>' +
+    return '<a class="case-card case-card--' + size + '" href="' + esc(href) + '">' +
         '<div class="case-card-img">' +
           // the first row sits just below the hero; build.js preloads it
           '<img src="' + esc(cdnUrl(coverSrc(p))) + '" alt="' + esc(p.title || '') + '" decoding="async"' +
             (index < 3 ? ' loading="eager"' : ' loading="lazy"') + ' />' +
-          (soon ? '<span class="case-card-badge">Coming Soon</span>' : '') +
         '</div>' +
         '<div class="case-card-text">' +
           '<h3 class="case-card-title">' + esc(p.title || '') + '</h3>' +
           '<p class="case-card-role">' + esc(p.role || '') + '</p>' +
         '</div>' +
-      '</' + tag + '>';
+      '</a>';
   }
 
   function render(projects) {
+    // coming-soon projects stay off the page until they have a case study
+    projects = projects.filter(function (p) { return !p.coming_soon; });
     grid.innerHTML = '';
     for (var i = 0; i < projects.length; i += 3) {
       var pattern = ROW_PATTERNS[(i / 3) % ROW_PATTERNS.length];
