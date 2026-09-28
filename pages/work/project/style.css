@@ -145,11 +145,18 @@ main.project-main {
   gap: 32px;
 }
 
-.project-facts,
-.project-text {
+.project-facts {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+/* each heading + body is its own section; the gap between sections is
+   well above the 16px between paragraphs, so they read as separate */
+.project-text {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .text-col {
