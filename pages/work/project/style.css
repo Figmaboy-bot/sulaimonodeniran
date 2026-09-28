@@ -345,11 +345,17 @@ main.project-main {
   gap: 12px;
 }
 
-/* images keep their full frame: each grows in proportion to its aspect
-   ratio (--ar, set from the stored size), so a pair lines up at the same
-   height without cropping */
+/* equal tiles: same width, and the same shape (--pair-ar, the average of
+   the pair's images, set by script.js); each image fills its tile */
 .gallery-row .gallery-img {
-  flex: var(--ar, 1) 1 0;
+  flex: 1 1 0;
+  aspect-ratio: var(--pair-ar, auto);
+}
+
+.gallery-row .gallery-img img,
+.gallery-row .gallery-img video {
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ── Previous / next ───────────────────────── */

@@ -383,9 +383,17 @@
         placeInfo();
         var row = document.createElement('div');
         row.className = 'gallery-row';
+        // Both tiles share one shape — the average of the pair's images — so
+        // they come out the same size even when the images differ slightly.
+        var ratios = (section.images || []).filter(function (item) {
+          return item.w && item.h;
+        }).map(function (item) { return item.w / item.h; });
+        if (ratios.length) {
+          var sum = ratios.reduce(function (a, b) { return a + b; }, 0);
+          row.style.setProperty('--pair-ar', sum / ratios.length);
+        }
         (section.images || []).forEach(function (item) {
           var w = makeMedia(item.mediaType || 'image', item.alt || '', false, item.w, item.h);
-          if (item.w && item.h) w.style.setProperty('--ar', item.w / item.h);
           resolveMedia(w.firstChild, item.imageId, item.src, item.mediaType);
           row.appendChild(w);
         });
