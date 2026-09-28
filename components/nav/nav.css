@@ -33,7 +33,7 @@
 }
 
 .nav-link {
-  font-family: var(--font-slab);
+  font-family: var(--font-sans);
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;

@@ -31,7 +31,7 @@ body {
 }
 
 .playground-label {
-  font-family: var(--font-slab);
+  font-family: var(--font-sans);
   font-size: 1.25rem;
   font-weight: 400;
   color: var(--text-soft);
@@ -88,7 +88,7 @@ body {
 }
 
 .pg-title {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 1.25rem;
   font-weight: 400;
   font-style: normal;
@@ -97,7 +97,7 @@ body {
 }
 
 .pg-desc {
-  font-family: var(--font-slab);
+  font-family: var(--font-sans);
   font-size: 0.8rem;
   font-weight: 400;
   color: var(--text-soft);
@@ -169,7 +169,7 @@ body {
 }
 
 .pg-modal-title {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 2.5rem;
   font-weight: 400;
   font-style: normal;
@@ -178,7 +178,7 @@ body {
 }
 
 .pg-modal-desc {
-  font-family: var(--font-slab);
+  font-family: var(--font-sans);
   font-size: 1.25rem;
   font-weight: 400;
   color: var(--text-soft);
@@ -311,7 +311,7 @@ body {
 /* ── Empty state ────────────────────────────── */
 
 .pg-empty {
-  font-family: var(--font-slab);
+  font-family: var(--font-sans);
   font-size: 1rem;
   color: var(--text-muted);
   padding: 0 20px;

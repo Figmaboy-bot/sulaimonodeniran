@@ -56,7 +56,7 @@ main.project-main {
   align-items: center;
   gap: 10px;
   padding: 10px 20px;
-  font-family: var(--font-slab);
+  font-family: var(--font-sans);
   font-size: 1rem;
   font-weight: 400;
   line-height: 32px;
@@ -106,7 +106,7 @@ main.project-main {
 }
 
 .project-title {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 2.5rem;
   font-weight: 400;
   font-style: normal;
@@ -115,7 +115,7 @@ main.project-main {
 }
 
 .project-tagline {
-  font-family: var(--font-slab);
+  font-family: var(--font-sans);
   font-size: 1rem;
   font-weight: 400;
   color: var(--text-soft);
@@ -148,7 +148,7 @@ main.project-main {
 }
 
 .meta-label {
-  font-family: var(--font-slab);
+  font-family: var(--font-sans);
   font-size: 1rem;
   font-weight: 700;
   color: var(--text-soft);
@@ -165,7 +165,7 @@ main.project-main {
 }
 
 .meta-body {
-  font-family: var(--font-slab);
+  font-family: var(--font-sans);
   font-size: 1rem;
   font-weight: 400;
   color: var(--text-soft);
@@ -244,7 +244,7 @@ main.project-main {
 }
 
 .meta-value {
-  font-family: var(--font-slab);
+  font-family: var(--font-sans);
   font-size: 1rem;
   font-weight: 400;
   color: var(--text-soft);
@@ -252,7 +252,7 @@ main.project-main {
 }
 
 .meta-year {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 1.5rem;
   font-weight: 400;
   font-style: normal;
@@ -276,7 +276,7 @@ main.project-main {
   gap: 20px;
   width: 100%;
   padding: 16px 24px;
-  font-family: var(--font-slab);
+  font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 500;
   text-decoration: none;
@@ -405,7 +405,7 @@ main.project-main {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-family: var(--font-slab);
+  font-family: var(--font-sans);
   font-size: 1rem;
   font-weight: 500;
   color: var(--text);

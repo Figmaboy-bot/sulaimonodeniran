@@ -28,7 +28,7 @@
 }
 
 .footer-heading {
-  font-family: 'Instrument Serif', serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: clamp(2rem, 4vw, 4rem);
   font-weight: 400;
   color: var(--text);

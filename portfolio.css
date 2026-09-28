@@ -5,8 +5,7 @@
   --text-soft: rgba(245, 245, 245, 0.6);
   --text-body: rgba(245, 245, 245, 0.8);
   --border: rgba(255, 255, 255, 0.1);
-  --font-serif: 'Instrument Serif', serif;
-  --font-slab: 'Hepta Slab', serif;
+  --font-sans: 'Inter Tight', sans-serif;
   --radius-sm: 12px;
   --radius-pill: 200px;
 }
@@ -43,7 +42,7 @@
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font-slab);
+  font-family: var(--font-sans);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   /* `backwards`, not `both`: a forward-filling opacity animation keeps <body>
@@ -203,7 +202,7 @@ main {
 }
 
 .hero-heading {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 48px;
   font-weight: 400;
   line-height: 52px;
@@ -232,7 +231,7 @@ main {
   background: var(--text);
   color: var(--bg);
   text-decoration: none;
-  font-family: var(--font-slab);
+  font-family: var(--font-sans);
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.02em;
@@ -279,7 +278,7 @@ main {
 }
 
 .home-work-label {
-  font-family: var(--font-slab);
+  font-family: var(--font-sans);
   font-size: 20px;
   font-weight: 400;
   line-height: 32px;
@@ -290,7 +289,7 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 20px;
-  font-family: var(--font-slab);
+  font-family: var(--font-sans);
   font-size: 20px;
   font-weight: 500;
   color: var(--text);
@@ -342,7 +341,7 @@ main {
 }
 
 .home-work .role-value {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-size: 24px;
   line-height: 28px;
 }
