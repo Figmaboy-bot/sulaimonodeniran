@@ -24,6 +24,7 @@ const OUT  = path.join(ROOT, 'dist');
 const INCLUDE = [
   'index.html',
   'favicon.ico',
+  'resume.pdf',
   'portfolio.css',
   'supabase-config.js',
   'components',
