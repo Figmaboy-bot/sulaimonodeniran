@@ -2,7 +2,7 @@
 
   // ── Resolve the project ─────────────────────
   // Prefer the copy /api/project.js embedded server-side: it means a link
-  // shared cold — no prior visit to /pages/work/ to warm the cache — renders
+  // shared cold — no prior visit to the home page to warm the cache — renders
   // straight away instead of bouncing back to the index.
   var id = new URLSearchParams(location.search).get('id');
 
@@ -43,7 +43,7 @@
   }
 
   // Locally (the admin's preview) the snapshot is the file just saved, so it
-  // beats the listing cache, which only refreshes on a visit to /pages/work/.
+  // beats the listing cache, which only refreshes on a visit to the home page.
   var isLocal = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
   var project = fromServer() ||
     (isLocal ? fromSnapshot() || fromCache() : fromCache() || fromSnapshot());
@@ -53,7 +53,7 @@
   } else {
     fromSupabase().then(function (p) {
       if (p) render(p);
-      else location.replace('/pages/work/');
+      else location.replace('/');
     });
   }
 

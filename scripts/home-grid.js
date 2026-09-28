@@ -86,7 +86,15 @@
   showSkeletons();
 
   function show(rows) {
-    render(rows && rows.length ? rows : fromStatic());
+    if (rows && rows.length) {
+      render(rows);
+      // project pages read this copy first (pages/work/project/script.js)
+      var cache = {};
+      rows.forEach(function (p) { cache[p.id] = p; });
+      try { localStorage.setItem('portfolio_projects', JSON.stringify(cache)); } catch (e) {}
+    } else {
+      render(fromStatic());
+    }
   }
 
   sbSelect('projects', 'select=*&order=sort_order.asc', show)

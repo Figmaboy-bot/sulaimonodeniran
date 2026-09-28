@@ -123,9 +123,6 @@ function preloadImages(page, urls) {
   if (tags) fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replace('</head>', tags + '</head>'));
 }
 const bySort = function (a, b) { return (a.sort_order || 0) - (b.sort_order || 0); };
-const firstProject = (snapshot.projects || []).filter(function (p) { return !p.coming_soon; })
-  .sort(bySort)[0];
-preloadImages('pages/work/index.html', [firstProject && firstProject.cover_url]);
 // carousel.js loads the first three cards eagerly; those are the ones on screen
 function carouselFirst(page) {
   return (snapshot.carousel_images || []).filter(function (r) { return r.page === page; })
@@ -142,7 +139,7 @@ preloadImages('pages/about/index.html', carouselFirst('about'));
 // until they have a case study.
 const SITE = 'https://www.sulaimonodeniran.com';
 const xmlEsc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-const sitemapUrls = ['/', '/pages/work/', '/pages/about/', '/pages/playground/', '/pages/articles/']
+const sitemapUrls = ['/', '/pages/about/', '/pages/playground/', '/pages/articles/']
   .concat((snapshot.projects || [])
     .filter(function (p) { return p.id && !p.coming_soon; })
     .sort(function (a, b) { return (a.sort_order || 0) - (b.sort_order || 0); })

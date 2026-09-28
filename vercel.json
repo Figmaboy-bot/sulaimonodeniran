@@ -10,12 +10,27 @@
     },
     {
       "source": "/work",
-      "destination": "/pages/work/",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/work/",
-      "destination": "/pages/work/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/pages/work",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/pages/work/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/pages/work/index.html",
+      "destination": "/",
       "permanent": true
     },
     {
