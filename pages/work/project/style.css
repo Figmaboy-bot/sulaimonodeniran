@@ -75,7 +75,23 @@ main.project-main {
   color: var(--text);
 }
 
-.back-arrow,
+.back-icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* the icon is drawn white at 50%, the muted text colour in dark mode */
+[data-theme="light"] .back-icon {
+  filter: invert(1);
+}
+
+.project-back:hover .back-icon {
+  transform: translateX(-3px);
+}
+
 .pager-arrow {
   width: 19.2px;
   height: 12px;
@@ -85,13 +101,8 @@ main.project-main {
   flex-shrink: 0;
 }
 
-[data-theme="light"] .back-arrow,
 [data-theme="light"] .pager-arrow {
   filter: invert(0) opacity(0.8);
-}
-
-.project-back:hover .back-arrow {
-  transform: rotate(180deg) translateX(4px);
 }
 
 /* ── Content column ────────────────────────── */
