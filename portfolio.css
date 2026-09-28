@@ -127,17 +127,20 @@ main {
 .home-main {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 100px;
+  padding: 164px 12px 0;
 }
 
 /* ── Hero ────────────────────────────────────── */
+/* The hero shares the nav's centred 600px column; the case studies below
+   span the page. */
 .hero {
   display: flex;
   flex-direction: column;
-  gap: 48px;
-  width: 650px;
-  max-width: calc(100% - 40px);
-  padding: 198px 0 158px;
+  gap: 28px;
+  align-self: center;
+  width: 600px;
+  max-width: 100%;
 }
 
 .img-text {
@@ -161,7 +164,7 @@ main {
   width: calc(100% - 4px);
   height: calc(100% - 4px);
   object-fit: cover;
-  border-radius: 7.2px;
+  border-radius: 10.667px;
   z-index: 1;
   transform-origin: bottom center;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -173,7 +176,7 @@ main {
   z-index: 2;
   width: 48px;
   height: 48px;
-  border-radius: 7.2px;
+  border-radius: 10.667px;
   overflow: hidden;
   box-shadow: 0 0 0 4px var(--bg);
   transition: box-shadow 0.3s ease;
@@ -187,12 +190,18 @@ main {
   display: block;
 }
 
+/* Both back cards slide out to the right into a row beside the avatar,
+   fully in view with a 4px gap between each (cards are inset 2px) */
+.avatar-card--right {
+  z-index: 0;
+}
+
 .hero-avatar-wrap:hover .avatar-card--left {
-  transform: translateX(-32px) rotate(-18deg);
+  transform: translateX(50px);
 }
 
 .hero-avatar-wrap:hover .avatar-card--right {
-  transform: translateX(32px) rotate(18deg);
+  transform: translateX(98px);
 }
 
 .hero-text {
@@ -203,24 +212,22 @@ main {
 
 .hero-heading {
   font-family: var(--font-sans);
-  font-size: 48px;
+  font-size: 20px;
   font-weight: 400;
-  line-height: 52px;
+  line-height: 24px;
   color: var(--text);
-}
-
-.hero-heading .muted {
-  color: var(--text-muted);
 }
 
 .hero-bio {
   font-size: 16px;
   line-height: 20px;
-  color: var(--text-body);
+  color: var(--text-muted);
 }
 
 .hero .btn-primary {
   gap: 20px;
+  padding: 12px 20px;
+  border-radius: 100px;
   letter-spacing: 0;
 }
 
@@ -259,104 +266,109 @@ main {
   filter: invert(1);
 }
 
-/* ── Selected case studies (rows come from pages/work) ── */
+/* ── Selected case studies (scripts/home-grid.js) ── */
 .home-work {
-  width: 100%;
-  max-width: 1728px;
-  padding: 0 12px;
   display: flex;
   flex-direction: column;
-  gap: 64px;
-}
-
-.home-work-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 0 20px;
+  gap: 32px;
 }
 
 .home-work-label {
   font-family: var(--font-sans);
   font-size: 20px;
   font-weight: 400;
-  line-height: 32px;
-  color: var(--text-body);
-}
-
-.home-work-all {
-  display: inline-flex;
-  align-items: center;
-  gap: 20px;
-  font-family: var(--font-sans);
-  font-size: 20px;
-  font-weight: 500;
+  line-height: 24px;
   color: var(--text);
+}
+
+.case-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.case-row {
+  display: flex;
+  gap: 4px;
+}
+
+/* Narrow, wide and flexible cards keep the design's 350 : 574 : 772 split
+   of a 1704px row at any width. */
+.case-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  color: inherit;
   text-decoration: none;
-  white-space: nowrap;
 }
 
-.home-work-all img {
-  width: 19px;
-  height: 12px;
-  filter: invert(1);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+.case-card--s { flex: 350 1 0; }
+.case-card--l { flex: 574 1 0; }
+.case-card--f { flex: 772 1 0; }
+
+/* 500px tall on the design's 1728px frame, growing with the screen past it
+   but never taller than 60% of the window, so a row still fits on screen. */
+.case-card-img {
+  position: relative;
+  height: clamp(280px, 28.94vw, max(500px, 60vh));
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
 }
 
-[data-theme="light"] .home-work-all img {
-  filter: none;
+.case-card-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.home-work-all:hover img {
-  transform: translateX(5px);
+a.case-card:hover .case-card-img img {
+  transform: scale(1.03);
 }
 
-.home-work .case-study-info {
-  flex: 0 0 560px;
-  padding: 0 40px 0 20px;
+.case-card-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 6px 12px;
+  border-radius: 100px;
+  background: #1a1a1a;
+  color: #f5f5f5;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
 }
 
-.home-work .case-study-meta {
+.case-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.case-card-title {
   font-size: 20px;
-  line-height: 32px;
-  color: var(--text-body);
-}
-
-.home-work .case-study-heading {
-  gap: 20px;
-}
-
-.home-work .case-study-title {
-  font-size: 40px;
-  line-height: 48px;
-}
-
-.home-work .case-study-desc,
-.home-work .role-label {
-  font-size: 16px;
   font-weight: 400;
   line-height: 24px;
-  color: var(--text-body);
+  color: var(--text);
 }
 
-.home-work .role-value {
-  font-family: var(--font-sans);
-  font-size: 24px;
-  line-height: 28px;
+.case-card-role {
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--text-muted);
 }
 
-/* 1144 × 1000 at the design's width, scaling with the column below it */
-.home-work .case-study-image,
-.home-work .case-study-skeleton .sk-image {
-  height: auto;
-  min-height: 0;
-  aspect-ratio: 1144 / 1000;
+.case-row--skeleton .sk-title {
+  width: 60%;
+  height: 24px;
 }
 
-.home-work .case-study-skeleton .sk-info {
-  flex: 0 0 560px;
-  padding: 0 40px 0 20px;
+.case-row--skeleton .sk-role {
+  width: 35%;
+  height: 20px;
 }
 
 /* ── Work Carousel (auto-scroll, about page) ─── */
@@ -405,36 +417,6 @@ main {
 }
 
 /* ── Responsive ──────────────────────────────── */
-@media (max-width: 1024px) {
-  .home-work .case-study-info,
-  .home-work .case-study-skeleton .sk-info {
-    flex-basis: 400px;
-  }
-}
-
-@media (max-width: 768px) {
-  .home-work {
-    padding: 0;
-    gap: 40px;
-  }
-
-  .home-work .case-study-info,
-  .home-work .case-study-skeleton .sk-info {
-    flex: none;
-    padding: 0;
-  }
-
-  .home-work .case-study-meta {
-    font-size: 16px;
-    line-height: 24px;
-  }
-
-  .home-work .case-study-title {
-    font-size: 32px;
-    line-height: 40px;
-  }
-}
-
 @media (max-width: 900px) {
   .main-wrap {
     padding: 80px 24px 0;
@@ -442,6 +424,27 @@ main {
 
   .work-card {
     min-width: 240px;
+  }
+
+  /* Rows fold into a single column; each cover keeps a landscape shape. */
+  .case-grid {
+    gap: 32px;
+  }
+
+  .case-row {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .case-card--s,
+  .case-card--l,
+  .case-card--f {
+    flex: none;
+  }
+
+  .case-card-img {
+    height: auto;
+    aspect-ratio: 4 / 3;
   }
 }
 
@@ -451,25 +454,9 @@ main {
     gap: 64px;
   }
 
-  .hero {
-    gap: 32px;
-    padding: 140px 0 96px;
-  }
-
-  .hero-heading {
-    font-size: 36px;
-    line-height: 40px;
-  }
-
-  .home-work-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .home-work-label,
-  .home-work-all {
-    font-size: 16px;
+  .home-main {
+    padding: 128px 16px 0;
+    gap: 64px;
   }
 
   .work-card {

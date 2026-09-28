@@ -1,8 +1,9 @@
 /* About page styles */
 
 /* ── Carousel at top with nav clearance ─────── */
+/* 40px below the nav (top 40px + 24px tall), and 40px above the text */
 .about-carousel {
-  padding-top: 150px;
+  padding-top: 104px;
   margin-top: 0;
   animation: main-slide-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -22,7 +23,7 @@
 
 /* ── Main content override ───────────────────── */
 .about-wrap {
-  padding-top: 100px;
+  padding-top: 40px;
   gap: 0;
 }
 
@@ -31,7 +32,9 @@
   display: flex;
   flex-direction: column;
   gap: 48px;
-  max-width: 700px;
+  /* the nav's centred 600px column */
+  width: 600px;
+  max-width: 100%;
 }
 
 /* ── Title + Bio ─────────────────────────────── */
@@ -41,11 +44,12 @@
   gap: 20px;
 }
 
+/* Same type as the home hero heading and bio */
 .about-heading {
   font-family: var(--font-sans);
-  font-size: clamp(2.4rem, 4vw, 3rem);
+  font-size: 20px;
   font-weight: 400;
-  line-height: 1.17;
+  line-height: 24px;
   color: var(--text);
 }
 
@@ -70,9 +74,9 @@
 
 .about-bio {
   font-family: var(--font-sans);
-  font-size: clamp(0.95rem, 1.2vw, 1rem);
+  font-size: 16px;
   font-weight: 400;
-  line-height: 1.65;
+  line-height: 20px;
   color: var(--text-soft);
 }
 
@@ -170,13 +174,6 @@
 
 /* ── Responsive ──────────────────────────────── */
 @media (max-width: 900px) {
-  .about-carousel {
-    padding-top: 100px;
-  }
-
-  .about-wrap {
-    padding-top: 80px;
-  }
 
   .about-section {
     max-width: 100%;
@@ -185,21 +182,13 @@
 }
 
 @media (max-width: 600px) {
-  /* clears the nav's second row of links */
+  /* 40px below the nav's second row of links (it ends 84px down) */
   .about-carousel {
-    padding-top: 116px;
-  }
-
-  .about-wrap {
-    padding-top: 60px;
+    padding-top: 124px;
   }
 
   .about-section {
     gap: 32px;
-  }
-
-  .about-heading {
-    font-size: clamp(2rem, 8vw, 2.6rem);
   }
 }
 /* ── GitHub contributions ────────────────────── */

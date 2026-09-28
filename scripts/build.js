@@ -106,8 +106,8 @@ fs.rmSync(OUT, { recursive: true, force: true });
 INCLUDE.forEach(copy);
 
 // Each page's largest paint is an image the browser only learns about once a
-// script has built the page: the first Work card's cover, and the first
-// carousel cards on Home and About. Preload them from the <head>. The URL
+// script has built the page: the first Work card's cover, the first row of
+// Home's case-study grid, and the first carousel cards on About. Preload them from the <head>. The URL
 // rewrite mirrors scripts/cdn.js (MEDIA_VERSION included) so it hits the same
 // cache entry the page then asks for.
 function mediaUrl(url) {
@@ -130,7 +130,9 @@ function carouselFirst(page) {
   return (snapshot.carousel_images || []).filter(function (r) { return r.page === page; })
     .sort(bySort).slice(0, 3).map(function (r) { return r.url; });
 }
-preloadImages('index.html', carouselFirst('home'));
+// home-grid.js loads its first row of three covers eagerly
+preloadImages('index.html', (snapshot.projects || []).slice().sort(bySort).slice(0, 3)
+  .map(function (p) { return p.cover_url; }));
 preloadImages('pages/about/index.html', carouselFirst('about'));
 
 // Search engines: the project pages are only linked from script-rendered

@@ -20,7 +20,9 @@
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-tight-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/fonts/fonts.css">
   <!-- Fetch the shared nav/footer markup alongside the stylesheets instead of after all scripts have run -->
+  <link rel="preload" href="/components/nav/nav.html" as="fetch" crossorigin>
   <link rel="preload" href="/components/footer/footer.html" as="fetch" crossorigin>
+  <link rel="stylesheet" href="/components/nav/nav.css">
   <link rel="stylesheet" href="/components/footer/footer.css">
   <link rel="stylesheet" href="/portfolio.css">
   <link rel="stylesheet" href="/pages/work/project/style.css">
@@ -28,9 +30,11 @@
 
 <body>
 
+  <div id="nav-component"></div>
+
   <main class="project-main">
 
-    <a href="/pages/work/" class="project-back" id="back-btn">
+    <a href="/" class="project-back" id="back-btn">
       <img src="/image/Icons/Arrow.svg" alt="" class="back-arrow" />
       Back
     </a>
@@ -44,11 +48,11 @@
       </header>
 
       <section class="project-info" id="project-info">
-        <div class="text-col">
-          <p class="meta-label">About</p>
-          <p class="meta-body" id="project-about"></p>
-        </div>
-        <div class="project-side">
+        <div class="project-facts">
+          <div class="text-col">
+            <p class="meta-label">About</p>
+            <p class="meta-body" id="project-about"></p>
+          </div>
           <div class="project-meta">
             <div class="meta-row">
               <p class="meta-label">Industry</p>
@@ -60,20 +64,14 @@
             </div>
             <div class="meta-row">
               <p class="meta-label">Year</p>
-              <p class="meta-year" id="project-year"></p>
+              <p class="meta-value" id="project-year"></p>
             </div>
           </div>
-          <div class="project-ctas">
-            <a href="#" class="btn-live-project" id="btn-live" style="display:none;" target="_blank" rel="noopener">
-              View Live Project
-              <img src="/image/Icons/Arrow.svg" alt="" />
-            </a>
-            <a href="mailto:odeniransulaimon18@gmail.com" class="btn-work-with-me">
-              Work With Me
-              <img src="/image/Icons/Arrow.svg" alt="" />
-            </a>
-          </div>
         </div>
+        <a href="#" class="btn-live-project" id="btn-live" style="display:none;" target="_blank" rel="noopener">
+          View Live Project
+          <img src="/image/Icons/Arrow.svg" alt="" />
+        </a>
       </section>
     </div>
 
@@ -85,6 +83,7 @@
   <div id="footer-component"></div>
 
   <!--PROJECT_DATA-->
+  <script defer src="/components/nav/nav.js"></script>
   <script defer src="/components/footer/footer.js"></script>
   <script defer src="/scripts/load-components.js"></script>
   <script defer src="/scripts/transitions.js"></script>

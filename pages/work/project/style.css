@@ -39,29 +39,35 @@ main.project-main {
 
 /* ── Project detail page ───────────────────── */
 
+/* The nav's centred 600px column, starting 40px below it (nav: top 40px,
+   24px tall). The Back link hangs in the margin to its left. */
 .project-main {
-  max-width: 1704px;
+  position: relative;
+  width: 600px;
+  max-width: calc(100% - 24px);
   margin: 0 auto;
-  padding: 40px 12px 164px;
+  padding-top: 104px;
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  gap: 48px;
 }
 
 /* ── Back link ─────────────────────────────── */
 
 .project-back {
-  align-self: flex-start;
+  position: absolute;
+  top: 104px;
+  right: calc(100% + 40px);
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 20px;
   font-family: var(--font-sans);
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 32px;
-  color: var(--text-soft);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: var(--text-muted);
   text-decoration: none;
+  white-space: nowrap;
   transition: color 0.2s ease;
 }
 
@@ -101,77 +107,67 @@ main.project-main {
 .project-header {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 0 40px;
+  gap: 8px;
 }
 
 .project-title {
   font-family: var(--font-sans);
-  font-size: 2.5rem;
+  font-size: 20px;
   font-weight: 400;
-  font-style: normal;
+  line-height: 24px;
   color: var(--text);
-  line-height: 48px;
 }
 
 .project-tagline {
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 400;
-  color: var(--text-soft);
-  line-height: 24px;
+  line-height: 20px;
+  color: var(--text-muted);
 }
 
-/* ── Info row + text rows ──────────────────── */
+/* ── Info block + text sections ────────────── */
 
-/* two 500px columns pushed to either edge; a single column sits left */
-.project-info,
+.project-info {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.project-facts,
 .project-text {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 40px;
-  padding: 0 40px;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .text-col {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 500px;
-  max-width: 100%;
-}
-
-/* a one-column text row spans the full content width */
-.project-text .text-col:only-child {
-  width: 100%;
 }
 
 .meta-label {
   font-family: var(--font-sans);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text-soft);
-  line-height: 24px;
-}
-
-/* text block headings stand out from the soft body copy */
-.project-text .meta-label {
-  color: #fff;
-}
-
-[data-theme="light"] .project-text .meta-label {
-  color: var(--text);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--text-body);
 }
 
 .meta-body {
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 400;
-  color: var(--text-soft);
-  line-height: 24px;
+  line-height: 20px;
+  color: var(--text-body);
   /* keep the paragraph breaks typed in admin */
   white-space: pre-line;
+}
+
+/* section copy is quieter than the About paragraph above it */
+.project-text .meta-body {
+  color: var(--text-muted);
 }
 
 /* text block paragraphs: formatting is rendered to real markup, so line
@@ -207,8 +203,8 @@ main.project-main {
 }
 
 .rich-text li::marker {
-  font-weight: 700;
-  color: var(--text);
+  font-weight: 600;
+  color: var(--text-body);
 }
 
 .rich-text strong {
@@ -216,28 +212,16 @@ main.project-main {
   color: var(--text);
 }
 
-/* stretch to the About column's height: meta at the top, buttons at the
-   bottom; the gap stays as the minimum when About is short */
-.project-info {
-  align-items: stretch;
-}
-
-.project-side {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 40px;
-  width: 500px;
-  max-width: 100%;
-}
-
+/* Industry, Role and Year side by side */
 .project-meta {
   display: flex;
-  flex-direction: column;
+  align-items: flex-start;
   gap: 12px;
 }
 
 .meta-row {
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -245,82 +229,46 @@ main.project-main {
 
 .meta-value {
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 400;
-  color: var(--text-soft);
-  line-height: 24px;
+  line-height: 20px;
+  color: var(--text-body);
 }
 
-.meta-year {
-  font-family: var(--font-sans);
-  font-size: 1.5rem;
-  font-weight: 400;
-  font-style: normal;
-  color: var(--text);
-  line-height: 28px;
-}
+/* ── Live project button ───────────────────── */
 
-/* ── CTA buttons ───────────────────────────── */
-
-.project-ctas {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.btn-live-project,
-.btn-work-with-me {
+.btn-live-project {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
   width: 100%;
   padding: 16px 24px;
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-decoration: none;
-  border-radius: 12px;
-}
-
-.btn-live-project {
-  background: transparent;
-  color: var(--text);
-  border: 1px solid var(--border);
-  transition: border-color 0.2s ease, background 0.2s ease;
-}
-
-.btn-live-project:hover {
-  border-color: var(--text-soft);
-  background: rgba(245, 245, 245, 0.05);
-}
-
-.btn-live-project img,
-.btn-work-with-me img {
-  width: 19.2px;
-  height: 12px;
-}
-
-.btn-live-project img {
-  filter: invert(1) opacity(0.8);
-}
-
-[data-theme="light"] .btn-live-project img {
-  filter: invert(0) opacity(0.8);
-}
-
-.btn-work-with-me {
+  border-radius: 100px;
   background: var(--text);
   color: var(--bg);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
   transition: opacity 0.2s ease;
 }
 
-.btn-work-with-me:hover {
-  opacity: 0.85;
+.btn-live-project:hover {
+  opacity: 0.92;
 }
 
-/* invert arrow to match button bg */
-[data-theme="light"] .btn-work-with-me img {
+.btn-live-project img {
+  width: 19.2px;
+  height: 12px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-live-project:hover img {
+  transform: translateX(4px);
+}
+
+[data-theme="light"] .btn-live-project img {
   filter: invert(1);
 }
 
@@ -342,7 +290,7 @@ main.project-main {
 
 .gallery-img--full {
   width: 100%;
-  height: 1000px;
+  height: 500px;
   flex: none;
 }
 
@@ -393,8 +341,6 @@ main.project-main {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  margin-top: 64px;
-  /* 100px column gap + 64px = the design's 164px */
 }
 
 .project-pager:empty {
@@ -406,11 +352,16 @@ main.project-main {
   align-items: center;
   gap: 12px;
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 500;
-  color: var(--text);
+  line-height: 20px;
+  color: var(--text-soft);
   text-decoration: none;
-  transition: opacity 0.2s ease;
+  transition: color 0.2s ease;
+}
+
+.pager-link:hover {
+  color: var(--text);
 }
 
 .pager-link--next {
@@ -431,56 +382,33 @@ main.project-main {
 
 /* ── Responsive ────────────────────────────── */
 
-@media (max-width: 1280px) {
-
-  .gallery-img--full {
-    height: 72vw;
+/* No room for Back in the left margin: it sits above the title instead */
+@media (max-width: 800px) {
+  .project-back {
+    position: static;
+    align-self: flex-start;
+    margin-bottom: -8px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .project-main {
-    padding: 20px 12px 100px;
-    gap: 48px;
-  }
-
-  .project-back {
-    padding: 10px 8px;
-    font-size: 1rem;
-  }
-
-  .project-header,
-  .project-info,
-  .project-text {
-    padding: 0 8px;
-  }
-
-  .project-title {
-    font-size: 2rem;
-    line-height: 40px;
-  }
-
-  .project-info,
-  .project-text {
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  .text-col,
-  .project-side {
-    width: 100%;
+    max-width: calc(100% - 32px);
+    padding-top: 124px;
   }
 
   .gallery-img--full {
-    height: 320px;
+    height: auto;
+    aspect-ratio: 6 / 5;
   }
 
-  .project-pager {
-    margin-top: 32px;
+  .project-meta {
+    flex-wrap: wrap;
+    row-gap: 20px;
   }
 
-  .pager-link {
-    font-size: 1rem;
+  .meta-row {
+    flex-basis: 40%;
   }
 }
 
