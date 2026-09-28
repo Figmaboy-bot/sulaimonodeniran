@@ -3,11 +3,8 @@
   --text: #f5f5f5;
   --text-muted: rgba(245, 245, 245, 0.5);
   --text-soft: rgba(245, 245, 245, 0.6);
+  --text-body: rgba(245, 245, 245, 0.8);
   --border: rgba(255, 255, 255, 0.1);
-  --nav-bg: rgba(245, 245, 245, 0.2);
-  --nav-btn-bg: #1a1a1a;
-  --menu-panel-bg: rgba(45, 45, 45, 0.95);
-  --menu-border: rgba(240, 238, 238, 0.2);
   --font-serif: 'Instrument Serif', serif;
   --font-slab: 'Hepta Slab', serif;
   --radius-sm: 12px;
@@ -19,11 +16,8 @@
   --text: #1a1a1a;
   --text-muted: rgba(26, 26, 26, 0.5);
   --text-soft: rgba(26, 26, 26, 0.7);
+  --text-body: rgba(26, 26, 26, 0.8);
   --border: rgba(0, 0, 0, 0.1);
-  --nav-bg: rgba(26, 26, 26, 0.1);
-  --nav-btn-bg: #1a1a1a;
-  --menu-panel-bg: rgba(255, 255, 255, 0.97);
-  --menu-border: rgba(0, 0, 0, 0.1);
 }
 
 /* ── Text selection ─────────────────────────── */
@@ -130,12 +124,21 @@ main {
   gap: 100px;
 }
 
+/* ── Home ────────────────────────────────────── */
+.home-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* ── Hero ────────────────────────────────────── */
 .hero {
   display: flex;
   flex-direction: column;
   gap: 48px;
-  max-width: 520px;
+  width: 650px;
+  max-width: calc(100% - 40px);
+  padding: 198px 0 158px;
 }
 
 .img-text {
@@ -146,8 +149,8 @@ main {
 
 .hero-avatar-wrap {
   position: relative;
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   flex-shrink: 0;
 }
 
@@ -159,7 +162,7 @@ main {
   width: calc(100% - 4px);
   height: calc(100% - 4px);
   object-fit: cover;
-  border-radius: var(--radius-sm);
+  border-radius: 7.2px;
   z-index: 1;
   transform-origin: bottom center;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -169,9 +172,9 @@ main {
 .hero-avatar {
   position: relative;
   z-index: 2;
-  width: 56px;
-  height: 56px;
-  border-radius: var(--radius-sm);
+  width: 48px;
+  height: 48px;
+  border-radius: 7.2px;
   overflow: hidden;
   box-shadow: 0 0 0 4px var(--bg);
   transition: box-shadow 0.3s ease;
@@ -201,9 +204,9 @@ main {
 
 .hero-heading {
   font-family: var(--font-serif);
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-size: 48px;
   font-weight: 400;
-  line-height: 1;
+  line-height: 52px;
   color: var(--text);
 }
 
@@ -212,10 +215,14 @@ main {
 }
 
 .hero-bio {
-  font-size: clamp(0.8rem, 1.1vw, 1rem);
-  line-height: 1.6;
-  color: var(--text-soft);
-  max-width: 700px;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--text-body);
+}
+
+.hero .btn-primary {
+  gap: 20px;
+  letter-spacing: 0;
 }
 
 .btn-primary {
@@ -253,7 +260,107 @@ main {
   filter: invert(1);
 }
 
-/* ── Work Carousel (auto-scroll) ─────────────── */
+/* ── Selected case studies (rows come from pages/work) ── */
+.home-work {
+  width: 100%;
+  max-width: 1728px;
+  padding: 0 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.home-work-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.home-work-label {
+  font-family: var(--font-slab);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 32px;
+  color: var(--text-body);
+}
+
+.home-work-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  font-family: var(--font-slab);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.home-work-all img {
+  width: 19px;
+  height: 12px;
+  filter: invert(1);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="light"] .home-work-all img {
+  filter: none;
+}
+
+.home-work-all:hover img {
+  transform: translateX(5px);
+}
+
+.home-work .case-study-info {
+  flex: 0 0 560px;
+  padding: 0 40px 0 20px;
+}
+
+.home-work .case-study-meta {
+  font-size: 20px;
+  line-height: 32px;
+  color: var(--text-body);
+}
+
+.home-work .case-study-heading {
+  gap: 20px;
+}
+
+.home-work .case-study-title {
+  font-size: 40px;
+  line-height: 48px;
+}
+
+.home-work .case-study-desc,
+.home-work .role-label {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--text-body);
+}
+
+.home-work .role-value {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  line-height: 28px;
+}
+
+/* 1144 × 1000 at the design's width, scaling with the column below it */
+.home-work .case-study-image,
+.home-work .case-study-skeleton .sk-image {
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 1144 / 1000;
+}
+
+.home-work .case-study-skeleton .sk-info {
+  flex: 0 0 560px;
+  padding: 0 40px 0 20px;
+}
+
+/* ── Work Carousel (auto-scroll, about page) ─── */
 .carousel-wrap {
   overflow: hidden;
   width: 100%;
@@ -299,6 +406,36 @@ main {
 }
 
 /* ── Responsive ──────────────────────────────── */
+@media (max-width: 1024px) {
+  .home-work .case-study-info,
+  .home-work .case-study-skeleton .sk-info {
+    flex-basis: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-work {
+    padding: 0;
+    gap: 40px;
+  }
+
+  .home-work .case-study-info,
+  .home-work .case-study-skeleton .sk-info {
+    flex: none;
+    padding: 0;
+  }
+
+  .home-work .case-study-meta {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .home-work .case-study-title {
+    font-size: 32px;
+    line-height: 40px;
+  }
+}
+
 @media (max-width: 900px) {
   .main-wrap {
     padding: 80px 24px 0;
@@ -317,6 +454,23 @@ main {
 
   .hero {
     gap: 32px;
+    padding: 140px 0 96px;
+  }
+
+  .hero-heading {
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  .home-work-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .home-work-label,
+  .home-work-all {
+    font-size: 16px;
   }
 
   .work-card {

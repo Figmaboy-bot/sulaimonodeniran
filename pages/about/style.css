@@ -171,7 +171,7 @@
 /* ── Responsive ──────────────────────────────── */
 @media (max-width: 900px) {
   .about-carousel {
-    padding-top: 0px;
+    padding-top: 100px;
   }
 
   .about-wrap {
@@ -185,8 +185,9 @@
 }
 
 @media (max-width: 600px) {
+  /* clears the nav's second row of links */
   .about-carousel {
-    padding-top: 80px;
+    padding-top: 116px;
   }
 
   .about-wrap {

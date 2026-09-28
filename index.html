@@ -34,6 +34,7 @@
   <link rel="preload" href="/components/footer/footer.html" as="fetch" crossorigin>
   <link rel="stylesheet" href="/components/nav/nav.css">
   <link rel="stylesheet" href="/components/footer/footer.css">
+  <link rel="stylesheet" href="/pages/work/style.css">
   <link rel="stylesheet" href="/portfolio.css">
   <link rel="preload" as="image" href="/image/me-168.webp" fetchpriority="high">
 </head>
@@ -42,7 +43,7 @@
 
   <div id="nav-component"></div>
 
-  <main class="main-wrap">
+  <main class="home-main">
 
     <!-- Hero -->
     <section class="hero">
@@ -60,7 +61,7 @@
             a Design Engineer.
           </h1>
           <p class="hero-bio">
-            I craft thoughtful digital experiences across UI/UX, brand design, and I also develop websites with both code and no-code, creating work that's both visually compelling and user-focused.
+            With 3+ years in UI/UX, brand design, Webflow, and Framer, I craft digital experiences for clients and thrive on learning and growing with fellow creatives.
           </p>
         </div>
       </div>
@@ -70,12 +71,19 @@
       </a>
     </section>
 
-  </main>
+    <!-- Selected case studies -->
+    <section class="home-work">
+      <div class="home-work-header">
+        <h2 class="home-work-label">Selected Case Studies</h2>
+        <a href="/pages/work/" class="home-work-all">
+          View all Case Studies
+          <img src="/image/Icons/Arrow.svg" alt="" />
+        </a>
+      </div>
+      <div class="case-studies-list" id="case-studies-list" data-limit="4"></div>
+    </section>
 
-  <!-- Work Carousel (full-width, outside main-wrap) -->
-  <section class="carousel-wrap">
-    <div class="carousel-track" data-carousel="home"></div>
-  </section>
+  </main>
 
   <div id="footer-component"></div>
 
@@ -87,7 +95,8 @@
   <script defer src="/data/snapshot.js"></script>
   <script defer src="/scripts/sb.js"></script>
   <script defer src="/scripts/cdn.js"></script>
-  <script defer src="/scripts/carousel.js"></script>
+  <script defer src="/data/projects.js"></script>
+  <script defer src="/pages/work/script.js"></script>
   <script defer src="/scripts/track.js"></script>
 
 </body>

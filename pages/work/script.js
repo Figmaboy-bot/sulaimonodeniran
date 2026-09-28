@@ -3,6 +3,9 @@
   var list = document.getElementById('case-studies-list');
   if (!list) return;
 
+  // The home page shows the first few projects; the work page shows them all.
+  var limit = parseInt(list.dataset.limit, 10) || Infinity;
+
   // the footer waits for the cards, so it doesn't jump down as they land
   document.body.classList.add('work-loading');
 
@@ -46,7 +49,7 @@
     document.body.classList.remove('work-loading');
     if (!projects.length) return;
 
-    projects.forEach(function (p, index) {
+    projects.slice(0, limit).forEach(function (p, index) {
       var meta       = p.meta || ((p.industry || '') + (p.year ? ' · ' + p.year : ''));
       var id         = p.id;
       var isComingSoon = !!p.coming_soon;
@@ -137,7 +140,7 @@
   }
 
   // ── Fetch ────────────────────────────────────
-  showSkeletons(3);
+  showSkeletons(Math.min(3, limit));
 
   function show(rows) {
     if (rows && rows.length) {
