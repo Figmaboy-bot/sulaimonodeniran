@@ -14,28 +14,23 @@ body {
 
 /* ── Layout ─────────────────────────────────── */
 
+/* Same grid as the home case studies: full width with 12px edges,
+   starting 40px below the nav (top 40px + 24px tall). */
 .playground-main {
-  max-width: 1600px;
-  margin: 0px auto;
-  padding-top: 158px;
-  padding-bottom: 80px;
+  padding: 104px 12px 0;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 32px;
 }
 
 /* ── Label ──────────────────────────────────── */
 
-.playground-label-row {
-  padding: 0 20px;
-}
-
 .playground-label {
   font-family: var(--font-sans);
-  font-size: 1.25rem;
+  font-size: 20px;
   font-weight: 400;
-  color: var(--text-soft);
-  line-height: 1.6;
+  line-height: 24px;
+  color: var(--text);
 }
 
 /* ── Grid ───────────────────────────────────── */
@@ -43,9 +38,8 @@ body {
 .playground-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  column-gap: 8px;
-  row-gap: 40px;
-  padding: 0 12px;
+  column-gap: 4px;
+  row-gap: 32px;
 }
 
 /* ── Card ───────────────────────────────────── */
@@ -54,14 +48,16 @@ body {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 /* ── Image ──────────────────────────────────── */
 
+/* the home covers' height: 500px on a 1728px screen */
 .pg-image {
   width: 100%;
-  height: 450px;
+  height: clamp(280px, 28.94vw, max(500px, 60vh));
+  border-radius: 4px;
   overflow: hidden;
   background: rgba(245, 245, 245, 0.08);
 }
@@ -84,24 +80,23 @@ body {
 .pg-info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
 .pg-title {
   font-family: var(--font-sans);
-  font-size: 1.25rem;
+  font-size: 20px;
   font-weight: 400;
-  font-style: normal;
+  line-height: 24px;
   color: var(--text);
-  line-height: 1.15;
 }
 
 .pg-desc {
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: 16px;
   font-weight: 400;
-  color: var(--text-soft);
-  line-height: 1.5;
+  line-height: 20px;
+  color: var(--text-muted);
 }
 
 /* ── Card cursor ────────────────────────────── */
@@ -282,13 +277,13 @@ body {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 .pg-item-skeleton .sk-image {
   width: 100%;
-  height: 450px;
-  border-radius: 0;
+  height: clamp(280px, 28.94vw, max(500px, 60vh));
+  border-radius: 4px;
 }
 
 .pg-item-skeleton .sk-title {
@@ -304,7 +299,8 @@ body {
 
 @media (max-width: 768px) {
   .pg-item-skeleton .sk-image {
-    height: 340px;
+    height: auto;
+    aspect-ratio: 4 / 3;
   }
 }
 
@@ -314,7 +310,6 @@ body {
   font-family: var(--font-sans);
   font-size: 1rem;
   color: var(--text-muted);
-  padding: 0 20px;
 }
 
 /* ── Responsive ─────────────────────────────── */
@@ -326,17 +321,13 @@ body {
 }
 
 @media (max-width: 768px) {
-  .playground-main {
-    padding-top: 140px;
-  }
-
   .playground-grid {
     grid-template-columns: 1fr;
-    row-gap: 24px;
   }
 
   .pg-image {
-    height: 340px;
+    height: auto;
+    aspect-ratio: 4 / 3;
   }
 
   .pg-modal-header {
@@ -353,5 +344,12 @@ body {
 
   .pg-modal-image-wrap {
     padding: 0 20px 20px;
+  }
+}
+
+/* 40px below the nav's second row of links (it ends 84px down) */
+@media (max-width: 600px) {
+  .playground-main {
+    padding: 124px 16px 0;
   }
 }
