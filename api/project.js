@@ -14,7 +14,7 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 const SITE        = 'https://www.sulaimonodeniran.com';
 const STORAGE_CDN = 'https://portfolio-storage-cdn.sulaimonodeniran.workers.dev';
-const OG_FALLBACK = SITE + '/image/og-cover.jpg';
+const OG_FALLBACK = SITE + '/image/og-cover-v2.jpg';
 const TEMPLATE    = 'pages/work/project/template.html';
 
 let _template = null;

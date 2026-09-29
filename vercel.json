@@ -9,6 +9,11 @@
       "permanent": false
     },
     {
+      "source": "/image/og-cover.jpg",
+      "destination": "/image/og-cover-v2.jpg",
+      "permanent": true
+    },
+    {
       "source": "/work",
       "destination": "/",
       "permanent": true
