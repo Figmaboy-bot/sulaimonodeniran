@@ -25,7 +25,8 @@
   color: var(--text-muted);
 }
 
-.footer-social {
+/* a 20px label over its content: "Listening to:" and the socials */
+.footer-labelled {
   gap: 12px;
 }
 
@@ -62,7 +63,7 @@
 /* ── Spotify widget ──────────────────────────── */
 .spotify-widget {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   min-width: 0;
   text-decoration: none;
