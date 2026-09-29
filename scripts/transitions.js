@@ -1,5 +1,7 @@
 (function () {
   document.addEventListener('click', function (e) {
+    // new-tab / modifier clicks keep the browser's default
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     var link = e.target.closest('a[href]');
     if (!link) return;
 
@@ -25,5 +27,19 @@
     setTimeout(function () {
       location.href = href;
     }, 290);
+  });
+
+  // Pages leave by fading out (above, and the project page's Back link).
+  // The browser's Back/Forward restores a page from its cache exactly as it
+  // was left — faded out — so clear those fades when that happens.
+  window.addEventListener('pageshow', function (e) {
+    if (!e.persisted) return;
+    [document.body, document.querySelector('main'), document.getElementById('project-gallery')]
+      .forEach(function (el) {
+        if (!el) return;
+        el.style.transition = 'none';
+        el.style.opacity    = '';
+        el.style.transform  = '';
+      });
   });
 })();

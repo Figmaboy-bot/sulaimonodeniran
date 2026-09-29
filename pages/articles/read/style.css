@@ -1,25 +1,31 @@
-/* Reader view for a single post. Keeps the site's type scale — serif for
-   headings, slab for body — so writing pulled in from the feed doesn't read
-   like a foreign page. */
+/* Reader view for a single post, laid out like a project page: the nav's
+   centred 600px column, starting 40px below it (nav: top 40px, 24px tall),
+   with the Back link hanging in the margin to its left. */
 
 .read-main {
-  max-width: 720px;
+  position: relative;
+  width: 600px;
+  max-width: calc(100% - 24px);
   margin: 0 auto;
-  /* Top padding clears the fixed nav pill, matching .articles-main. */
-  padding: 158px 20px 80px;
+  padding-top: 104px;
 }
 
 /* ── Back link ──────────────────────────────── */
 
 .read-back {
+  position: absolute;
+  top: 104px;
+  right: calc(100% + 40px);
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 40px;
+  gap: 10px;
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
   color: var(--text-muted);
   text-decoration: none;
+  white-space: nowrap;
   transition: color 0.2s ease;
 }
 
@@ -27,34 +33,61 @@
   color: var(--text);
 }
 
-.read-back-arrow {
-  width: 14px;
-  transform: rotate(180deg);
-  opacity: 0.6;
+.read-back-icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* the icon is drawn white at 50%, the muted text colour in dark mode */
+[data-theme="light"] .read-back-icon {
+  filter: invert(1);
+}
+
+.read-back:hover .read-back-icon {
+  transform: translateX(-3px);
+}
+
+/* No room for Back in the left margin: it sits above the title instead */
+@media (max-width: 800px) {
+  .read-back {
+    position: static;
+    margin-bottom: 32px;
+  }
+}
+
+/* 40px below the nav's second row of links (it ends 84px down) */
+@media (max-width: 600px) {
+  .read-main {
+    max-width: calc(100% - 32px);
+    padding-top: 124px;
+  }
 }
 
 /* ── Header ─────────────────────────────────── */
 
 .read-date {
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: 14px;
+  line-height: 18px;
   color: var(--text-muted);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .read-title {
   font-family: var(--font-sans);
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: 20px;
   font-weight: 400;
-  line-height: 1.1;
+  line-height: 24px;
   color: var(--text);
-  margin-bottom: 36px;
+  margin-bottom: 40px;
 }
 
 .read-cover {
-  margin-bottom: 44px;
+  margin-bottom: 40px;
   overflow: hidden;
-  border-radius: var(--radius-sm);
+  border-radius: 4px;
   background: rgba(245, 245, 245, 0.08);
 }
 
@@ -66,11 +99,12 @@
 
 /* ── Body ───────────────────────────────────── */
 
+/* 16px like the rest of the site, with a looser 24px line for long reads */
 .read-body {
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 1.75;
+  line-height: 24px;
   color: var(--text-soft);
 }
 
@@ -88,16 +122,23 @@
   margin: 2.2em 0 0.7em;
 }
 
-.read-body h2 { font-size: 1.75rem; }
-.read-body h3 { font-size: 1.4rem; }
-.read-body h4 { font-size: 1.15rem; }
+/* the site's two heading sizes: 20px for sections, 16px semibold below */
+.read-body h2 { font-size: 20px; line-height: 24px; }
+
+.read-body h3,
+.read-body h4 {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  color: var(--text-body);
+}
 
 /* Substack bolds its own subheadings inside the h2, which doubles up with the
    serif face — let the heading style carry the weight instead. */
 .read-body h2 strong,
 .read-body h3 strong,
 .read-body h4 strong {
-  font-weight: 400;
+  font-weight: inherit;
 }
 
 .read-body strong { color: var(--text); font-weight: 600; }
@@ -144,13 +185,14 @@
   display: block;
   width: 100%;
   height: auto;
-  border-radius: var(--radius-sm);
+  border-radius: 4px;
   background: rgba(245, 245, 245, 0.08);
 }
 
 .read-body figcaption {
   margin-top: 10px;
-  font-size: 0.8rem;
+  font-size: 14px;
+  line-height: 18px;
   color: var(--text-muted);
   text-align: center;
 }
@@ -166,7 +208,7 @@
 .read-body pre {
   overflow-x: auto;
   padding: 16px;
-  border-radius: var(--radius-sm);
+  border-radius: 4px;
   background: rgba(245, 245, 245, 0.08);
   margin: 0 0 1.4em;
 }
@@ -183,7 +225,8 @@
 
 .read-foot-note {
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: 14px;
+  line-height: 18px;
   color: var(--text-muted);
 }
 
