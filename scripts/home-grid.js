@@ -83,7 +83,8 @@
   }
 
   // ── Fetch ────────────────────────────────────
-  showSkeletons();
+  // index.html already carries a placeholder row
+  if (!grid.firstElementChild) showSkeletons();
 
   function show(rows) {
     if (rows && rows.length) {

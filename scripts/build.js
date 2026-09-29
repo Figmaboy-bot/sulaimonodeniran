@@ -71,6 +71,29 @@ function stamp(html, fromDir) {
   });
 }
 
+// The nav and footer are shared fragments that pages used to fetch with a
+// script after load, so they popped in late (the footer could even land mid-
+// screen before the case-study grid pushed it down). Bake them into every
+// page instead; scripts/load-components.js then only wires them up.
+const COMPONENTS = {
+  'nav-component':    fs.readFileSync(path.join(ROOT, 'components/nav/nav.html'), 'utf8').trim(),
+  'footer-component': fs.readFileSync(path.join(ROOT, 'components/footer/footer.html'), 'utf8').trim()
+};
+let inlineCount = 0;
+function inlineComponents(html) {
+  let out = html;
+  for (const id of Object.keys(COMPONENTS)) {
+    const empty = '<div id="' + id + '"></div>';
+    if (!out.includes(empty)) continue;
+    out = out.replace(empty, '<div id="' + id + '">\n' + COMPONENTS[id] + '\n</div>');
+    // the fragment is in the page now; drop the head's early fetch of it
+    const file = id === 'nav-component' ? 'nav/nav.html' : 'footer/footer.html';
+    out = out.replace(new RegExp('\\s*<link rel="preload" href="/components/' + file.replace('.', '\\.') + '"[^>]*>'), '');
+    inlineCount++;
+  }
+  return out;
+}
+
 let fileCount = 0;
 function copy(rel) {
   if (EXCLUDE.has(rel) || EXCLUDE.has(path.basename(rel))) return;
@@ -83,7 +106,9 @@ function copy(rel) {
   }
   fs.mkdirSync(path.dirname(dest), { recursive: true });
   if (rel.endsWith('.html')) {
-    fs.writeFileSync(dest, stamp(fs.readFileSync(src, 'utf8'), path.dirname(src)));
+    let html = fs.readFileSync(src, 'utf8');
+    if (!rel.startsWith('components' + path.sep)) html = inlineComponents(html);
+    fs.writeFileSync(dest, stamp(html, path.dirname(src)));
   } else {
     fs.copyFileSync(src, dest);
   }
@@ -115,10 +140,13 @@ function mediaUrl(url) {
   const i = url.indexOf(marker);
   return i === -1 ? url : 'https://portfolio-storage-cdn.sulaimonodeniran.workers.dev' + url.slice(i) + '?v=2';
 }
-function preloadImages(page, urls) {
+// `wideOnly` urls are preloaded only where they're on screen at load: on a
+// phone the home grid is one column, so only its first cover is.
+function preloadImages(page, urls, wideOnly) {
   const file = path.join(OUT, page);
-  const tags = urls.filter(Boolean).map(function (u) {
-    return '  <link rel="preload" as="image" href="' + mediaUrl(u).replace(/"/g, '&quot;') + '" fetchpriority="high">\n';
+  const tags = urls.filter(Boolean).map(function (u, i) {
+    const media = wideOnly && i > 0 ? ' media="(min-width: 901px)"' : '';
+    return '  <link rel="preload" as="image" href="' + mediaUrl(u).replace(/"/g, '&quot;') + '" fetchpriority="high"' + media + '>\n';
   }).join('');
   if (tags) fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replace('</head>', tags + '</head>'));
 }
@@ -131,7 +159,7 @@ function carouselFirst(page) {
 // home-grid.js loads its first row of three covers eagerly
 preloadImages('index.html', (snapshot.projects || []).filter(function (p) { return !p.coming_soon; })
   .sort(bySort).slice(0, 3)
-  .map(function (p) { return p.cover_url; }));
+  .map(function (p) { return p.cover_url; }), true);
 preloadImages('pages/about/index.html', carouselFirst('about'));
 
 // Search engines: the project pages are only linked from script-rendered
@@ -154,5 +182,5 @@ fs.writeFileSync(path.join(OUT, 'robots.txt'),
   // crawlers from ever reading that tag
   'User-agent: *\nAllow: /\n\nSitemap: ' + SITE + '/sitemap.xml\n');
 console.log('build: sitemap.xml with ' + sitemapUrls.length + ' URLs, robots.txt');
-console.log('build: copied ' + fileCount + ' files to dist/, versioned ' + refCount + ' stylesheet/script references');
+console.log('build: copied ' + fileCount + ' files to dist/, versioned ' + refCount + ' stylesheet/script references, inlined nav/footer ' + inlineCount + ' times');
 console.log('build: snapshot rows ' + rowCounts);

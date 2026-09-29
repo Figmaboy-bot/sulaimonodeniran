@@ -2,6 +2,11 @@
   function loadComponent(id, path, callback) {
     var el = document.getElementById(id);
     if (!el) return;
+    // the build bakes the markup into the page; only an unbuilt page fetches it
+    if (el.firstElementChild) {
+      if (callback) callback();
+      return;
+    }
     fetch(path)
       .then(function (r) { return r.text(); })
       .then(function (html) {
