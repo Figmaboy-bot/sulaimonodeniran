@@ -650,184 +650,6 @@
       "coming_soon": false
     },
     {
-      "id": "orbit---mobile-app",
-      "sort_order": 4,
-      "title": "Orbit - Mobile App",
-      "tagline": "Orbit is a multi-currency fintech app that allows users to send, receive, and hold Naira, USD, Euro, and stablecoins seamlessly in one place.",
-      "about": "Orbit is a modern multi-currency finance app built for a borderless world.\nWe help people send, receive, convert, and manage money seamlessly across Naira, USD, Euro, and stablecoins all from one secure platform.\n\nDesigned for freelancers, global professionals, travelers, and digital-first users, Orbit combines the simplicity of modern banking with the flexibility of digital assets. Whether you’re paying internationally, saving in stable currencies, or transferring funds instantly, Orbit keeps your money moving without limits.",
-      "industry": "Fintech",
-      "role": "UI/UX Design",
-      "year": "2026",
-      "meta": "Fintech · 2026",
-      "live_url": null,
-      "coming_soon": false,
-      "cover_url": "/image/uploads/images/1790325111007_4p43d.webp",
-      "gallery": [
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790325111007_4p43d.webp",
-          "w": 2000,
-          "h": 1384,
-          "alt": "Orbit home screen on a phone in hand",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/videos/1790281927529_m4ucf.mp4",
-          "w": null,
-          "h": null,
-          "alt": "Orbit app screens video",
-          "mediaType": "video"
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1790275493959_wiywn.webp",
-              "w": 2000,
-              "h": 2444,
-              "alt": "Home Screen",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1790276168795_2hxeb.webp",
-              "w": 2000,
-              "h": 2444,
-              "alt": "Home screen, dark mode",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1790275493115_6debl.webp",
-              "w": 2000,
-              "h": 2444,
-              "alt": "Cards Screen",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1790275494831_m97z8.webp",
-              "w": 2000,
-              "h": 2444,
-              "alt": "Profile Screen",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "The Problem",
-              "body": "The modern financial ecosystem is fragmented.\n\nUsers managing money across borders often have to move between:\n\n- Traditional bank accounts\n\n- Crypto wallets\n\n- Currency exchange platforms\n\n- Payment apps\n\n- Stablecoin wallets\n\n- International transfer services\n\nEach platform introduces its own interface, terminology, and transaction flow.\n\nThis creates unnecessary friction, especially for users who simply want to **hold, move, exchange, and spend their money.**"
-            },
-            {
-              "heading": "The Opportunity",
-              "body": "Stablecoins create an interesting bridge between traditional finance and digital assets.\n\nBut the underlying technology can be complicated.\n\nUsers shouldn't need to understand:\n\n- Blockchain networks\n\n- Gas fees\n\n- Wallet infrastructure\n\n- Token standards\n\n- On-chain transactions\n\njust to move money.\n\nThe opportunity was to abstract that complexity behind a familiar financial experience."
-            }
-          ]
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278832359_3mpm7.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit splash screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278831802_vqn16.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit onboarding screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278832920_65zp2.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit create account and log in screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278830980_6vsl5.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit email verification screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "Design Goals",
-              "body": "**01. Simplify**\n\nReduce the complexity of managing multiple currencies and financial accounts.\n\n**02. Connect**\n\nBring fiat and stablecoins together within one wallet experience.\n\n**03. Build Trust**\n\nMake balances, transactions, rates, and financial actions clear.\n\n**04. Enable Movement**\n\nMake sending money across currencies feel as easy as sending a local transfer."
-            },
-            {
-              "heading": "Product Experience",
-              "body": "Orbit revolves around four core experiences:\n\n**Multi-Currency Wallet**\n\nUsers can manage their ₦, $, €, USDT, and USDC balances from one place.\n\n**Global Transfers**\n\nUsers can send money to other people without needing to understand the underlying financial infrastructure.\n\n**Currency Conversion**\n\nUsers can move between supported currencies while clearly seeing the amount, rate, and fees before confirming.\n\n**Financial Insights**\n\nOrbit provides users with a clearer picture of how they're using and moving their money."
-            }
-          ]
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278833495_uy4eq.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit send money: recipient, country and bank account details",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278834066_yf2ck.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit transfer details, PIN, success and transaction details screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278834633_ezw0m.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit transfer to an Orbit user, from recipient to transaction details",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278835209_dm6hp.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit crypto transfer: network, address, details and confirmation",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278835765_wlbdu.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit crypto transfer success and transaction details",
-          "mediaType": "image"
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "Final Outcome",
-              "body": "Orbit explores what a financial platform could look like when **traditional money and digital assets are treated as parts of the same ecosystem.**\n\nThe project allowed me to explore:\n\n- Fintech product design\n\n- Stablecoin experiences\n\n- Multi-currency wallets\n\n- Payment infrastructure\n\n- Financial dashboards\n\n- Transaction UX\n\n- Web3 abstraction\n\n- Responsive product design\n\n- Design systems\n\nUltimately, Orbit isn't about making crypto more complicated. It's about making the complexity **disappear.**"
-            }
-          ]
-        }
-      ],
-      "created_at": "2026-05-16T13:43:30.550027+00:00"
-    },
-    {
       "id": "scholara",
       "title": "Scholara",
       "tagline": "Scholara is a forward-thinking platform designed to empower people with smarter, more accessible digital tools.",
@@ -1143,60 +965,191 @@
           "mediaType": "image"
         }
       ],
-      "sort_order": 5,
+      "sort_order": 4,
       "created_at": "2026-05-16T15:13:06.337063+00:00",
       "coming_soon": false
     },
     {
-      "id": "task-hive-landing-page",
-      "title": "Task Hive - Landing Page",
-      "tagline": "A modern task management platform designed for teams and individuals.",
-      "about": "TaskHive is a modern task management platform designed for teams and individuals who want to stay organized, hit deadlines, and work smarter. With powerful features like Kanban boards, AI task suggestions, and real-time team activity, TaskHive simplifies collaboration and boosts productivity—all in one intuitive workspace.",
-      "industry": "Productivity / SaaS",
-      "role": "UI/UX Design · Web Development",
-      "year": "2025",
-      "meta": "Productivity / SaaS · 2025",
-      "live_url": "https://taskhive-21eff5.webflow.io/",
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628294732_ezj30.webp",
+      "id": "orbit---mobile-app",
+      "sort_order": 5,
+      "title": "Orbit - Mobile App",
+      "tagline": "Orbit is a multi-currency fintech app that allows users to send, receive, and hold Naira, USD, Euro, and stablecoins seamlessly in one place.",
+      "about": "Orbit is a modern multi-currency finance app built for a borderless world.\nWe help people send, receive, convert, and manage money seamlessly across Naira, USD, Euro, and stablecoins all from one secure platform.\n\nDesigned for freelancers, global professionals, travelers, and digital-first users, Orbit combines the simplicity of modern banking with the flexibility of digital assets. Whether you’re paying internationally, saving in stable currencies, or transferring funds instantly, Orbit keeps your money moving without limits.",
+      "industry": "Fintech",
+      "role": "UI/UX Design",
+      "year": "2026",
+      "meta": "Fintech · 2026",
+      "live_url": null,
+      "coming_soon": false,
+      "cover_url": "/image/uploads/images/1790325111007_4p43d.webp",
       "gallery": [
         {
-          "h": 1500,
-          "w": 2000,
-          "alt": "TaskHive landing page on a laptop",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628296764_23a5o.webp",
           "type": "full",
+          "src": "/image/uploads/images/1790325111007_4p43d.webp",
+          "w": 2000,
+          "h": 1384,
+          "alt": "Orbit home screen on a phone in hand",
           "mediaType": "image"
         },
         {
-          "alt": "TaskHive landing page video",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628297442_at4a7.mp4",
           "type": "full",
+          "src": "/image/uploads/videos/1790281927529_m4ucf.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Orbit app screens video",
           "mediaType": "video"
         },
         {
-          "h": 1333,
-          "w": 2000,
-          "alt": "TaskHive landing page on a phone",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628300819_x8qw9.webp",
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790275493959_wiywn.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Home Screen",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790276168795_2hxeb.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Home screen, dark mode",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790275493115_6debl.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Cards Screen",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790275494831_m97z8.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Profile Screen",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "The Problem",
+              "body": "The modern financial ecosystem is fragmented.\n\nUsers managing money across borders often have to move between:\n\n- Traditional bank accounts\n\n- Crypto wallets\n\n- Currency exchange platforms\n\n- Payment apps\n\n- Stablecoin wallets\n\n- International transfer services\n\nEach platform introduces its own interface, terminology, and transaction flow.\n\nThis creates unnecessary friction, especially for users who simply want to **hold, move, exchange, and spend their money.**"
+            },
+            {
+              "heading": "The Opportunity",
+              "body": "Stablecoins create an interesting bridge between traditional finance and digital assets.\n\nBut the underlying technology can be complicated.\n\nUsers shouldn't need to understand:\n\n- Blockchain networks\n\n- Gas fees\n\n- Wallet infrastructure\n\n- Token standards\n\n- On-chain transactions\n\njust to move money.\n\nThe opportunity was to abstract that complexity behind a familiar financial experience."
+            }
+          ]
+        },
+        {
           "type": "full",
+          "src": "/image/uploads/images/1790278832359_3mpm7.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit splash screens",
           "mediaType": "image"
         },
         {
-          "h": 8866,
-          "w": 1354,
-          "alt": "TaskHive full landing page",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628307543_gorgi.webp",
           "type": "full",
+          "src": "/image/uploads/images/1790278831802_vqn16.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit onboarding screens",
           "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278832920_65zp2.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit create account and log in screens",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278830980_6vsl5.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit email verification screens",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Design Goals",
+              "body": "**01. Simplify**\n\nReduce the complexity of managing multiple currencies and financial accounts.\n\n**02. Connect**\n\nBring fiat and stablecoins together within one wallet experience.\n\n**03. Build Trust**\n\nMake balances, transactions, rates, and financial actions clear.\n\n**04. Enable Movement**\n\nMake sending money across currencies feel as easy as sending a local transfer."
+            },
+            {
+              "heading": "Product Experience",
+              "body": "Orbit revolves around four core experiences:\n\n**Multi-Currency Wallet**\n\nUsers can manage their ₦, $, €, USDT, and USDC balances from one place.\n\n**Global Transfers**\n\nUsers can send money to other people without needing to understand the underlying financial infrastructure.\n\n**Currency Conversion**\n\nUsers can move between supported currencies while clearly seeing the amount, rate, and fees before confirming.\n\n**Financial Insights**\n\nOrbit provides users with a clearer picture of how they're using and moving their money."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278833495_uy4eq.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit send money: recipient, country and bank account details",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278834066_yf2ck.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit transfer details, PIN, success and transaction details screens",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278834633_ezw0m.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit transfer to an Orbit user, from recipient to transaction details",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278835209_dm6hp.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit crypto transfer: network, address, details and confirmation",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278835765_wlbdu.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit crypto transfer success and transaction details",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Final Outcome",
+              "body": "Orbit explores what a financial platform could look like when **traditional money and digital assets are treated as parts of the same ecosystem.**\n\nThe project allowed me to explore:\n\n- Fintech product design\n\n- Stablecoin experiences\n\n- Multi-currency wallets\n\n- Payment infrastructure\n\n- Financial dashboards\n\n- Transaction UX\n\n- Web3 abstraction\n\n- Responsive product design\n\n- Design systems\n\nUltimately, Orbit isn't about making crypto more complicated. It's about making the complexity **disappear.**"
+            }
+          ]
         }
       ],
-      "sort_order": 6,
-      "created_at": "2026-05-01T09:37:59.310904+00:00",
-      "coming_soon": false
+      "created_at": "2026-05-16T13:43:30.550027+00:00"
     },
     {
       "id": "coin-compass---mobile-app",
-      "sort_order": 7,
+      "sort_order": 6,
       "title": "Coin Compass - Mobile App",
       "tagline": "Your smart financial guide, built to help you navigate money management with confidence.",
       "about": "CoinCompass is your smart financial guide, built to help you navigate money management with confidence. Designed for the modern user, CoinCompass combines intelligent insights, intuitive tools, and real-time tracking to help you make smarter decisions about your finances.\nWhether you're budgeting, investing, or just trying to stay on top of your spending, CoinCompass empowers you to take control with ease. Our sleek interface, personalized recommendations, and seamless experience make managing money less stressful—and a lot more rewarding.",
@@ -1527,8 +1480,55 @@
           "mediaType": "image"
         }
       ],
-      "sort_order": 8,
+      "sort_order": 7,
       "created_at": "2026-05-15T08:49:25.908566+00:00",
+      "coming_soon": false
+    },
+    {
+      "id": "task-hive-landing-page",
+      "title": "Task Hive - Landing Page",
+      "tagline": "A modern task management platform designed for teams and individuals.",
+      "about": "TaskHive is a modern task management platform designed for teams and individuals who want to stay organized, hit deadlines, and work smarter. With powerful features like Kanban boards, AI task suggestions, and real-time team activity, TaskHive simplifies collaboration and boosts productivity—all in one intuitive workspace.",
+      "industry": "Productivity / SaaS",
+      "role": "UI/UX Design · Web Development",
+      "year": "2025",
+      "meta": "Productivity / SaaS · 2025",
+      "live_url": "https://taskhive-21eff5.webflow.io/",
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628294732_ezj30.webp",
+      "gallery": [
+        {
+          "h": 1500,
+          "w": 2000,
+          "alt": "TaskHive landing page on a laptop",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628296764_23a5o.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "alt": "TaskHive landing page video",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628297442_at4a7.mp4",
+          "type": "full",
+          "mediaType": "video"
+        },
+        {
+          "h": 1333,
+          "w": 2000,
+          "alt": "TaskHive landing page on a phone",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628300819_x8qw9.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 8866,
+          "w": 1354,
+          "alt": "TaskHive full landing page",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628307543_gorgi.webp",
+          "type": "full",
+          "mediaType": "image"
+        }
+      ],
+      "sort_order": 8,
+      "created_at": "2026-05-01T09:37:59.310904+00:00",
       "coming_soon": false
     },
     {
@@ -1544,95 +1544,97 @@
       "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628333894_mf0uc.webp",
       "gallery": [
         {
-          "h": 1500,
-          "w": 2000,
-          "alt": "Nexflo website on a laptop",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628335250_ypfvq.webp",
           "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628335250_ypfvq.webp",
+          "w": 2000,
+          "h": 1500,
+          "alt": "Nexflo website on a laptop",
           "mediaType": "image"
         },
         {
-          "alt": "Nexflo website video",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628337191_1nu6j.mp4",
           "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628337191_1nu6j.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Nexflo website video",
           "mediaType": "video"
         },
         {
-          "h": 1293,
-          "w": 2000,
-          "alt": "Nexflo website hero",
+          "type": "full",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628345363_39ae0.webp",
-          "type": "full",
+          "w": 2000,
+          "h": 1293,
+          "alt": "Nexflo website hero",
           "mediaType": "image"
         },
         {
-          "h": 464,
-          "w": 2000,
-          "alt": "Brands",
+          "type": "full",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628347163_lqr9a.webp",
-          "type": "full",
+          "w": 2000,
+          "h": 464,
+          "alt": "Brands",
           "mediaType": "image"
         },
         {
-          "h": 1906,
-          "w": 2000,
-          "alt": "Features",
+          "type": "full",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628347608_ram7z.webp",
-          "type": "full",
+          "w": 2000,
+          "h": 1906,
+          "alt": "Features",
           "mediaType": "image"
         },
         {
-          "h": 1027,
-          "w": 2000,
-          "alt": "Benefits Dark",
+          "type": "full",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628348821_iywjl.webp",
-          "type": "full",
+          "w": 2000,
+          "h": 1027,
+          "alt": "Benefits Dark",
           "mediaType": "image"
         },
         {
-          "h": 1057,
-          "w": 2000,
-          "alt": "Automation (Dark)",
+          "type": "full",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628349848_aguhg.webp",
-          "type": "full",
+          "w": 2000,
+          "h": 1057,
+          "alt": "Automation (Dark)",
           "mediaType": "image"
         },
         {
-          "h": 1531,
-          "w": 2000,
-          "alt": "Testimonials",
+          "type": "full",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628350371_7e8hk.webp",
-          "type": "full",
+          "w": 2000,
+          "h": 1531,
+          "alt": "Testimonials",
           "mediaType": "image"
         },
         {
-          "h": 1131,
-          "w": 2000,
-          "alt": "Pricing",
+          "type": "full",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628351862_bm4pf.webp",
-          "type": "full",
+          "w": 2000,
+          "h": 1131,
+          "alt": "Pricing",
           "mediaType": "image"
         },
         {
-          "h": 1309,
-          "w": 2000,
-          "alt": "FAQ",
+          "type": "full",
           "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628352506_5l3tm.webp",
-          "type": "full",
+          "w": 2000,
+          "h": 1309,
+          "alt": "FAQ",
           "mediaType": "image"
         },
         {
-          "h": 1330,
-          "w": 2000,
-          "alt": "Footer",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628353190_sza24.webp",
           "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628353190_sza24.webp",
+          "w": 2000,
+          "h": 1330,
+          "alt": "Footer",
           "mediaType": "image"
         }
       ],
       "sort_order": 9,
       "created_at": "2026-05-01T09:39:14.531838+00:00",
-      "coming_soon": false
+      "coming_soon": true
     },
     {
       "id": "nexflo---web-app",
