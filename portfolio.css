@@ -224,26 +224,21 @@ main {
   color: var(--text-muted);
 }
 
-.hero .btn-primary {
-  gap: 20px;
-  padding: 12px 20px;
-  border-radius: 100px;
-  letter-spacing: 0;
-}
-
+/* The site's one button: a light pill with an arrow (home, About,
+   Playground). The project page's full-width "View Live Project" matches. */
 .btn-primary {
   display: inline-flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
   background: var(--text);
   color: var(--bg);
   text-decoration: none;
   font-family: var(--font-sans);
   font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.02em;
-  padding: 16px 24px;
-  border-radius: var(--radius-sm);
+  line-height: 15px;
+  padding: 12px 20px;
+  border-radius: 100px;
   align-self: flex-start;
   transition: opacity 0.2s;
 }
@@ -259,7 +254,7 @@ main {
 }
 
 .btn-primary:hover .btn-arrow {
-  transform: translateX(-5px);
+  transform: translateX(4px);
 }
 
 [data-theme="light"] .btn-arrow {
