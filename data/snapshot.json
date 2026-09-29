@@ -163,8 +163,112 @@
       "created_at": "2026-07-05T20:41:07.009223+00:00"
     },
     {
-      "id": "echoyou",
+      "id": "scribe---website",
       "sort_order": 1,
+      "title": "Scribe - Website",
+      "tagline": "A focused workspace for writing, organizing, and managing documents.",
+      "about": "I designed the Scribe website to introduce the product and communicate its vision as a modern, cross-platform document workspace. The experience focuses on Scribe’s core value of bringing writing, organization, and productivity into one place, while showcasing the product, key features, and overall ecosystem through a clean, editorial visual direction.",
+      "industry": "Productivity / SaaS",
+      "role": "Web Design",
+      "year": "2026",
+      "meta": "Productivity / SaaS · 2026",
+      "live_url": "https://scribe.best/",
+      "coming_soon": false,
+      "cover_url": "/image/uploads/images/1790672284237_umzrz.webp",
+      "gallery": [
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672284237_umzrz.webp",
+          "w": 1544,
+          "h": 1000,
+          "alt": "Portfolio Cover",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672361569_27iaw.webp",
+          "w": 2000,
+          "h": 2318,
+          "alt": "Hero",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672357969_yqdmi.webp",
+          "w": 2000,
+          "h": 1910,
+          "alt": "Features",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672369809_l0g6e.webp",
+          "w": 2000,
+          "h": 4618,
+          "alt": "Use Case",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672356921_rxno0.webp",
+          "w": 2000,
+          "h": 1883,
+          "alt": "Collaboration",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672354873_zryzf.webp",
+          "w": 2000,
+          "h": 1813,
+          "alt": "A place for everything",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672355847_85vdd.webp",
+          "w": 2000,
+          "h": 1789,
+          "alt": "AI",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672362626_iogjy.webp",
+          "w": 2000,
+          "h": 1661,
+          "alt": "Integrations",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672364485_3iubb.webp",
+          "w": 2000,
+          "h": 1248,
+          "alt": "Security",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672363620_vlm8d.webp",
+          "w": 2000,
+          "h": 1449,
+          "alt": "Pricing",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672359316_m3nld.webp",
+          "w": 2000,
+          "h": 2185,
+          "alt": "Footerjpg",
+          "mediaType": "image"
+        }
+      ]
+    },
+    {
+      "id": "echoyou",
+      "sort_order": 2,
       "title": "EchoYou",
       "tagline": "An AI-powered communication assistant designed to help people take control of their inbox.",
       "about": "Email is still one of the most important communication tools for modern professionals, but managing an inbox can quickly become overwhelming.\n\nEchoYou is an AI-powered productivity platform designed to help users understand, organize, and act on their emails without constantly working through their inbox manually.\n\nThe product combines email management, AI assistance, calendar intelligence, and automated actions into one experience.",
@@ -174,13 +278,13 @@
       "meta": "AI / Productivity · 2026",
       "live_url": null,
       "coming_soon": false,
-      "cover_url": "/image/uploads/images/1790522423029_ot8t2.webp",
+      "cover_url": "/image/uploads/images/1790671832206_y0aek.webp",
       "gallery": [
         {
           "type": "full",
-          "src": "/image/uploads/images/1790522423029_ot8t2.webp",
-          "w": 2000,
-          "h": 1500,
+          "src": "/image/uploads/images/1790671832206_y0aek.webp",
+          "w": 1148,
+          "h": 1000,
           "alt": "EchoYou inbox and AI assistant on a laptop",
           "mediaType": "image"
         },
@@ -541,13 +645,13 @@
           "mediaType": "image"
         }
       ],
-      "sort_order": 2,
+      "sort_order": 3,
       "created_at": "2026-07-03T16:17:48.277832+00:00",
       "coming_soon": false
     },
     {
       "id": "orbit---mobile-app",
-      "sort_order": 3,
+      "sort_order": 4,
       "title": "Orbit - Mobile App",
       "tagline": "Orbit is a multi-currency fintech app that allows users to send, receive, and hold Naira, USD, Euro, and stablecoins seamlessly in one place.",
       "about": "Orbit is a modern multi-currency finance app built for a borderless world.\nWe help people send, receive, convert, and manage money seamlessly across Naira, USD, Euro, and stablecoins all from one secure platform.\n\nDesigned for freelancers, global professionals, travelers, and digital-first users, Orbit combines the simplicity of modern banking with the flexibility of digital assets. Whether you’re paying internationally, saving in stable currencies, or transferring funds instantly, Orbit keeps your money moving without limits.",
@@ -1039,7 +1143,7 @@
           "mediaType": "image"
         }
       ],
-      "sort_order": 4,
+      "sort_order": 5,
       "created_at": "2026-05-16T15:13:06.337063+00:00",
       "coming_soon": false
     },
@@ -1086,13 +1190,13 @@
           "mediaType": "image"
         }
       ],
-      "sort_order": 5,
+      "sort_order": 6,
       "created_at": "2026-05-01T09:37:59.310904+00:00",
       "coming_soon": false
     },
     {
       "id": "coin-compass---mobile-app",
-      "sort_order": 6,
+      "sort_order": 7,
       "title": "Coin Compass - Mobile App",
       "tagline": "Your smart financial guide, built to help you navigate money management with confidence.",
       "about": "CoinCompass is your smart financial guide, built to help you navigate money management with confidence. Designed for the modern user, CoinCompass combines intelligent insights, intuitive tools, and real-time tracking to help you make smarter decisions about your finances.\nWhether you're budgeting, investing, or just trying to stay on top of your spending, CoinCompass empowers you to take control with ease. Our sleek interface, personalized recommendations, and seamless experience make managing money less stressful—and a lot more rewarding.",
@@ -1423,7 +1527,7 @@
           "mediaType": "image"
         }
       ],
-      "sort_order": 7,
+      "sort_order": 8,
       "created_at": "2026-05-15T08:49:25.908566+00:00",
       "coming_soon": false
     },
@@ -1526,13 +1630,13 @@
           "mediaType": "image"
         }
       ],
-      "sort_order": 8,
+      "sort_order": 9,
       "created_at": "2026-05-01T09:39:14.531838+00:00",
       "coming_soon": false
     },
     {
       "id": "nexflo---web-app",
-      "sort_order": 9,
+      "sort_order": 10,
       "title": "Nexflo - Web App",
       "tagline": "Automate your workflows. Connect your tools. Get more done.",
       "about": "Nexflo is a modern workflow automation platform designed to help teams connect their favorite tools and automate repetitive processes without complex setup. I worked on the brand identity and product experience, creating a cohesive visual system and intuitive interfaces across onboarding, authentication, workflow management, and pricing.",
@@ -1556,7 +1660,7 @@
     },
     {
       "id": "scribe---web-app",
-      "sort_order": 10,
+      "sort_order": 11,
       "title": "Scribe - Web App",
       "tagline": "A modern doc editor for writing, organizing, and managing your ideas.",
       "about": "Scribe is a cross-platform document editor and workspace designed to bring writing, organization, and collaboration into one focused environment. I designed the product experience from the ground up, exploring the desktop workspace, document editor, navigation, onboarding, authentication, and supporting product ecosystem. The experience is designed desktop-first, with a flexible foundation that can extend naturally to mobile and other platforms.",
