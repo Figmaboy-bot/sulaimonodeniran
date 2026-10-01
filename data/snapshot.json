@@ -1672,15 +1672,341 @@
       "meta": "Productivity / SaaS · 2026",
       "live_url": null,
       "coming_soon": true,
-      "cover_url": "/image/uploads/images/1790284595600_lhpib.webp",
+      "cover_url": "/image/uploads/images/1790881747036_bax9y.webp",
       "gallery": [
         {
           "type": "full",
-          "src": "/image/uploads/images/1790284595600_lhpib.webp",
+          "src": "/image/uploads/images/1790881747036_bax9y.webp",
           "w": 2000,
-          "h": 1500,
-          "alt": "Scribe document editor on a laptop",
+          "h": 1664,
+          "alt": "Scribe document editor with Ask Scribe AI on selected text",
           "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790881900148_dzxpa.webp",
+          "w": 2000,
+          "h": 1293,
+          "alt": "Edit Doc (Dark)",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "The Problem",
+              "body": "When I was working on my final-year project at university, I struggled to find a document editor that made writing and researching easier. Most of the tools I tried either lacked useful AI features or placed them behind expensive plans.\n\nBut AI wasn’t the only problem.\n\nMy group also struggled to work together. We edited documents separately, shared different versions, and sent files back and forth on WhatsApp just to review and make corrections. It became difficult to keep track of changes, feedback, and the latest version of the document.\n\nThat experience made me realize there was an opportunity to build something better — **a workspace where writing, AI, document management, and collaboration could happen in one place.**\n\nThat idea became **Scribe**."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Who It’s For",
+              "body": "Scribe is built for people who write, organize, and work with documents regularly.\n\n- **Students** — for assignments, research, notes, and group projects.\n\n- **Researchers** — for writing, organizing research, and refining ideas with AI.\n\n- **Writers & Creators** — for drafting, editing, and developing ideas in one workspace.\n\n- **Teams** — for working together on documents, leaving feedback, and making changes in real time.\n\n- **Professionals** — for reports, proposals, meeting notes, and everyday documentation.\n\n**One workspace for writing, thinking, and working together.**"
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790881750984_sbga1.webp",
+          "w": 2000,
+          "h": 1436,
+          "alt": "Home",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Design Decisions",
+              "body": "**1. Real-time collaboration vs. traditional file sharing**\nI considered keeping Scribe focused on individual document editing and using file sharing for collaboration. I rejected this because my own experience showed how difficult it is to manage multiple versions. Instead, Scribe allows users to work on the same document, leave comments, and review changes together.\n\n**2. AI as a separate feature vs. part of the writing experience**\nI considered making AI a standalone tool within Scribe. I chose to integrate it directly into the document experience so users can refine, summarize, and reorganize content without leaving their workflow.\n\n**3. Simple workspace vs. feature-heavy dashboard**\nI considered adding more tools and navigation options upfront. I rejected this in favor of a simpler workspace that keeps the document at the center and makes the core actions easy to access."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Workspaces",
+              "body": "Documents can quickly become difficult to manage when school work, personal projects, research, and professional work all live in the same place. Scribe organizes documents into dedicated workspaces such as **Personal, Projects, Work, and Research**, giving each area its own space while keeping everything accessible from one place.\n\nFor shared workspaces, admins can invite team members, add and organize documents, and control who has access to different content. This makes it easier for teams to collaborate without losing control of their workspace or document permissions.\n\nEach file also provides clear information about its latest activity, including **when it was last saved and who made the change**. This gives users a quick way to understand the current state of a document and makes it easier to identify the latest version when multiple people are working together."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790881763231_tftpn.webp",
+          "w": 2000,
+          "h": 1436,
+          "alt": "Workspace",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790881748931_1raga.webp",
+          "w": 2000,
+          "h": 1436,
+          "alt": "Document Editor",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Contextual AI",
+              "body": "The goal was to make AI feel like part of the writing process rather than a separate tool users had to switch to.\n\nI explored how common writing tasks such as **rewriting, shortening, expanding, correcting, and changing tone** could happen directly within the document. This led to contextual AI actions appearing alongside the selected text, keeping the user focused on their work.\n\nThe key design decision was to make AI **available at the moment it is useful**, rather than requiring users to open a separate AI interface and explain what they want."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790881745714_hpnlr.webp",
+          "w": 2000,
+          "h": 1436,
+          "alt": "Contextual AI",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Document-level AI",
+              "body": "I wanted Scribe AI to go beyond editing individual sentences and help users **understand and work with entire documents**.\n\nI mapped common document-level tasks such as **summarizing content, finding key information, extracting important points, and understanding long documents**. These became part of the broader Document AI experience.\n\nThe main design principle was to keep these capabilities connected to the document itself, so users can move from **reading → understanding → acting** without leaving their workspace."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790881749395_2ucfe.webp",
+          "w": 2000,
+          "h": 1436,
+          "alt": "Document-level AI",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Version History",
+              "body": "Never lose track of your latest version\n\nWhile working on documents with others, it’s easy to lose track of what changed, who changed it, or which version is the right one.\n\nScribe keeps every change in one timeline. Users can see who made changes and when, preview earlier versions, compare changes, and restore a previous version when needed.\n\n**The flow**\n\nOpen history → Preview or compare → Restore\n\nRestoring never overwrites the current document. Instead, Scribe creates a new version, keeping the existing history safe and accessible."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790881719904_wwlsl.webp",
+          "w": 2000,
+          "h": 1436,
+          "alt": "Version History",
+          "mediaType": "image"
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790881718608_u6fr4.webp",
+              "w": 2000,
+              "h": 1436,
+              "alt": "Preview Version",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790881717957_47een.webp",
+              "w": 2000,
+              "h": 1436,
+              "alt": "Compare version",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790881719059_4ls2b.webp",
+          "w": 2000,
+          "h": 1436,
+          "alt": "Restore this version",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Comments & Collaboration",
+              "body": "Working with other people on the same document can quickly become difficult when edits, feedback, and conversations happen across different tools. Team members may have to send files back and forth, explain which section needs changes, or search through messages to find previous feedback.\n\nScribe brings the entire collaboration process into the document. Users can work on the same document in real time, see who else is editing, highlight specific sections, leave comments, reply to feedback, and keep conversations attached to the work they relate to.\n\nThe goal was to make collaboration feel like a natural part of writing rather than a separate workflow. Instead of switching between the document, messaging apps, and email, users can write, review, discuss, and make changes together in one place."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790881745172_ib7yr.webp",
+          "w": 2000,
+          "h": 1436,
+          "alt": "Comments & Collaboration",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790881759446_ycmk9.webp",
+          "w": 2000,
+          "h": 1436,
+          "alt": "Share Document",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Integrations",
+              "body": "Most people already have years of documents stored across different tools and services. Asking them to move everything into a new workspace would only create more friction and make the transition harder. Instead, Scribe is designed to work alongside the tools people already use.\n\nScribe connects with **Google Drive, Dropbox, and OneDrive**, allowing users to bring their existing files into their workspace without having to constantly switch between different platforms. Files can be opened, accessed, and kept connected while users continue working from within Scribe.\n\nThe goal was to make integrations feel simple rather than technical. Each service can be connected or disconnected with a single action from Settings, giving users control over which services they want to use and keeping their existing workflow intact."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790881751989_ete2p.webp",
+          "w": 2000,
+          "h": 1436,
+          "alt": "Integrations",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Onboarding",
+              "body": "Onboarding has one clear goal: **get users from sign-up to creating their first document with as little friction as possible.** After creating an account and verifying their email, users choose the type of workspace they want, give it a name, and decide how they want to get started. They can import existing files such as **PDF, DOCX, and XLSX**, or start with a blank workspace and create something new.\n\nA simple progress indicator keeps users aware of where they are in the setup process and how many steps remain. Each step is focused on one decision, keeping the experience clear and easy to move through without overwhelming users with unnecessary setup."
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790881748077_vvrm8.webp",
+              "w": 2000,
+              "h": 1436,
+              "alt": "Create Your Account",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790881749907_jp61q.webp",
+              "w": 2000,
+              "h": 1436,
+              "alt": "Email Verification",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790881760807_cv4vg.webp",
+              "w": 2000,
+              "h": 1436,
+              "alt": "Verification Success",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790881761347_9motx.webp",
+              "w": 2000,
+              "h": 1436,
+              "alt": "Welcome to Scribe",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790881762429_z7vq9.webp",
+              "w": 2000,
+              "h": 1436,
+              "alt": "Workspace Type",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790881748474_3u96v.webp",
+              "w": 2000,
+              "h": 1436,
+              "alt": "Create Your Workspace",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790884114109_uo1b3.webp",
+          "w": 2000,
+          "h": 1436,
+          "alt": "Import or Start Fresh",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790881753582_ot81s.webp",
+          "w": 2000,
+          "h": 1436,
+          "alt": "Login",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Settings",
+              "body": "Settings are grouped by what people actually look for: preferences (General, Appearance, Notifications, Keyboard shortcuts), account, workspaces and data. Storage shows usage broken down by PDFs, documents and spreadsheets, so users can see what's taking up space before they hit their limit."
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790881750369_4oim2.webp",
+              "w": 2000,
+              "h": 1436,
+              "alt": "General Settings",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790881758189_zsaqe.webp",
+              "w": 2000,
+              "h": 1436,
+              "alt": "Profile Settings",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790881763982_tycr9.webp",
+              "w": 2000,
+              "h": 1436,
+              "alt": "Workspaces Settings",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790881760297_spfw3.webp",
+              "w": 2000,
+              "h": 1436,
+              "alt": "Storage",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "How I Know It Works",
+              "body": "I tested the early Scribe experience with **5 classmates from my final-year project group**, the same kind of users I was designing for. During the test, they found it difficult to understand where to access shared documents and how to leave feedback on specific sections.\n\nBased on this, I made **collaboration and comments more visible within the document workspace**, allowing users to work on the same document, comment directly on content, and reply within a thread.\n\nOne key finding was that users understood the document editor immediately, but needed clearer visual cues to discover the collaboration features."
+            }
+          ]
         }
       ]
     }
