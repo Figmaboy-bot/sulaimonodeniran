@@ -163,396 +163,6 @@
       "created_at": "2026-07-05T20:41:07.009223+00:00"
     },
     {
-      "id": "scribe---website",
-      "sort_order": 1,
-      "title": "Scribe - Website",
-      "tagline": "A focused workspace for writing, organizing, and managing documents.",
-      "about": "I designed the Scribe website to introduce the product and communicate its vision as a modern, cross-platform document workspace. The experience focuses on Scribe’s core value of bringing writing, organization, and productivity into one place, while showcasing the product, key features, and overall ecosystem through a clean, editorial visual direction.",
-      "industry": "Productivity / SaaS",
-      "role": "Web Design",
-      "year": "2026",
-      "meta": "Productivity / SaaS · 2026",
-      "live_url": "https://scribe.best/",
-      "coming_soon": false,
-      "cover_url": "/image/uploads/images/1790672284237_umzrz.webp",
-      "gallery": [
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672284237_umzrz.webp",
-          "w": 1544,
-          "h": 1000,
-          "alt": "Portfolio Cover",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672361569_27iaw.webp",
-          "w": 2000,
-          "h": 2318,
-          "alt": "Hero",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672357969_yqdmi.webp",
-          "w": 2000,
-          "h": 1910,
-          "alt": "Features",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672369809_l0g6e.webp",
-          "w": 2000,
-          "h": 4618,
-          "alt": "Use Case",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672356921_rxno0.webp",
-          "w": 2000,
-          "h": 1883,
-          "alt": "Collaboration",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672354873_zryzf.webp",
-          "w": 2000,
-          "h": 1813,
-          "alt": "A place for everything",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672355847_85vdd.webp",
-          "w": 2000,
-          "h": 1789,
-          "alt": "AI",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672362626_iogjy.webp",
-          "w": 2000,
-          "h": 1661,
-          "alt": "Integrations",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672364485_3iubb.webp",
-          "w": 2000,
-          "h": 1248,
-          "alt": "Security",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672363620_vlm8d.webp",
-          "w": 2000,
-          "h": 1449,
-          "alt": "Pricing",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672359316_m3nld.webp",
-          "w": 2000,
-          "h": 2185,
-          "alt": "Footerjpg",
-          "mediaType": "image"
-        }
-      ]
-    },
-    {
-      "id": "echoyou",
-      "sort_order": 2,
-      "title": "EchoYou",
-      "tagline": "An AI-powered communication assistant designed to help people take control of their inbox.",
-      "about": "Email is still one of the most important communication tools for modern professionals, but managing an inbox can quickly become overwhelming.\n\nEchoYou is an AI-powered productivity platform designed to help users understand, organize, and act on their emails without constantly working through their inbox manually.\n\nThe product combines email management, AI assistance, calendar intelligence, and automated actions into one experience.",
-      "industry": "AI / Productivity",
-      "role": "UI/UX Design",
-      "year": "2026",
-      "meta": "AI / Productivity · 2026",
-      "live_url": null,
-      "coming_soon": false,
-      "cover_url": "/image/uploads/images/1790671832206_y0aek.webp",
-      "gallery": [
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790671832206_y0aek.webp",
-          "w": 1148,
-          "h": 1000,
-          "alt": "EchoYou inbox and AI assistant on a laptop",
-          "mediaType": "image"
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1790538014349_ixuo4.webp",
-              "w": 2000,
-              "h": 1532,
-              "alt": "Create Your Account",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1790538004726_ivug1.webp",
-              "w": 2000,
-              "h": 1532,
-              "alt": "Verify your email",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1790537993016_5j9s2.webp",
-              "w": 2000,
-              "h": 1532,
-              "alt": "Verification Successful",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1790537983422_t7pib.webp",
-              "w": 2000,
-              "h": 1532,
-              "alt": "Login",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "The Problem",
-              "body": "The modern inbox is more than a place for receiving messages.\n\nIt's where people manage:\n\n- Work conversations\n\n- Meetings\n\n- Tasks\n\n- Documents\n\n- Follow-ups\n\n- Notifications\n\n- Personal communication\n\n- Important deadlines\n\nAs the number of emails increases, users spend more time **sorting and processing information** instead of actually acting on it."
-            },
-            {
-              "heading": "The Opportunity",
-              "body": "Most email tools focus primarily on helping users **write or organize emails**.\n\nEchoYou explores a broader approach.\n\nInstead of being another email client, it acts as an **intelligent layer on top of communication**.\n\nIt can help users:\n\n**Understand → Prioritize → Respond → Schedule → Act**\n\nThis makes email management feel less like administrative work and more like having a personal communication assistant."
-            }
-          ]
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1790537974078_38yam.webp",
-              "w": 2000,
-              "h": 1532,
-              "alt": "Connect Your Inbox",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1790537960629_uf6yz.webp",
-              "w": 2000,
-              "h": 1532,
-              "alt": "Enter OTP Code",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1790537950778_oih5n.webp",
-              "w": 2000,
-              "h": 1532,
-              "alt": "OTP Filled",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1790537931178_w8ihr.webp",
-              "w": 2000,
-              "h": 1532,
-              "alt": "Inbox Connected",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "Design Goals",
-              "body": "**01. Reduce inbox overload**\n\nHelp users quickly understand what deserves their attention.\n\n**02. Turn emails into actions**\n\nIdentify tasks, meetings, follow-ups, and important information inside conversations.\n\n**03. Save time**\n\nAutomate repetitive communication tasks where appropriate.\n\n**04. Keep users in control**\n\nAI should assist the user rather than silently making important decisions on their behalf."
-            },
-            {
-              "heading": "Understanding the User",
-              "body": "EchoYou is designed for people who deal with high volumes of communication.\n\n**The Professional**\n\nReceives dozens of emails every day and needs to quickly identify what requires attention.\n\n**The Founder / Manager**\n\nManages conversations, meetings, clients, and follow-ups across multiple projects.\n\n**The Freelancer**\n\nUses email for client communication, proposals, scheduling, and project coordination.\n\nAcross these users, the problem is similar:\n\n**“I don't want to spend my day managing my inbox.”**"
-            }
-          ]
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1790538968627_4xgwf.webp",
-              "w": 2000,
-              "h": 1532,
-              "alt": "Home",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1790539579526_jf7ar.webp",
-              "w": 2000,
-              "h": 1532,
-              "alt": "Notifications",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "Product Experience",
-              "body": "EchoYou brings several workflows together:\n\n**Inbox Intelligence**\n\nAI categorizes and prioritizes incoming emails.\n\n**Email Summaries**\n\nLong conversations are condensed into useful summaries.\n\n**Smart Replies**\n\nAI generates contextual responses that users can review and edit.\n\n**Action Extraction**\n\nImportant tasks, deadlines, and requests can be identified from emails.\n\n**Calendar Intelligence**\n\nEchoYou detects scheduling-related conversations and connects them with the user's calendar.\n\n**Agent Mode**\n\nUsers can give EchoYou permission to perform specific low-risk actions on their behalf."
-            },
-            {
-              "heading": "Inbox Experience",
-              "body": "The inbox was designed around **priority rather than chronology alone**.\n\nInstead of presenting every email with equal visual weight, EchoYou can help surface the conversations that require attention.\n\nFor each conversation, users can quickly understand:\n\n**Who sent it → What it's about → Why it matters → What action is required**\n\nAI-generated summaries reduce the need to open every message just to understand its context."
-            }
-          ]
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1790538993855_k3osb.webp",
-              "w": 2000,
-              "h": 1738,
-              "alt": "Opened Email",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1790538986085_j6yqs.webp",
-              "w": 2000,
-              "h": 1738,
-              "alt": "AI Email Summary",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "AI Email Summaries",
-              "body": "Long email threads can contain dozens of messages and multiple topics.\n\nEchoYou condenses these conversations into concise summaries.\n\nFor example:\n\n**Project Update — Client\n\nSummary**\n\nThe client approved the latest design direction and requested the final assets by Friday.\n\n**Action required**\n\nSend final assets before Friday.\n\nThis transforms a long conversation into something the user can understand in seconds."
-            },
-            {
-              "heading": "Smart Replies",
-              "body": "EchoYou can generate contextual responses based on the conversation.\n\nInstead of producing generic AI-generated text, the experience is designed around the actual context of the email.\n\nUsers can:\n\n- Generate a response\n\n- Adjust the tone\n\n- Shorten the response\n\n- Expand the response\n\n- Edit manually\n\n- Review before sending\n\nThe user remains the final decision-maker."
-            }
-          ]
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1790539006324_f9q84.webp",
-              "w": 2000,
-              "h": 1532,
-              "alt": "Calendar (Agenda)",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1790539011440_qwgeo.webp",
-              "w": 2000,
-              "h": 1532,
-              "alt": "About Event",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "Turning Emails Into Tasks",
-              "body": "One of the core ideas behind EchoYou is that **emails often contain hidden tasks**.\n\nFor example:\n\n“Could you send the revised proposal before Thursday?”\n\nEchoYou can identify:\n\n**Task:** Send revised proposal\n**Deadline:** Thursday\n\nThe user can then add it to their task workflow instead of relying on memory.\n\nThis connects communication with execution."
-            },
-            {
-              "heading": "Calendar Intelligence",
-              "body": "Scheduling conversations often involve multiple back-and-forth emails.\n\nEchoYou can identify scheduling intent and surface useful information.\n\nFor example:\n\n“Are you available for a meeting next Tuesday?”\n\nInstead of manually opening a calendar and checking availability, EchoYou can surface relevant available times.\n\nUsers can review the suggested schedule before confirming."
-            }
-          ]
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1790539034375_c827u.webp",
-              "w": 2000,
-              "h": 1532,
-              "alt": "Calendar (Map)",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1790539026904_318u1.webp",
-              "w": 2000,
-              "h": 1532,
-              "alt": "General Settings",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "Agent Mode",
-              "body": "Agent Mode extends EchoYou beyond suggestions.\n\nUsers can define what EchoYou is allowed to do automatically.\n\nFor example:\n\n**Allowed**\n\n- Categorize newsletters\n\n- Archive promotional emails\n\n- Draft routine replies\n\n- Identify follow-up tasks\n\n**Requires Approval**\n\n- Send an important email\n\n- Schedule a meeting\n\n- Reply to a client\n\n- Modify an existing calendar event\n\nThe design makes permissions explicit so users understand **what the AI can and cannot do.**"
-            },
-            {
-              "heading": "AI Assistant",
-              "body": "EchoYou also provides a conversational interface for interacting with the inbox.\n\nUsers can ask:\n\n**“What do I need to respond to today?”\n\n“Summarize my conversation with John.”\n\n“Which emails are waiting for my response?”\n\n“What meetings were mentioned in my emails this week?”**\n\nThe assistant becomes a natural interface for navigating large amounts of communication."
-            }
-          ]
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1790539696304_2v5rg.webp",
-              "w": 2000,
-              "h": 1532,
-              "alt": "Inbox & Automation Settings",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1790539559246_svooh.webp",
-              "w": 2000,
-              "h": 1532,
-              "alt": "Agent Mode Permissions",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "Key Design Decisions",
-              "body": "**AI should explain, not just act**\n\nUsers should understand what the AI has identified or intends to do.\n\n**Human approval for important actions**\n\nActions involving external communication or important calendar changes can require user confirmation.\n\n**Progressive automation**\n\nUsers can start with AI suggestions and gradually give EchoYou more permissions as they become comfortable.\n\n**Context over commands**\n\nRather than forcing users to learn complicated AI prompts, EchoYou surfaces relevant actions directly within their workflow."
-            },
-            {
-              "heading": "Reflection",
-              "body": "Designing EchoYou pushed me to think beyond the traditional email interface.\n\nThe key question throughout the project was:\n\n**What if your inbox could understand what needs to happen next?**\n\nThat led to an experience where emails aren't treated as isolated messages, but as potential **tasks, conversations, meetings, and actions**.\n\nThe design ultimately explores a future where AI handles the repetitive parts of communication while users remain in control of the decisions that matter."
-            }
-          ]
-        }
-      ]
-    },
-    {
       "id": "orbit---website",
       "title": "Orbit - Website",
       "tagline": "Orbit is a modern financial platform built to make managing money across borders effortless.",
@@ -645,1024 +255,13 @@
           "mediaType": "image"
         }
       ],
-      "sort_order": 3,
+      "sort_order": 1,
       "created_at": "2026-07-03T16:17:48.277832+00:00",
       "coming_soon": false
     },
     {
-      "id": "scholara",
-      "title": "Scholara",
-      "tagline": "Scholara is a forward-thinking platform designed to empower people with smarter, more accessible digital tools.",
-      "about": "Scholara is a forward-thinking platform designed to empower people with smarter, more accessible digital tools. Built on the belief that innovation should simplify and elevate everyday experiences, Scholara introduces an intelligent education chatbot that helps learners study, ask questions, and gain clarity in real time. \nWhile the platform began with education at its core, Scholara’s vision goes beyond a single industry. The chatbot is just the beginning, our brand is designed to evolve, ready to expand into new spaces where innovation, clarity, and empowerment are needed.",
-      "industry": "Edutech",
-      "role": "Brand Design",
-      "year": "2025",
-      "meta": "Edutech · 2025",
-      "live_url": null,
-      "cover_url": "/image/uploads/images/1790326960118_vobpm.webp",
-      "gallery": [
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790326960118_vobpm.webp",
-          "w": 2000,
-          "h": 1500,
-          "alt": "Free_Notebook_Mockup_4 1",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790327553491_46p9q.webp",
-          "w": 2000,
-          "h": 1250,
-          "alt": "About Scholara",
-          "mediaType": "image"
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "Our Mission",
-              "body": "To build intuitive, innovative solutions that simplify complex challenges and open up opportunities for growth."
-            },
-            {
-              "heading": "Our Vision",
-              "body": "A world where technology seamlessly supports human progress — whether in learning, productivity, or beyond."
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "Our Vision",
-              "body": "**Innovation** – We embrace change and design for the future.\n**Simplicity** – We make complex things clear and accessible.\n**Growth** – We empower individuals and communities to achieve more.\n**Trust** – We create reliable tools people can depend on.\n**Versatility** – We design with expansion in mind, building solutions that adapt to different needs and industries."
-            }
-          ]
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790327035130_c5tka.webp",
-          "w": 2000,
-          "h": 1250,
-          "alt": "Our Logo",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790326864863_t2cyp.webp",
-          "w": 2000,
-          "h": 1250,
-          "alt": "Our Logo-1",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790326865139_e91gx.webp",
-          "w": 2000,
-          "h": 1500,
-          "alt": "Our Logo-2",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790326865425_gzi5f.webp",
-          "w": 2000,
-          "h": 1250,
-          "alt": "Our Logo-3",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790326865687_3ba8k.webp",
-          "w": 2000,
-          "h": 1250,
-          "alt": "Our Logo-4",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790326865882_6ikex.webp",
-          "w": 2000,
-          "h": 1250,
-          "alt": "Our Logo-5",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790327126456_phsyz.webp",
-          "w": 2000,
-          "h": 1250,
-          "alt": "Logo breakdown",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790326863744_wwp29.webp",
-          "w": 2000,
-          "h": 1250,
-          "alt": "Logo breakdown-1",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790326863972_dr6wz.webp",
-          "w": 2000,
-          "h": 1250,
-          "alt": "Logo breakdown-2",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790327190772_z6v9f.webp",
-          "w": 2000,
-          "h": 1250,
-          "alt": "Logo usage",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790326864263_grr54.webp",
-          "w": 2000,
-          "h": 1223,
-          "alt": "Logo usage-1",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790326864644_o7ber.webp",
-          "w": 2000,
-          "h": 1678,
-          "alt": "Logo usage-2",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790327236685_4fd07.webp",
-          "w": 2000,
-          "h": 1250,
-          "alt": "Brand Typeface",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790326863257_fpmtu.webp",
-          "w": 2000,
-          "h": 1431,
-          "alt": "Brand Typeface-1",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790326863526_aazoo.webp",
-          "w": 2000,
-          "h": 1431,
-          "alt": "Brand Typeface-2",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790327273401_vbd9j.webp",
-          "w": 2000,
-          "h": 1250,
-          "alt": "Brand color",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790326862624_i96sw.webp",
-          "w": 2000,
-          "h": 1500,
-          "alt": "Brand color-1",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790327273677_9jftx.webp",
-          "w": 2000,
-          "h": 1250,
-          "alt": "Brand Pattern",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790326862960_r1yzq.webp",
-          "w": 2000,
-          "h": 1250,
-          "alt": "Brand Pattern-1",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790327328568_qvspv.webp",
-          "w": 2000,
-          "h": 1250,
-          "alt": "Application",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790327357400_ozwpo.webp",
-          "w": 2000,
-          "h": 1293,
-          "alt": "MacBook Pro 16_ - 1",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790327357647_nitn5.webp",
-          "w": 2000,
-          "h": 1293,
-          "alt": "MacBook Pro 16_ - 2",
-          "mediaType": "image"
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1790327354840_3eoux.webp",
-              "w": 2000,
-              "h": 1334,
-              "alt": "business card_10 1",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1790327356136_zbt39.webp",
-              "w": 2000,
-              "h": 1500,
-              "alt": "Free_Notebook_Mockup_4 1",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790327355149_4oujb.webp",
-          "w": 2000,
-          "h": 1334,
-          "alt": "Free Canvas Bag on Chair Mockup 2",
-          "mediaType": "image"
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1790327356578_92npx.webp",
-              "w": 2000,
-              "h": 1500,
-              "alt": "Free_Pen_Mockup_1 1",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1790327358706_2758e.webp",
-              "w": 2000,
-              "h": 1638,
-              "alt": "Sticker on Laptop Mockup 1",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790327357113_pzju4.webp",
-          "w": 2000,
-          "h": 2667,
-          "alt": "Lanyard_ID_badge_mockup_3 2",
-          "mediaType": "image"
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1790327355560_y7my9.webp",
-              "w": 2000,
-              "h": 1500,
-              "alt": "Free_Baseball_Cap_Mockup_2 1",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1790327463659_crpz3.webp",
-              "w": 2000,
-              "h": 1600,
-              "alt": "Mockup 3 1",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790327358159_65jsw.webp",
-          "w": 2000,
-          "h": 1600,
-          "alt": "skateboarder t-shirt mockup 1",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790326861942_xorxq.webp",
-          "w": 2000,
-          "h": 1250,
-          "alt": "Background Color-3",
-          "mediaType": "image"
-        }
-      ],
-      "sort_order": 4,
-      "created_at": "2026-05-16T15:13:06.337063+00:00",
-      "coming_soon": false
-    },
-    {
-      "id": "orbit---mobile-app",
-      "sort_order": 5,
-      "title": "Orbit - Mobile App",
-      "tagline": "Orbit is a multi-currency fintech app that allows users to send, receive, and hold Naira, USD, Euro, and stablecoins seamlessly in one place.",
-      "about": "Orbit is a modern multi-currency finance app built for a borderless world.\nWe help people send, receive, convert, and manage money seamlessly across Naira, USD, Euro, and stablecoins all from one secure platform.\n\nDesigned for freelancers, global professionals, travelers, and digital-first users, Orbit combines the simplicity of modern banking with the flexibility of digital assets. Whether you’re paying internationally, saving in stable currencies, or transferring funds instantly, Orbit keeps your money moving without limits.",
-      "industry": "Fintech",
-      "role": "UI/UX Design",
-      "year": "2026",
-      "meta": "Fintech · 2026",
-      "live_url": null,
-      "coming_soon": false,
-      "cover_url": "/image/uploads/images/1790325111007_4p43d.webp",
-      "gallery": [
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790325111007_4p43d.webp",
-          "w": 2000,
-          "h": 1384,
-          "alt": "Orbit home screen on a phone in hand",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/videos/1790281927529_m4ucf.mp4",
-          "w": null,
-          "h": null,
-          "alt": "Orbit app screens video",
-          "mediaType": "video"
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1790275493959_wiywn.webp",
-              "w": 2000,
-              "h": 2444,
-              "alt": "Home Screen",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1790276168795_2hxeb.webp",
-              "w": 2000,
-              "h": 2444,
-              "alt": "Home screen, dark mode",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1790275493115_6debl.webp",
-              "w": 2000,
-              "h": 2444,
-              "alt": "Cards Screen",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1790275494831_m97z8.webp",
-              "w": 2000,
-              "h": 2444,
-              "alt": "Profile Screen",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "The Problem",
-              "body": "The modern financial ecosystem is fragmented.\n\nUsers managing money across borders often have to move between:\n\n- Traditional bank accounts\n\n- Crypto wallets\n\n- Currency exchange platforms\n\n- Payment apps\n\n- Stablecoin wallets\n\n- International transfer services\n\nEach platform introduces its own interface, terminology, and transaction flow.\n\nThis creates unnecessary friction, especially for users who simply want to **hold, move, exchange, and spend their money.**"
-            },
-            {
-              "heading": "The Opportunity",
-              "body": "Stablecoins create an interesting bridge between traditional finance and digital assets.\n\nBut the underlying technology can be complicated.\n\nUsers shouldn't need to understand:\n\n- Blockchain networks\n\n- Gas fees\n\n- Wallet infrastructure\n\n- Token standards\n\n- On-chain transactions\n\njust to move money.\n\nThe opportunity was to abstract that complexity behind a familiar financial experience."
-            }
-          ]
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278832359_3mpm7.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit splash screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278831802_vqn16.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit onboarding screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278832920_65zp2.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit create account and log in screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278830980_6vsl5.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit email verification screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "Design Goals",
-              "body": "**01. Simplify**\n\nReduce the complexity of managing multiple currencies and financial accounts.\n\n**02. Connect**\n\nBring fiat and stablecoins together within one wallet experience.\n\n**03. Build Trust**\n\nMake balances, transactions, rates, and financial actions clear.\n\n**04. Enable Movement**\n\nMake sending money across currencies feel as easy as sending a local transfer."
-            },
-            {
-              "heading": "Product Experience",
-              "body": "Orbit revolves around four core experiences:\n\n**Multi-Currency Wallet**\n\nUsers can manage their ₦, $, €, USDT, and USDC balances from one place.\n\n**Global Transfers**\n\nUsers can send money to other people without needing to understand the underlying financial infrastructure.\n\n**Currency Conversion**\n\nUsers can move between supported currencies while clearly seeing the amount, rate, and fees before confirming.\n\n**Financial Insights**\n\nOrbit provides users with a clearer picture of how they're using and moving their money."
-            }
-          ]
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278833495_uy4eq.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit send money: recipient, country and bank account details",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278834066_yf2ck.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit transfer details, PIN, success and transaction details screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278834633_ezw0m.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit transfer to an Orbit user, from recipient to transaction details",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278835209_dm6hp.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit crypto transfer: network, address, details and confirmation",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278835765_wlbdu.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit crypto transfer success and transaction details",
-          "mediaType": "image"
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "Final Outcome",
-              "body": "Orbit explores what a financial platform could look like when **traditional money and digital assets are treated as parts of the same ecosystem.**\n\nThe project allowed me to explore:\n\n- Fintech product design\n\n- Stablecoin experiences\n\n- Multi-currency wallets\n\n- Payment infrastructure\n\n- Financial dashboards\n\n- Transaction UX\n\n- Web3 abstraction\n\n- Responsive product design\n\n- Design systems\n\nUltimately, Orbit isn't about making crypto more complicated. It's about making the complexity **disappear.**"
-            }
-          ]
-        }
-      ],
-      "created_at": "2026-05-16T13:43:30.550027+00:00"
-    },
-    {
-      "id": "task-hive-landing-page",
-      "title": "Task Hive - Landing Page",
-      "tagline": "A modern task management platform designed for teams and individuals.",
-      "about": "TaskHive is a modern task management platform designed for teams and individuals who want to stay organized, hit deadlines, and work smarter. With powerful features like Kanban boards, AI task suggestions, and real-time team activity, TaskHive simplifies collaboration and boosts productivity—all in one intuitive workspace.",
-      "industry": "Productivity / SaaS",
-      "role": "UI/UX Design · Web Development",
-      "year": "2025",
-      "meta": "Productivity / SaaS · 2025",
-      "live_url": "https://taskhive-21eff5.webflow.io/",
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628294732_ezj30.webp",
-      "gallery": [
-        {
-          "h": 1500,
-          "w": 2000,
-          "alt": "TaskHive landing page on a laptop",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628296764_23a5o.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "alt": "TaskHive landing page video",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628297442_at4a7.mp4",
-          "type": "full",
-          "mediaType": "video"
-        },
-        {
-          "h": 1333,
-          "w": 2000,
-          "alt": "TaskHive landing page on a phone",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628300819_x8qw9.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 8866,
-          "w": 1354,
-          "alt": "TaskHive full landing page",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628307543_gorgi.webp",
-          "type": "full",
-          "mediaType": "image"
-        }
-      ],
-      "sort_order": 6,
-      "created_at": "2026-05-01T09:37:59.310904+00:00",
-      "coming_soon": false
-    },
-    {
-      "id": "coin-compass---mobile-app",
-      "sort_order": 7,
-      "title": "Coin Compass - Mobile App",
-      "tagline": "Your smart financial guide, built to help you navigate money management with confidence.",
-      "about": "CoinCompass is your smart financial guide, built to help you navigate money management with confidence. Designed for the modern user, CoinCompass combines intelligent insights, intuitive tools, and real-time tracking to help you make smarter decisions about your finances.\nWhether you're budgeting, investing, or just trying to stay on top of your spending, CoinCompass empowers you to take control with ease. Our sleek interface, personalized recommendations, and seamless experience make managing money less stressful—and a lot more rewarding.",
-      "industry": "Fintech",
-      "role": "UI/UX Design · Brand Design",
-      "year": "2024",
-      "meta": "Fintech · 2024",
-      "live_url": null,
-      "coming_soon": false,
-      "cover_url": "/image/uploads/images/1790673284987_jhlh5.webp",
-      "gallery": [
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790673284987_jhlh5.webp",
-          "w": 2000,
-          "h": 1333,
-          "alt": "Coin Compass home, insights and profile screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628314119_c2fun.mp4",
-          "w": null,
-          "h": null,
-          "alt": "Coin Compass app video",
-          "mediaType": "video"
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "The Problem",
-              "body": "Managing personal finances can quickly become complicated.\n\nPeople often have their money spread across different accounts, while financial information is presented as disconnected numbers.\n\nUsers may struggle with:\n\n- Understanding where their money goes\n\n- Tracking spending\n\n- Setting realistic financial goals\n\n- Knowing how much they can afford to spend\n\n- Planning for future expenses\n\n- Understanding their overall financial position\n\nThe challenge wasn't simply to create another budgeting app. It was to help people understand what their money is doing, and what to do next."
-            },
-            {
-              "heading": "The Opportunity",
-              "body": "CoinCompass explores the idea of combining **personal finance management with intelligent financial guidance**.\n\nInstead of simply showing:\n\n**Income → Expenses → Balance**\n\nthe product helps users understand the relationship between those numbers.\n\nFor example:\n\n**You're spending more on dining this month.\n\nYour savings goal is 68% complete.\n\nYou have ₦45,000 available after your upcoming expenses.**\n\nThis turns financial data into something users can actually understand and act on."
-            }
-          ]
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1790324159999_fz8jv.webp",
-              "w": 2000,
-              "h": 2444,
-              "alt": "Coin Compass home screen",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1790324166809_6kr1t.webp",
-              "w": 2000,
-              "h": 2444,
-              "alt": "Onboarding screen",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1790324217765_ikpt5.webp",
-              "w": 2000,
-              "h": 2444,
-              "alt": "Send screen",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1790324175412_4whcg.webp",
-              "w": 2000,
-              "h": 2444,
-              "alt": "Sign up and sign in screens",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1790324182546_k1zw2.webp",
-              "w": 2000,
-              "h": 2444,
-              "alt": "OTP screen",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1790324188243_dvt0q.webp",
-              "w": 2000,
-              "h": 2444,
-              "alt": "Home and goal screens",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "Design Goals",
-              "body": "**01. Make finance understandable**\n\nPresent financial information in a way that feels simple and approachable.\n\n**02. Give users context**\n\nDon't just show numbers. Help users understand what those numbers mean.\n\n**03. Encourage better financial habits**\n\nHelp users stay aware of their spending, savings, and goals.\n\n**04. Personalize the experience**\n\nUse intelligent insights to make the product feel relevant to each user's financial situation."
-            }
-          ]
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790324237788_ew986.webp",
-          "w": 2000,
-          "h": 1254,
-          "alt": "Coin Compass splash screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790324241937_9g18d.webp",
-          "w": 2000,
-          "h": 1254,
-          "alt": "Add screen",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790324245714_1o1iz.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Notifications and profit",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790324256934_8gjj8.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Coin Compass OTP verification screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790324257554_hds8s.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Coin Compass send and request money screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "The Product Experience",
-              "body": "CoinCompass is centered around four major experiences:\n\n**Financial Overview**\n\nA single place to understand the user's current financial position.\n\n**Spending**\n\nTrack transactions and understand spending patterns.\n\n**Goals**\n\nCreate and monitor financial goals.\n\n**AI Financial Advisor**\n\nAsk questions and receive personalized financial insights.\n\nThe experience is designed around a simple cycle:\n\n**Understand → Plan → Act → Improve**"
-            },
-            {
-              "heading": "AI Financial Advisor",
-              "body": "The AI advisor is one of the key parts of CoinCompass.\n\nInstead of navigating through financial dashboards to find answers, users can interact with their finances conversationally.\n\nFor example:\n\n**“How much did I spend this month?”\n\n“Where am I spending the most?”\n\n“How much should I save each month for my goal?”\n\n“Can I afford this purchase based on my current spending?”**\n\nThe AI layer makes financial information more accessible by allowing users to interact with it naturally."
-            }
-          ]
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790324258143_sodrd.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Coin Compass request and add funds screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790324258729_ywwkp.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Coin Compass savings goal screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790324259329_20kax.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Coin Compass CashBuddy AI advisor and notification screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "Key Design Decisions",
-              "body": "**Information hierarchy over information density**\n\nFinancial apps can easily become dashboards full of numbers.\n\nCoinCompass prioritizes the information users need first and progressively reveals deeper details.\n\n**Insights alongside data**\n\nInstead of making users interpret every chart themselves, the product introduces contextual insights alongside financial information.\n\n**Goals as a first-class experience**\n\nSaving isn't treated as an afterthought. Goals are integrated directly into the user's financial overview.\n\n**Conversational finance**\n\nThe AI advisor gives users another way to interact with their finances without requiring them to understand complicated financial terminology."
-            },
-            {
-              "heading": "Outcome",
-              "body": "CoinCompass became an exploration of how **AI can make personal finance more understandable and personalized.**\n\nRather than building a product that simply tells users how much money they have, the concept focuses on helping users understand:\n\n**Where their money goes.\n\nWhat they're working toward.\n\nWhat their financial patterns look like.**\n\nAnd ultimately:\n\n**What they can do next.**"
-            }
-          ]
-        }
-      ],
-      "created_at": "2026-05-01T09:38:53.602026+00:00"
-    },
-    {
-      "id": "ecowave",
-      "title": "Ecowave",
-      "tagline": "A bold visual identity crafted to make a lasting impression.",
-      "about": "Ecowave is a forward-thinking renewable energy brand dedicated to harnessing nature’s power for a sustainable future. Focused on delivering clean energy solutions through solar, wind, and hydro power, Ecowave empowers communities with accessible, eco-friendly alternatives to traditional energy sources.\n\nBuilt on the principles of innovation, sustainability, and impact, Ecowave integrates cutting-edge technology with environmentally responsible practices to reduce carbon footprints and drive a greener tomorrow. Through thoughtful branding and strategic positioning, Ecowave aims to not only provide energy solutions but also inspire a global shift toward renewable power.",
-      "industry": "Renewable Energy",
-      "role": "Brand Identity",
-      "year": "2024",
-      "meta": "Renewable Energy · 2024",
-      "live_url": null,
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834754542_zlfjf.webp",
-      "gallery": [
-        {
-          "h": 1364,
-          "w": 2000,
-          "alt": "Ecowave billboard on a city building",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834754542_zlfjf.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "alt": "Ecowave brand video",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/videos/1778836794324_zax3y.mp4",
-          "type": "full",
-          "mediaType": "video"
-        },
-        {
-          "h": 1667,
-          "w": 2000,
-          "alt": "Ecowave colour palette",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834731017_gk2rq.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1156,
-          "w": 2000,
-          "alt": "Ecowave logo on dark green",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834789019_r5ai0.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1156,
-          "w": 2000,
-          "alt": "Ecowave logo on green",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834797805_j48is.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1156,
-          "w": 2000,
-          "alt": "Ecowave logo on yellow",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834804050_pd8qx.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1156,
-          "w": 2000,
-          "alt": "Ecowave sun logo pattern",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834809572_eir6k.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1334,
-          "w": 2000,
-          "alt": "Ecowave shipping container",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834745835_62wzp.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1335,
-          "w": 2000,
-          "alt": "Ecowave tote bag",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834762935_vwiwc.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1501,
-          "w": 2000,
-          "alt": "Ecowave billboard on a fence",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834749427_lft42.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1156,
-          "w": 2000,
-          "alt": "Ecowave Instagram profile",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834817494_eyvpx.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1251,
-          "w": 2000,
-          "alt": "Ecowave branded hard hats",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834824178_2fo7y.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1390,
-          "w": 2000,
-          "alt": "Ecowave branded lanyards",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834837845_yfzan.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1601,
-          "w": 2000,
-          "alt": "Ecowave branded wristbands",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834844096_t42j0.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 1335,
-          "w": 2000,
-          "alt": "Ecowave branded tape on the floor",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834856063_4kvl1.webp",
-          "type": "full",
-          "mediaType": "image"
-        }
-      ],
-      "sort_order": 8,
-      "created_at": "2026-05-15T08:49:25.908566+00:00",
-      "coming_soon": false
-    },
-    {
-      "id": "nexflo-website",
-      "title": "Nexflo - Website",
-      "tagline": "A website for an automation platform that simplifies connecting apps, tools, and workflows.",
-      "about": "Similar to platforms like Zapier and n8n, Nexflo empowers users to automate repetitive tasks, streamline operations, and improve productivity without needing to write code.\n\nWith a focus on flexibility, speed, and ease of use, Nexflo helps users build powerful workflows that move data seamlessly across applications, trigger actions in real time, and eliminate manual work. Whether it’s syncing data between CRMs, automating notifications, or integrating payment systems, Nexflo ensures that workflows run reliably and efficiently.\n\nBuilt with scalability in mind, Nexflo caters to both individual creators looking to save time and teams or businessesaiming to optimize their processes.",
-      "industry": "SaaS / Workflow Automation",
-      "role": "UI/UX Design · Web Development",
-      "year": "2025",
-      "meta": "SaaS / Workflow Automation · 2025",
-      "live_url": "https://nexflo-automation.webflow.io/",
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628333894_mf0uc.webp",
-      "gallery": [
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628335250_ypfvq.webp",
-          "w": 2000,
-          "h": 1500,
-          "alt": "Nexflo website on a laptop",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628337191_1nu6j.mp4",
-          "w": null,
-          "h": null,
-          "alt": "Nexflo website video",
-          "mediaType": "video"
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628345363_39ae0.webp",
-          "w": 2000,
-          "h": 1293,
-          "alt": "Nexflo website hero",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628347163_lqr9a.webp",
-          "w": 2000,
-          "h": 464,
-          "alt": "Brands",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628347608_ram7z.webp",
-          "w": 2000,
-          "h": 1906,
-          "alt": "Features",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628348821_iywjl.webp",
-          "w": 2000,
-          "h": 1027,
-          "alt": "Benefits Dark",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628349848_aguhg.webp",
-          "w": 2000,
-          "h": 1057,
-          "alt": "Automation (Dark)",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628350371_7e8hk.webp",
-          "w": 2000,
-          "h": 1531,
-          "alt": "Testimonials",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628351862_bm4pf.webp",
-          "w": 2000,
-          "h": 1131,
-          "alt": "Pricing",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628352506_5l3tm.webp",
-          "w": 2000,
-          "h": 1309,
-          "alt": "FAQ",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628353190_sza24.webp",
-          "w": 2000,
-          "h": 1330,
-          "alt": "Footer",
-          "mediaType": "image"
-        }
-      ],
-      "sort_order": 9,
-      "created_at": "2026-05-01T09:39:14.531838+00:00",
-      "coming_soon": true
-    },
-    {
-      "id": "nexflo---web-app",
-      "sort_order": 10,
-      "title": "Nexflo - Web App",
-      "tagline": "Automate your workflows. Connect your tools. Get more done.",
-      "about": "Nexflo is a modern workflow automation platform designed to help teams connect their favorite tools and automate repetitive processes without complex setup. I worked on the brand identity and product experience, creating a cohesive visual system and intuitive interfaces across onboarding, authentication, workflow management, and pricing.",
-      "industry": "SaaS / Workflow Automation",
-      "role": "Product Design · UI/UX · Brand Identity",
-      "year": "2026",
-      "meta": "SaaS / Workflow Automation · 2026",
-      "live_url": null,
-      "coming_soon": true,
-      "cover_url": "/image/uploads/images/1790283513542_tpui9.webp",
-      "gallery": [
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790283513542_tpui9.webp",
-          "w": 2000,
-          "h": 1500,
-          "alt": "Nexflo dashboard on a laptop",
-          "mediaType": "image"
-        }
-      ]
-    },
-    {
       "id": "scribe---web-app",
-      "sort_order": 11,
+      "sort_order": 2,
       "title": "Scribe - Web App",
       "tagline": "A modern doc editor for writing, organizing, and managing your ideas.",
       "about": "Scribe is a cross-platform document editor and workspace designed to bring writing, organization, and collaboration into one focused environment. I designed the product experience from the ground up, exploring the desktop workspace, document editor, navigation, onboarding, authentication, and supporting product ecosystem. The experience is designed desktop-first, with a flexible foundation that can extend naturally to mobile and other platforms.",
@@ -1671,7 +270,7 @@
       "year": "2026",
       "meta": "Productivity / SaaS · 2026",
       "live_url": null,
-      "coming_soon": true,
+      "coming_soon": false,
       "cover_url": "/image/uploads/images/1790881747036_bax9y.webp",
       "gallery": [
         {
@@ -2007,6 +606,1409 @@
               "body": "I tested the early Scribe experience with **5 classmates from my final-year project group**, the same kind of users I was designing for. During the test, they found it difficult to understand where to access shared documents and how to leave feedback on specific sections.\n\nBased on this, I made **collaboration and comments more visible within the document workspace**, allowing users to work on the same document, comment directly on content, and reply within a thread.\n\nOne key finding was that users understood the document editor immediately, but needed clearer visual cues to discover the collaboration features."
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "task-hive-landing-page",
+      "title": "Task Hive - Landing Page",
+      "tagline": "A modern task management platform designed for teams and individuals.",
+      "about": "TaskHive is a modern task management platform designed for teams and individuals who want to stay organized, hit deadlines, and work smarter. With powerful features like Kanban boards, AI task suggestions, and real-time team activity, TaskHive simplifies collaboration and boosts productivity—all in one intuitive workspace.",
+      "industry": "Productivity / SaaS",
+      "role": "UI/UX Design · Web Development",
+      "year": "2025",
+      "meta": "Productivity / SaaS · 2025",
+      "live_url": "https://taskhive-21eff5.webflow.io/",
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628294732_ezj30.webp",
+      "gallery": [
+        {
+          "h": 1500,
+          "w": 2000,
+          "alt": "TaskHive landing page on a laptop",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628296764_23a5o.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "alt": "TaskHive landing page video",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628297442_at4a7.mp4",
+          "type": "full",
+          "mediaType": "video"
+        },
+        {
+          "h": 1333,
+          "w": 2000,
+          "alt": "TaskHive landing page on a phone",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628300819_x8qw9.webp",
+          "type": "full",
+          "mediaType": "image"
+        },
+        {
+          "h": 8866,
+          "w": 1354,
+          "alt": "TaskHive full landing page",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628307543_gorgi.webp",
+          "type": "full",
+          "mediaType": "image"
+        }
+      ],
+      "sort_order": 3,
+      "created_at": "2026-05-01T09:37:59.310904+00:00",
+      "coming_soon": false
+    },
+    {
+      "id": "scribe---website",
+      "sort_order": 4,
+      "title": "Scribe - Website",
+      "tagline": "A focused workspace for writing, organizing, and managing documents.",
+      "about": "I designed the Scribe website to introduce the product and communicate its vision as a modern, cross-platform document workspace. The experience focuses on Scribe’s core value of bringing writing, organization, and productivity into one place, while showcasing the product, key features, and overall ecosystem through a clean, editorial visual direction.",
+      "industry": "Productivity / SaaS",
+      "role": "Web Design",
+      "year": "2026",
+      "meta": "Productivity / SaaS · 2026",
+      "live_url": "https://scribe.best/",
+      "coming_soon": true,
+      "cover_url": "/image/uploads/images/1790672284237_umzrz.webp",
+      "gallery": [
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672284237_umzrz.webp",
+          "w": 1544,
+          "h": 1000,
+          "alt": "Portfolio Cover",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672361569_27iaw.webp",
+          "w": 2000,
+          "h": 2318,
+          "alt": "Hero",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672357969_yqdmi.webp",
+          "w": 2000,
+          "h": 1910,
+          "alt": "Features",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672369809_l0g6e.webp",
+          "w": 2000,
+          "h": 4618,
+          "alt": "Use Case",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672356921_rxno0.webp",
+          "w": 2000,
+          "h": 1883,
+          "alt": "Collaboration",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672354873_zryzf.webp",
+          "w": 2000,
+          "h": 1813,
+          "alt": "A place for everything",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672355847_85vdd.webp",
+          "w": 2000,
+          "h": 1789,
+          "alt": "AI",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672362626_iogjy.webp",
+          "w": 2000,
+          "h": 1661,
+          "alt": "Integrations",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672364485_3iubb.webp",
+          "w": 2000,
+          "h": 1248,
+          "alt": "Security",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672363620_vlm8d.webp",
+          "w": 2000,
+          "h": 1449,
+          "alt": "Pricing",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672359316_m3nld.webp",
+          "w": 2000,
+          "h": 2185,
+          "alt": "Footerjpg",
+          "mediaType": "image"
+        }
+      ]
+    },
+    {
+      "id": "echoyou",
+      "sort_order": 5,
+      "title": "EchoYou",
+      "tagline": "An AI-powered communication assistant designed to help people take control of their inbox.",
+      "about": "Email is still one of the most important communication tools for modern professionals, but managing an inbox can quickly become overwhelming.\n\nEchoYou is an AI-powered productivity platform designed to help users understand, organize, and act on their emails without constantly working through their inbox manually.\n\nThe product combines email management, AI assistance, calendar intelligence, and automated actions into one experience.",
+      "industry": "AI / Productivity",
+      "role": "UI/UX Design",
+      "year": "2026",
+      "meta": "AI / Productivity · 2026",
+      "live_url": null,
+      "coming_soon": false,
+      "cover_url": "/image/uploads/images/1790957833948_v39z4.webp",
+      "gallery": [
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790957833948_v39z4.webp",
+          "w": 2000,
+          "h": 1782,
+          "alt": "EchoYou inbox and AI assistant on a laptop",
+          "mediaType": "image"
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790538014349_ixuo4.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Create Your Account",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790538004726_ivug1.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Verify your email",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790537993016_5j9s2.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Verification Successful",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790537983422_t7pib.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Login",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "The Problem",
+              "body": "The modern inbox is more than a place for receiving messages.\n\nIt's where people manage:\n\n- Work conversations\n\n- Meetings\n\n- Tasks\n\n- Documents\n\n- Follow-ups\n\n- Notifications\n\n- Personal communication\n\n- Important deadlines\n\nAs the number of emails increases, users spend more time **sorting and processing information** instead of actually acting on it."
+            },
+            {
+              "heading": "The Opportunity",
+              "body": "Most email tools focus primarily on helping users **write or organize emails**.\n\nEchoYou explores a broader approach.\n\nInstead of being another email client, it acts as an **intelligent layer on top of communication**.\n\nIt can help users:\n\n**Understand → Prioritize → Respond → Schedule → Act**\n\nThis makes email management feel less like administrative work and more like having a personal communication assistant."
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790537974078_38yam.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Connect Your Inbox",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790537960629_uf6yz.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Enter OTP Code",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790537950778_oih5n.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "OTP Filled",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790537931178_w8ihr.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Inbox Connected",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Design Goals",
+              "body": "**01. Reduce inbox overload**\n\nHelp users quickly understand what deserves their attention.\n\n**02. Turn emails into actions**\n\nIdentify tasks, meetings, follow-ups, and important information inside conversations.\n\n**03. Save time**\n\nAutomate repetitive communication tasks where appropriate.\n\n**04. Keep users in control**\n\nAI should assist the user rather than silently making important decisions on their behalf."
+            },
+            {
+              "heading": "Understanding the User",
+              "body": "EchoYou is designed for people who deal with high volumes of communication.\n\n**The Professional**\n\nReceives dozens of emails every day and needs to quickly identify what requires attention.\n\n**The Founder / Manager**\n\nManages conversations, meetings, clients, and follow-ups across multiple projects.\n\n**The Freelancer**\n\nUses email for client communication, proposals, scheduling, and project coordination.\n\nAcross these users, the problem is similar:\n\n**“I don't want to spend my day managing my inbox.”**"
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790538968627_4xgwf.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Home",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790539579526_jf7ar.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Notifications",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Product Experience",
+              "body": "EchoYou brings several workflows together:\n\n**Inbox Intelligence**\n\nAI categorizes and prioritizes incoming emails.\n\n**Email Summaries**\n\nLong conversations are condensed into useful summaries.\n\n**Smart Replies**\n\nAI generates contextual responses that users can review and edit.\n\n**Action Extraction**\n\nImportant tasks, deadlines, and requests can be identified from emails.\n\n**Calendar Intelligence**\n\nEchoYou detects scheduling-related conversations and connects them with the user's calendar.\n\n**Agent Mode**\n\nUsers can give EchoYou permission to perform specific low-risk actions on their behalf."
+            },
+            {
+              "heading": "Inbox Experience",
+              "body": "The inbox was designed around **priority rather than chronology alone**.\n\nInstead of presenting every email with equal visual weight, EchoYou can help surface the conversations that require attention.\n\nFor each conversation, users can quickly understand:\n\n**Who sent it → What it's about → Why it matters → What action is required**\n\nAI-generated summaries reduce the need to open every message just to understand its context."
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790538993855_k3osb.webp",
+              "w": 2000,
+              "h": 1738,
+              "alt": "Opened Email",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790538986085_j6yqs.webp",
+              "w": 2000,
+              "h": 1738,
+              "alt": "AI Email Summary",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "AI Email Summaries",
+              "body": "Long email threads can contain dozens of messages and multiple topics.\n\nEchoYou condenses these conversations into concise summaries.\n\nFor example:\n\n**Project Update — Client\n\nSummary**\n\nThe client approved the latest design direction and requested the final assets by Friday.\n\n**Action required**\n\nSend final assets before Friday.\n\nThis transforms a long conversation into something the user can understand in seconds."
+            },
+            {
+              "heading": "Smart Replies",
+              "body": "EchoYou can generate contextual responses based on the conversation.\n\nInstead of producing generic AI-generated text, the experience is designed around the actual context of the email.\n\nUsers can:\n\n- Generate a response\n\n- Adjust the tone\n\n- Shorten the response\n\n- Expand the response\n\n- Edit manually\n\n- Review before sending\n\nThe user remains the final decision-maker."
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790539006324_f9q84.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Calendar (Agenda)",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790539011440_qwgeo.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "About Event",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Turning Emails Into Tasks",
+              "body": "One of the core ideas behind EchoYou is that **emails often contain hidden tasks**.\n\nFor example:\n\n“Could you send the revised proposal before Thursday?”\n\nEchoYou can identify:\n\n**Task:** Send revised proposal\n**Deadline:** Thursday\n\nThe user can then add it to their task workflow instead of relying on memory.\n\nThis connects communication with execution."
+            },
+            {
+              "heading": "Calendar Intelligence",
+              "body": "Scheduling conversations often involve multiple back-and-forth emails.\n\nEchoYou can identify scheduling intent and surface useful information.\n\nFor example:\n\n“Are you available for a meeting next Tuesday?”\n\nInstead of manually opening a calendar and checking availability, EchoYou can surface relevant available times.\n\nUsers can review the suggested schedule before confirming."
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790539034375_c827u.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Calendar (Map)",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790539026904_318u1.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "General Settings",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Agent Mode",
+              "body": "Agent Mode extends EchoYou beyond suggestions.\n\nUsers can define what EchoYou is allowed to do automatically.\n\nFor example:\n\n**Allowed**\n\n- Categorize newsletters\n\n- Archive promotional emails\n\n- Draft routine replies\n\n- Identify follow-up tasks\n\n**Requires Approval**\n\n- Send an important email\n\n- Schedule a meeting\n\n- Reply to a client\n\n- Modify an existing calendar event\n\nThe design makes permissions explicit so users understand **what the AI can and cannot do.**"
+            },
+            {
+              "heading": "AI Assistant",
+              "body": "EchoYou also provides a conversational interface for interacting with the inbox.\n\nUsers can ask:\n\n**“What do I need to respond to today?”\n\n“Summarize my conversation with John.”\n\n“Which emails are waiting for my response?”\n\n“What meetings were mentioned in my emails this week?”**\n\nThe assistant becomes a natural interface for navigating large amounts of communication."
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790539696304_2v5rg.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Inbox & Automation Settings",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790539559246_svooh.webp",
+              "w": 2000,
+              "h": 1532,
+              "alt": "Agent Mode Permissions",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Key Design Decisions",
+              "body": "**AI should explain, not just act**\n\nUsers should understand what the AI has identified or intends to do.\n\n**Human approval for important actions**\n\nActions involving external communication or important calendar changes can require user confirmation.\n\n**Progressive automation**\n\nUsers can start with AI suggestions and gradually give EchoYou more permissions as they become comfortable.\n\n**Context over commands**\n\nRather than forcing users to learn complicated AI prompts, EchoYou surfaces relevant actions directly within their workflow."
+            },
+            {
+              "heading": "Reflection",
+              "body": "Designing EchoYou pushed me to think beyond the traditional email interface.\n\nThe key question throughout the project was:\n\n**What if your inbox could understand what needs to happen next?**\n\nThat led to an experience where emails aren't treated as isolated messages, but as potential **tasks, conversations, meetings, and actions**.\n\nThe design ultimately explores a future where AI handles the repetitive parts of communication while users remain in control of the decisions that matter."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "orbit---mobile-app",
+      "sort_order": 6,
+      "title": "Orbit - Mobile App",
+      "tagline": "Orbit is a multi-currency fintech app that allows users to send, receive, and hold Naira, USD, Euro, and stablecoins seamlessly in one place.",
+      "about": "Orbit is a modern multi-currency finance app built for a borderless world.\nWe help people send, receive, convert, and manage money seamlessly across Naira, USD, Euro, and stablecoins all from one secure platform.\n\nDesigned for freelancers, global professionals, travelers, and digital-first users, Orbit combines the simplicity of modern banking with the flexibility of digital assets. Whether you’re paying internationally, saving in stable currencies, or transferring funds instantly, Orbit keeps your money moving without limits.",
+      "industry": "Fintech",
+      "role": "UI/UX Design",
+      "year": "2026",
+      "meta": "Fintech · 2026",
+      "live_url": null,
+      "coming_soon": false,
+      "cover_url": "/image/uploads/images/1790325111007_4p43d.webp",
+      "gallery": [
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790325111007_4p43d.webp",
+          "w": 2000,
+          "h": 1384,
+          "alt": "Orbit home screen on a phone in hand",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/videos/1790281927529_m4ucf.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Orbit app screens video",
+          "mediaType": "video"
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790275493959_wiywn.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Home Screen",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790276168795_2hxeb.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Home screen, dark mode",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790275493115_6debl.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Cards Screen",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790275494831_m97z8.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Profile Screen",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "The Problem",
+              "body": "The modern financial ecosystem is fragmented.\n\nUsers managing money across borders often have to move between:\n\n- Traditional bank accounts\n\n- Crypto wallets\n\n- Currency exchange platforms\n\n- Payment apps\n\n- Stablecoin wallets\n\n- International transfer services\n\nEach platform introduces its own interface, terminology, and transaction flow.\n\nThis creates unnecessary friction, especially for users who simply want to **hold, move, exchange, and spend their money.**"
+            },
+            {
+              "heading": "The Opportunity",
+              "body": "Stablecoins create an interesting bridge between traditional finance and digital assets.\n\nBut the underlying technology can be complicated.\n\nUsers shouldn't need to understand:\n\n- Blockchain networks\n\n- Gas fees\n\n- Wallet infrastructure\n\n- Token standards\n\n- On-chain transactions\n\njust to move money.\n\nThe opportunity was to abstract that complexity behind a familiar financial experience."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278832359_3mpm7.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit splash screens",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278831802_vqn16.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit onboarding screens",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278832920_65zp2.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit create account and log in screens",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278830980_6vsl5.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit email verification screens",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Design Goals",
+              "body": "**01. Simplify**\n\nReduce the complexity of managing multiple currencies and financial accounts.\n\n**02. Connect**\n\nBring fiat and stablecoins together within one wallet experience.\n\n**03. Build Trust**\n\nMake balances, transactions, rates, and financial actions clear.\n\n**04. Enable Movement**\n\nMake sending money across currencies feel as easy as sending a local transfer."
+            },
+            {
+              "heading": "Product Experience",
+              "body": "Orbit revolves around four core experiences:\n\n**Multi-Currency Wallet**\n\nUsers can manage their ₦, $, €, USDT, and USDC balances from one place.\n\n**Global Transfers**\n\nUsers can send money to other people without needing to understand the underlying financial infrastructure.\n\n**Currency Conversion**\n\nUsers can move between supported currencies while clearly seeing the amount, rate, and fees before confirming.\n\n**Financial Insights**\n\nOrbit provides users with a clearer picture of how they're using and moving their money."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278833495_uy4eq.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit send money: recipient, country and bank account details",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278834066_yf2ck.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit transfer details, PIN, success and transaction details screens",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278834633_ezw0m.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit transfer to an Orbit user, from recipient to transaction details",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278835209_dm6hp.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit crypto transfer: network, address, details and confirmation",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278835765_wlbdu.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit crypto transfer success and transaction details",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Final Outcome",
+              "body": "Orbit explores what a financial platform could look like when **traditional money and digital assets are treated as parts of the same ecosystem.**\n\nThe project allowed me to explore:\n\n- Fintech product design\n\n- Stablecoin experiences\n\n- Multi-currency wallets\n\n- Payment infrastructure\n\n- Financial dashboards\n\n- Transaction UX\n\n- Web3 abstraction\n\n- Responsive product design\n\n- Design systems\n\nUltimately, Orbit isn't about making crypto more complicated. It's about making the complexity **disappear.**"
+            }
+          ]
+        }
+      ],
+      "created_at": "2026-05-16T13:43:30.550027+00:00"
+    },
+    {
+      "id": "scholara",
+      "title": "Scholara",
+      "tagline": "Scholara is a forward-thinking platform designed to empower people with smarter, more accessible digital tools.",
+      "about": "Scholara is a forward-thinking platform designed to empower people with smarter, more accessible digital tools. Built on the belief that innovation should simplify and elevate everyday experiences, Scholara introduces an intelligent education chatbot that helps learners study, ask questions, and gain clarity in real time. \nWhile the platform began with education at its core, Scholara’s vision goes beyond a single industry. The chatbot is just the beginning, our brand is designed to evolve, ready to expand into new spaces where innovation, clarity, and empowerment are needed.",
+      "industry": "Edutech",
+      "role": "Brand Design",
+      "year": "2025",
+      "meta": "Edutech · 2025",
+      "live_url": null,
+      "cover_url": "/image/uploads/images/1790326960118_vobpm.webp",
+      "gallery": [
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790326960118_vobpm.webp",
+          "w": 2000,
+          "h": 1500,
+          "alt": "Free_Notebook_Mockup_4 1",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790327553491_46p9q.webp",
+          "w": 2000,
+          "h": 1250,
+          "alt": "About Scholara",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Our Mission",
+              "body": "To build intuitive, innovative solutions that simplify complex challenges and open up opportunities for growth."
+            },
+            {
+              "heading": "Our Vision",
+              "body": "A world where technology seamlessly supports human progress — whether in learning, productivity, or beyond."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Our Vision",
+              "body": "**Innovation** – We embrace change and design for the future.\n**Simplicity** – We make complex things clear and accessible.\n**Growth** – We empower individuals and communities to achieve more.\n**Trust** – We create reliable tools people can depend on.\n**Versatility** – We design with expansion in mind, building solutions that adapt to different needs and industries."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790327035130_c5tka.webp",
+          "w": 2000,
+          "h": 1250,
+          "alt": "Our Logo",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790326864863_t2cyp.webp",
+          "w": 2000,
+          "h": 1250,
+          "alt": "Our Logo-1",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790326865139_e91gx.webp",
+          "w": 2000,
+          "h": 1500,
+          "alt": "Our Logo-2",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790326865425_gzi5f.webp",
+          "w": 2000,
+          "h": 1250,
+          "alt": "Our Logo-3",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790326865687_3ba8k.webp",
+          "w": 2000,
+          "h": 1250,
+          "alt": "Our Logo-4",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790326865882_6ikex.webp",
+          "w": 2000,
+          "h": 1250,
+          "alt": "Our Logo-5",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790327126456_phsyz.webp",
+          "w": 2000,
+          "h": 1250,
+          "alt": "Logo breakdown",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790326863744_wwp29.webp",
+          "w": 2000,
+          "h": 1250,
+          "alt": "Logo breakdown-1",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790326863972_dr6wz.webp",
+          "w": 2000,
+          "h": 1250,
+          "alt": "Logo breakdown-2",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790327190772_z6v9f.webp",
+          "w": 2000,
+          "h": 1250,
+          "alt": "Logo usage",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790326864263_grr54.webp",
+          "w": 2000,
+          "h": 1223,
+          "alt": "Logo usage-1",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790326864644_o7ber.webp",
+          "w": 2000,
+          "h": 1678,
+          "alt": "Logo usage-2",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790327236685_4fd07.webp",
+          "w": 2000,
+          "h": 1250,
+          "alt": "Brand Typeface",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790326863257_fpmtu.webp",
+          "w": 2000,
+          "h": 1431,
+          "alt": "Brand Typeface-1",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790326863526_aazoo.webp",
+          "w": 2000,
+          "h": 1431,
+          "alt": "Brand Typeface-2",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790327273401_vbd9j.webp",
+          "w": 2000,
+          "h": 1250,
+          "alt": "Brand color",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790326862624_i96sw.webp",
+          "w": 2000,
+          "h": 1500,
+          "alt": "Brand color-1",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790327273677_9jftx.webp",
+          "w": 2000,
+          "h": 1250,
+          "alt": "Brand Pattern",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790326862960_r1yzq.webp",
+          "w": 2000,
+          "h": 1250,
+          "alt": "Brand Pattern-1",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790327328568_qvspv.webp",
+          "w": 2000,
+          "h": 1250,
+          "alt": "Application",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790327357400_ozwpo.webp",
+          "w": 2000,
+          "h": 1293,
+          "alt": "MacBook Pro 16_ - 1",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790327357647_nitn5.webp",
+          "w": 2000,
+          "h": 1293,
+          "alt": "MacBook Pro 16_ - 2",
+          "mediaType": "image"
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790327354840_3eoux.webp",
+              "w": 2000,
+              "h": 1334,
+              "alt": "business card_10 1",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790327356136_zbt39.webp",
+              "w": 2000,
+              "h": 1500,
+              "alt": "Free_Notebook_Mockup_4 1",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790327355149_4oujb.webp",
+          "w": 2000,
+          "h": 1334,
+          "alt": "Free Canvas Bag on Chair Mockup 2",
+          "mediaType": "image"
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790327356578_92npx.webp",
+              "w": 2000,
+              "h": 1500,
+              "alt": "Free_Pen_Mockup_1 1",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790327358706_2758e.webp",
+              "w": 2000,
+              "h": 1638,
+              "alt": "Sticker on Laptop Mockup 1",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790327357113_pzju4.webp",
+          "w": 2000,
+          "h": 2667,
+          "alt": "Lanyard_ID_badge_mockup_3 2",
+          "mediaType": "image"
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790327355560_y7my9.webp",
+              "w": 2000,
+              "h": 1500,
+              "alt": "Free_Baseball_Cap_Mockup_2 1",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790327463659_crpz3.webp",
+              "w": 2000,
+              "h": 1600,
+              "alt": "Mockup 3 1",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790327358159_65jsw.webp",
+          "w": 2000,
+          "h": 1600,
+          "alt": "skateboarder t-shirt mockup 1",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790326861942_xorxq.webp",
+          "w": 2000,
+          "h": 1250,
+          "alt": "Background Color-3",
+          "mediaType": "image"
+        }
+      ],
+      "sort_order": 7,
+      "created_at": "2026-05-16T15:13:06.337063+00:00",
+      "coming_soon": false
+    },
+    {
+      "id": "coin-compass---mobile-app",
+      "sort_order": 8,
+      "title": "Coin Compass - Mobile App",
+      "tagline": "Your smart financial guide, built to help you navigate money management with confidence.",
+      "about": "CoinCompass is your smart financial guide, built to help you navigate money management with confidence. Designed for the modern user, CoinCompass combines intelligent insights, intuitive tools, and real-time tracking to help you make smarter decisions about your finances.\nWhether you're budgeting, investing, or just trying to stay on top of your spending, CoinCompass empowers you to take control with ease. Our sleek interface, personalized recommendations, and seamless experience make managing money less stressful—and a lot more rewarding.",
+      "industry": "Fintech",
+      "role": "UI/UX Design · Brand Design",
+      "year": "2024",
+      "meta": "Fintech · 2024",
+      "live_url": null,
+      "coming_soon": false,
+      "cover_url": "/image/uploads/images/1790673284987_jhlh5.webp",
+      "gallery": [
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790673284987_jhlh5.webp",
+          "w": 2000,
+          "h": 1333,
+          "alt": "Coin Compass home, insights and profile screens",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628314119_c2fun.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Coin Compass app video",
+          "mediaType": "video"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "The Problem",
+              "body": "Managing personal finances can quickly become complicated.\n\nPeople often have their money spread across different accounts, while financial information is presented as disconnected numbers.\n\nUsers may struggle with:\n\n- Understanding where their money goes\n\n- Tracking spending\n\n- Setting realistic financial goals\n\n- Knowing how much they can afford to spend\n\n- Planning for future expenses\n\n- Understanding their overall financial position\n\nThe challenge wasn't simply to create another budgeting app. It was to help people understand what their money is doing, and what to do next."
+            },
+            {
+              "heading": "The Opportunity",
+              "body": "CoinCompass explores the idea of combining **personal finance management with intelligent financial guidance**.\n\nInstead of simply showing:\n\n**Income → Expenses → Balance**\n\nthe product helps users understand the relationship between those numbers.\n\nFor example:\n\n**You're spending more on dining this month.\n\nYour savings goal is 68% complete.\n\nYou have ₦45,000 available after your upcoming expenses.**\n\nThis turns financial data into something users can actually understand and act on."
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790324159999_fz8jv.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Coin Compass home screen",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790324166809_6kr1t.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Onboarding screen",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790324217765_ikpt5.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Send screen",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790324175412_4whcg.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Sign up and sign in screens",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790324182546_k1zw2.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "OTP screen",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790324188243_dvt0q.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Home and goal screens",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Design Goals",
+              "body": "**01. Make finance understandable**\n\nPresent financial information in a way that feels simple and approachable.\n\n**02. Give users context**\n\nDon't just show numbers. Help users understand what those numbers mean.\n\n**03. Encourage better financial habits**\n\nHelp users stay aware of their spending, savings, and goals.\n\n**04. Personalize the experience**\n\nUse intelligent insights to make the product feel relevant to each user's financial situation."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790324237788_ew986.webp",
+          "w": 2000,
+          "h": 1254,
+          "alt": "Coin Compass splash screens",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790324241937_9g18d.webp",
+          "w": 2000,
+          "h": 1254,
+          "alt": "Add screen",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790324245714_1o1iz.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Notifications and profit",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790324256934_8gjj8.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Coin Compass OTP verification screens",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790324257554_hds8s.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Coin Compass send and request money screens",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "The Product Experience",
+              "body": "CoinCompass is centered around four major experiences:\n\n**Financial Overview**\n\nA single place to understand the user's current financial position.\n\n**Spending**\n\nTrack transactions and understand spending patterns.\n\n**Goals**\n\nCreate and monitor financial goals.\n\n**AI Financial Advisor**\n\nAsk questions and receive personalized financial insights.\n\nThe experience is designed around a simple cycle:\n\n**Understand → Plan → Act → Improve**"
+            },
+            {
+              "heading": "AI Financial Advisor",
+              "body": "The AI advisor is one of the key parts of CoinCompass.\n\nInstead of navigating through financial dashboards to find answers, users can interact with their finances conversationally.\n\nFor example:\n\n**“How much did I spend this month?”\n\n“Where am I spending the most?”\n\n“How much should I save each month for my goal?”\n\n“Can I afford this purchase based on my current spending?”**\n\nThe AI layer makes financial information more accessible by allowing users to interact with it naturally."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790324258143_sodrd.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Coin Compass request and add funds screens",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790324258729_ywwkp.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Coin Compass savings goal screens",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790324259329_20kax.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Coin Compass CashBuddy AI advisor and notification screens",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Key Design Decisions",
+              "body": "**Information hierarchy over information density**\n\nFinancial apps can easily become dashboards full of numbers.\n\nCoinCompass prioritizes the information users need first and progressively reveals deeper details.\n\n**Insights alongside data**\n\nInstead of making users interpret every chart themselves, the product introduces contextual insights alongside financial information.\n\n**Goals as a first-class experience**\n\nSaving isn't treated as an afterthought. Goals are integrated directly into the user's financial overview.\n\n**Conversational finance**\n\nThe AI advisor gives users another way to interact with their finances without requiring them to understand complicated financial terminology."
+            },
+            {
+              "heading": "Outcome",
+              "body": "CoinCompass became an exploration of how **AI can make personal finance more understandable and personalized.**\n\nRather than building a product that simply tells users how much money they have, the concept focuses on helping users understand:\n\n**Where their money goes.\n\nWhat they're working toward.\n\nWhat their financial patterns look like.**\n\nAnd ultimately:\n\n**What they can do next.**"
+            }
+          ]
+        }
+      ],
+      "created_at": "2026-05-01T09:38:53.602026+00:00"
+    },
+    {
+      "id": "ecowave",
+      "title": "Ecowave",
+      "tagline": "A bold visual identity crafted to make a lasting impression.",
+      "about": "Ecowave is a forward-thinking renewable energy brand dedicated to harnessing nature’s power for a sustainable future. Focused on delivering clean energy solutions through solar, wind, and hydro power, Ecowave empowers communities with accessible, eco-friendly alternatives to traditional energy sources.\n\nBuilt on the principles of innovation, sustainability, and impact, Ecowave integrates cutting-edge technology with environmentally responsible practices to reduce carbon footprints and drive a greener tomorrow. Through thoughtful branding and strategic positioning, Ecowave aims to not only provide energy solutions but also inspire a global shift toward renewable power.",
+      "industry": "Renewable Energy",
+      "role": "Brand Identity",
+      "year": "2024",
+      "meta": "Renewable Energy · 2024",
+      "live_url": null,
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834754542_zlfjf.webp",
+      "gallery": [
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834754542_zlfjf.webp",
+          "w": 2000,
+          "h": 1364,
+          "alt": "Ecowave billboard on a city building",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/videos/1778836794324_zax3y.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Ecowave brand video",
+          "mediaType": "video"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834731017_gk2rq.webp",
+          "w": 2000,
+          "h": 1667,
+          "alt": "Ecowave colour palette",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834789019_r5ai0.webp",
+          "w": 2000,
+          "h": 1156,
+          "alt": "Ecowave logo on dark green",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834797805_j48is.webp",
+          "w": 2000,
+          "h": 1156,
+          "alt": "Ecowave logo on green",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834804050_pd8qx.webp",
+          "w": 2000,
+          "h": 1156,
+          "alt": "Ecowave logo on yellow",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834809572_eir6k.webp",
+          "w": 2000,
+          "h": 1156,
+          "alt": "Ecowave sun logo pattern",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834745835_62wzp.webp",
+          "w": 2000,
+          "h": 1334,
+          "alt": "Ecowave shipping container",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834762935_vwiwc.webp",
+          "w": 2000,
+          "h": 1335,
+          "alt": "Ecowave tote bag",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834749427_lft42.webp",
+          "w": 2000,
+          "h": 1501,
+          "alt": "Ecowave billboard on a fence",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834817494_eyvpx.webp",
+          "w": 2000,
+          "h": 1156,
+          "alt": "Ecowave Instagram profile",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834824178_2fo7y.webp",
+          "w": 2000,
+          "h": 1251,
+          "alt": "Ecowave branded hard hats",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834837845_yfzan.webp",
+          "w": 2000,
+          "h": 1390,
+          "alt": "Ecowave branded lanyards",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834844096_t42j0.webp",
+          "w": 2000,
+          "h": 1601,
+          "alt": "Ecowave branded wristbands",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834856063_4kvl1.webp",
+          "w": 2000,
+          "h": 1335,
+          "alt": "Ecowave branded tape on the floor",
+          "mediaType": "image"
+        }
+      ],
+      "sort_order": 9,
+      "created_at": "2026-05-15T08:49:25.908566+00:00",
+      "coming_soon": false
+    },
+    {
+      "id": "nexflo-website",
+      "title": "Nexflo - Website",
+      "tagline": "A website for an automation platform that simplifies connecting apps, tools, and workflows.",
+      "about": "Similar to platforms like Zapier and n8n, Nexflo empowers users to automate repetitive tasks, streamline operations, and improve productivity without needing to write code.\n\nWith a focus on flexibility, speed, and ease of use, Nexflo helps users build powerful workflows that move data seamlessly across applications, trigger actions in real time, and eliminate manual work. Whether it’s syncing data between CRMs, automating notifications, or integrating payment systems, Nexflo ensures that workflows run reliably and efficiently.\n\nBuilt with scalability in mind, Nexflo caters to both individual creators looking to save time and teams or businessesaiming to optimize their processes.",
+      "industry": "SaaS / Workflow Automation",
+      "role": "UI/UX Design · Web Development",
+      "year": "2025",
+      "meta": "SaaS / Workflow Automation · 2025",
+      "live_url": "https://nexflo-automation.webflow.io/",
+      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628333894_mf0uc.webp",
+      "gallery": [
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628335250_ypfvq.webp",
+          "w": 2000,
+          "h": 1500,
+          "alt": "Nexflo website on a laptop",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628337191_1nu6j.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Nexflo website video",
+          "mediaType": "video"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628345363_39ae0.webp",
+          "w": 2000,
+          "h": 1293,
+          "alt": "Nexflo website hero",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628347163_lqr9a.webp",
+          "w": 2000,
+          "h": 464,
+          "alt": "Brands",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628347608_ram7z.webp",
+          "w": 2000,
+          "h": 1906,
+          "alt": "Features",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628348821_iywjl.webp",
+          "w": 2000,
+          "h": 1027,
+          "alt": "Benefits Dark",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628349848_aguhg.webp",
+          "w": 2000,
+          "h": 1057,
+          "alt": "Automation (Dark)",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628350371_7e8hk.webp",
+          "w": 2000,
+          "h": 1531,
+          "alt": "Testimonials",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628351862_bm4pf.webp",
+          "w": 2000,
+          "h": 1131,
+          "alt": "Pricing",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628352506_5l3tm.webp",
+          "w": 2000,
+          "h": 1309,
+          "alt": "FAQ",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628353190_sza24.webp",
+          "w": 2000,
+          "h": 1330,
+          "alt": "Footer",
+          "mediaType": "image"
+        }
+      ],
+      "sort_order": 10,
+      "created_at": "2026-05-01T09:39:14.531838+00:00",
+      "coming_soon": true
+    },
+    {
+      "id": "nexflo---web-app",
+      "sort_order": 11,
+      "title": "Nexflo - Web App",
+      "tagline": "Automate your workflows. Connect your tools. Get more done.",
+      "about": "Nexflo is a modern workflow automation platform designed to help teams connect their favorite tools and automate repetitive processes without complex setup. I worked on the brand identity and product experience, creating a cohesive visual system and intuitive interfaces across onboarding, authentication, workflow management, and pricing.",
+      "industry": "SaaS / Workflow Automation",
+      "role": "Product Design · UI/UX · Brand Identity",
+      "year": "2026",
+      "meta": "SaaS / Workflow Automation · 2026",
+      "live_url": null,
+      "coming_soon": true,
+      "cover_url": "/image/uploads/images/1790283513542_tpui9.webp",
+      "gallery": [
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790283513542_tpui9.webp",
+          "w": 2000,
+          "h": 1500,
+          "alt": "Nexflo dashboard on a laptop",
+          "mediaType": "image"
         }
       ]
     }
