@@ -115,14 +115,25 @@ function fetchProject(id) {
     .catch(function () { return null; });
 }
 
+// Share cards need a still image. A video cover stands in with the poster
+// admin captured for it, else the first image in the gallery.
+const VIDEO_EXT = /\.(mp4|webm|mov)(?:[?#]|$)/i;
+
 function coverOf(project) {
-  if (project.cover_url) return project.cover_url;
-  if (project.coverSrc)  return project.coverSrc;
-  if (project.cardImg)   return project.cardImg;
-  const first = (project.gallery || []).find((s) => s.type !== 'text');
-  if (!first) return '';
-  if (first.type === 'full') return first.src || '';
-  return (first.images && first.images[0] && first.images[0].src) || '';
+  const media = [];
+  (project.gallery || []).forEach((s) => {
+    if (s.type === 'full') media.push(s);
+    else if (s.type === 'pair') media.push(...(s.images || []));
+  });
+  const cover = project.cover_url || project.coverSrc || project.cardImg;
+  if (cover) {
+    const item = media.find((m) => m.src === cover);
+    const isVideo = item ? item.mediaType === 'video' : VIDEO_EXT.test(cover);
+    if (!isVideo) return cover;
+    if (item && item.poster) return item.poster;
+  }
+  const still = media.find((m) => m.src && m.mediaType !== 'video' && !VIDEO_EXT.test(m.src));
+  return (still && still.src) || '';
 }
 
 function absolute(url) {

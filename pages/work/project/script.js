@@ -198,7 +198,7 @@
         }, { rootMargin: '200px 0px' })
       : null;
 
-    function resolveMedia(el, imageId, src, mediaType) {
+    function resolveMedia(el, imageId, src, mediaType, poster) {
       // cdnUrl() puts the Cloudflare cache (now R2-backed) in front of
       // Supabase Storage; without it every visit re-downloads the whole
       // gallery (Supabase sends no-cache).
@@ -206,6 +206,8 @@
 
       if (mediaType === 'video') {
         if (!url) return;
+        // the still admin captured paints while the video waits its turn
+        if (poster) el.poster = typeof cdnUrl === 'function' ? cdnUrl(poster) : poster;
         if (lazyVideoObserver) {
           el.dataset.src = url;
           lazyVideoObserver.observe(el);
@@ -369,7 +371,7 @@
 
       if (section.type === 'full') {
         var wrap = makeMedia(section.mediaType || 'image', section.alt || '', i === 0, section.w, section.h);
-        resolveMedia(wrap.firstChild, section.imageId, section.src, section.mediaType);
+        resolveMedia(wrap.firstChild, section.imageId, section.src, section.mediaType, section.poster);
         if (i === 0) {
           // the cover gets a fixed-height frame with the project info right below
           wrap.classList.add('gallery-img--full');
@@ -394,7 +396,7 @@
         }
         (section.images || []).forEach(function (item) {
           var w = makeMedia(item.mediaType || 'image', item.alt || '', false, item.w, item.h);
-          resolveMedia(w.firstChild, item.imageId, item.src, item.mediaType);
+          resolveMedia(w.firstChild, item.imageId, item.src, item.mediaType, item.poster);
           row.appendChild(w);
         });
         mediaStack().appendChild(row);

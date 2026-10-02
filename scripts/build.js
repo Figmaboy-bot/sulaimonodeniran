@@ -128,10 +128,21 @@ function carouselFirst(page) {
   return (snapshot.carousel_images || []).filter(function (r) { return r.page === page; })
     .sort(bySort).slice(0, 3).map(function (r) { return r.url; });
 }
+// A video cover paints from its poster and fetches the video only on hover,
+// so the poster is what to preload; one without a poster has nothing to offer.
+function coverPaint(p) {
+  let poster = null, isVideo = /\.(mp4|webm|mov)(?:[?#]|$)/i.test(p.cover_url || '');
+  (p.gallery || []).forEach(function (s) {
+    (s.type === 'full' ? [s] : (s.images || [])).forEach(function (m) {
+      if (m.src === p.cover_url) { isVideo = m.mediaType === 'video'; poster = m.poster || null; }
+    });
+  });
+  return isVideo ? poster : p.cover_url;
+}
 // home-grid.js loads its first row of three covers eagerly
 preloadImages('index.html', (snapshot.projects || []).filter(function (p) { return !p.coming_soon; })
   .sort(bySort).slice(0, 3)
-  .map(function (p) { return p.cover_url; }));
+  .map(coverPaint));
 preloadImages('pages/about/index.html', carouselFirst('about'));
 
 // Search engines: the project pages are only linked from script-rendered

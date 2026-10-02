@@ -325,10 +325,10 @@ async function compressImage(file) {
     var flat = [];
     (dbGallery || []).forEach(function (section) {
       if (section.type === 'full') {
-        flat.push({ src: section.src || null, w: section.w || null, h: section.h || null, alt: section.alt || '', layout: 'full', mediaType: section.mediaType || 'image' });
+        flat.push({ src: section.src || null, w: section.w || null, h: section.h || null, alt: section.alt || '', layout: 'full', mediaType: section.mediaType || 'image', poster: section.poster || null });
       } else if (section.type === 'pair') {
         (section.images || []).forEach(function (img) {
-          flat.push({ src: img.src || null, w: img.w || null, h: img.h || null, alt: img.alt || '', layout: 'half', mediaType: img.mediaType || 'image' });
+          flat.push({ src: img.src || null, w: img.w || null, h: img.h || null, alt: img.alt || '', layout: 'half', mediaType: img.mediaType || 'image', poster: img.poster || null });
         });
       } else if (section.type === 'text') {
         flat.push({ kind: 'text', columns: textColumns(section.columns) });
@@ -360,12 +360,13 @@ async function compressImage(file) {
       } else if (item.layout === 'half' && state.gallery[i + 1] && state.gallery[i + 1].layout === 'half') {
         var next = state.gallery[i + 1];
         result.push({ type: 'pair', images: [
-          { src: item.src, w: item.w || null, h: item.h || null, alt: item.alt, mediaType: item.mediaType || 'image' },
-          { src: next.src, w: next.w || null, h: next.h || null, alt: next.alt, mediaType: next.mediaType || 'image' }
+          { src: item.src, w: item.w || null, h: item.h || null, alt: item.alt, mediaType: item.mediaType || 'image', poster: item.poster || undefined },
+          { src: next.src, w: next.w || null, h: next.h || null, alt: next.alt, mediaType: next.mediaType || 'image', poster: next.poster || undefined }
         ]});
         i += 2;
       } else {
-        result.push({ type: 'full', src: item.src, w: item.w || null, h: item.h || null, alt: item.alt, mediaType: item.mediaType || 'image' });
+        // poster only exists on starred videos; undefined keeps it out of the JSON
+        result.push({ type: 'full', src: item.src, w: item.w || null, h: item.h || null, alt: item.alt, mediaType: item.mediaType || 'image', poster: item.poster || undefined });
         i++;
       }
     }
@@ -757,7 +758,7 @@ async function compressImage(file) {
       var mediaHtml      = isVideo
         ? '<video class="gcard-img" muted preload="metadata" loop playsinline></video>'
         : '<img class="gcard-img" src="" alt="" />';
-      var coverBtnHtml   = isVideo ? '' : '<button class="gcard-cover-btn" title="Set as cover">★</button>';
+      var coverBtnHtml   = '<button class="gcard-cover-btn" title="Set as cover">★</button>';
       var videoBadgeHtml = isVideo ? '<span class="gcard-video-badge">Video</span>' : '';
 
       card.innerHTML =
@@ -789,15 +790,20 @@ async function compressImage(file) {
 
       var coverBtn = card.querySelector('.gcard-cover-btn');
       if (coverBtn) {
-        coverBtn.addEventListener('click', function () {
-          if (!item.src) { toast('Upload this image first'); return; }
+        coverBtn.addEventListener('click', async function () {
+          if (!item.src) { toast('Upload this file first'); return; }
+          var note = 'Cover image set';
+          if (isVideo) {
+            note = await prepareVideoCover(item);
+            renderGalleryGrid();
+          }
           state.activeCoverUrl = item.src;
           document.querySelectorAll('.gcard').forEach(function (c) {
             var cIdx  = parseInt(c.dataset.idx);
             var cItem = state.gallery[cIdx];
             c.classList.toggle('is-cover', !!(state.activeCoverUrl && cItem && cItem.src === state.activeCoverUrl));
           });
-          toast('Cover image set');
+          toast(note);
         });
       }
 
@@ -834,6 +840,77 @@ async function compressImage(file) {
     });
   }
 
+  // ── Video covers ──────────────────────────────
+  // The home page paints a video cover from a still and only downloads the
+  // video on hover, so starring a video grabs a frame here and uploads it as
+  // the item's poster. Returns the toast to show.
+  var HEAVY_COVER_BYTES = 8 * 1024 * 1024;
+
+  async function prepareVideoCover(item) {
+    var note = 'Cover video set — it plays on hover';
+    if (!item.poster) {
+      toast('Capturing a poster frame…');
+      try {
+        item.poster = await capturePoster(item.src);
+      } catch (e) {
+        note = 'Cover video set — no poster (' + e.message + '), so the card loads the video’s first frame';
+      }
+    }
+    try {
+      var head = await fetch(item.src, { method: 'HEAD' });
+      var size = parseInt(head.headers.get('content-length'), 10);
+      if (size > HEAVY_COVER_BYTES) {
+        note += '. It’s ' + Math.round(size / 1048576) + ' MB — under 8 MB starts faster on hover';
+      }
+    } catch (e) {}
+    return note;
+  }
+
+  // a video that never decodes would otherwise leave the star click hanging
+  function within(ms, promise) {
+    return Promise.race([promise, new Promise(function (_, reject) {
+      setTimeout(function () { reject(new Error('timed out reading the video')); }, ms);
+    })]);
+  }
+
+  async function capturePoster(src) {
+    var v = document.createElement('video');
+    v.muted = true;
+    v.playsInline = true;
+    v.preload = 'auto';
+    // Supabase serves CORS headers; without this the canvas comes out tainted
+    v.crossOrigin = 'anonymous';
+    v.src = src;
+    await within(15000, new Promise(function (resolve, reject) {
+      v.addEventListener('loadeddata', resolve, { once: true });
+      v.addEventListener('error', function () { reject(new Error('video didn’t load')); }, { once: true });
+    }));
+    // a hair past zero skips the black frame some encoders open with
+    await within(5000, new Promise(function (resolve) {
+      v.addEventListener('seeked', resolve, { once: true });
+      v.currentTime = Math.min(0.1, (v.duration || 0.2) / 2);
+    }));
+    // Chrome hands a canvas a blank white frame until one has actually been
+    // presented, and that takes a moment of (muted) playback
+    await within(5000, new Promise(function (resolve) {
+      if (v.requestVideoFrameCallback) v.requestVideoFrameCallback(function () { resolve(); });
+      else v.addEventListener('timeupdate', resolve, { once: true });
+      v.play().catch(resolve);
+    }));
+    v.pause();
+    var scale  = Math.min(1, 2000 / v.videoWidth);
+    var canvas = document.createElement('canvas');
+    canvas.width  = Math.round(v.videoWidth * scale);
+    canvas.height = Math.round(v.videoHeight * scale);
+    canvas.getContext('2d').drawImage(v, 0, 0, canvas.width, canvas.height);
+    var blob = await new Promise(function (resolve) { canvas.toBlob(resolve, 'image/webp', 0.82); });
+    if (!blob) throw new Error('couldn’t encode the frame');
+    // Safari can't encode WebP and hands back a PNG instead
+    var ext = blob.type === 'image/webp' ? 'webp' : 'png';
+    var up  = await uploadBlob(new File([blob], 'poster.' + ext, { type: blob.type }), 'images', null, canvas.width, canvas.height);
+    return up.url;
+  }
+
   // ── File upload ───────────────────────────────
   var MAX_FILE_BYTES = 100 * 1024 * 1024; // 100 MB
 
@@ -864,8 +941,8 @@ async function compressImage(file) {
     if (files.length > 1 && done) toast('Uploaded ' + done + ' of ' + files.length + ' ✓');
   }
 
-  // Swap an image/video card's file in place: position, alt text and layout
-  // stay; the cover follows the card when the new file is an image.
+  // Swap an image/video card's file in place: position, alt text, layout and
+  // cover status stay; a cover video gets a fresh poster from the new file.
   async function replaceGalleryMedia(item, file) {
     var isVideo = file.type.startsWith('video/');
     var isImage = file.type.startsWith('image/');
@@ -879,9 +956,14 @@ async function compressImage(file) {
       item.w         = up.w;
       item.h         = up.h;
       item.mediaType = isVideo ? 'video' : 'image';
-      if (wasCover) state.activeCoverUrl = isImage ? up.url : null;
+      item.poster    = null;
+      var note = 'Replaced ✓ — save to publish';
+      if (wasCover) {
+        state.activeCoverUrl = up.url;
+        if (isVideo) note = await prepareVideoCover(item);
+      }
       renderGalleryGrid();
-      toast(wasCover && isVideo ? 'Replaced ✓ — pick a new cover image' : 'Replaced ✓ — save to publish');
+      toast(note);
     } catch (e) {
       toast('Upload failed: ' + e.message);
     }
@@ -946,8 +1028,9 @@ async function compressImage(file) {
       (p.gallery || []).forEach(function (section) {
         if (section.type === 'full' && section.src) urls.push(section.src);
         else if (section.type === 'pair') {
-          (section.images || []).forEach(function (img) { if (img.src) urls.push(img.src); });
+          (section.images || []).forEach(function (img) { if (img.src) urls.push(img.src); if (img.poster) urls.push(img.poster); });
         }
+        if (section.type === 'full' && section.poster) urls.push(section.poster);
       });
       if (p.cover_url && urls.indexOf(p.cover_url) === -1) urls.push(p.cover_url);
       for (var u = 0; u < urls.length; u++) await deleteStorageFile(urls[u]);
