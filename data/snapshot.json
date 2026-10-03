@@ -24,9 +24,10 @@
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1790274701709_1icl2.webp",
-          "w": 2000,
-          "h": 1263,
+          "src": "/image/uploads/images/1791061311291_i3hsk.webp",
+          "full": "/image/uploads/images/1791061312797_2w5pj.webp",
+          "w": 1200,
+          "h": 758,
           "alt": "Wager365 splash screen",
           "mediaType": "image"
         },
@@ -47,16 +48,18 @@
           "type": "pair",
           "images": [
             {
-              "src": "/image/uploads/images/1790274074208_zbwjf.webp",
-              "w": 2000,
-              "h": 2459,
+              "src": "/image/uploads/images/1791061201481_1u139.webp",
+              "full": "/image/uploads/images/1791061203058_z1cqx.webp",
+              "w": 1200,
+              "h": 1475,
               "alt": "Home Screen",
               "mediaType": "image"
             },
             {
-              "src": "/image/uploads/images/1790274079475_ocdrj.webp",
-              "w": 2000,
-              "h": 2641,
+              "src": "/image/uploads/images/1791061230837_qdrpd.webp",
+              "full": "/image/uploads/images/1791061232557_4xbzh.webp",
+              "w": 1200,
+              "h": 1584,
               "alt": "Bets Screen",
               "mediaType": "image"
             }
@@ -66,16 +69,18 @@
           "type": "pair",
           "images": [
             {
-              "src": "/image/uploads/images/1790274091330_3c549.webp",
-              "w": 2000,
-              "h": 2459,
+              "src": "/image/uploads/images/1791061238394_etpy5.webp",
+              "full": "/image/uploads/images/1791061239827_85aje.webp",
+              "w": 1200,
+              "h": 1475,
               "alt": "Wallet Screen",
               "mediaType": "image"
             },
             {
-              "src": "/image/uploads/images/1790274100168_uia32.webp",
-              "w": 2000,
-              "h": 2459,
+              "src": "/image/uploads/images/1791061247743_4t01d.webp",
+              "full": "/image/uploads/images/1791061249060_xpczl.webp",
+              "w": 1200,
+              "h": 1475,
               "alt": "Profile Screen",
               "mediaType": "image"
             }
@@ -112,25 +117,28 @@
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1790274120587_d9hmb.webp",
-          "w": 2000,
-          "h": 1263,
+          "src": "/image/uploads/images/1791061360787_02kzc.webp",
+          "full": "/image/uploads/images/1791061362104_r2lxq.webp",
+          "w": 1200,
+          "h": 758,
           "alt": "Create Account Screen",
           "mediaType": "image"
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1790274125886_52vvu.webp",
-          "w": 2000,
-          "h": 1263,
+          "src": "/image/uploads/images/1791061348659_ocuwj.webp",
+          "full": "/image/uploads/images/1791061349911_ee4g5.webp",
+          "w": 1200,
+          "h": 758,
           "alt": "Onboarding Screen",
           "mediaType": "image"
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1790274106831_c1xde.webp",
-          "w": 2000,
-          "h": 1263,
+          "src": "/image/uploads/images/1791061367856_6dk44.webp",
+          "full": "/image/uploads/images/1791061369129_cf1az.webp",
+          "w": 1200,
+          "h": 758,
           "alt": "Wager365 search, live games, bet slip and match detail screens",
           "mediaType": "image"
         },
@@ -144,9 +152,10 @@
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1790274608138_0p4yt.webp",
-          "w": 2000,
-          "h": 1357,
+          "src": "/image/uploads/images/1791061335173_g0u8y.webp",
+          "full": "/image/uploads/images/1791061336520_t3u96.webp",
+          "w": 1200,
+          "h": 814,
           "alt": "Wager365 log in screen",
           "mediaType": "image"
         },
@@ -772,15 +781,15 @@
       "meta": "AI / Productivity · 2026",
       "live_url": null,
       "coming_soon": false,
-      "cover_url": "/image/uploads/images/1790957833948_v39z4.webp",
+      "cover_url": null,
       "gallery": [
         {
           "type": "full",
-          "src": "/image/uploads/images/1790957833948_v39z4.webp",
-          "w": 2000,
-          "h": 1782,
+          "src": "/image/uploads/videos/1790962423207_1yx1s.mp4",
+          "w": null,
+          "h": null,
           "alt": "EchoYou inbox and AI assistant on a laptop",
-          "mediaType": "image"
+          "mediaType": "video"
         },
         {
           "type": "pair",
