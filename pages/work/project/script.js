@@ -198,7 +198,7 @@
         }, { rootMargin: '200px 0px' })
       : null;
 
-    function resolveMedia(el, imageId, src, mediaType, poster) {
+    function resolveMedia(el, imageId, src, mediaType, poster, full) {
       // cdnUrl() puts the Cloudflare cache (now R2-backed) in front of
       // Supabase Storage; without it every visit re-downloads the whole
       // gallery (Supabase sends no-cache).
@@ -219,6 +219,9 @@
         }
         return;
       }
+
+      // the sharp copy the zoom view swaps in; the page itself never loads it
+      if (full) el.dataset.full = typeof cdnUrl === 'function' ? cdnUrl(full) : full;
 
       if (imageId) {
         ImageDB.get(imageId).then(function (rec) {
@@ -371,7 +374,7 @@
 
       if (section.type === 'full') {
         var wrap = makeMedia(section.mediaType || 'image', section.alt || '', i === 0, section.w, section.h);
-        resolveMedia(wrap.firstChild, section.imageId, section.src, section.mediaType, section.poster);
+        resolveMedia(wrap.firstChild, section.imageId, section.src, section.mediaType, section.poster, section.full);
         if (i === 0) {
           // the cover gets a fixed-height frame with the project info right below
           wrap.classList.add('gallery-img--full');
@@ -396,7 +399,7 @@
         }
         (section.images || []).forEach(function (item) {
           var w = makeMedia(item.mediaType || 'image', item.alt || '', false, item.w, item.h);
-          resolveMedia(w.firstChild, item.imageId, item.src, item.mediaType, item.poster);
+          resolveMedia(w.firstChild, item.imageId, item.src, item.mediaType, item.poster, item.full);
           row.appendChild(w);
         });
         mediaStack().appendChild(row);
@@ -448,6 +451,16 @@
 
       img.parentNode.classList.add('is-zoomed');
       zoom = { img: img, overlay: overlay, copy: copy };
+
+      // grow the page copy straight away, then swap in the sharp one once it
+      // has decoded, so the click never waits on the network
+      if (img.dataset.full) {
+        var sharp = new Image();
+        sharp.src = img.dataset.full;
+        (sharp.decode ? sharp.decode() : Promise.reject()).then(function () {
+          if (zoom && zoom.copy === copy) copy.src = sharp.src;
+        }).catch(function () {});
+      }
 
       // force the start position to paint before animating to the fit
       copy.getBoundingClientRect();

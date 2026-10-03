@@ -92,7 +92,18 @@ var IMG_MAX_PX  = 12e6;
 var IMG_QUALITY = 0.82;
 var IMG_SKIP    = /^image\/(svg\+xml|gif)$/;
 
-async function compressImage(file) {
+// Case-study images are stored twice. The page copy is sized for the 600px
+// column at up to 2x density, so the page carries fewer bytes than the single
+// 2000px file it replaces; the zoom copy is only fetched when someone clicks
+// an image to magnify it, so it can afford real resolution and quality.
+var PAGE_IMG = { maxW: 1200, maxPx: 6e6,  quality: 0.85 };
+var ZOOM_IMG = { maxW: 3200, maxPx: 24e6, quality: 0.92 };
+
+async function compressImage(file, opts) {
+  opts = opts || {};
+  var maxW    = opts.maxW    || IMG_MAX_W;
+  var maxPx   = opts.maxPx   || IMG_MAX_PX;
+  var quality = opts.quality || IMG_QUALITY;
   var plain = { file: file, width: null, height: null };
   if (!file.type.startsWith('image/') || IMG_SKIP.test(file.type)) return plain;
 
@@ -105,7 +116,7 @@ async function compressImage(file) {
 
   var w = bitmap.width;
   var h = bitmap.height;
-  var scale = Math.min(1, IMG_MAX_W / w, Math.sqrt(IMG_MAX_PX / (w * h)));
+  var scale = Math.min(1, maxW / w, Math.sqrt(maxPx / (w * h)));
   var outW = Math.max(1, Math.round(w * scale));
   var outH = Math.max(1, Math.round(h * scale));
 
@@ -118,7 +129,7 @@ async function compressImage(file) {
   bitmap.close();
 
   var blob = await new Promise(function (resolve) {
-    canvas.toBlob(resolve, 'image/webp', IMG_QUALITY);
+    canvas.toBlob(resolve, 'image/webp', quality);
   });
   canvas.width = canvas.height = 0;
 
@@ -217,6 +228,20 @@ async function compressImage(file) {
   async function uploadFile(file, folder, progressId) {
     var shrunk = await compressImage(file);
     return uploadBlob(shrunk.file, folder, progressId, shrunk.width, shrunk.height);
+  }
+
+  // Gallery images: a light page copy plus a sharp copy for the zoom view.
+  // Only uploads the zoom copy when it actually holds more pixels; a small
+  // source just gets the one file, and the zoom falls back to it.
+  async function uploadGalleryFile(file, folder, progressId) {
+    var page = await compressImage(file, PAGE_IMG);
+    if (!page.width) return uploadBlob(page.file, folder, progressId);
+    var up = await uploadBlob(page.file, folder, progressId, page.width, page.height);
+    var zoom = await compressImage(file, ZOOM_IMG);
+    if (zoom.width > page.width) {
+      up.full = (await uploadBlob(zoom.file, folder, progressId, zoom.width, zoom.height)).url;
+    }
+    return up;
   }
 
   async function uploadBlob(file, folder, progressId, width, height) {
@@ -325,10 +350,10 @@ async function compressImage(file) {
     var flat = [];
     (dbGallery || []).forEach(function (section) {
       if (section.type === 'full') {
-        flat.push({ src: section.src || null, w: section.w || null, h: section.h || null, alt: section.alt || '', layout: 'full', mediaType: section.mediaType || 'image', poster: section.poster || null });
+        flat.push({ src: section.src || null, full: section.full || null, w: section.w || null, h: section.h || null, alt: section.alt || '', layout: 'full', mediaType: section.mediaType || 'image', poster: section.poster || null });
       } else if (section.type === 'pair') {
         (section.images || []).forEach(function (img) {
-          flat.push({ src: img.src || null, w: img.w || null, h: img.h || null, alt: img.alt || '', layout: 'half', mediaType: img.mediaType || 'image', poster: img.poster || null });
+          flat.push({ src: img.src || null, full: img.full || null, w: img.w || null, h: img.h || null, alt: img.alt || '', layout: 'half', mediaType: img.mediaType || 'image', poster: img.poster || null });
         });
       } else if (section.type === 'text') {
         flat.push({ kind: 'text', columns: textColumns(section.columns) });
@@ -360,13 +385,13 @@ async function compressImage(file) {
       } else if (item.layout === 'half' && state.gallery[i + 1] && state.gallery[i + 1].layout === 'half') {
         var next = state.gallery[i + 1];
         result.push({ type: 'pair', images: [
-          { src: item.src, w: item.w || null, h: item.h || null, alt: item.alt, mediaType: item.mediaType || 'image', poster: item.poster || undefined },
-          { src: next.src, w: next.w || null, h: next.h || null, alt: next.alt, mediaType: next.mediaType || 'image', poster: next.poster || undefined }
+          { src: item.src, full: item.full || undefined, w: item.w || null, h: item.h || null, alt: item.alt, mediaType: item.mediaType || 'image', poster: item.poster || undefined },
+          { src: next.src, full: next.full || undefined, w: next.w || null, h: next.h || null, alt: next.alt, mediaType: next.mediaType || 'image', poster: next.poster || undefined }
         ]});
         i += 2;
       } else {
         // poster only exists on starred videos; undefined keeps it out of the JSON
-        result.push({ type: 'full', src: item.src, w: item.w || null, h: item.h || null, alt: item.alt, mediaType: item.mediaType || 'image', poster: item.poster || undefined });
+        result.push({ type: 'full', src: item.src, full: item.full || undefined, w: item.w || null, h: item.h || null, alt: item.alt, mediaType: item.mediaType || 'image', poster: item.poster || undefined });
         i++;
       }
     }
@@ -928,8 +953,8 @@ async function compressImage(file) {
       if (file.size > MAX_FILE_BYTES) { toast(file.name + ' is too large — max 100 MB'); continue; }
       toast(files.length > 1 ? 'Uploading ' + (fi + 1) + ' of ' + files.length + '…' : 'Uploading…');
       try {
-        var up = await uploadFile(file, isVideo ? 'videos' : 'images', 'gallery-upload-progress');
-        state.gallery.push({ src: up.url, w: up.w, h: up.h, alt: file.name.replace(/\.[^.]+$/, ''), layout: 'full', mediaType: isVideo ? 'video' : 'image' });
+        var up = await uploadGalleryFile(file, isVideo ? 'videos' : 'images', 'gallery-upload-progress');
+        state.gallery.push({ src: up.url, full: up.full || null, w: up.w, h: up.h, alt: file.name.replace(/\.[^.]+$/, ''), layout: 'full', mediaType: isVideo ? 'video' : 'image' });
         if (!state.activeCoverUrl && isImage) state.activeCoverUrl = up.url;
         renderGalleryGrid();
         done++;
@@ -950,9 +975,10 @@ async function compressImage(file) {
     if (file.size > MAX_FILE_BYTES) { toast(file.name + ' is too large — max 100 MB'); return; }
     toast('Uploading…');
     try {
-      var up = await uploadFile(file, isVideo ? 'videos' : 'images', 'gallery-upload-progress');
+      var up = await uploadGalleryFile(file, isVideo ? 'videos' : 'images', 'gallery-upload-progress');
       var wasCover = !!item.src && item.src === state.activeCoverUrl;
       item.src       = up.url;
+      item.full      = up.full || null;
       item.w         = up.w;
       item.h         = up.h;
       item.mediaType = isVideo ? 'video' : 'image';
@@ -1028,8 +1054,9 @@ async function compressImage(file) {
       (p.gallery || []).forEach(function (section) {
         if (section.type === 'full' && section.src) urls.push(section.src);
         else if (section.type === 'pair') {
-          (section.images || []).forEach(function (img) { if (img.src) urls.push(img.src); if (img.poster) urls.push(img.poster); });
+          (section.images || []).forEach(function (img) { if (img.src) urls.push(img.src); if (img.full) urls.push(img.full); if (img.poster) urls.push(img.poster); });
         }
+        if (section.type === 'full' && section.full) urls.push(section.full);
         if (section.type === 'full' && section.poster) urls.push(section.poster);
       });
       if (p.cover_url && urls.indexOf(p.cover_url) === -1) urls.push(p.cover_url);
