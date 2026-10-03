@@ -181,86 +181,96 @@
       "year": "2026",
       "meta": "Fintech · 2026",
       "live_url": "https://orbit-website-lovat.vercel.app/",
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783094057905_w21y3.webp",
+      "cover_url": "/image/uploads/images/1791062176175_npp6w.webp",
       "gallery": [
         {
-          "h": 1500,
-          "w": 2000,
+          "type": "full",
+          "src": "/image/uploads/images/1791062176175_npp6w.webp",
+          "full": "/image/uploads/images/1791062176938_4chpd.webp",
+          "w": 1200,
+          "h": 900,
           "alt": "Orbit website hero on a laptop",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783094057905_w21y3.webp",
-          "type": "full",
           "mediaType": "image"
         },
         {
-          "h": 1293,
-          "w": 2000,
+          "type": "full",
+          "src": "/image/uploads/images/1791062276768_x6yyk.webp",
+          "full": "/image/uploads/images/1791062278151_vlbw0.webp",
+          "w": 1200,
+          "h": 776,
           "alt": "Hero",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783095113562_4rz1v.webp",
-          "type": "full",
           "mediaType": "image"
         },
         {
-          "h": 1250,
-          "w": 2000,
+          "type": "full",
+          "src": "/image/uploads/images/1791062284761_0peoc.webp",
+          "full": "/image/uploads/images/1791062285439_5dhjk.webp",
+          "w": 1200,
+          "h": 750,
           "alt": "Features",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783095125183_l6it3.webp",
-          "type": "full",
           "mediaType": "image"
         },
         {
-          "h": 1562,
-          "w": 2000,
+          "type": "full",
+          "src": "/image/uploads/images/1791062249905_2o52y.webp",
+          "full": "/image/uploads/images/1791062251192_qxa9j.webp",
+          "w": 1200,
+          "h": 938,
           "alt": "How it works",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783095174534_02h5h.webp",
-          "type": "full",
           "mediaType": "image"
         },
         {
-          "h": 988,
-          "w": 2000,
+          "type": "full",
+          "src": "/image/uploads/images/1791062240680_754fc.webp",
+          "full": "/image/uploads/images/1791062241282_83xc0.webp",
+          "w": 1200,
+          "h": 593,
           "alt": "Smarter Money",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783095252333_twjt5.webp",
-          "type": "full",
           "mediaType": "image"
         },
         {
-          "h": 1780,
-          "w": 2000,
+          "type": "full",
+          "src": "/image/uploads/images/1791062232201_7217a.webp",
+          "full": "/image/uploads/images/1791062233377_guc60.webp",
+          "w": 1200,
+          "h": 1068,
           "alt": "Send",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783095274639_phydh.webp",
-          "type": "full",
           "mediaType": "image"
         },
         {
-          "h": 1551,
-          "w": 2000,
+          "type": "full",
+          "src": "/image/uploads/images/1791062221942_2l8x6.webp",
+          "full": "/image/uploads/images/1791062222896_r0ddz.webp",
+          "w": 1200,
+          "h": 931,
           "alt": "Security",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783095259294_yd7rj.webp",
-          "type": "full",
           "mediaType": "image"
         },
         {
-          "h": 2391,
-          "w": 2000,
+          "type": "full",
+          "src": "/image/uploads/images/1791062214383_lo36g.webp",
+          "full": "/image/uploads/images/1791062216705_xhp2n.webp",
+          "w": 1200,
+          "h": 1435,
           "alt": "Card",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783095210861_s4nn5.webp",
-          "type": "full",
           "mediaType": "image"
         },
         {
-          "h": 1141,
-          "w": 2000,
+          "type": "full",
+          "src": "/image/uploads/images/1791062206285_5wwoj.webp",
+          "full": "/image/uploads/images/1791062207029_abrdn.webp",
+          "w": 1200,
+          "h": 685,
           "alt": "FAQ",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783095201633_vbnfe.webp",
-          "type": "full",
           "mediaType": "image"
         },
         {
-          "h": 2660,
-          "w": 2000,
-          "alt": "Footer",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783095241141_9cc5g.webp",
           "type": "full",
+          "src": "/image/uploads/images/1791062201982_tkw5v.webp",
+          "full": "/image/uploads/images/1791062204633_cxdek.webp",
+          "w": 1200,
+          "h": 1596,
+          "alt": "Footer",
           "mediaType": "image"
         }
       ],
@@ -280,21 +290,23 @@
       "meta": "Productivity / SaaS · 2026",
       "live_url": null,
       "coming_soon": false,
-      "cover_url": "/image/uploads/images/1790881747036_bax9y.webp",
+      "cover_url": "/image/uploads/images/1791062812222_pfdj0.webp",
       "gallery": [
         {
           "type": "full",
-          "src": "/image/uploads/images/1790881747036_bax9y.webp",
-          "w": 2000,
-          "h": 1664,
+          "src": "/image/uploads/images/1791062812222_pfdj0.webp",
+          "full": "/image/uploads/images/1791062813312_jjiil.webp",
+          "w": 1200,
+          "h": 998,
           "alt": "Scribe document editor with Ask Scribe AI on selected text",
           "mediaType": "image"
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1790881900148_dzxpa.webp",
-          "w": 2000,
-          "h": 1293,
+          "src": "/image/uploads/images/1791062831511_lgfl0.webp",
+          "full": "/image/uploads/images/1791062832297_1l18s.webp",
+          "w": 1200,
+          "h": 776,
           "alt": "Edit Doc (Dark)",
           "mediaType": "image"
         },
@@ -318,9 +330,10 @@
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1790881750984_sbga1.webp",
-          "w": 2000,
-          "h": 1436,
+          "src": "/image/uploads/images/1791062795276_dg4dr.webp",
+          "full": "/image/uploads/images/1791062796091_1reiq.webp",
+          "w": 1200,
+          "h": 862,
           "alt": "Home",
           "mediaType": "image"
         },
@@ -334,6 +347,15 @@
           ]
         },
         {
+          "type": "full",
+          "src": "/image/uploads/images/1791062763268_39p22.webp",
+          "full": "/image/uploads/images/1791062764118_2dfbk.webp",
+          "w": 1200,
+          "h": 862,
+          "alt": "Document Editor",
+          "mediaType": "image"
+        },
+        {
           "type": "text",
           "columns": [
             {
@@ -344,18 +366,11 @@
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1790881763231_tftpn.webp",
-          "w": 2000,
-          "h": 1436,
+          "src": "/image/uploads/images/1791062772234_q9r4k.webp",
+          "full": "/image/uploads/images/1791062772983_f49hx.webp",
+          "w": 1200,
+          "h": 862,
           "alt": "Workspace",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790881748931_1raga.webp",
-          "w": 2000,
-          "h": 1436,
-          "alt": "Document Editor",
           "mediaType": "image"
         },
         {
@@ -369,9 +384,10 @@
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1790881745714_hpnlr.webp",
-          "w": 2000,
-          "h": 1436,
+          "src": "/image/uploads/images/1791062755382_90mcn.webp",
+          "full": "/image/uploads/images/1791062756189_gmxtu.webp",
+          "w": 1200,
+          "h": 862,
           "alt": "Contextual AI",
           "mediaType": "image"
         },
@@ -386,9 +402,10 @@
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1790881749395_2ucfe.webp",
-          "w": 2000,
-          "h": 1436,
+          "src": "/image/uploads/images/1791062749314_3j88b.webp",
+          "full": "/image/uploads/images/1791062750136_w8rz0.webp",
+          "w": 1200,
+          "h": 862,
           "alt": "Document-level AI",
           "mediaType": "image"
         },
@@ -403,9 +420,10 @@
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1790881719904_wwlsl.webp",
-          "w": 2000,
-          "h": 1436,
+          "src": "/image/uploads/images/1791062736881_hyqgj.webp",
+          "full": "/image/uploads/images/1791062737730_oozfr.webp",
+          "w": 1200,
+          "h": 862,
           "alt": "Version History",
           "mediaType": "image"
         },
@@ -413,16 +431,18 @@
           "type": "pair",
           "images": [
             {
-              "src": "/image/uploads/images/1790881718608_u6fr4.webp",
-              "w": 2000,
-              "h": 1436,
+              "src": "/image/uploads/images/1791062727655_8tkq8.webp",
+              "full": "/image/uploads/images/1791062728476_9j5b2.webp",
+              "w": 1200,
+              "h": 862,
               "alt": "Preview Version",
               "mediaType": "image"
             },
             {
-              "src": "/image/uploads/images/1790881717957_47een.webp",
-              "w": 2000,
-              "h": 1436,
+              "src": "/image/uploads/images/1791062719120_57a6r.webp",
+              "full": "/image/uploads/images/1791062719988_5yy9n.webp",
+              "w": 1200,
+              "h": 862,
               "alt": "Compare version",
               "mediaType": "image"
             }
@@ -430,9 +450,10 @@
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1790881719059_4ls2b.webp",
-          "w": 2000,
-          "h": 1436,
+          "src": "/image/uploads/images/1791062714766_xbb3r.webp",
+          "full": "/image/uploads/images/1791062715903_7oag3.webp",
+          "w": 1200,
+          "h": 862,
           "alt": "Restore this version",
           "mediaType": "image"
         },
@@ -447,17 +468,19 @@
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1790881745172_ib7yr.webp",
-          "w": 2000,
-          "h": 1436,
+          "src": "/image/uploads/images/1791062688887_jnonh.webp",
+          "full": "/image/uploads/images/1791062689805_wrdxj.webp",
+          "w": 1200,
+          "h": 862,
           "alt": "Comments & Collaboration",
           "mediaType": "image"
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1790881759446_ycmk9.webp",
-          "w": 2000,
-          "h": 1436,
+          "src": "/image/uploads/images/1791062671370_5d4bf.webp",
+          "full": "/image/uploads/images/1791062672143_kbg1a.webp",
+          "w": 1200,
+          "h": 862,
           "alt": "Share Document",
           "mediaType": "image"
         },
@@ -472,9 +495,10 @@
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1790881751989_ete2p.webp",
-          "w": 2000,
-          "h": 1436,
+          "src": "/image/uploads/images/1791062663297_sgihd.webp",
+          "full": "/image/uploads/images/1791062664057_5svg4.webp",
+          "w": 1200,
+          "h": 862,
           "alt": "Integrations",
           "mediaType": "image"
         },
@@ -491,16 +515,18 @@
           "type": "pair",
           "images": [
             {
-              "src": "/image/uploads/images/1790881748077_vvrm8.webp",
-              "w": 2000,
-              "h": 1436,
+              "src": "/image/uploads/images/1791062653283_8p73w.webp",
+              "full": "/image/uploads/images/1791062654227_wu2ay.webp",
+              "w": 1200,
+              "h": 862,
               "alt": "Create Your Account",
               "mediaType": "image"
             },
             {
-              "src": "/image/uploads/images/1790881749907_jp61q.webp",
-              "w": 2000,
-              "h": 1436,
+              "src": "/image/uploads/images/1791062638888_ke90t.webp",
+              "full": "/image/uploads/images/1791062639613_400ax.webp",
+              "w": 1200,
+              "h": 862,
               "alt": "Email Verification",
               "mediaType": "image"
             }
@@ -510,9 +536,10 @@
           "type": "pair",
           "images": [
             {
-              "src": "/image/uploads/images/1790881760807_cv4vg.webp",
-              "w": 2000,
-              "h": 1436,
+              "src": "/image/uploads/images/1791062630104_ymgjk.webp",
+              "full": "/image/uploads/images/1791062630828_odxj7.webp",
+              "w": 1200,
+              "h": 862,
               "alt": "Verification Success",
               "mediaType": "image"
             },
@@ -529,16 +556,18 @@
           "type": "pair",
           "images": [
             {
-              "src": "/image/uploads/images/1790881762429_z7vq9.webp",
-              "w": 2000,
-              "h": 1436,
+              "src": "/image/uploads/images/1791062616747_s9g7f.webp",
+              "full": "/image/uploads/images/1791062617495_v49bq.webp",
+              "w": 1200,
+              "h": 862,
               "alt": "Workspace Type",
               "mediaType": "image"
             },
             {
-              "src": "/image/uploads/images/1790881748474_3u96v.webp",
-              "w": 2000,
-              "h": 1436,
+              "src": "/image/uploads/images/1791062604878_14d34.webp",
+              "full": "/image/uploads/images/1791062605640_6snyq.webp",
+              "w": 1200,
+              "h": 862,
               "alt": "Create Your Workspace",
               "mediaType": "image"
             }
@@ -546,17 +575,19 @@
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1790884114109_uo1b3.webp",
-          "w": 2000,
-          "h": 1436,
+          "src": "/image/uploads/images/1791062598730_43ahu.webp",
+          "full": "/image/uploads/images/1791062600270_qe4b1.webp",
+          "w": 1200,
+          "h": 862,
           "alt": "Import or Start Fresh",
           "mediaType": "image"
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1790881753582_ot81s.webp",
-          "w": 2000,
-          "h": 1436,
+          "src": "/image/uploads/images/1791062559221_3wphd.webp",
+          "full": "/image/uploads/images/1791062560107_nwgj1.webp",
+          "w": 1200,
+          "h": 862,
           "alt": "Login",
           "mediaType": "image"
         },
@@ -573,16 +604,18 @@
           "type": "pair",
           "images": [
             {
-              "src": "/image/uploads/images/1790881750369_4oim2.webp",
-              "w": 2000,
-              "h": 1436,
+              "src": "/image/uploads/images/1791062550645_pepfr.webp",
+              "full": "/image/uploads/images/1791062551446_rb6yx.webp",
+              "w": 1200,
+              "h": 862,
               "alt": "General Settings",
               "mediaType": "image"
             },
             {
-              "src": "/image/uploads/images/1790881758189_zsaqe.webp",
-              "w": 2000,
-              "h": 1436,
+              "src": "/image/uploads/images/1791062541894_omewo.webp",
+              "full": "/image/uploads/images/1791062542756_mcujx.webp",
+              "w": 1200,
+              "h": 862,
               "alt": "Profile Settings",
               "mediaType": "image"
             }
@@ -592,16 +625,18 @@
           "type": "pair",
           "images": [
             {
-              "src": "/image/uploads/images/1790881763982_tycr9.webp",
-              "w": 2000,
-              "h": 1436,
+              "src": "/image/uploads/images/1791062522364_8i38x.webp",
+              "full": "/image/uploads/images/1791062523215_e8za8.webp",
+              "w": 1200,
+              "h": 862,
               "alt": "Workspaces Settings",
               "mediaType": "image"
             },
             {
-              "src": "/image/uploads/images/1790881760297_spfw3.webp",
-              "w": 2000,
-              "h": 1436,
+              "src": "/image/uploads/images/1791062506743_31qvg.webp",
+              "full": "/image/uploads/images/1791062507610_phw2l.webp",
+              "w": 1200,
+              "h": 862,
               "alt": "Storage",
               "mediaType": "image"
             }
@@ -802,9 +837,10 @@
               "mediaType": "image"
             },
             {
-              "src": "/image/uploads/images/1790538004726_ivug1.webp",
-              "w": 2000,
-              "h": 1532,
+              "src": "/image/uploads/images/1791063048712_suia4.webp",
+              "full": "/image/uploads/images/1791063049745_83nlx.webp",
+              "w": 1200,
+              "h": 919,
               "alt": "Verify your email",
               "mediaType": "image"
             }
@@ -814,16 +850,18 @@
           "type": "pair",
           "images": [
             {
-              "src": "/image/uploads/images/1790537993016_5j9s2.webp",
-              "w": 2000,
-              "h": 1532,
+              "src": "/image/uploads/images/1791063039455_bii63.webp",
+              "full": "/image/uploads/images/1791063041150_198pr.webp",
+              "w": 1200,
+              "h": 919,
               "alt": "Verification Successful",
               "mediaType": "image"
             },
             {
-              "src": "/image/uploads/images/1790537983422_t7pib.webp",
-              "w": 2000,
-              "h": 1532,
+              "src": "/image/uploads/images/1791063029257_0huqh.webp",
+              "full": "/image/uploads/images/1791063030850_9d5ed.webp",
+              "w": 1200,
+              "h": 919,
               "alt": "Login",
               "mediaType": "image"
             }
@@ -846,16 +884,18 @@
           "type": "pair",
           "images": [
             {
-              "src": "/image/uploads/images/1790537974078_38yam.webp",
-              "w": 2000,
-              "h": 1532,
+              "src": "/image/uploads/images/1791063015657_g9leg.webp",
+              "full": "/image/uploads/images/1791063016637_j2op5.webp",
+              "w": 1200,
+              "h": 919,
               "alt": "Connect Your Inbox",
               "mediaType": "image"
             },
             {
-              "src": "/image/uploads/images/1790537960629_uf6yz.webp",
-              "w": 2000,
-              "h": 1532,
+              "src": "/image/uploads/images/1791063009009_0iyg0.webp",
+              "full": "/image/uploads/images/1791063010181_0jo4d.webp",
+              "w": 1200,
+              "h": 919,
               "alt": "Enter OTP Code",
               "mediaType": "image"
             }
@@ -865,16 +905,18 @@
           "type": "pair",
           "images": [
             {
-              "src": "/image/uploads/images/1790537950778_oih5n.webp",
-              "w": 2000,
-              "h": 1532,
+              "src": "/image/uploads/images/1791062998300_d7co1.webp",
+              "full": "/image/uploads/images/1791062999509_4k4nq.webp",
+              "w": 1200,
+              "h": 919,
               "alt": "OTP Filled",
               "mediaType": "image"
             },
             {
-              "src": "/image/uploads/images/1790537931178_w8ihr.webp",
-              "w": 2000,
-              "h": 1532,
+              "src": "/image/uploads/images/1791062989987_36uhk.webp",
+              "full": "/image/uploads/images/1791062991257_csi3w.webp",
+              "w": 1200,
+              "h": 919,
               "alt": "Inbox Connected",
               "mediaType": "image"
             }
@@ -897,16 +939,18 @@
           "type": "pair",
           "images": [
             {
-              "src": "/image/uploads/images/1790538968627_4xgwf.webp",
-              "w": 2000,
-              "h": 1532,
+              "src": "/image/uploads/images/1791062981017_vd3gr.webp",
+              "full": "/image/uploads/images/1791062982160_n5sny.webp",
+              "w": 1200,
+              "h": 919,
               "alt": "Home",
               "mediaType": "image"
             },
             {
-              "src": "/image/uploads/images/1790539579526_jf7ar.webp",
-              "w": 2000,
-              "h": 1532,
+              "src": "/image/uploads/images/1791062972944_x9io3.webp",
+              "full": "/image/uploads/images/1791062973904_nswbt.webp",
+              "w": 1200,
+              "h": 919,
               "alt": "Notifications",
               "mediaType": "image"
             }
@@ -929,16 +973,18 @@
           "type": "pair",
           "images": [
             {
-              "src": "/image/uploads/images/1790538993855_k3osb.webp",
-              "w": 2000,
-              "h": 1738,
+              "src": "/image/uploads/images/1791062961678_o36vd.webp",
+              "full": "/image/uploads/images/1791062962904_0fil0.webp",
+              "w": 1200,
+              "h": 1043,
               "alt": "Opened Email",
               "mediaType": "image"
             },
             {
-              "src": "/image/uploads/images/1790538986085_j6yqs.webp",
-              "w": 2000,
-              "h": 1738,
+              "src": "/image/uploads/images/1791062950375_cqpn1.webp",
+              "full": "/image/uploads/images/1791062951494_4fga5.webp",
+              "w": 1200,
+              "h": 1043,
               "alt": "AI Email Summary",
               "mediaType": "image"
             }
@@ -961,16 +1007,18 @@
           "type": "pair",
           "images": [
             {
-              "src": "/image/uploads/images/1790539006324_f9q84.webp",
-              "w": 2000,
-              "h": 1532,
+              "src": "/image/uploads/images/1791062943123_uq0gp.webp",
+              "full": "/image/uploads/images/1791062944121_4cdfx.webp",
+              "w": 1200,
+              "h": 919,
               "alt": "Calendar (Agenda)",
               "mediaType": "image"
             },
             {
-              "src": "/image/uploads/images/1790539011440_qwgeo.webp",
-              "w": 2000,
-              "h": 1532,
+              "src": "/image/uploads/images/1791062937767_ru02b.webp",
+              "full": "/image/uploads/images/1791062938737_0sdul.webp",
+              "w": 1200,
+              "h": 919,
               "alt": "About Event",
               "mediaType": "image"
             }
@@ -993,16 +1041,18 @@
           "type": "pair",
           "images": [
             {
-              "src": "/image/uploads/images/1790539034375_c827u.webp",
-              "w": 2000,
-              "h": 1532,
+              "src": "/image/uploads/images/1791062895151_bu1fy.webp",
+              "full": "/image/uploads/images/1791062896305_uzf1z.webp",
+              "w": 1200,
+              "h": 919,
               "alt": "Calendar (Map)",
               "mediaType": "image"
             },
             {
-              "src": "/image/uploads/images/1790539026904_318u1.webp",
-              "w": 2000,
-              "h": 1532,
+              "src": "/image/uploads/images/1791062930379_6zj10.webp",
+              "full": "/image/uploads/images/1791062931421_qaiq8.webp",
+              "w": 1200,
+              "h": 919,
               "alt": "General Settings",
               "mediaType": "image"
             }
@@ -1025,16 +1075,18 @@
           "type": "pair",
           "images": [
             {
-              "src": "/image/uploads/images/1790539696304_2v5rg.webp",
-              "w": 2000,
-              "h": 1532,
+              "src": "/image/uploads/images/1791062880579_hxlnu.webp",
+              "full": "/image/uploads/images/1791062881475_50zt2.webp",
+              "w": 1200,
+              "h": 919,
               "alt": "Inbox & Automation Settings",
               "mediaType": "image"
             },
             {
-              "src": "/image/uploads/images/1790539559246_svooh.webp",
-              "w": 2000,
-              "h": 1532,
+              "src": "/image/uploads/images/1791062864660_esi4r.webp",
+              "full": "/image/uploads/images/1791062865695_ut2iw.webp",
+              "w": 1200,
+              "h": 919,
               "alt": "Agent Mode Permissions",
               "mediaType": "image"
             }
