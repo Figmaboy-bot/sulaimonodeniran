@@ -404,6 +404,98 @@
     });
     placeInfo();
 
+    // ── Image zoom ──────────────────────────────
+    // Clicking a gallery image lifts a copy out of the page and grows it from
+    // where it sits to fit the viewport, over a dimmed backdrop. Click, Esc,
+    // scroll or resize shrinks it back into place.
+    var zoom = null;
+
+    function fitRect(img) {
+      var pad  = window.innerWidth <= 600 ? 16 : 48;
+      var maxW = window.innerWidth  - pad * 2;
+      var maxH = window.innerHeight - pad * 2;
+      var nw   = img.naturalWidth  || img.width;
+      var nh   = img.naturalHeight || img.height;
+      var s    = Math.min(maxW / nw, maxH / nh);
+      var w    = nw * s;
+      var h    = nh * s;
+      return { left: (window.innerWidth - w) / 2, top: (window.innerHeight - h) / 2, width: w, height: h };
+    }
+
+    function placeAt(el, r) {
+      el.style.left   = r.left + 'px';
+      el.style.top    = r.top + 'px';
+      el.style.width  = r.width + 'px';
+      el.style.height = r.height + 'px';
+    }
+
+    function openZoom(img) {
+      if (zoom || !img.currentSrc && !img.src) return;
+      var from = img.parentNode.getBoundingClientRect();
+      var to   = fitRect(img);
+
+      var overlay = document.createElement('div');
+      overlay.className = 'img-zoom';
+      var copy = document.createElement('img');
+      copy.className = 'img-zoom-img';
+      copy.src = img.currentSrc || img.src;
+      copy.alt = img.alt;
+      copy.style.objectPosition = getComputedStyle(img).objectPosition;
+      // starts on the source's box, cropped the same way, then grows to fit
+      placeAt(copy, from);
+      overlay.appendChild(copy);
+      document.body.appendChild(overlay);
+
+      img.parentNode.classList.add('is-zoomed');
+      zoom = { img: img, overlay: overlay, copy: copy };
+
+      // force the start position to paint before animating to the fit
+      copy.getBoundingClientRect();
+      overlay.classList.add('is-open');
+      placeAt(copy, to);
+
+      overlay.addEventListener('click', closeZoom);
+      document.addEventListener('keydown', onZoomKey);
+      window.addEventListener('scroll', closeZoom, { passive: true });
+      window.addEventListener('resize', closeZoom);
+    }
+
+    function closeZoom() {
+      if (!zoom || zoom.closing) return;
+      var z = zoom;
+      z.closing = true;
+      document.removeEventListener('keydown', onZoomKey);
+      window.removeEventListener('scroll', closeZoom);
+      window.removeEventListener('resize', closeZoom);
+
+      placeAt(z.copy, z.img.parentNode.getBoundingClientRect());
+      z.overlay.classList.remove('is-open');
+
+      var done = false;
+      function finish() {
+        if (done) return;
+        done = true;
+        z.img.parentNode.classList.remove('is-zoomed');
+        z.overlay.remove();
+        zoom = null;
+      }
+      z.copy.addEventListener('transitionend', function (e) {
+        if (e.propertyName === 'width') finish();
+      });
+      setTimeout(finish, 500);
+    }
+
+    function onZoomKey(e) {
+      if (e.key === 'Escape') closeZoom();
+    }
+
+    gallery.addEventListener('click', function (e) {
+      var wrap = e.target.closest('.gallery-img');
+      if (!wrap) return;
+      var img = wrap.querySelector('img');
+      if (img && img.complete && img.naturalWidth) openZoom(img);
+    });
+
     // ── Previous / next project ─────────────────
     var pager = document.getElementById('project-pager');
     var ARROW = '<img src="/image/Icons/Arrow.svg" alt="" class="pager-arrow" />';

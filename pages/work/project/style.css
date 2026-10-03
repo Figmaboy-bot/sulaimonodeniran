@@ -509,3 +509,45 @@ main.project-main {
   width: 0%;
   pointer-events: none;
 }
+/* ── Image zoom ────────────────────────────── */
+
+.gallery-img:has(img) {
+  cursor: zoom-in;
+}
+
+/* the source stays hidden while its copy is lifted out */
+.gallery-img.is-zoomed img {
+  visibility: hidden;
+}
+
+.img-zoom {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0);
+  cursor: zoom-out;
+  transition: background 0.35s ease;
+}
+
+.img-zoom.is-open {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.img-zoom-img {
+  position: fixed;
+  display: block;
+  max-width: none;
+  object-fit: cover;
+  object-position: center top;
+  transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    top 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .img-zoom,
+  .img-zoom-img {
+    transition-duration: 0.01s;
+  }
+}
