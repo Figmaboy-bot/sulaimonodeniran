@@ -290,16 +290,16 @@
       "meta": "Productivity / SaaS · 2026",
       "live_url": null,
       "coming_soon": false,
-      "cover_url": "/image/uploads/images/1791062812222_pfdj0.webp",
+      "cover_url": "/image/uploads/videos/1791312401608_lanrb.mp4",
       "gallery": [
         {
           "type": "full",
-          "src": "/image/uploads/images/1791062812222_pfdj0.webp",
-          "full": "/image/uploads/images/1791062813312_jjiil.webp",
-          "w": 1200,
-          "h": 998,
+          "src": "/image/uploads/videos/1791312401608_lanrb.mp4",
+          "w": null,
+          "h": null,
           "alt": "Scribe document editor with Ask Scribe AI on selected text",
-          "mediaType": "image"
+          "mediaType": "video",
+          "poster": "/image/uploads/images/1791312401966_gnm8x.webp"
         },
         {
           "type": "full",
@@ -816,15 +816,16 @@
       "meta": "AI / Productivity · 2026",
       "live_url": null,
       "coming_soon": false,
-      "cover_url": null,
+      "cover_url": "/image/uploads/videos/1791064169579_t2mpd.mp4",
       "gallery": [
         {
           "type": "full",
-          "src": "/image/uploads/videos/1790962423207_1yx1s.mp4",
+          "src": "/image/uploads/videos/1791064169579_t2mpd.mp4",
           "w": null,
           "h": null,
           "alt": "EchoYou inbox and AI assistant on a laptop",
-          "mediaType": "video"
+          "mediaType": "video",
+          "poster": "/image/uploads/images/1791064170023_3zaow.webp"
         },
         {
           "type": "pair",
@@ -1104,6 +1105,14 @@
               "body": "Designing EchoYou pushed me to think beyond the traditional email interface.\n\nThe key question throughout the project was:\n\n**What if your inbox could understand what needs to happen next?**\n\nThat led to an experience where emails aren't treated as isolated messages, but as potential **tasks, conversations, meetings, and actions**.\n\nThe design ultimately explores a future where AI handles the repetitive parts of communication while users remain in control of the decisions that matter."
             }
           ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/videos/1791310459479_u7s15.mp4",
+          "w": null,
+          "h": null,
+          "alt": "ui-camera-loop (2)",
+          "mediaType": "video"
         }
       ]
     },
