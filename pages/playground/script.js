@@ -65,8 +65,16 @@
         v.preload = 'none';
         v.setAttribute('aria-hidden', 'true');
         v.dataset.src = cdnUrl(item.media_url);
-        // the cover stays up until a frame is actually playing
-        v.addEventListener('playing', function () { v.classList.add('is-playing'); });
+        // a frame picked in admin as the cover is where playback starts
+        if (item.cover_time) v.dataset.start = Number(item.cover_time);
+        // the cover stays up until playback has reached the cover frame
+        v.addEventListener('timeupdate', function () {
+          if (!v.paused && !v.seeking && v.currentTime >= startAt(v) - 0.1) v.classList.add('is-playing');
+        });
+        // if the seek never lands, show the video anyway rather than a still
+        v.addEventListener('playing', function () {
+          setTimeout(function () { if (!v.paused) v.classList.add('is-playing'); }, 1500);
+        });
         card.querySelector('.pg-image').appendChild(v);
       }
 
@@ -86,9 +94,20 @@
   var lowData  = !!(conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '')));
   var viewObserver = null;
 
+  function startAt(v) { return parseFloat(v.dataset.start) || 0; }
+
+  // every play opens on the cover frame; not every browser honours '#t=',
+  // so the first one seeks once the metadata is in as well
   function play(v) {
-    if (!v.getAttribute('src')) { v.preload = 'auto'; v.src = v.dataset.src; }
-    else v.currentTime = 0;
+    if (!v.getAttribute('src')) {
+      v.preload = 'auto';
+      v.src = v.dataset.src + (startAt(v) ? '#t=' + startAt(v) : '');
+      v.addEventListener('loadedmetadata', function () {
+        if (Math.abs(v.currentTime - startAt(v)) > 0.1) v.currentTime = startAt(v);
+      }, { once: true });
+    } else {
+      v.currentTime = startAt(v);
+    }
     v.play().catch(function () {});
   }
 

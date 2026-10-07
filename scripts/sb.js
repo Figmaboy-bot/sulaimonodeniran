@@ -100,8 +100,8 @@ function sbFetchLive(table, params) {
 // never Supabase, so Supabase holds an older copy of them. Revalidating would
 // swap that stale copy over the published one, so projects skip it. The
 // carousel images now ship as optimised local files in the snapshot, so the
-// carousel skips it too.
-var SB_SNAPSHOT_ONLY = ['projects', 'carousel_images', 'carousel_settings'];
+// carousel skips it too, and so does the playground, now edited locally as well.
+var SB_SNAPSHOT_ONLY = ['projects', 'playground_items', 'carousel_images', 'carousel_settings'];
 
 function sbSelect(table, params, onRefresh) {
   var local = sbApplyParams(sbSnapshotTable(table), params);

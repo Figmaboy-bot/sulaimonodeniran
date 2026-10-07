@@ -8,8 +8,8 @@
 // renders from, and new uploads land in image/uploads/. The repo's usual
 // commit-and-push then ships both, so the live site updates without Supabase.
 //
-// Only projects go through here for now; the other admin tabs still talk to
-// Supabase. Supabase itself is left untouched — once it's back, bring it in
+// Projects and the playground go through here; the other admin tabs still
+// talk to Supabase. Supabase itself is left untouched — once it's back, bring it in
 // line with the snapshot before running `node scripts/snapshot.js`, which
 // would otherwise overwrite these edits with the database's older rows.
 //
@@ -26,7 +26,7 @@ const UPLOADS  = path.join(ROOT, 'image', 'uploads');
 const PORT     = Number(process.env.PORT) || 4173;
 const HOST     = '127.0.0.1';
 
-const TABLES = new Set(['projects']);
+const TABLES = new Set(['projects', 'playground_items']);
 // GitHub refuses files over 100 MB; stay well clear so a push never jams
 const MAX_UPLOAD = 50 * 1024 * 1024;
 

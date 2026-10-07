@@ -20,21 +20,21 @@ function showSnapshotBanner(reason) {
   el.className = 'snapshot-banner';
   el.setAttribute('role', 'status');
   document.body.insertBefore(el, document.body.firstChild);
-  // local mode keeps Projects saveable, so only the other tabs are stuck
+  // local mode keeps Projects and Playground saveable, so only the rest are stuck
   localSaveReady.then(function (local) {
     el.textContent = 'Supabase is unavailable' + (reason ? ' (' + reason + ')' : '') +
       ' — showing the site snapshot. ' +
-      (local ? 'Projects save locally; the other tabs can\'t save until Supabase is back.'
+      (local ? 'Projects and Playground save locally; the other tabs can\'t save until Supabase is back.'
              : 'Changes can\'t be saved until Supabase is back.');
   });
 }
 
 // ── Local save mode ──────────────────────────────────────────────────────────
-// Opened through `node scripts/admin-local.js`, the Projects tab reads and
-// writes data/snapshot.json (plus image/uploads/) via that server instead of
-// Supabase; the repo's commit-and-push then ships the edit. Anywhere else the
-// ping never answers and nothing changes.
-var LOCAL_TABLES = ['projects'];
+// Opened through `node scripts/admin-local.js`, the Projects and Playground
+// tabs read and write data/snapshot.json (plus image/uploads/) via that server
+// instead of Supabase; the repo's commit-and-push then ships the edit.
+// Anywhere else the ping never answers and nothing changes.
+var LOCAL_TABLES = ['projects', 'playground_items'];
 var localSaveReady = /^(localhost|127\.0\.0\.1)$/.test(location.hostname)
   ? fetch('/api/local/ping', { cache: 'no-store' })
       .then(function (r) { return r.ok; })
@@ -46,7 +46,7 @@ localSaveReady.then(function (on) {
   var el = document.createElement('div');
   el.className = 'snapshot-banner snapshot-banner--local';
   el.setAttribute('role', 'status');
-  el.textContent = 'Local mode — project saves go to data/snapshot.json in this folder and ship with the next push. Supabase is not updated.';
+  el.textContent = 'Local mode — Projects and Playground saves go to data/snapshot.json in this folder and ship with the next push. Supabase is not updated.';
   document.body.insertBefore(el, document.body.firstChild);
 });
 
@@ -78,6 +78,84 @@ async function selectOrSnapshot(table, query) {
   }
   return snapshotRows(table);
 }
+
+// ── Cover-frame picker ───────────────────────────────────────────────────────
+// Shared by the Projects and Playground tabs. Opens the modal on a video;
+// resolves with { file, width, height, time } for a picked frame, { file,
+// time: null } for an uploaded image instead, or null when cancelled. The
+// caller uploads the file wherever its tab keeps media.
+
+// Encodes the frame a video element is showing as a WebP (PNG on Safari).
+async function encodeVideoFrame(v) {
+  var scale  = Math.min(1, 2000 / v.videoWidth);
+  var canvas = document.createElement('canvas');
+  canvas.width  = Math.round(v.videoWidth * scale);
+  canvas.height = Math.round(v.videoHeight * scale);
+  canvas.getContext('2d').drawImage(v, 0, 0, canvas.width, canvas.height);
+  var blob = await new Promise(function (resolve) { canvas.toBlob(resolve, 'image/webp', 0.82); });
+  if (!blob) throw new Error('couldn’t encode the frame');
+  // Safari can't encode WebP and hands back a PNG instead
+  var ext = blob.type === 'image/webp' ? 'webp' : 'png';
+  return { file: new File([blob], 'poster.' + ext, { type: blob.type }), width: canvas.width, height: canvas.height };
+}
+
+var pickCoverFrame = (function () {
+  var modal  = document.getElementById('poster-modal');
+  var video  = document.getElementById('poster-video');
+  var apply  = document.getElementById('poster-apply-btn');
+  var settle = null;
+
+  function finish(result) {
+    modal.classList.remove('active');
+    video.pause();
+    video.removeAttribute('src');
+    video.load();
+    var done = settle;
+    settle = null;
+    if (done) done(result);
+  }
+
+  document.getElementById('poster-cancel-btn').addEventListener('click', function () { finish(null); });
+  modal.addEventListener('click', function (e) { if (e.target === this) finish(null); });
+
+  apply.addEventListener('click', async function () {
+    if (!settle) return;
+    if (video.readyState < 2) { apply.textContent = 'Still loading…'; setTimeout(function () { apply.textContent = 'Use this frame'; }, 1500); return; }
+    apply.disabled = true;
+    video.pause();
+    try {
+      var time  = Math.round(video.currentTime * 100) / 100;
+      var frame = await encodeVideoFrame(video);
+      frame.time = time;
+      finish(frame);
+    } catch (e) {
+      alert('Couldn’t capture the frame: ' + e.message);
+    }
+    apply.disabled = false;
+  });
+
+  document.getElementById('poster-upload-btn').addEventListener('click', function () {
+    if (!settle) return;
+    var picker = document.createElement('input');
+    picker.type   = 'file';
+    picker.accept = 'image/*';
+    picker.addEventListener('change', function () {
+      var file = picker.files && picker.files[0];
+      if (file) finish({ file: file, time: null });
+    });
+    picker.click();
+  });
+
+  return function (src, time) {
+    if (settle) finish(null);
+    return new Promise(function (resolve) {
+      settle = resolve;
+      video.src = cdnUrl(src);
+      if (time) video.currentTime = time;
+      modal.classList.add('active');
+    });
+  };
+})();
 
 // ── Image compression ────────────────────────────────────────────────────────
 // Uploads used to carry the raw file straight from the file picker — a single
@@ -938,89 +1016,29 @@ async function compressImage(file, opts) {
 
   // Encodes the frame a video element is showing and uploads it as a poster.
   async function uploadVideoFrame(v) {
-    var scale  = Math.min(1, 2000 / v.videoWidth);
-    var canvas = document.createElement('canvas');
-    canvas.width  = Math.round(v.videoWidth * scale);
-    canvas.height = Math.round(v.videoHeight * scale);
-    canvas.getContext('2d').drawImage(v, 0, 0, canvas.width, canvas.height);
-    var blob = await new Promise(function (resolve) { canvas.toBlob(resolve, 'image/webp', 0.82); });
-    if (!blob) throw new Error('couldn’t encode the frame');
-    // Safari can't encode WebP and hands back a PNG instead
-    var ext = blob.type === 'image/webp' ? 'webp' : 'png';
-    var up  = await uploadBlob(new File([blob], 'poster.' + ext, { type: blob.type }), 'images', null, canvas.width, canvas.height);
-    return up.url;
+    var f = await encodeVideoFrame(v);
+    return (await uploadBlob(f.file, 'images', null, f.width, f.height)).url;
   }
 
-  // Cover-frame picker: scrub the video to the frame to show before it plays,
-  // or upload a separate image. Either becomes the item's poster; a picked
-  // frame also records its time, so playback starts on that frame.
-  var posterTarget = null;
-  var posterModal  = document.getElementById('poster-modal');
-  var posterVideo  = document.getElementById('poster-video');
-
-  function openPosterModal(item) {
-    posterTarget = item;
-    posterVideo.src = item.src;
-    if (item.posterTime) posterVideo.currentTime = item.posterTime;
-    posterModal.classList.add('active');
-  }
-
-  function closePosterModal() {
-    posterModal.classList.remove('active');
-    posterVideo.pause();
-    posterVideo.removeAttribute('src');
-    posterVideo.load();
-    posterTarget = null;
-  }
-
-  function applyPoster(item, url, time) {
-    item.poster = url;
-    item.posterTime = time || null;
-    renderGalleryGrid();
-    toast('Cover frame set ✓ — save to publish');
-  }
-
-  document.getElementById('poster-cancel-btn').addEventListener('click', closePosterModal);
-  posterModal.addEventListener('click', function (e) { if (e.target === this) closePosterModal(); });
-
-  document.getElementById('poster-apply-btn').addEventListener('click', async function () {
-    var item = posterTarget;
-    if (!item) return;
-    if (posterVideo.readyState < 2) { toast('The video is still loading'); return; }
-    var btn = this;
-    btn.disabled = true;
-    posterVideo.pause();
-    toast('Saving cover frame…');
+  // Cover-frame picker for a gallery video. A picked frame becomes the poster
+  // and records its time, so playback starts on that frame; an uploaded
+  // image becomes the poster alone.
+  async function openPosterModal(item) {
+    var pick = await pickCoverFrame(item.src, item.posterTime);
+    if (!pick) return;
+    toast(pick.time != null ? 'Saving cover frame…' : 'Uploading cover image…');
     try {
-      var time = Math.round(posterVideo.currentTime * 100) / 100;
-      var url  = await uploadVideoFrame(posterVideo);
-      closePosterModal();
-      applyPoster(item, url, time);
+      var url = pick.time != null
+        ? (await uploadBlob(pick.file, 'images', null, pick.width, pick.height)).url
+        : (await uploadFile(pick.file, 'images', 'gallery-upload-progress')).url;
+      item.poster     = url;
+      item.posterTime = pick.time || null;
+      renderGalleryGrid();
+      toast('Cover frame set ✓ — save to publish');
     } catch (e) {
-      toast('Couldn’t save the frame: ' + e.message);
+      toast('Couldn’t save the cover: ' + e.message);
     }
-    btn.disabled = false;
-  });
-
-  document.getElementById('poster-upload-btn').addEventListener('click', function () {
-    var item = posterTarget;
-    if (!item) return;
-    var picker = document.createElement('input');
-    picker.type   = 'file';
-    picker.accept = 'image/*';
-    picker.addEventListener('change', async function () {
-      var file = picker.files && picker.files[0];
-      if (!file) return;
-      closePosterModal();
-      toast('Uploading cover image…');
-      try {
-        applyPoster(item, (await uploadFile(file, 'images', 'gallery-upload-progress')).url);
-      } catch (e) {
-        toast('Upload failed: ' + e.message);
-      }
-    });
-    picker.click();
-  });
+  }
 
   // ── File upload ───────────────────────────────
   var MAX_FILE_BYTES = 100 * 1024 * 1024; // 100 MB
@@ -1270,11 +1288,15 @@ async function compressImage(file, opts) {
     return uploadBlob((await compressImage(file)).file, folder, progressId);
   }
 
-  function uploadBlob(file, folder, progressId) {
+  async function uploadBlob(file, folder, progressId) {
+    var local = await localSaveReady;
     return new Promise(function (resolve, reject) {
       var ext  = file.name.split('.').pop().toLowerCase();
       var path = folder + '/' + Date.now() + '_' + Math.random().toString(36).slice(2, 7) + '.' + ext;
-      var endpoint = SUPABASE_URL + '/storage/v1/object/' + BUCKET + '/' + path;
+      // local mode lands the file in image/uploads/playground-<folder>/
+      var endpoint = local
+        ? '/api/local/upload?folder=' + encodeURIComponent('playground-' + folder) + '&ext=' + encodeURIComponent(ext)
+        : SUPABASE_URL + '/storage/v1/object/' + BUCKET + '/' + path;
 
       var bar  = progressId ? document.getElementById(progressId) : null;
       var fill = bar ? bar.querySelector('.upload-progress-fill') : null;
@@ -1287,10 +1309,12 @@ async function compressImage(file, opts) {
 
       var xhr = new XMLHttpRequest();
       xhr.open('POST', endpoint);
-      xhr.setRequestHeader('apikey', SUPABASE_ANON_KEY);
-      xhr.setRequestHeader('Authorization', 'Bearer ' + SUPABASE_ANON_KEY);
+      if (!local) {
+        xhr.setRequestHeader('apikey', SUPABASE_ANON_KEY);
+        xhr.setRequestHeader('Authorization', 'Bearer ' + SUPABASE_ANON_KEY);
+        xhr.setRequestHeader('cache-control', 'max-age=31536000, immutable');
+      }
       xhr.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
-      xhr.setRequestHeader('cache-control', 'max-age=31536000, immutable');
 
       xhr.upload.addEventListener('progress', function (e) {
         if (!e.lengthComputable) return;
@@ -1302,11 +1326,13 @@ async function compressImage(file, opts) {
       xhr.addEventListener('load', function () {
         if (bar) bar.classList.remove('active');
         if (xhr.status >= 200 && xhr.status < 300) {
-          resolve(SUPABASE_URL + '/storage/v1/object/public/' + BUCKET + '/' + path);
+          var localUrl = null;
+          if (local) { try { localUrl = JSON.parse(xhr.responseText).url; } catch (_) {} }
+          resolve(localUrl || SUPABASE_URL + '/storage/v1/object/public/' + BUCKET + '/' + path);
         } else {
           var msg = 'Upload failed (' + xhr.status + ')';
           try { var body = JSON.parse(xhr.responseText); msg = body.error || body.message || msg; } catch (_) {}
-          if (xhr.status === 413 || (msg && msg.toLowerCase().includes('size'))) {
+          if (!local && (xhr.status === 413 || (msg && msg.toLowerCase().includes('size')))) {
             msg = 'File too large for the bucket — increase the max file size in your Supabase dashboard (Storage → Buckets → Edit)';
           }
           reject(new Error(msg));
@@ -1324,11 +1350,23 @@ async function compressImage(file, opts) {
 
   async function deleteFile(url) {
     if (!url) return;
+    if (await localSaveReady) { await localApi('remove-file', { url: url }); return; }
     try {
       var marker = '/object/public/' + BUCKET + '/';
       var i = url.indexOf(marker);
       if (i !== -1) await _sb.storage.from(BUCKET).remove([decodeURIComponent(url.slice(i + marker.length))]);
     } catch (e) {}
+  }
+
+  // Playground writes go through these so local mode can swap the destination.
+  async function pgUpsert(rows) {
+    if (await localSaveReady) return localApi('upsert', { table: 'playground_items', rows: [].concat(rows) });
+    return _sb.from('playground_items').upsert(rows);
+  }
+
+  async function pgDelete(id) {
+    if (await localSaveReady) return localApi('delete', { table: 'playground_items', id: id });
+    return _sb.from('playground_items').delete().eq('id', id);
   }
 
   // ── Tab switching ───────────────────────────────────────────────────────────
@@ -1402,7 +1440,7 @@ async function compressImage(file, opts) {
     wrap.innerHTML = '';
     if (!item || !item.cover_url) return;
     var img = document.createElement('img');
-    img.src = item.cover_url; img.className = 'pg-media-thumb';
+    img.src = cdnUrl(item.cover_url); img.className = 'pg-media-thumb';
     wrap.appendChild(img);
     var btn = document.createElement('button');
     btn.className = 'btn-ghost btn-sm'; btn.textContent = 'Remove cover';
@@ -1411,10 +1449,28 @@ async function compressImage(file, opts) {
       var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
       if (idx === -1) return;
       await deleteFile(pgState.items[idx].cover_url);
-      pgState.items[idx].cover_url = null;
+      pgState.items[idx].cover_url  = null;
+      pgState.items[idx].cover_time = null;
       renderPgCoverPreview(pgState.items[idx]);
     });
     wrap.appendChild(btn);
+  }
+
+  // A frame picked from the item's video becomes its card cover, and the
+  // card's hover playback starts on that frame.
+  async function choosePgCoverFrame(item) {
+    var pick = await pickCoverFrame(item.media_url, item.cover_time);
+    if (!pick) return;
+    pgToast(pick.time != null ? 'Saving cover frame…' : 'Uploading cover image…');
+    try {
+      // the old cover stays on disk: the saved item still points at it until Save
+      item.cover_url  = pick.time != null ? await uploadBlob(pick.file, 'covers') : await uploadFile(pick.file, 'covers');
+      item.cover_time = pick.time;
+      if (item.id === pgState.activeId) renderPgCoverPreview(item);
+      pgToast('Cover set ✓ — save to publish');
+    } catch (e) {
+      pgToast('Couldn’t save the cover: ' + e.message);
+    }
   }
 
   function renderPgMediaPreview(item) {
@@ -1424,13 +1480,20 @@ async function compressImage(file, opts) {
     var el;
     if (item.media_type === 'video') {
       el = document.createElement('video');
-      el.controls = true; el.muted = true; el.src = item.media_url;
+      el.controls = true; el.muted = true; el.src = cdnUrl(item.media_url);
     } else {
       el = document.createElement('img');
-      el.src = item.media_url;
+      el.src = cdnUrl(item.media_url);
     }
     el.className = 'pg-media-thumb';
     wrap.appendChild(el);
+    if (item.media_type === 'video') {
+      var frameBtn = document.createElement('button');
+      frameBtn.className = 'btn-ghost btn-sm'; frameBtn.textContent = 'Choose cover frame';
+      frameBtn.style.margin = '10px 8px 0 0';
+      frameBtn.addEventListener('click', function () { choosePgCoverFrame(item); });
+      wrap.appendChild(frameBtn);
+    }
     var btn = document.createElement('button');
     btn.className = 'btn-ghost btn-sm'; btn.textContent = 'Remove media';
     btn.style.marginTop = '10px';
@@ -1440,6 +1503,7 @@ async function compressImage(file, opts) {
       await deleteFile(pgState.items[idx].media_url);
       pgState.items[idx].media_url  = null;
       pgState.items[idx].media_type = null;
+      pgState.items[idx].cover_time = null;
       renderPgMediaPreview(pgState.items[idx]);
     });
     wrap.appendChild(btn);
@@ -1458,7 +1522,7 @@ async function compressImage(file, opts) {
       id: pgUid(), title: titleFromFilename(filename), description: '', live_url: null,
       media_url: null, media_type: null, cover_url: null, sort_order: pgState.items.length
     }, fields);
-    var { error } = await _sb.from('playground_items').upsert(item);
+    var { error } = await pgUpsert(item);
     if (error) throw new Error(error.message);
     pgState.items.push(item);
     return item;
@@ -1480,7 +1544,8 @@ async function compressImage(file, opts) {
         pgToast(files.length > 1 ? 'Uploading ' + (i + 1) + ' of ' + files.length + '…' : 'Uploading…');
         var url = await uploadFile(files[i], 'covers');
         if (i === 0 && target !== -1) {
-          pgState.items[target].cover_url = url;
+          pgState.items[target].cover_url  = url;
+          pgState.items[target].cover_time = null;
           renderPgCoverPreview(pgState.items[target]);
         } else {
           await createPgItemFrom({ cover_url: url }, files[i].name);
@@ -1511,6 +1576,7 @@ async function compressImage(file, opts) {
         if (i === 0 && target !== -1) {
           pgState.items[target].media_url  = url;
           pgState.items[target].media_type = kind;
+          pgState.items[target].cover_time = null;
           renderPgMediaPreview(pgState.items[target]);
         } else {
           await createPgItemFrom({ media_url: url, media_type: kind }, file.name);
@@ -1536,7 +1602,7 @@ async function compressImage(file, opts) {
     pgState.items[idx].live_url    = document.getElementById('pg-f-live-url').value.trim() || null;
     pgState.items[idx].sort_order  = idx;
     document.getElementById('pg-editor-heading').textContent = title;
-    var { error } = await _sb.from('playground_items').upsert(pgState.items[idx]);
+    var { error } = await pgUpsert(pgState.items[idx]);
     if (error) { pgToast('Save failed: ' + error.message); return; }
     renderPgList();
     pgToast('Saved ✓');
@@ -1547,7 +1613,7 @@ async function compressImage(file, opts) {
     var item = pgState.items.find(function (x) { return x.id === pgState.activeId; });
     if (!confirm('Delete "' + (item && item.title ? item.title : 'this item') + '"?')) return;
     if (item) { await deleteFile(item.cover_url); await deleteFile(item.media_url); }
-    var { error } = await _sb.from('playground_items').delete().eq('id', pgState.activeId);
+    var { error } = await pgDelete(pgState.activeId);
     if (error) { pgToast('Delete failed: ' + error.message); return; }
     pgState.items    = pgState.items.filter(function (x) { return x.id !== pgState.activeId; });
     pgState.activeId = null;
