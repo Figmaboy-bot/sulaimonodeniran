@@ -54,7 +54,69 @@
         card.querySelector('.pg-card-thumb').src = cdnUrl(item.cover_url);
       }
 
+      // A video item plays in the card on hover, over its cover image. No src
+      // until then, so the grid itself downloads only the covers.
+      if (item.media_type === 'video' && item.media_url) {
+        var v = document.createElement('video');
+        v.className = 'pg-card-video';
+        v.muted = true;
+        v.loop  = true;
+        v.playsInline = true;
+        v.preload = 'none';
+        v.setAttribute('aria-hidden', 'true');
+        v.dataset.src = cdnUrl(item.media_url);
+        // the cover stays up until a frame is actually playing
+        v.addEventListener('playing', function () { v.classList.add('is-playing'); });
+        card.querySelector('.pg-image').appendChild(v);
+      }
+
       grid.appendChild(card);
+    });
+    wireVideos();
+  }
+
+  // ── Card videos ──────────────────────────────
+  // Pointer devices play a card's video while it's hovered. Touch screens
+  // have no hover, so they play the card that's mostly on screen, unless the
+  // visitor asked for less motion or less data, in which case the cover
+  // stays put. Same rules as the home page's cover videos.
+  var canHover = window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var calm     = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var conn     = navigator.connection;
+  var lowData  = !!(conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '')));
+  var viewObserver = null;
+
+  function play(v) {
+    if (!v.getAttribute('src')) { v.preload = 'auto'; v.src = v.dataset.src; }
+    else v.currentTime = 0;
+    v.play().catch(function () {});
+  }
+
+  function stop(v) {
+    v.pause();
+    v.classList.remove('is-playing');
+  }
+
+  function wireVideos() {
+    if (viewObserver) viewObserver.disconnect();
+    var videos = grid.querySelectorAll('video.pg-card-video');
+    if (!videos.length) return;
+
+    if (!canHover) {
+      if (calm || lowData || !('IntersectionObserver' in window)) return;
+      viewObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) play(e.target); else stop(e.target);
+        });
+      }, { threshold: 0.6 });
+      Array.prototype.forEach.call(videos, function (v) { viewObserver.observe(v); });
+      return;
+    }
+
+    Array.prototype.forEach.call(videos, function (v) {
+      var card = v.closest('.pg-item');
+      card.addEventListener('mouseenter', function () { play(v); });
+      card.addEventListener('mouseleave', function () { stop(v); });
     });
   }
 
