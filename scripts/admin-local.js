@@ -167,10 +167,39 @@ function serveStatic(req, res, url) {
   }
   if (!fs.existsSync(file)) { res.writeHead(404); res.end('Not found'); return; }
 
+  const type = TYPES[path.extname(file).toLowerCase()] || 'application/octet-stream';
+  const size = fs.statSync(file).size;
+
+  // Byte ranges, as production serves them: without them a browser can't
+  // seek a video it hasn't fully downloaded (e.g. to a cover frame).
+  const range = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range || '');
+  if (range && (range[1] || range[2])) {
+    let start = range[1] ? Number(range[1]) : Math.max(0, size - Number(range[2]));
+    let end   = range[1] && range[2] ? Math.min(Number(range[2]), size - 1) : size - 1;
+    if (start >= size || start > end) {
+      res.writeHead(416, { 'Content-Range': 'bytes */' + size });
+      res.end();
+      return;
+    }
+    res.writeHead(206, {
+      'Content-Type': type,
+      'Cache-Control': 'no-store',
+      'Accept-Ranges': 'bytes',
+      'Content-Range': 'bytes ' + start + '-' + end + '/' + size,
+      'Content-Length': end - start + 1
+    });
+    if (req.method === 'HEAD') { res.end(); return; }
+    fs.createReadStream(file, { start, end }).pipe(res);
+    return;
+  }
+
   res.writeHead(200, {
-    'Content-Type': TYPES[path.extname(file).toLowerCase()] || 'application/octet-stream',
-    'Cache-Control': 'no-store'
+    'Content-Type': type,
+    'Cache-Control': 'no-store',
+    'Accept-Ranges': 'bytes',
+    'Content-Length': size
   });
+  if (req.method === 'HEAD') { res.end(); return; }
   fs.createReadStream(file).pipe(res);
 }
 

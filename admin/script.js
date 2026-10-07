@@ -350,10 +350,10 @@ async function compressImage(file, opts) {
     var flat = [];
     (dbGallery || []).forEach(function (section) {
       if (section.type === 'full') {
-        flat.push({ src: section.src || null, full: section.full || null, w: section.w || null, h: section.h || null, alt: section.alt || '', layout: 'full', mediaType: section.mediaType || 'image', poster: section.poster || null });
+        flat.push({ src: section.src || null, full: section.full || null, w: section.w || null, h: section.h || null, alt: section.alt || '', layout: 'full', mediaType: section.mediaType || 'image', poster: section.poster || null, posterTime: section.posterTime || null });
       } else if (section.type === 'pair') {
         (section.images || []).forEach(function (img) {
-          flat.push({ src: img.src || null, full: img.full || null, w: img.w || null, h: img.h || null, alt: img.alt || '', layout: 'half', mediaType: img.mediaType || 'image', poster: img.poster || null });
+          flat.push({ src: img.src || null, full: img.full || null, w: img.w || null, h: img.h || null, alt: img.alt || '', layout: 'half', mediaType: img.mediaType || 'image', poster: img.poster || null, posterTime: img.posterTime || null });
         });
       } else if (section.type === 'text') {
         flat.push({ kind: 'text', columns: textColumns(section.columns) });
@@ -385,13 +385,13 @@ async function compressImage(file, opts) {
       } else if (item.layout === 'half' && state.gallery[i + 1] && state.gallery[i + 1].layout === 'half') {
         var next = state.gallery[i + 1];
         result.push({ type: 'pair', images: [
-          { src: item.src, full: item.full || undefined, w: item.w || null, h: item.h || null, alt: item.alt, mediaType: item.mediaType || 'image', poster: item.poster || undefined },
-          { src: next.src, full: next.full || undefined, w: next.w || null, h: next.h || null, alt: next.alt, mediaType: next.mediaType || 'image', poster: next.poster || undefined }
+          { src: item.src, full: item.full || undefined, w: item.w || null, h: item.h || null, alt: item.alt, mediaType: item.mediaType || 'image', poster: item.poster || undefined, posterTime: item.posterTime || undefined },
+          { src: next.src, full: next.full || undefined, w: next.w || null, h: next.h || null, alt: next.alt, mediaType: next.mediaType || 'image', poster: next.poster || undefined, posterTime: next.posterTime || undefined }
         ]});
         i += 2;
       } else {
         // poster only exists on videos; undefined keeps it out of the JSON
-        result.push({ type: 'full', src: item.src, full: item.full || undefined, w: item.w || null, h: item.h || null, alt: item.alt, mediaType: item.mediaType || 'image', poster: item.poster || undefined });
+        result.push({ type: 'full', src: item.src, full: item.full || undefined, w: item.w || null, h: item.h || null, alt: item.alt, mediaType: item.mediaType || 'image', poster: item.poster || undefined, posterTime: item.posterTime || undefined });
         i++;
       }
     }
@@ -952,7 +952,8 @@ async function compressImage(file, opts) {
   }
 
   // Cover-frame picker: scrub the video to the frame to show before it plays,
-  // or upload a separate image. Either becomes the item's poster.
+  // or upload a separate image. Either becomes the item's poster; a picked
+  // frame also records its time, so playback starts on that frame.
   var posterTarget = null;
   var posterModal  = document.getElementById('poster-modal');
   var posterVideo  = document.getElementById('poster-video');
@@ -960,6 +961,7 @@ async function compressImage(file, opts) {
   function openPosterModal(item) {
     posterTarget = item;
     posterVideo.src = item.src;
+    if (item.posterTime) posterVideo.currentTime = item.posterTime;
     posterModal.classList.add('active');
   }
 
@@ -971,8 +973,9 @@ async function compressImage(file, opts) {
     posterTarget = null;
   }
 
-  function applyPoster(item, url) {
+  function applyPoster(item, url, time) {
     item.poster = url;
+    item.posterTime = time || null;
     renderGalleryGrid();
     toast('Cover frame set ✓ — save to publish');
   }
@@ -989,9 +992,10 @@ async function compressImage(file, opts) {
     posterVideo.pause();
     toast('Saving cover frame…');
     try {
-      var url = await uploadVideoFrame(posterVideo);
+      var time = Math.round(posterVideo.currentTime * 100) / 100;
+      var url  = await uploadVideoFrame(posterVideo);
       closePosterModal();
-      applyPoster(item, url);
+      applyPoster(item, url, time);
     } catch (e) {
       toast('Couldn’t save the frame: ' + e.message);
     }
@@ -1065,6 +1069,7 @@ async function compressImage(file, opts) {
       item.h         = up.h;
       item.mediaType = isVideo ? 'video' : 'image';
       item.poster    = null;
+      item.posterTime = null;
       var note = 'Replaced ✓ — save to publish';
       if (wasCover) {
         state.activeCoverUrl = up.url;

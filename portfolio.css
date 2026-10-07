@@ -321,6 +321,17 @@ main {
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.case-card-img .case-card-poster {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s;
+}
+
+.case-card-img .case-card-poster.is-done {
+  opacity: 0;
+}
+
 .case-card:hover .case-card-img img,
 .case-card:hover .case-card-img video {
   transform: scale(1.03);

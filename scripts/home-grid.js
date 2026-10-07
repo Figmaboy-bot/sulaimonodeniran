@@ -71,8 +71,16 @@
     // No src until wireVideos decides to fetch it: the card paints from the
     // poster alone, and the video only downloads on hover (or in view on touch).
     var poster = item && item.poster ? ' poster="' + esc(cdnUrl(item.poster)) + '"' : '';
+    // a frame picked in admin as the cover is also where playback starts
+    var start  = item && item.posterTime ? ' data-start="' + Number(item.posterTime) + '"' : '';
+    // While the video loads, the browser paints its first frame, not the
+    // cover frame; this copy of the poster sits on top until playback has
+    // actually reached the cover frame.
+    var cover  = start && item.poster
+      ? '<img class="case-card-poster" src="' + esc(cdnUrl(item.poster)) + '" alt="" aria-hidden="true" decoding="async" />'
+      : '';
     return '<video class="case-card-video" muted loop playsinline preload="none" aria-label="' + alt + '"' +
-      ' data-src="' + esc(cdnUrl(src)) + '"' + poster + '></video>';
+      ' data-src="' + esc(cdnUrl(src)) + '"' + poster + start + '></video>' + cover;
   }
 
   function card(p, size, index) {
@@ -116,15 +124,47 @@
   var viewObserver = null;
   var frameObserver = null;
 
+  function startAt(v) { return parseFloat(v.dataset.start) || 0; }
+
   function fetchVideo(v, firstFrameOnly) {
     if (v.getAttribute('src')) return;
-    // '#t=0.001' makes Safari paint a frame for a poster-less video too
+    // '#t=0.001' makes Safari paint a frame for a poster-less video too; a
+    // picked cover frame opens playback on that frame instead
     v.preload = firstFrameOnly ? 'metadata' : 'auto';
-    v.src = v.dataset.src + (firstFrameOnly ? '#t=0.001' : '');
+    v.src = v.dataset.src + (firstFrameOnly ? '#t=0.001' : startAt(v) ? '#t=' + startAt(v) : '');
+    if (!firstFrameOnly && startAt(v)) holdCover(v);
   }
 
-  function play(v)  { fetchVideo(v, false); v.play().catch(function () {}); }
+  // Keeps the poster copy up until playback is at the cover frame. Not every
+  // browser honours '#t=', so the seek is made here too.
+  function holdCover(v) {
+    var start = startAt(v);
+    var cover = v.parentNode.querySelector('.case-card-poster');
+    v.addEventListener('loadedmetadata', function () {
+      if (Math.abs(v.currentTime - start) > 0.1) v.currentTime = start;
+    }, { once: true });
+    if (!cover) return;
+    function reveal() {
+      cover.classList.add('is-done');
+      v.removeEventListener('timeupdate', reached);
+    }
+    function reached() {
+      if (!v.seeking && v.currentTime >= start - 0.1) reveal();
+    }
+    v.addEventListener('timeupdate', reached);
+    // if the seek never lands, show the video anyway rather than a still
+    v.addEventListener('playing', function () { setTimeout(reveal, 1500); }, { once: true });
+  }
+
+  // every play opens on the cover frame, not wherever the last one stopped
+  function play(v) {
+    if (v.getAttribute('src')) v.currentTime = startAt(v);
+    else fetchVideo(v, false);
+    v.play().catch(function () {});
+  }
   function stop(v)  { v.pause(); }
+  // back to the cover frame, so the card matches its poster again
+  function rewind(v) { stop(v); if (v.getAttribute('src')) v.currentTime = startAt(v); }
 
   function wireVideos() {
     if (viewObserver)  viewObserver.disconnect();
@@ -145,7 +185,7 @@
     if (!canHover && !calm && !lowData) {
       viewObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
-          if (e.isIntersecting) play(e.target); else stop(e.target);
+          if (e.isIntersecting) play(e.target); else rewind(e.target);
         });
       }, { threshold: 0.6 });
     }
@@ -157,8 +197,8 @@
       var link = v.closest('.case-card');
       link.addEventListener('mouseenter', function () { play(v); });
       link.addEventListener('focus',      function () { play(v); });
-      link.addEventListener('mouseleave', function () { stop(v); v.currentTime = 0; });
-      link.addEventListener('blur',       function () { stop(v); v.currentTime = 0; });
+      link.addEventListener('mouseleave', function () { rewind(v); });
+      link.addEventListener('blur',       function () { rewind(v); });
     });
   }
 
