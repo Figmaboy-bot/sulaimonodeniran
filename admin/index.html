@@ -473,6 +473,24 @@
     </div>
   </div>
 
+  <!-- Video cover-frame picker -->
+  <div id="poster-modal" class="crop-modal" role="dialog" aria-modal="true">
+    <div class="crop-modal-inner">
+      <div class="crop-modal-header">
+        <h3 class="crop-modal-title">Choose Cover Frame</h3>
+        <p class="crop-modal-hint">Scrub to the frame you want as the video's cover, or upload an image instead.</p>
+      </div>
+      <div class="crop-canvas-wrap">
+        <video id="poster-video" class="poster-video" muted playsinline controls preload="auto" crossorigin="anonymous"></video>
+      </div>
+      <div class="crop-modal-footer">
+        <button id="poster-upload-btn" class="btn-ghost">Upload image…</button>
+        <button id="poster-cancel-btn" class="btn-ghost">Cancel</button>
+        <button id="poster-apply-btn" class="btn-primary">Use this frame</button>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="/supabase-config.js"></script>
   <!-- the public pages' committed copy of the tables: what the admin shows

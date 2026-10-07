@@ -1536,6 +1536,12 @@ body {
   cursor: grabbing;
 }
 
+.poster-video {
+  display: block;
+  max-width: 100%;
+  max-height: 60vh;
+}
+
 .crop-modal-footer {
   display: flex;
   align-items: center;

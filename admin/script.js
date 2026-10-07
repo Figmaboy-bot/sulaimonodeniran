@@ -390,7 +390,7 @@ async function compressImage(file, opts) {
         ]});
         i += 2;
       } else {
-        // poster only exists on starred videos; undefined keeps it out of the JSON
+        // poster only exists on videos; undefined keeps it out of the JSON
         result.push({ type: 'full', src: item.src, full: item.full || undefined, w: item.w || null, h: item.h || null, alt: item.alt, mediaType: item.mediaType || 'image', poster: item.poster || undefined });
         i++;
       }
@@ -792,6 +792,7 @@ async function compressImage(file, opts) {
           mediaHtml +
           '<div class="gcard-overlay">' +
             coverBtnHtml +
+            (isVideo ? '<button type="button" class="gcard-replace-btn gcard-poster-btn" title="Choose the frame shown before the video plays">Cover frame</button>' : '') +
             '<button type="button" class="gcard-replace-btn" title="Replace with a new file">Replace</button>' +
             '<button class="gcard-remove-btn" title="Remove">✕</button>' +
           '</div>' +
@@ -811,7 +812,16 @@ async function compressImage(file, opts) {
       wireCardControls(card, idx);
 
       var mediaEl = card.querySelector('.gcard-img');
+      if (isVideo && item.poster) mediaEl.poster = item.poster;
       if (item.src) mediaEl.src = item.src;
+
+      var posterBtn = card.querySelector('.gcard-poster-btn');
+      if (posterBtn) {
+        posterBtn.addEventListener('click', function () {
+          if (!item.src) { toast('Upload this file first'); return; }
+          openPosterModal(item);
+        });
+      }
 
       var coverBtn = card.querySelector('.gcard-cover-btn');
       if (coverBtn) {
@@ -923,6 +933,11 @@ async function compressImage(file, opts) {
       v.play().catch(resolve);
     }));
     v.pause();
+    return uploadVideoFrame(v);
+  }
+
+  // Encodes the frame a video element is showing and uploads it as a poster.
+  async function uploadVideoFrame(v) {
     var scale  = Math.min(1, 2000 / v.videoWidth);
     var canvas = document.createElement('canvas');
     canvas.width  = Math.round(v.videoWidth * scale);
@@ -935,6 +950,73 @@ async function compressImage(file, opts) {
     var up  = await uploadBlob(new File([blob], 'poster.' + ext, { type: blob.type }), 'images', null, canvas.width, canvas.height);
     return up.url;
   }
+
+  // Cover-frame picker: scrub the video to the frame to show before it plays,
+  // or upload a separate image. Either becomes the item's poster.
+  var posterTarget = null;
+  var posterModal  = document.getElementById('poster-modal');
+  var posterVideo  = document.getElementById('poster-video');
+
+  function openPosterModal(item) {
+    posterTarget = item;
+    posterVideo.src = item.src;
+    posterModal.classList.add('active');
+  }
+
+  function closePosterModal() {
+    posterModal.classList.remove('active');
+    posterVideo.pause();
+    posterVideo.removeAttribute('src');
+    posterVideo.load();
+    posterTarget = null;
+  }
+
+  function applyPoster(item, url) {
+    item.poster = url;
+    renderGalleryGrid();
+    toast('Cover frame set ✓ — save to publish');
+  }
+
+  document.getElementById('poster-cancel-btn').addEventListener('click', closePosterModal);
+  posterModal.addEventListener('click', function (e) { if (e.target === this) closePosterModal(); });
+
+  document.getElementById('poster-apply-btn').addEventListener('click', async function () {
+    var item = posterTarget;
+    if (!item) return;
+    if (posterVideo.readyState < 2) { toast('The video is still loading'); return; }
+    var btn = this;
+    btn.disabled = true;
+    posterVideo.pause();
+    toast('Saving cover frame…');
+    try {
+      var url = await uploadVideoFrame(posterVideo);
+      closePosterModal();
+      applyPoster(item, url);
+    } catch (e) {
+      toast('Couldn’t save the frame: ' + e.message);
+    }
+    btn.disabled = false;
+  });
+
+  document.getElementById('poster-upload-btn').addEventListener('click', function () {
+    var item = posterTarget;
+    if (!item) return;
+    var picker = document.createElement('input');
+    picker.type   = 'file';
+    picker.accept = 'image/*';
+    picker.addEventListener('change', async function () {
+      var file = picker.files && picker.files[0];
+      if (!file) return;
+      closePosterModal();
+      toast('Uploading cover image…');
+      try {
+        applyPoster(item, (await uploadFile(file, 'images', 'gallery-upload-progress')).url);
+      } catch (e) {
+        toast('Upload failed: ' + e.message);
+      }
+    });
+    picker.click();
+  });
 
   // ── File upload ───────────────────────────────
   var MAX_FILE_BYTES = 100 * 1024 * 1024; // 100 MB
