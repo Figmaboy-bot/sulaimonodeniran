@@ -6,16 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Playground — Sulaimon Odeniran</title>
   <meta name="description" content="Experiments, explorations and side projects by Sulaimon Odeniran (Ola).">
-  <link rel="canonical" href="https://www.sulaimonodeniran.com/pages/playground/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Sulaimon Odeniran" />
-  <meta property="og:url" content="https://www.sulaimonodeniran.com/pages/playground/" />
   <meta property="og:title" content="Playground — Sulaimon Odeniran" />
   <meta property="og:description" content="Experiments, explorations and side projects by Sulaimon Odeniran (Ola)." />
   <meta property="og:image" content="https://www.sulaimonodeniran.com/image/og-cover-v2.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Playground — Sulaimon Odeniran" />
-  <meta name="twitter:description" content="Experiments, explorations and side projects by Sulaimon Odeniran (Ola)." />
   <meta name="twitter:image" content="https://www.sulaimonodeniran.com/image/og-cover-v2.jpg" />
   <meta name="theme-color" content="#1a1a1a">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -23,28 +19,52 @@
   <link rel="icon" type="image/png" sizes="144x144" href="/image/favicon-144.png">
   <link rel="apple-touch-icon" href="/image/apple-touch-icon.png">
   <script>!function(){var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');if(t==='light'){document.documentElement.setAttribute('data-theme','light');var m=document.querySelector('meta[name=theme-color]');m&&m.setAttribute('content','#f0eeeb')}}()</script>
-  <link rel="preconnect" href="https://axpgphfcjzhyoimxxwrz.supabase.co">
   <link rel="preconnect" href="https://portfolio-storage-cdn.sulaimonodeniran.workers.dev">
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-tight-latin.woff2" crossorigin>
   <link rel="stylesheet" href="/fonts/fonts.css">
-  <!-- Fetch the shared nav/footer markup alongside the stylesheets instead of after all scripts have run -->
   <link rel="preload" href="/components/nav/nav.html" as="fetch" crossorigin>
   <link rel="preload" href="/components/footer/footer.html" as="fetch" crossorigin>
   <link rel="stylesheet" href="/components/nav/nav.css">
   <link rel="stylesheet" href="/components/footer/footer.css">
   <link rel="stylesheet" href="/portfolio.css">
-  <link rel="stylesheet" href="/pages/playground/style.css">
+  <!-- Same column, Back link, About block, live button and pager as a project page -->
+  <link rel="stylesheet" href="/pages/work/project/style.css">
+  <link rel="stylesheet" href="/pages/playground/item/style.css">
 </head>
 
 <body>
 
   <div id="nav-component"></div>
 
-  <main class="playground-main">
+  <main class="project-main">
 
-    <h1 class="playground-label">Playground</h1>
+    <a href="/pages/playground/" class="project-back">
+      <img src="/image/Icons/ArrowUDownLeft.svg" alt="" class="back-icon" width="16" height="16" />
+      Back
+    </a>
 
-    <div class="playground-grid" id="playground-grid"></div>
+    <div class="project-content" id="pg-detail">
+      <header class="project-header">
+        <h1 class="project-title" id="pg-title"></h1>
+        <p class="project-tagline" id="pg-desc"></p>
+      </header>
+
+      <div class="gallery-img gallery-img--full pg-detail-media" id="pg-media"></div>
+
+      <section class="project-info">
+        <div class="text-col" id="pg-about-block" hidden>
+          <p class="meta-label">About</p>
+          <p class="meta-body" id="pg-about"></p>
+        </div>
+        <a href="#" class="btn-live-project" id="pg-live" target="_blank" rel="noopener" hidden>
+          View Live Project
+          <img src="/image/Icons/Arrow.svg" alt="" />
+        </a>
+      </section>
+    </div>
+
+    <!-- Previous / next item, filled by script.js -->
+    <nav class="project-pager" id="pg-pager" aria-label="More playground items"></nav>
 
   </main>
 
@@ -58,7 +78,7 @@
   <script defer src="/data/snapshot.js"></script>
   <script defer src="/scripts/sb.js"></script>
   <script defer src="/scripts/cdn.js"></script>
-  <script defer src="/pages/playground/script.js"></script>
+  <script defer src="/pages/playground/item/script.js"></script>
   <script defer src="/scripts/track.js"></script>
 
 </body>

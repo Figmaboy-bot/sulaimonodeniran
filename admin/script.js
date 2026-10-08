@@ -1430,6 +1430,7 @@ async function compressImage(file, opts) {
     document.getElementById('pg-editor-heading').textContent = item.title       || 'Untitled';
     document.getElementById('pg-f-title').value              = item.title       || '';
     document.getElementById('pg-f-desc').value               = item.description || '';
+    document.getElementById('pg-f-about').value              = item.about       || '';
     document.getElementById('pg-f-live-url').value           = item.live_url    || '';
     renderPgCoverPreview(item);
     renderPgMediaPreview(item);
@@ -1599,6 +1600,7 @@ async function compressImage(file, opts) {
     if (idx === -1) { pgToast('Item not found'); return; }
     pgState.items[idx].title       = title;
     pgState.items[idx].description = desc;
+    pgState.items[idx].about       = document.getElementById('pg-f-about').value.trim();
     pgState.items[idx].live_url    = document.getElementById('pg-f-live-url').value.trim() || null;
     pgState.items[idx].sort_order  = idx;
     document.getElementById('pg-editor-heading').textContent = title;

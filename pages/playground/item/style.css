@@ -1,0 +1,29 @@
+/* A playground item reuses the project page's layout (/pages/work/project/
+   style.css); only the media box differs. */
+
+[hidden] {
+  display: none !important;
+}
+
+/* one image or video, not a zoomable gallery */
+.pg-detail-media,
+.pg-detail-media:has(img) {
+  cursor: default;
+}
+
+.pg-detail-media:hover img {
+  transform: none;
+}
+
+/* the media fills the 500px box whole, not pinned to its top */
+.pg-detail-media img,
+.pg-detail-media video {
+  object-position: center;
+}
+
+.pg-detail-missing {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--text-muted);
+}

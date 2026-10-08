@@ -154,7 +154,11 @@ const sitemapUrls = ['/', '/pages/about/', '/pages/playground/', '/pages/article
   .concat((snapshot.projects || [])
     .filter(function (p) { return p.id && !p.coming_soon; })
     .sort(function (a, b) { return (a.sort_order || 0) - (b.sort_order || 0); })
-    .map(function (p) { return '/pages/work/project/?id=' + encodeURIComponent(p.id); }));
+    .map(function (p) { return '/pages/work/project/?id=' + encodeURIComponent(p.id); }))
+  .concat((snapshot.playground_items || [])
+    .filter(function (p) { return p.id; })
+    .sort(function (a, b) { return (a.sort_order || 0) - (b.sort_order || 0); })
+    .map(function (p) { return '/pages/playground/item/?id=' + encodeURIComponent(p.id); }));
 fs.writeFileSync(path.join(OUT, 'sitemap.xml'),
   '<?xml version="1.0" encoding="UTF-8"?>\n' +
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
