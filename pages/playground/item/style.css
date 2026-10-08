@@ -15,10 +15,18 @@
   transform: none;
 }
 
-/* the media fills the 500px box whole, not pinned to its top */
+/* full column width, and as tall as the media's own shape needs, so
+   nothing is cropped off the sides (or anywhere else) */
+.pg-detail-media {
+  height: auto;
+  aspect-ratio: auto;
+}
+
 .pg-detail-media img,
 .pg-detail-media video {
-  object-position: center;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .pg-detail-missing {
