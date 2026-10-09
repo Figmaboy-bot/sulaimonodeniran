@@ -23,24 +23,15 @@
           "mediaType": "image"
         },
         {
-          "type": "full",
-          "src": "/image/uploads/images/1791061311291_i3hsk.webp",
-          "full": "/image/uploads/images/1791061312797_2w5pj.webp",
-          "w": 1200,
-          "h": 758,
-          "alt": "Wager365 splash screen",
-          "mediaType": "image"
-        },
-        {
           "type": "text",
           "columns": [
             {
               "heading": "The Problem",
-              "body": "Traditional betting platforms can often feel cluttered and overwhelming.\n\nUsers may need to navigate through:\n\n- Large numbers of betting markets\n\n- Complicated odds\n\n- Depositing with crypto\n\n- Difficult-to-understand bet slips\n\n- Fragmented transaction experiences\n\nFor a crypto-powered platform, these problems become even more important because users need to understand **both their bets and their money**."
+              "body": "Traditional betting platforms can often feel cluttered and overwhelming.\n\nUsers may need to navigate through:\n\n- Large numbers of betting markets\n\n- Complicated odds\n\n- Clunky deposits, especially with crypto\n\n- Difficult-to-understand bet slips\n\n- Fragmented transaction experiences\n\nFor a crypto-powered platform, these problems become even more important because users need to understand **both their bets and their money**."
             },
             {
               "heading": "Design Goals",
-              "body": "The product experience was designed around five key goals:\n\n**Clarity**\nMake odds, markets, balances, and potential winnings easy to understand.\n\n**Speed**\nReduce the number of steps required to discover a match and place a wager.\n\n**Deposit**\nMake deposits easy across cryptocurrencies, stablecoins and fiat currency.\n\n**Trust**\nCreate an interface that feels reliable enough for users to confidently manage funds and bets.\n\n**Simplicity**\nHide unnecessary complexity without limiting functionality for experienced users."
+              "body": "The product experience was designed around five key goals:\n\n**Clarity**\nMake odds, markets, balances, and potential winnings easy to understand.\n\n**Speed**\nReduce the number of steps required to discover a match and place a wager.\n\n**Flexible funding**\nMake deposits easy across cryptocurrencies, stablecoins and fiat currency.\n\n**Trust**\nCreate an interface that feels reliable enough for users to confidently manage funds and bets.\n\n**Simplicity**\nHide unnecessary complexity without limiting functionality for experienced users."
             }
           ]
         },
@@ -92,10 +83,6 @@
             {
               "heading": "Design Decisions",
               "body": "**Why fintech-inspired UI?**\n\nMoney-related products require a strong sense of clarity and trust. Wager365 therefore borrows interaction patterns from fintech products rather than relying entirely on traditional sportsbook conventions.\n\n**Why a simplified bet slip?**\n\nThe bet slip is where a user's selections become an actual wager. Reducing unnecessary information and emphasizing the stake and potential return makes the final decision easier to understand.\n\n**Why strong information hierarchy?**\n\nSports betting interfaces contain a huge amount of numerical information. Typography, spacing, grouping, and contrast were therefore used to create a clear hierarchy between matches, markets, odds, and secondary information."
-            },
-            {
-              "heading": "Outcome",
-              "body": "Wager365 demonstrates how a complex sports betting product can be approached through the lens of **product design, fintech UX, and Web3**.\n\nThe project allowed me to explore:\n\n- Sports betting UX\n\n- Financial product interfaces\n\n- Crypto wallet experiences\n\n- Information-heavy dashboards\n\n- Responsive product design\n\n- Complex interaction flows\n\n- Design systems and visual hierarchy\n\nMore importantly, the project challenged me to design for a product where **speed, clarity, and trust directly influence the user's experience.**"
             }
           ]
         },
@@ -104,7 +91,7 @@
           "columns": [
             {
               "heading": "Onboarding",
-              "body": "From splash screen to a funded account in a few steps, with each screen asking for one thing at a time."
+              "body": "From splash screen to a set-up account: personal details, favourite sports and leagues, then wallet preferences."
             }
           ]
         },
@@ -121,7 +108,16 @@
           "src": "/image/uploads/images/1790274717420_7i0rd.webp",
           "w": 2000,
           "h": 1263,
-          "alt": "OTP and Onboarding Screen",
+          "alt": "Wager365 splash screens in lime and black",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1791061311291_i3hsk.webp",
+          "full": "/image/uploads/images/1791061312797_2w5pj.webp",
+          "w": 1200,
+          "h": 758,
+          "alt": "Wager365 onboarding carousel: bet on every game, live odds, deposit your way",
           "mediaType": "image"
         },
         {
@@ -138,7 +134,7 @@
           "full": "/image/uploads/images/1791061362104_r2lxq.webp",
           "w": 1200,
           "h": 758,
-          "alt": "Create Account Screen",
+          "alt": "Wager365 onboarding steps: personal details, sports and leagues, wallet preference, ready to bet",
           "mediaType": "image"
         },
         {
@@ -147,7 +143,7 @@
           "full": "/image/uploads/images/1791061349911_ee4g5.webp",
           "w": 1200,
           "h": 758,
-          "alt": "Onboarding Screen",
+          "alt": "Wager365 forgot password, identity verification, new password and success screens",
           "mediaType": "image"
         },
         {
@@ -224,15 +220,15 @@
           "full": "/image/uploads/images/1791061336520_t3u96.webp",
           "w": 1200,
           "h": 814,
-          "alt": "Wager365 log in screen",
+          "alt": "Wager365 deposit amount, Paystack confirmation and Bitcoin deposit screens",
           "mediaType": "image"
         },
         {
           "type": "text",
           "columns": [
             {
-              "heading": "Final Statement",
-              "body": "Wager365 was an exploration of what a modern crypto-powered sportsbook could look and feel like combining the speed of digital assets with the familiarity of a well-designed sports betting platform."
+              "heading": "Reflection",
+              "body": "Wager365 was an exploration of what a modern crypto-powered sportsbook could look and feel like, combining the speed of digital assets with the familiarity of a well-designed sports betting platform.\n\nThe project allowed me to explore:\n\n- Sports betting UX\n\n- Financial product interfaces\n\n- Crypto wallet experiences\n\n- Information-heavy dashboards\n\n- Complex interaction flows\n\n- Design systems and visual hierarchy\n\nMore importantly, it challenged me to design for a product where **speed, clarity, and trust directly influence the user’s experience.**"
             }
           ]
         }
