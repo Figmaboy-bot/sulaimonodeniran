@@ -12,11 +12,11 @@
       "meta": "Sports Betting · 2026",
       "live_url": null,
       "coming_soon": false,
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783589940734_quot1.webp",
+      "cover_url": "/image/uploads/images/1783589940734_quot1.webp",
       "gallery": [
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1783589940734_quot1.webp",
+          "src": "/image/uploads/images/1783589940734_quot1.webp",
           "w": 2000,
           "h": 1551,
           "alt": "Wager365 home screen on a phone in hand",
