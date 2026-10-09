@@ -100,14 +100,6 @@
           ]
         },
         {
-          "type": "full",
-          "src": "/image/uploads/images/1790274717420_7i0rd.webp",
-          "w": 2000,
-          "h": 1263,
-          "alt": "OTP and Onboarding Screen",
-          "mediaType": "image"
-        },
-        {
           "type": "text",
           "columns": [
             {
@@ -123,6 +115,14 @@
           "h": null,
           "alt": "Onboarding",
           "mediaType": "video"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790274717420_7i0rd.webp",
+          "w": 2000,
+          "h": 1263,
+          "alt": "OTP and Onboarding Screen",
+          "mediaType": "image"
         },
         {
           "type": "full",
