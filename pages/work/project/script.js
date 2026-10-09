@@ -409,18 +409,17 @@
     });
     placeInfo();
 
-    // ── Image zoom ──────────────────────────────
+    // ── Image + video zoom ──────────────────────
     // Clicking a gallery image lifts a copy out of the page and grows it from
-    // where it sits to fit the viewport, over a dimmed backdrop. Click, Esc,
-    // scroll or resize shrinks it back into place.
+    // where it sits to fit the viewport, over a dimmed backdrop. A video is
+    // lifted out itself, with its controls, so it keeps playing where it was.
+    // Click, Esc, scroll or resize shrinks it back into place.
     var zoom = null;
 
-    function fitRect(img) {
+    function fitRect(nw, nh) {
       var pad  = window.innerWidth <= 600 ? 16 : 48;
       var maxW = window.innerWidth  - pad * 2;
       var maxH = window.innerHeight - pad * 2;
-      var nw   = img.naturalWidth  || img.width;
-      var nh   = img.naturalHeight || img.height;
       var s    = Math.min(maxW / nw, maxH / nh);
       var w    = nw * s;
       var h    = nh * s;
@@ -437,7 +436,7 @@
     function openZoom(img) {
       if (zoom || !img.currentSrc && !img.src) return;
       var from = img.parentNode.getBoundingClientRect();
-      var to   = fitRect(img);
+      var to   = fitRect(img.naturalWidth || img.width, img.naturalHeight || img.height);
 
       var overlay = document.createElement('div');
       overlay.className = 'img-zoom';
@@ -464,12 +463,45 @@
         }).catch(function () {});
       }
 
-      // force the start position to paint before animating to the fit
-      copy.getBoundingClientRect();
-      overlay.classList.add('is-open');
-      placeAt(copy, to);
+      growZoom(to);
+    }
 
-      overlay.addEventListener('click', closeZoom);
+    function openVideoZoom(video) {
+      if (zoom) return;
+      var wrap = video.parentNode;
+      var from = wrap.getBoundingClientRect();
+      // before the metadata is in, the frame's own shape stands in
+      var to   = fitRect(video.videoWidth || from.width, video.videoHeight || from.height);
+      var controls = wrap.querySelector('.video-controls');
+      var playing  = !video.paused;
+
+      var overlay = document.createElement('div');
+      overlay.className = 'img-zoom';
+      var stage = document.createElement('div');
+      stage.className = 'img-zoom-img img-zoom-stage';
+      stage.style.setProperty('--zoom-pos', getComputedStyle(video).objectPosition);
+      placeAt(stage, from);
+      overlay.appendChild(stage);
+      document.body.appendChild(overlay);
+
+      // the frame holds its height while the video is away
+      wrap.style.height = from.height + 'px';
+      wrap.classList.add('is-zoomed');
+      stage.appendChild(video);
+      if (controls) stage.appendChild(controls);
+      if (playing) video.play().catch(function () {});
+      zoom = { img: video, overlay: overlay, copy: stage, wrap: wrap, controls: controls };
+
+      growZoom(to);
+    }
+
+    function growZoom(to) {
+      // force the start position to paint before animating to the fit
+      zoom.copy.getBoundingClientRect();
+      zoom.overlay.classList.add('is-open');
+      placeAt(zoom.copy, to);
+
+      zoom.overlay.addEventListener('click', closeZoom);
       document.addEventListener('keydown', onZoomKey);
       window.addEventListener('scroll', closeZoom, { passive: true });
       window.addEventListener('resize', closeZoom);
@@ -483,13 +515,21 @@
       window.removeEventListener('scroll', closeZoom);
       window.removeEventListener('resize', closeZoom);
 
-      placeAt(z.copy, z.img.parentNode.getBoundingClientRect());
+      placeAt(z.copy, (z.wrap || z.img.parentNode).getBoundingClientRect());
       z.overlay.classList.remove('is-open');
 
       var done = false;
       function finish() {
         if (done) return;
         done = true;
+        if (z.wrap) {
+          // the video and its controls go back where they came from
+          var playing = !z.img.paused;
+          z.wrap.insertBefore(z.img, z.wrap.firstChild);
+          if (z.controls) z.wrap.appendChild(z.controls);
+          z.wrap.style.height = '';
+          if (playing) z.img.play().catch(function () {});
+        }
         z.img.parentNode.classList.remove('is-zoomed');
         z.overlay.remove();
         zoom = null;
@@ -507,6 +547,8 @@
     gallery.addEventListener('click', function (e) {
       var wrap = e.target.closest('.gallery-img');
       if (!wrap) return;
+      var video = wrap.querySelector('video');
+      if (video) { openVideoZoom(video); return; }
       var img = wrap.querySelector('img');
       if (img && img.complete && img.naturalWidth) openZoom(img);
     });

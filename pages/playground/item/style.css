@@ -7,7 +7,8 @@
 
 /* one image or video, not a zoomable gallery */
 .pg-detail-media,
-.pg-detail-media:has(img) {
+.pg-detail-media:has(img),
+.pg-detail-media:has(video) {
   cursor: default;
 }
 

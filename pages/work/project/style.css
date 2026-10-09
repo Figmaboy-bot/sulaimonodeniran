@@ -511,7 +511,8 @@ main.project-main {
 }
 /* ── Image zoom ────────────────────────────── */
 
-.gallery-img:has(img) {
+.gallery-img:has(img),
+.gallery-img:has(video) {
   cursor: zoom-in;
 }
 
@@ -543,6 +544,26 @@ main.project-main {
     top 0.4s cubic-bezier(0.16, 1, 0.3, 1),
     width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
     height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* a lifted video fills its stage; its controls come along */
+.img-zoom-stage {
+  overflow: hidden;
+  /* the frame's own fill, while a video is still loading */
+  background: #fff;
+}
+
+.img-zoom-stage video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--zoom-pos, center);
+}
+
+.img-zoom-stage:hover .video-controls {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
