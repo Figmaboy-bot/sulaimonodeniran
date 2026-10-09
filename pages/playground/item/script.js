@@ -50,6 +50,9 @@
     media.hidden = true;
   }
 
+  // the image or video expands to fill the screen, like a project's media
+  media.addEventListener('click', function () { mediaZoom(media); });
+
   // ── About + live link ───────────────────────
   if (item.about) {
     document.getElementById('pg-about').textContent = item.about;
