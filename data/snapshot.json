@@ -729,19 +729,19 @@
       "year": "2025",
       "meta": "Productivity / SaaS · 2025",
       "live_url": "https://taskhive-21eff5.webflow.io/",
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628294732_ezj30.webp",
+      "cover_url": "/image/uploads/images/1777628294732_ezj30.webp",
       "gallery": [
         {
           "h": 1500,
           "w": 2000,
           "alt": "TaskHive landing page on a laptop",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628296764_23a5o.webp",
+          "src": "/image/uploads/images/1777628296764_23a5o.webp",
           "type": "full",
           "mediaType": "image"
         },
         {
           "alt": "TaskHive landing page video",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628297442_at4a7.mp4",
+          "src": "/image/uploads/videos/1777628297442_at4a7.mp4",
           "type": "full",
           "mediaType": "video"
         },
@@ -749,7 +749,7 @@
           "h": 1333,
           "w": 2000,
           "alt": "TaskHive landing page on a phone",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628300819_x8qw9.webp",
+          "src": "/image/uploads/images/1777628300819_x8qw9.webp",
           "type": "full",
           "mediaType": "image"
         },
@@ -757,7 +757,7 @@
           "h": 8866,
           "w": 1354,
           "alt": "TaskHive full landing page",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628307543_gorgi.webp",
+          "src": "/image/uploads/images/1777628307543_gorgi.webp",
           "type": "full",
           "mediaType": "image"
         }
@@ -1705,7 +1705,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628314119_c2fun.mp4",
+          "src": "/image/uploads/videos/1777628314119_c2fun.mp4",
           "w": null,
           "h": null,
           "alt": "Coin Compass app video",
@@ -1893,11 +1893,11 @@
       "year": "2024",
       "meta": "Renewable Energy · 2024",
       "live_url": null,
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834754542_zlfjf.webp",
+      "cover_url": "/image/uploads/images/1778834754542_zlfjf.webp",
       "gallery": [
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834754542_zlfjf.webp",
+          "src": "/image/uploads/images/1778834754542_zlfjf.webp",
           "w": 2000,
           "h": 1364,
           "alt": "Ecowave billboard on a city building",
@@ -1905,7 +1905,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/videos/1778836794324_zax3y.mp4",
+          "src": "/image/uploads/videos/1778836794324_zax3y.mp4",
           "w": null,
           "h": null,
           "alt": "Ecowave brand video",
@@ -1913,7 +1913,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834731017_gk2rq.webp",
+          "src": "/image/uploads/images/1778834731017_gk2rq.webp",
           "w": 2000,
           "h": 1667,
           "alt": "Ecowave colour palette",
@@ -1921,7 +1921,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834789019_r5ai0.webp",
+          "src": "/image/uploads/images/1778834789019_r5ai0.webp",
           "w": 2000,
           "h": 1156,
           "alt": "Ecowave logo on dark green",
@@ -1929,7 +1929,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834797805_j48is.webp",
+          "src": "/image/uploads/images/1778834797805_j48is.webp",
           "w": 2000,
           "h": 1156,
           "alt": "Ecowave logo on green",
@@ -1937,7 +1937,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834804050_pd8qx.webp",
+          "src": "/image/uploads/images/1778834804050_pd8qx.webp",
           "w": 2000,
           "h": 1156,
           "alt": "Ecowave logo on yellow",
@@ -1945,7 +1945,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834809572_eir6k.webp",
+          "src": "/image/uploads/images/1778834809572_eir6k.webp",
           "w": 2000,
           "h": 1156,
           "alt": "Ecowave sun logo pattern",
@@ -1953,7 +1953,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834745835_62wzp.webp",
+          "src": "/image/uploads/images/1778834745835_62wzp.webp",
           "w": 2000,
           "h": 1334,
           "alt": "Ecowave shipping container",
@@ -1961,7 +1961,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834762935_vwiwc.webp",
+          "src": "/image/uploads/images/1778834762935_vwiwc.webp",
           "w": 2000,
           "h": 1335,
           "alt": "Ecowave tote bag",
@@ -1969,7 +1969,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834749427_lft42.webp",
+          "src": "/image/uploads/images/1778834749427_lft42.webp",
           "w": 2000,
           "h": 1501,
           "alt": "Ecowave billboard on a fence",
@@ -1977,7 +1977,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834817494_eyvpx.webp",
+          "src": "/image/uploads/images/1778834817494_eyvpx.webp",
           "w": 2000,
           "h": 1156,
           "alt": "Ecowave Instagram profile",
@@ -1985,7 +1985,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834824178_2fo7y.webp",
+          "src": "/image/uploads/images/1778834824178_2fo7y.webp",
           "w": 2000,
           "h": 1251,
           "alt": "Ecowave branded hard hats",
@@ -1993,7 +1993,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834837845_yfzan.webp",
+          "src": "/image/uploads/images/1778834837845_yfzan.webp",
           "w": 2000,
           "h": 1390,
           "alt": "Ecowave branded lanyards",
@@ -2001,7 +2001,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834844096_t42j0.webp",
+          "src": "/image/uploads/images/1778834844096_t42j0.webp",
           "w": 2000,
           "h": 1601,
           "alt": "Ecowave branded wristbands",
@@ -2009,7 +2009,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1778834856063_4kvl1.webp",
+          "src": "/image/uploads/images/1778834856063_4kvl1.webp",
           "w": 2000,
           "h": 1335,
           "alt": "Ecowave branded tape on the floor",
@@ -2030,11 +2030,11 @@
       "year": "2025",
       "meta": "SaaS / Workflow Automation · 2025",
       "live_url": "https://nexflo-automation.webflow.io/",
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628333894_mf0uc.webp",
+      "cover_url": "/image/uploads/images/1777628333894_mf0uc.webp",
       "gallery": [
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628335250_ypfvq.webp",
+          "src": "/image/uploads/images/1777628335250_ypfvq.webp",
           "w": 2000,
           "h": 1500,
           "alt": "Nexflo website on a laptop",
@@ -2042,7 +2042,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628337191_1nu6j.mp4",
+          "src": "/image/uploads/videos/1777628337191_1nu6j.mp4",
           "w": null,
           "h": null,
           "alt": "Nexflo website video",
@@ -2050,7 +2050,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628345363_39ae0.webp",
+          "src": "/image/uploads/images/1777628345363_39ae0.webp",
           "w": 2000,
           "h": 1293,
           "alt": "Nexflo website hero",
@@ -2058,7 +2058,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628347163_lqr9a.webp",
+          "src": "/image/uploads/images/1777628347163_lqr9a.webp",
           "w": 2000,
           "h": 464,
           "alt": "Brands",
@@ -2066,7 +2066,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628347608_ram7z.webp",
+          "src": "/image/uploads/images/1777628347608_ram7z.webp",
           "w": 2000,
           "h": 1906,
           "alt": "Features",
@@ -2074,7 +2074,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628348821_iywjl.webp",
+          "src": "/image/uploads/images/1777628348821_iywjl.webp",
           "w": 2000,
           "h": 1027,
           "alt": "Benefits Dark",
@@ -2082,7 +2082,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628349848_aguhg.webp",
+          "src": "/image/uploads/images/1777628349848_aguhg.webp",
           "w": 2000,
           "h": 1057,
           "alt": "Automation (Dark)",
@@ -2090,7 +2090,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628350371_7e8hk.webp",
+          "src": "/image/uploads/images/1777628350371_7e8hk.webp",
           "w": 2000,
           "h": 1531,
           "alt": "Testimonials",
@@ -2098,7 +2098,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628351862_bm4pf.webp",
+          "src": "/image/uploads/images/1777628351862_bm4pf.webp",
           "w": 2000,
           "h": 1131,
           "alt": "Pricing",
@@ -2106,7 +2106,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628352506_5l3tm.webp",
+          "src": "/image/uploads/images/1777628352506_5l3tm.webp",
           "w": 2000,
           "h": 1309,
           "alt": "FAQ",
@@ -2114,7 +2114,7 @@
         },
         {
           "type": "full",
-          "src": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/projects/images/1777628353190_sza24.webp",
+          "src": "/image/uploads/images/1777628353190_sza24.webp",
           "w": 2000,
           "h": 1330,
           "alt": "Footer",
@@ -2157,8 +2157,8 @@
       "description": "A short chat interaction built with React and Tailwind",
       "live_url": "https://mobile-chat-lemon.vercel.app/",
       "media_type": "video",
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/covers/1777612654105_qvf62.jpg",
-      "media_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/videos/1778805277861_nnj9k.mp4",
+      "cover_url": "/image/uploads/playground-covers/1777612654105_qvf62.jpg",
+      "media_url": "/image/uploads/playground-videos/1778805277861_nnj9k.mp4",
       "sort_order": 0,
       "created_at": "2026-05-01T05:13:23.538004+00:00"
     },
@@ -2168,7 +2168,7 @@
       "description": "Hovering interaction on a pill built with react",
       "live_url": "https://pills-smoky.vercel.app/",
       "media_type": "video",
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/covers/1777683744131_j0p7e.jpg",
+      "cover_url": "/image/uploads/playground-covers/1777683744131_j0p7e.jpg",
       "media_url": "/image/uploads/playground-videos/1791378763014_tl18b.mp4",
       "sort_order": 1,
       "created_at": "2026-05-02T01:02:55.366007+00:00"
@@ -2179,8 +2179,8 @@
       "description": "A set amount interaction, built with React",
       "live_url": "https://set-amount-gilt.vercel.app/",
       "media_type": "video",
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/covers/1777742321119_od3zz.jpg",
-      "media_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/videos/1777743106418_paxs1.mp4",
+      "cover_url": "/image/uploads/playground-covers/1777742321119_od3zz.jpg",
+      "media_url": "/image/uploads/playground-videos/1777743106418_paxs1.mp4",
       "sort_order": 2,
       "created_at": "2026-05-02T17:32:23.809325+00:00"
     },
@@ -2190,8 +2190,8 @@
       "description": "An account setup flow built with ReactJS",
       "live_url": "https://account-setup-six.vercel.app/",
       "media_type": "video",
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/covers/1778838333596_q18s2.jpg",
-      "media_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/videos/1778838550641_ufb9z.mp4",
+      "cover_url": "/image/uploads/playground-covers/1778838333596_q18s2.jpg",
+      "media_url": "/image/uploads/playground-videos/1778838550641_ufb9z.mp4",
       "sort_order": 3,
       "created_at": "2026-05-15T09:51:44.542601+00:00"
     },
@@ -2201,8 +2201,8 @@
       "description": "A scratch interaction built with Js",
       "live_url": "https://scratch-and-win-five.vercel.app/",
       "media_type": "video",
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/covers/1778885215554_jelya.png",
-      "media_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/videos/1778885608754_cd4kb.mp4",
+      "cover_url": "/image/uploads/playground-covers/1778885215554_jelya.png",
+      "media_url": "/image/uploads/playground-videos/1778885608754_cd4kb.mp4",
       "sort_order": 4,
       "created_at": "2026-05-15T22:54:09.618741+00:00"
     },
@@ -2212,8 +2212,8 @@
       "description": "An ID card with real-time physics simulation",
       "live_url": "https://id-card-lilac-eta.vercel.app/",
       "media_type": "video",
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/covers/1779552471314_cehg9.jpg",
-      "media_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/videos/1779552493328_yrad0.mp4",
+      "cover_url": "/image/uploads/playground-covers/1779552471314_cehg9.jpg",
+      "media_url": "/image/uploads/playground-videos/1779552493328_yrad0.mp4",
       "sort_order": 5,
       "created_at": "2026-05-23T16:08:46.594699+00:00"
     },
@@ -2223,8 +2223,8 @@
       "description": "Short logo animation for Wager365 brand",
       "live_url": null,
       "media_type": "video",
-      "cover_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/covers/1782580412391_892yk.jpg",
-      "media_url": "https://axpgphfcjzhyoimxxwrz.supabase.co/storage/v1/object/public/playground/videos/1782583772153_kl26p.mp4",
+      "cover_url": "/image/uploads/playground-covers/1782580412391_892yk.jpg",
+      "media_url": "/image/uploads/playground-videos/1782583772153_kl26p.mp4",
       "sort_order": 6,
       "created_at": "2026-06-27T17:29:10.25036+00:00"
     }
