@@ -108,6 +108,23 @@
           "mediaType": "image"
         },
         {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Onboarding",
+              "body": "From splash screen to a funded account in a few steps, with each screen asking for one thing at a time."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/videos/1791557627275_govye.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Onboarding",
+          "mediaType": "video"
+        },
+        {
           "type": "full",
           "src": "/image/uploads/images/1790274710036_b70hz.webp",
           "w": 2000,
@@ -134,6 +151,23 @@
           "mediaType": "image"
         },
         {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Home Screen and Match Details",
+              "body": "Live football, basketball and tennis odds on one board, with a match page that groups markets so the important odds stand out first."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/videos/1791557627208_w0law.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Home Screen and Match Details",
+          "mediaType": "video"
+        },
+        {
           "type": "full",
           "src": "/image/uploads/images/1791061367856_6dk44.webp",
           "full": "/image/uploads/images/1791061369129_cf1az.webp",
@@ -143,12 +177,46 @@
           "mediaType": "image"
         },
         {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Place a bet",
+              "body": "Picks go into a simplified bet slip that puts the stake and potential return front and centre, including for parlays."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/videos/1791557627311_nilej.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Place a bet",
+          "mediaType": "video"
+        },
+        {
           "type": "full",
           "src": "/image/uploads/images/1790274112214_vh5tn.webp",
           "w": 2000,
           "h": 1263,
           "alt": "Wager365 won, lost, deposit method and notification screens",
           "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Deposit and Withdraw",
+              "body": "Bank transfer, card or crypto in, settled in whatever currency the user sets for their account."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/videos/1791486712513_mg1j3.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Deposit and Withdraw",
+          "mediaType": "video"
         },
         {
           "type": "full",
