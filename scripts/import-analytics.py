@@ -99,7 +99,10 @@ def send(url, secret, rows):
     req = urllib.request.Request(
         url,
         data=json.dumps(rows).encode(),
-        headers={"Authorization": "Bearer " + secret, "Content-Type": "application/json"},
+        # Cloudflare answers urllib's default "Python-urllib" agent with a 403
+        # (error 1010, a blocked client signature), so name ourselves.
+        headers={"Authorization": "Bearer " + secret, "Content-Type": "application/json",
+                 "User-Agent": "portfolio-analytics-import/1.0"},
         method="POST",
     )
     try:
