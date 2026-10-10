@@ -9,7 +9,7 @@ compatibility_date = "2024-11-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "portfolio-analytics"
-database_id = "REPLACE_WITH_DATABASE_ID"
+database_id = "76feca71-b543-40df-899b-e3b8e19a434d"
 
 # Secrets, set with `npx wrangler secret put <NAME>` (never committed):
 #   INGEST_SECRET  shared with api/track.js on Vercel (ANALYTICS_INGEST_SECRET)

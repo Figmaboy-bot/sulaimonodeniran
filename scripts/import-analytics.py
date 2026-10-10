@@ -32,6 +32,7 @@ Usage:
 """
 
 import argparse
+import concurrent.futures
 import json
 import os
 import re
@@ -132,18 +133,27 @@ def from_r2(args, url, secret):
 
     print("%d parked view(s)%s" % (len(parked), "  [dry run]" if args.dry_run else ""))
 
-    rows, keys = [], []
-    for k in parked:
+    # One GET per object; done serially that's minutes for a few thousand.
+    # boto3 clients are thread-safe, so fetch in parallel, keeping list order.
+    def fetch(k):
         try:
-            row = json.loads(s3.get_object(Bucket=bucket, Key=k)["Body"].read())
+            return k, json.loads(s3.get_object(Bucket=bucket, Key=k)["Body"].read()), None
         except Exception as e:
-            print("  skip %s (%s)" % (k, e))
-            continue
-        # Views parked before the tracker assigned ids get one from their
-        # object name, which is unique and stays put until the row is accepted.
-        row.setdefault("id", "r2-" + k[len(PREFIX):])
-        rows.append(row)
-        keys.append(k)
+            return k, None, e
+
+    rows, keys = [], []
+    with concurrent.futures.ThreadPoolExecutor(max_workers=16) as pool:
+        for n, (k, row, err) in enumerate(pool.map(fetch, parked), 1):
+            if err:
+                print("  skip %s (%s)" % (k, err))
+                continue
+            # Views parked before the tracker assigned ids get one from their
+            # object name, which is unique and stays put until the row is accepted.
+            row.setdefault("id", "r2-" + k[len(PREFIX):])
+            rows.append(row)
+            keys.append(k)
+            if n % 1000 == 0:
+                print("  read %d/%d" % (n, len(parked)), flush=True)
 
     if args.dry_run:
         summarise(rows)
