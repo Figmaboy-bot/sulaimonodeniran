@@ -1,20 +1,30 @@
-// Page-view collector. The browser used to make two requests per view — one
-// to /api/geo for the country, then a POST straight to Supabase — and both
-// were cancelled if the visitor left quickly. Now it's a single beacon here;
-// the country comes from Vercel's geo header and the insert happens server-side.
+// Page-view collector. The browser sends one beacon here per page load; the
+// country comes from Vercel's geo header and the row goes to the analytics
+// Worker (cloudflare-worker/analytics), which stores it in Cloudflare D1.
+// Supabase is no longer involved: its free-tier quota kept refusing writes
+// and, with them, every view during the outage.
 //
-// When Supabase won't take the row — it returns 402 for the whole project once
-// the free-tier egress quota is gone — the view is parked in R2 instead of
-// being dropped. A non-2xx response doesn't throw, so the old catch here never
-// fired and every view during the outage was lost silently. Replay the parked
-// rows with scripts/import-analytics.py once the database is reachable again.
+// If the Worker can't take the row, the view is parked in R2 instead of being
+// dropped. Replay parked rows with scripts/import-analytics.py; each carries
+// the id it would have been stored under, so a replay can't double-count.
+//
+// Needs, in the Vercel project's environment:
+//   ANALYTICS_INGEST_URL     https://portfolio-analytics.<subdomain>.workers.dev/ingest
+//   ANALYTICS_INGEST_SECRET  same value as the Worker's INGEST_SECRET
+//   R2_*                     for parking, as before
 
-import { createHash, createHmac } from 'node:crypto';
-
-const SUPABASE_URL      = 'https://axpgphfcjzhyoimxxwrz.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF4cGdwaGZjanpoeW9pbXh4d3J6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc1ODU0MjIsImV4cCI6MjA5MzE2MTQyMn0.sZSJA58Uqr67vNBTNin2SGi5jQlBhouVC1baofaVN-o';
+import { createHash, createHmac, randomUUID } from 'node:crypto';
 
 const PENDING_PREFIX = 'analytics/pending/';
+
+// The tracker only runs once a page's scripts do, so plain crawlers never get
+// here; what does arrive is headless browsers, audits and uptime checks, which
+// would otherwise count as visitors. No user agent at all is treated the same.
+const BOT_UA = /bot|crawl|spider|slurp|headless|lighthouse|pagespeed|gtmetrix|pingdom|uptime|monitor|preview|facebookexternalhit|embedly|curl|wget|python|axios|node-fetch|go-http|java\//i;
+
+function isBot(ua) {
+  return !ua || BOT_UA.test(ua);
+}
 
 function str(value, max) {
   if (typeof value !== 'string' || !value) return null;
@@ -131,41 +141,50 @@ export default async function handler(req, res) {
   }
   body = body || {};
 
+  res.setHeader('Cache-Control', 'no-store');
+  if (isBot(req.headers['user-agent'])) return res.status(204).end();
+
+  // id and time are fixed here, not by the database, so a view that ends up
+  // parked and replayed later keeps both and lands exactly once.
   const row = {
-    page:     str(body.page, 500) || '/',
-    referrer: str(body.referrer, 2000),
-    country:  str(req.headers['x-vercel-ip-country'], 8)
+    id:         randomUUID(),
+    page:       str(body.page, 500) || '/',
+    referrer:   str(body.referrer, 2000),
+    country:    str(req.headers['x-vercel-ip-country'], 8),
+    created_at: new Date().toISOString()
   };
 
   let stored = false;
-  try {
-    const r = await fetch(SUPABASE_URL + '/rest/v1/page_views', {
-      method: 'POST',
-      headers: {
-        apikey: SUPABASE_ANON_KEY,
-        Authorization: 'Bearer ' + SUPABASE_ANON_KEY,
-        'Content-Type': 'application/json',
-        Prefer: 'return=minimal'
-      },
-      body: JSON.stringify(row),
-      signal: AbortSignal.timeout(4000)
-    });
-    stored = r.ok;   // 402 and friends are not exceptions — check explicitly
-  } catch (e) {
-    stored = false;
+  const ingestUrl = env('ANALYTICS_INGEST_URL');
+  const ingestSecret = env('ANALYTICS_INGEST_SECRET');
+  if (!ingestUrl || !ingestSecret) {
+    console.error('[track] analytics worker not configured, parking view');
+  } else {
+    try {
+      const r = await fetch(ingestUrl, {
+        method: 'POST',
+        headers: {
+          Authorization: 'Bearer ' + ingestSecret,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(row),
+        signal: AbortSignal.timeout(4000)
+      });
+      stored = r.ok;   // a non-2xx is not an exception — check explicitly
+      if (!stored) console.error('[track] analytics worker refused view', r.status);
+    } catch (e) {
+      stored = false;
+    }
   }
 
   if (!stored) {
     try {
-      // created_at is set by the database on a normal insert; park it on the
-      // row here so a replayed view keeps the time it actually happened.
-      const parked = Object.assign({}, row, { created_at: new Date().toISOString() });
       const missing = ['R2_ACCOUNT_ID', 'R2_ACCESS_KEY_ID', 'R2_SECRET_ACCESS_KEY', 'R2_BUCKET']
         .filter(function (n) { return !env(n); });
       if (missing.length) {
         console.error('[track] cannot park view, missing env:', missing.join(','));
-      } else if (!(await putToR2(pendingKey(parked), JSON.stringify(parked)))) {
-        console.error('[track] view dropped for', parked.page);
+      } else if (!(await putToR2(pendingKey(row), JSON.stringify(row)))) {
+        console.error('[track] view dropped for', row.page);
       }
     } catch (e) {
       // analytics must never surface as an error to the visitor
@@ -173,6 +192,5 @@ export default async function handler(req, res) {
     }
   }
 
-  res.setHeader('Cache-Control', 'no-store');
   return res.status(204).end();
 }

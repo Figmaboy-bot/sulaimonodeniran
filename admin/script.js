@@ -2485,6 +2485,14 @@ async function compressImage(file, opts) {
     return Number(n || 0).toLocaleString('en-US');
   }
 
+  // Pages and referrers arrive from anonymous beacons, so they're untrusted
+  // text; unescaped, a crafted one would run script in the admin.
+  function esc(v) {
+    return String(v).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
   function renderPageTable(rows, max) {
     if (!rows.length) return '<p class="analytics-empty">No data yet.</p>';
     var html = '<table class="analytics-table"><thead><tr>' +
@@ -2493,7 +2501,7 @@ async function compressImage(file, opts) {
     rows.forEach(function (r) {
       var pct = max > 0 ? Math.round((r.count / max) * 100) : 0;
       html += '<tr>' +
-        '<td>' + r.page + '</td>' +
+        '<td>' + esc(r.page) + '</td>' +
         '<td><span class="analytics-count">' + fmtNum(r.count) + '</span></td>' +
         '<td><div class="analytics-bar-wrap"><div class="analytics-bar" style="width:' + pct + '%"></div></div></td>' +
         '<td>' + fmtRelative(r.lastSeen) + '</td>' +
@@ -2510,7 +2518,7 @@ async function compressImage(file, opts) {
     rows.forEach(function (r) {
       var pct = max > 0 ? Math.round((r.count / max) * 100) : 0;
       html += '<tr>' +
-        '<td>' + (r.ref || 'Direct / none') + '</td>' +
+        '<td>' + esc(r.ref || 'Direct / none') + '</td>' +
         '<td><span class="analytics-count">' + fmtNum(r.count) + '</span></td>' +
         '<td><div class="analytics-bar-wrap"><div class="analytics-bar" style="width:' + pct + '%"></div></div></td>' +
         '</tr>';
@@ -2576,7 +2584,7 @@ async function compressImage(file, opts) {
       var name = (r.country && COUNTRY_NAMES[r.country.toUpperCase()]) || r.country || 'Unknown';
       var label = flag ? flag + ' ' + name : name;
       html += '<tr>' +
-        '<td>' + label + '</td>' +
+        '<td>' + esc(label) + '</td>' +
         '<td><span class="analytics-count">' + fmtNum(r.count) + '</span></td>' +
         '<td><div class="analytics-bar-wrap"><div class="analytics-bar" style="width:' + pct + '%"></div></div></td>' +
         '</tr>';
@@ -2584,39 +2592,75 @@ async function compressImage(file, opts) {
     return html + '</tbody></table>';
   }
 
-  // PostgREST caps a plain select at 1000 rows, so counting the returned array
-  // silently reported 1000 no matter how many views existed — and because the
-  // capped page was the oldest rows, "Today" and every breakdown were wrong too.
-  // Page through the table instead, newest first, with a unique tiebreaker so
-  // rows sharing a timestamp can't be skipped or double-counted across pages.
-  var VIEWS_PAGE_SIZE = 1000;
-  var VIEWS_MAX_PAGES = 200; // ~200k views; a guard against an endless loop
+  // Numbers come from the analytics Worker (cloudflare-worker/analytics),
+  // which counts in D1 and sends back only the totals and breakdowns — no row
+  // paging, no 1000-row cap, and no Supabase quota to run into.
+  var ANALYTICS_URL = 'https://portfolio-analytics.sulaimonodeniran.workers.dev';
+  var TOKEN_KEY     = 'analytics_stats_token';
 
-  async function fetchAllViews() {
-    var rows = [];
-    for (var page = 0; page < VIEWS_MAX_PAGES; page++) {
-      var query = _sb.from('page_views')
-        .select('page, referrer, country, created_at')
-        .order('created_at', { ascending: false })
-        .order('id', { ascending: false })
-        .range(page * VIEWS_PAGE_SIZE, (page + 1) * VIEWS_PAGE_SIZE - 1);
+  function readToken() {
+    try { return localStorage.getItem(TOKEN_KEY) || ''; } catch (e) { return ''; }
+  }
 
-      if (activeRange !== 'all') {
-        var days = activeRange === '7d' ? 7 : 30;
-        var from = new Date(Date.now() - days * 86400000).toISOString();
-        query = query.gte('created_at', from);
-      }
+  function writeToken(value) {
+    try {
+      if (value) localStorage.setItem(TOKEN_KEY, value);
+      else localStorage.removeItem(TOKEN_KEY);
+    } catch (e) {}
+  }
 
-      var { data, error } = await query;
-      if (error) throw error;
+  function rangeStart() {
+    if (activeRange === 'all') return '';
+    var days = activeRange === '7d' ? 7 : 30;
+    return new Date(Date.now() - days * 86400000).toISOString();
+  }
 
-      rows = rows.concat(data);
-      if (data.length < VIEWS_PAGE_SIZE) break;
+  async function fetchStats(token) {
+    var todayStart = new Date(); todayStart.setHours(0, 0, 0, 0);
+    var qs = '?from=' + encodeURIComponent(rangeStart()) +
+             '&today=' + encodeURIComponent(todayStart.toISOString());
+    var res = await fetch(ANALYTICS_URL + '/stats' + qs, {
+      headers: { Authorization: 'Bearer ' + token },
+      cache: 'no-store'
+    });
+    if (res.status === 401) {
+      var err = new Error('token rejected');
+      err.unauthorised = true;
+      throw err;
     }
-    return rows;
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return res.json();
+  }
+
+  // The admin password is only checked in this browser, so it can't guard the
+  // numbers; the Worker's STATS_TOKEN does. Asked for once, then remembered.
+  function showTokenForm(message) {
+    document.getElementById('analytics-updated').textContent = message;
+    document.getElementById('analytics-table-wrap').innerHTML =
+      '<form id="analytics-token-form" style="display:flex;gap:8px;align-items:center;">' +
+        '<input class="field-input" id="analytics-token-input" type="password" autocomplete="off" ' +
+          'placeholder="Analytics token (the Worker\'s STATS_TOKEN)" style="flex:1;" />' +
+        '<button class="btn-primary" type="submit">Save</button>' +
+      '</form>';
+    ['analytics-ref-wrap', 'analytics-country-wrap'].forEach(function (id) {
+      document.getElementById(id).innerHTML = '<p class="analytics-empty">—</p>';
+    });
+    document.getElementById('analytics-token-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var value = document.getElementById('analytics-token-input').value.trim();
+      if (!value) return;
+      writeToken(value);
+      analyticsLoad();
+    });
   }
 
   async function analyticsLoad() {
+    var token = readToken();
+    if (!token) {
+      showTokenForm('Enter the analytics token to load views.');
+      return;
+    }
+
     document.getElementById('analytics-updated').textContent = 'Loading…';
     document.getElementById('analytics-table-wrap').innerHTML   = '<p class="analytics-loading">Loading…</p>';
     document.getElementById('analytics-ref-wrap').innerHTML     = '<p class="analytics-loading">Loading…</p>';
@@ -2624,63 +2668,39 @@ async function compressImage(file, opts) {
 
     var data;
     try {
-      data = await fetchAllViews();
+      data = await fetchStats(token);
     } catch (error) {
+      if (error.unauthorised) {
+        writeToken('');
+        showTokenForm('That analytics token was rejected — enter it again.');
+        return;
+      }
       // Bailing out here used to leave all three sections showing "Loading…"
       // for good, which reads as a hang rather than a failure.
-      var note = /exceed_cached_egress_quota/.test(error.message || '')
-        ? 'Analytics unavailable — the database is over its monthly quota. Views resume when it resets.'
-        : 'Analytics unavailable — ' + error.message;
-      document.getElementById('analytics-updated').textContent = note;
+      document.getElementById('analytics-updated').textContent = 'Analytics unavailable — ' + error.message;
       ['analytics-table-wrap', 'analytics-ref-wrap', 'analytics-country-wrap'].forEach(function (id) {
         document.getElementById(id).innerHTML = '<p class="analytics-empty">Unavailable</p>';
       });
       return;
     }
 
-    var totalViews = data.length;
+    // The token worked, so this is the site owner's browser: stop counting
+    // its visits to the public pages (scripts/track.js checks this flag).
+    try { localStorage.setItem('analytics_ignore', '1'); } catch (e) {}
 
-    var todayStart = new Date(); todayStart.setHours(0, 0, 0, 0);
-    var todayViews = data.filter(function (r) { return new Date(r.created_at) >= todayStart; }).length;
-
-    var pageCounts    = {};
-    var pageLastSeen  = {};
-    var refCounts     = {};
-    var countryCounts = {};
-
-    data.forEach(function (r) {
-      pageCounts[r.page] = (pageCounts[r.page] || 0) + 1;
-      var t = new Date(r.created_at);
-      if (!pageLastSeen[r.page] || t > pageLastSeen[r.page]) pageLastSeen[r.page] = t;
-
-      var ref = r.referrer ? (function () {
-        try { return new URL(r.referrer).hostname.replace(/^www\./, ''); } catch (e) { return r.referrer; }
-      })() : '';
-      refCounts[ref] = (refCounts[ref] || 0) + 1;
-
-      var c = r.country || '';
-      countryCounts[c] = (countryCounts[c] || 0) + 1;
+    var pageRows = data.pages.map(function (r) {
+      return { page: r.page, count: r.count, lastSeen: new Date(r.last_seen) };
     });
+    var refRows     = data.referrers.map(function (r) { return { ref: r.ref, count: r.count }; });
+    var countryRows = data.countries.map(function (r) { return { country: r.country, count: r.count }; });
 
-    var pageRows = Object.keys(pageCounts).map(function (p) {
-      return { page: p, count: pageCounts[p], lastSeen: pageLastSeen[p] };
-    }).sort(function (a, b) { return b.count - a.count; });
-
-    var refRows = Object.keys(refCounts).map(function (r) {
-      return { ref: r, count: refCounts[r] };
-    }).sort(function (a, b) { return b.count - a.count; });
-
-    var countryRows = Object.keys(countryCounts).map(function (c) {
-      return { country: c, count: countryCounts[c] };
-    }).sort(function (a, b) { return b.count - a.count; });
-
-    var topPage    = pageRows.length    ? pageRows[0].page    : '—';
+    var topPage    = pageRows.length    ? pageRows[0].page     : '—';
     var pageMax    = pageRows.length    ? pageRows[0].count    : 1;
     var refMax     = refRows.length     ? refRows[0].count     : 1;
     var countryMax = countryRows.length ? countryRows[0].count : 1;
 
-    document.getElementById('stat-total').textContent = fmtNum(totalViews);
-    document.getElementById('stat-today').textContent = fmtNum(todayViews);
+    document.getElementById('stat-total').textContent = fmtNum(data.total);
+    document.getElementById('stat-today').textContent = fmtNum(data.today);
     document.getElementById('stat-top').textContent   = topPage;
     document.getElementById('stat-pages').textContent = String(pageRows.length);
 

@@ -1,0 +1,16 @@
+name = "portfolio-analytics"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+# Kept apart from the media worker in the folder above: a bad deploy here
+# should never be able to take the site's images down with it.
+#
+# database_id comes from `npx wrangler d1 create portfolio-analytics`.
+[[d1_databases]]
+binding = "DB"
+database_name = "portfolio-analytics"
+database_id = "REPLACE_WITH_DATABASE_ID"
+
+# Secrets, set with `npx wrangler secret put <NAME>` (never committed):
+#   INGEST_SECRET  shared with api/track.js on Vercel (ANALYTICS_INGEST_SECRET)
+#   STATS_TOKEN    pasted into the admin's Analytics tab once per browser
