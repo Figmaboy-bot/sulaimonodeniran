@@ -2634,21 +2634,35 @@ async function compressImage(file, opts) {
 
   // The admin password is only checked in this browser, so it can't guard the
   // numbers; the Worker's STATS_TOKEN does. Asked for once, then remembered.
-  function showTokenForm(message) {
-    document.getElementById('analytics-updated').textContent = message;
+  // Accepts the token however it was copied: bare, or as the whole
+  // ANALYTICS_STATS_TOKEN=… line from .env.local, quoted or not.
+  function cleanToken(raw) {
+    return String(raw || '').trim().replace(/^[A-Z_]+\s*=\s*/, '').replace(/^["']|["']$/g, '').trim();
+  }
+
+  function showTokenForm(message, isError) {
+    document.getElementById('analytics-updated').textContent = isError ? 'Not loaded' : message;
     document.getElementById('analytics-table-wrap').innerHTML =
-      '<form id="analytics-token-form" style="display:flex;gap:8px;align-items:center;">' +
-        '<input class="field-input" id="analytics-token-input" type="password" autocomplete="off" ' +
-          'placeholder="Analytics token (the Worker\'s STATS_TOKEN)" style="flex:1;" />' +
-        '<button class="btn-primary" type="submit">Save</button>' +
+      '<form id="analytics-token-form">' +
+        '<div style="display:flex;gap:8px;align-items:center;">' +
+          '<input class="field-input" id="analytics-token-input" type="password" autocomplete="off" ' +
+            'placeholder="Analytics token (ANALYTICS_STATS_TOKEN in .env.local)" style="flex:1;" />' +
+          '<button class="btn-primary" id="analytics-token-btn" type="submit">Save</button>' +
+        '</div>' +
+        '<p id="analytics-token-msg" class="' + (isError ? 'lock-error' : 'analytics-empty') + '" style="margin-top:8px;">' +
+          esc(message) + '</p>' +
       '</form>';
     ['analytics-ref-wrap', 'analytics-country-wrap'].forEach(function (id) {
       document.getElementById(id).innerHTML = '<p class="analytics-empty">—</p>';
     });
+    document.getElementById('analytics-token-input').focus();
     document.getElementById('analytics-token-form').addEventListener('submit', function (e) {
       e.preventDefault();
-      var value = document.getElementById('analytics-token-input').value.trim();
+      var value = cleanToken(document.getElementById('analytics-token-input').value);
       if (!value) return;
+      document.getElementById('analytics-token-btn').disabled = true;
+      document.getElementById('analytics-token-msg').className = 'analytics-empty';
+      document.getElementById('analytics-token-msg').textContent = 'Checking…';
       writeToken(value);
       analyticsLoad();
     });
@@ -2672,12 +2686,14 @@ async function compressImage(file, opts) {
     } catch (error) {
       if (error.unauthorised) {
         writeToken('');
-        showTokenForm('That analytics token was rejected — enter it again.');
+        showTokenForm('That token was rejected. Paste the value of ANALYTICS_STATS_TOKEN from .env.local.', true);
         return;
       }
       // Bailing out here used to leave all three sections showing "Loading…"
       // for good, which reads as a hang rather than a failure.
-      document.getElementById('analytics-updated').textContent = 'Analytics unavailable — ' + error.message;
+      // Network/CORS failures surface as a bare TypeError ("Failed to fetch").
+      document.getElementById('analytics-updated').textContent = 'Analytics unavailable — ' + error.message +
+        (error instanceof TypeError ? ' (could not reach the analytics worker)' : '');
       ['analytics-table-wrap', 'analytics-ref-wrap', 'analytics-country-wrap'].forEach(function (id) {
         document.getElementById(id).innerHTML = '<p class="analytics-empty">Unavailable</p>';
       });
