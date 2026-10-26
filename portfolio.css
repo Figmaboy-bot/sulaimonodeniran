@@ -298,9 +298,17 @@ main {
   text-decoration: none;
 }
 
-.case-card--s { flex: 350 1 0; }
-.case-card--l { flex: 574 1 0; }
-.case-card--f { flex: 772 1 0; }
+.case-card--s {
+  flex: 350 1 0;
+}
+
+.case-card--l {
+  flex: 574 1 0;
+}
+
+.case-card--f {
+  flex: 772 1 0;
+}
 
 /* 500px tall on the design's 1728px frame, growing with the screen past it
    but never taller than 60% of the window, so a row still fits on screen. */
@@ -340,7 +348,7 @@ main {
 .case-card-text {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
 .case-card-title {
