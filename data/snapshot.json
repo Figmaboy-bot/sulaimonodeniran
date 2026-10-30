@@ -2152,6 +2152,18 @@
   ],
   "playground_items": [
     {
+      "id": "pg_1793401503507_n039f",
+      "title": "Fintech Onboarding",
+      "description": "Onboarding prototype for a stablecoin money app.",
+      "live_url": null,
+      "media_url": "/image/uploads/playground-videos/1793402491340_s421e.mp4",
+      "media_type": "video",
+      "cover_url": "/image/uploads/playground-covers/1793402494650_lpybc.webp",
+      "sort_order": 0,
+      "cover_time": 0,
+      "about": "Fintech Onboarding is a native iOS splash and sign-in screen for a stablecoin money app. The screen cycles through the product’s five core actions (Pay, Save, Earn, Spend and Invest), then leads into “Continue with Apple” and “Recover existing wallet” sign-in options.\n\nI designed the flow in Figma and built it in SwiftUI, with a focus on motion. The word carousel is an infinite loop driven by a single spring-animated value, so every row’s position, scale and weight moves together. You can interrupt it mid-animation, and tap or drag to scrub through the list in either direction. Rows fade at the top and bottom edges, and the interaction has haptic feedback and Reduce Motion support.\n\nBuilt with: SwiftUI, Figma"
+    },
+    {
       "id": "pg_1777612385736_2732c",
       "title": "Mobile Chat Interaction",
       "description": "A short chat interaction built with React and Tailwind",
@@ -2159,7 +2171,7 @@
       "media_type": "video",
       "cover_url": "/image/uploads/playground-covers/1777612654105_qvf62.jpg",
       "media_url": "/image/uploads/playground-videos/1778805277861_nnj9k.mp4",
-      "sort_order": 0,
+      "sort_order": 1,
       "created_at": "2026-05-01T05:13:23.538004+00:00"
     },
     {
@@ -2170,7 +2182,7 @@
       "media_type": "video",
       "cover_url": "/image/uploads/playground-covers/1777683744131_j0p7e.jpg",
       "media_url": "/image/uploads/playground-videos/1791378763014_tl18b.mp4",
-      "sort_order": 1,
+      "sort_order": 2,
       "created_at": "2026-05-02T01:02:55.366007+00:00"
     },
     {
@@ -2181,7 +2193,7 @@
       "media_type": "video",
       "cover_url": "/image/uploads/playground-covers/1777742321119_od3zz.jpg",
       "media_url": "/image/uploads/playground-videos/1777743106418_paxs1.mp4",
-      "sort_order": 2,
+      "sort_order": 3,
       "created_at": "2026-05-02T17:32:23.809325+00:00"
     },
     {
@@ -2192,7 +2204,7 @@
       "media_type": "video",
       "cover_url": "/image/uploads/playground-covers/1778838333596_q18s2.jpg",
       "media_url": "/image/uploads/playground-videos/1778838550641_ufb9z.mp4",
-      "sort_order": 3,
+      "sort_order": 4,
       "created_at": "2026-05-15T09:51:44.542601+00:00"
     },
     {
@@ -2203,7 +2215,7 @@
       "media_type": "video",
       "cover_url": "/image/uploads/playground-covers/1778885215554_jelya.png",
       "media_url": "/image/uploads/playground-videos/1778885608754_cd4kb.mp4",
-      "sort_order": 4,
+      "sort_order": 5,
       "created_at": "2026-05-15T22:54:09.618741+00:00"
     },
     {
@@ -2214,7 +2226,7 @@
       "media_type": "video",
       "cover_url": "/image/uploads/playground-covers/1779552471314_cehg9.jpg",
       "media_url": "/image/uploads/playground-videos/1779552493328_yrad0.mp4",
-      "sort_order": 5,
+      "sort_order": 6,
       "created_at": "2026-05-23T16:08:46.594699+00:00"
     },
     {
@@ -2225,20 +2237,8 @@
       "media_type": "video",
       "cover_url": "/image/uploads/playground-covers/1782580412391_892yk.jpg",
       "media_url": "/image/uploads/playground-videos/1782583772153_kl26p.mp4",
-      "sort_order": 6,
-      "created_at": "2026-06-27T17:29:10.25036+00:00"
-    },
-    {
-      "id": "pg_1793401503507_n039f",
-      "title": "Fintech Onboarding",
-      "description": "Onboarding prototype for a stablecoin money app.",
-      "live_url": null,
-      "media_url": "/image/uploads/playground-videos/1793402491340_s421e.mp4",
-      "media_type": "video",
-      "cover_url": "/image/uploads/playground-covers/1793402494650_lpybc.webp",
       "sort_order": 7,
-      "cover_time": 0,
-      "about": "Fintech Onboarding is a native iOS splash and sign-in screen for a stablecoin money app. The screen cycles through the product’s five core actions (Pay, Save, Earn, Spend and Invest), then leads into “Continue with Apple” and “Recover existing wallet” sign-in options.\n\nI designed the flow in Figma and built it in SwiftUI, with a focus on motion. The word carousel is an infinite loop driven by a single spring-animated value, so every row’s position, scale and weight moves together. You can interrupt it mid-animation, and tap or drag to scrub through the list in either direction. Rows fade at the top and bottom edges, and the interaction has haptic feedback and Reduce Motion support.\n\nBuilt with: SwiftUI, Figma"
+      "created_at": "2026-06-27T17:29:10.25036+00:00"
     }
   ],
   "carousel_images": [
