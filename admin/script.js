@@ -25,7 +25,7 @@ function showSnapshotBanner(reason) {
     el.textContent = 'Supabase is unavailable' + (reason ? ' (' + reason + ')' : '') +
       ' — showing the site snapshot. ' +
       (local ? 'Projects and Playground save locally; the other tabs can\'t save until Supabase is back.'
-             : 'Changes can\'t be saved until Supabase is back.');
+        : 'Changes can\'t be saved until Supabase is back.');
   });
 }
 
@@ -37,8 +37,8 @@ function showSnapshotBanner(reason) {
 var LOCAL_TABLES = ['projects', 'playground_items'];
 var localSaveReady = /^(localhost|127\.0\.0\.1)$/.test(location.hostname)
   ? fetch('/api/local/ping', { cache: 'no-store' })
-      .then(function (r) { return r.ok; })
-      .catch(function () { return false; })
+    .then(function (r) { return r.ok; })
+    .catch(function () { return false; })
   : Promise.resolve(false);
 
 localSaveReady.then(function (on) {
@@ -87,9 +87,9 @@ async function selectOrSnapshot(table, query) {
 
 // Encodes the frame a video element is showing as a WebP (PNG on Safari).
 async function encodeVideoFrame(v) {
-  var scale  = Math.min(1, 2000 / v.videoWidth);
+  var scale = Math.min(1, 2000 / v.videoWidth);
   var canvas = document.createElement('canvas');
-  canvas.width  = Math.round(v.videoWidth * scale);
+  canvas.width = Math.round(v.videoWidth * scale);
   canvas.height = Math.round(v.videoHeight * scale);
   canvas.getContext('2d').drawImage(v, 0, 0, canvas.width, canvas.height);
   var blob = await new Promise(function (resolve) { canvas.toBlob(resolve, 'image/webp', 0.82); });
@@ -100,9 +100,9 @@ async function encodeVideoFrame(v) {
 }
 
 var pickCoverFrame = (function () {
-  var modal  = document.getElementById('poster-modal');
-  var video  = document.getElementById('poster-video');
-  var apply  = document.getElementById('poster-apply-btn');
+  var modal = document.getElementById('poster-modal');
+  var video = document.getElementById('poster-video');
+  var apply = document.getElementById('poster-apply-btn');
   var settle = null;
 
   function finish(result) {
@@ -124,7 +124,7 @@ var pickCoverFrame = (function () {
     apply.disabled = true;
     video.pause();
     try {
-      var time  = Math.round(video.currentTime * 100) / 100;
+      var time = Math.round(video.currentTime * 100) / 100;
       var frame = await encodeVideoFrame(video);
       frame.time = time;
       finish(frame);
@@ -137,7 +137,7 @@ var pickCoverFrame = (function () {
   document.getElementById('poster-upload-btn').addEventListener('click', function () {
     if (!settle) return;
     var picker = document.createElement('input');
-    picker.type   = 'file';
+    picker.type = 'file';
     picker.accept = 'image/*';
     picker.addEventListener('change', function () {
       var file = picker.files && picker.files[0];
@@ -163,24 +163,24 @@ var pickCoverFrame = (function () {
 // Everything raster is downscaled and re-encoded to WebP before it leaves the
 // browser. Videos, SVGs and GIFs pass through untouched, and any decode we
 // can't handle (HEIC in some browsers) falls back to the original file.
-var IMG_MAX_W   = 2000;
+var IMG_MAX_W = 2000;
 // A tall full-page screenshot shouldn't be squeezed to a useless width by a
 // hard height cap, so overall size is bounded by a pixel budget instead.
-var IMG_MAX_PX  = 12e6;
+var IMG_MAX_PX = 12e6;
 var IMG_QUALITY = 0.82;
-var IMG_SKIP    = /^image\/(svg\+xml|gif)$/;
+var IMG_SKIP = /^image\/(svg\+xml|gif)$/;
 
 // Case-study images are stored twice. The page copy is sized for the 600px
 // column at up to 2x density, so the page carries fewer bytes than the single
 // 2000px file it replaces; the zoom copy is only fetched when someone clicks
 // an image to magnify it, so it can afford real resolution and quality.
-var PAGE_IMG = { maxW: 1200, maxPx: 6e6,  quality: 0.85 };
+var PAGE_IMG = { maxW: 1200, maxPx: 6e6, quality: 0.85 };
 var ZOOM_IMG = { maxW: 3200, maxPx: 24e6, quality: 0.92 };
 
 async function compressImage(file, opts) {
   opts = opts || {};
-  var maxW    = opts.maxW    || IMG_MAX_W;
-  var maxPx   = opts.maxPx   || IMG_MAX_PX;
+  var maxW = opts.maxW || IMG_MAX_W;
+  var maxPx = opts.maxPx || IMG_MAX_PX;
   var quality = opts.quality || IMG_QUALITY;
   var plain = { file: file, width: null, height: null };
   if (!file.type.startsWith('image/') || IMG_SKIP.test(file.type)) return plain;
@@ -199,7 +199,7 @@ async function compressImage(file, opts) {
   var outH = Math.max(1, Math.round(h * scale));
 
   var canvas = document.createElement('canvas');
-  canvas.width  = outW;
+  canvas.width = outW;
   canvas.height = outH;
   var ctx = canvas.getContext('2d');
   ctx.imageSmoothingQuality = 'high';
@@ -216,8 +216,8 @@ async function compressImage(file, opts) {
 
   var name = file.name.replace(/\.[^.]+$/, '') + '.webp';
   return {
-    file:   new File([blob], name, { type: 'image/webp' }),
-    width:  outW,
+    file: new File([blob], name, { type: 'image/webp' }),
+    width: outW,
     height: outH
   };
 }
@@ -228,7 +228,7 @@ async function compressImage(file, opts) {
   var PROJ_BUCKET = 'projects';
 
   // ── Auth ─────────────────────────────────────
-  var PWD_KEY  = 'admin_pwd_hash';
+  var PWD_KEY = 'admin_pwd_hash';
   var AUTH_KEY = 'admin_authed';
 
   async function sha256(str) {
@@ -239,22 +239,22 @@ async function compressImage(file, opts) {
   function showLock() {
     var hasPassword = !!localStorage.getItem(PWD_KEY);
     document.getElementById('lock-title').textContent = hasPassword ? 'Welcome back' : 'Set a password';
-    document.getElementById('lock-sub').textContent   = hasPassword
+    document.getElementById('lock-sub').textContent = hasPassword
       ? 'Enter your password to continue'
       : 'First time — choose a password for the admin.';
-    document.getElementById('lock-btn').textContent   = hasPassword ? 'Continue' : 'Set password';
+    document.getElementById('lock-btn').textContent = hasPassword ? 'Continue' : 'Set password';
   }
 
   document.getElementById('lock-form').addEventListener('submit', async function (e) {
     e.preventDefault();
-    var input  = document.getElementById('lock-input');
-    var errEl  = document.getElementById('lock-error');
-    var btn    = document.getElementById('lock-btn');
-    var pwd    = input.value;
+    var input = document.getElementById('lock-input');
+    var errEl = document.getElementById('lock-error');
+    var btn = document.getElementById('lock-btn');
+    var pwd = input.value;
     if (!pwd) return;
     btn.disabled = true;
     errEl.textContent = '';
-    var hash       = await sha256(pwd);
+    var hash = await sha256(pwd);
     var storedHash = localStorage.getItem(PWD_KEY);
     if (!storedHash) {
       localStorage.setItem(PWD_KEY, hash);
@@ -274,12 +274,12 @@ async function compressImage(file, opts) {
   });
 
   document.getElementById('lock-toggle').addEventListener('click', function () {
-    var input  = document.getElementById('lock-input');
-    var eyeOn  = document.getElementById('icon-eye');
+    var input = document.getElementById('lock-input');
+    var eyeOn = document.getElementById('icon-eye');
     var eyeOff = document.getElementById('icon-eye-off');
     var showing = input.type === 'text';
-    input.type           = showing ? 'password' : 'text';
-    eyeOn.style.display  = showing ? '' : 'none';
+    input.type = showing ? 'password' : 'text';
+    eyeOn.style.display = showing ? '' : 'none';
     eyeOff.style.display = showing ? 'none' : '';
     input.focus();
   });
@@ -292,14 +292,14 @@ async function compressImage(file, opts) {
 
   // ── State ─────────────────────────────────────
   var state = {
-    projects:       {},
-    order:          [],
-    activeId:       null,
-    gallery:        [],
+    projects: {},
+    order: [],
+    activeId: null,
+    gallery: [],
     activeCoverUrl: null
   };
 
-  var dragSrcIdx     = null;
+  var dragSrcIdx = null;
   var sidebarDragSrc = null;
 
   // ── Storage helpers ───────────────────────────
@@ -325,19 +325,19 @@ async function compressImage(file, opts) {
   async function uploadBlob(file, folder, progressId, width, height) {
     var local = await localSaveReady;
     return new Promise(function (resolve, reject) {
-      var ext  = file.name.split('.').pop().toLowerCase();
+      var ext = file.name.split('.').pop().toLowerCase();
       var path = folder + '/' + Date.now() + '_' + Math.random().toString(36).slice(2, 7) + '.' + ext;
       var endpoint = local
         ? '/api/local/upload?folder=' + encodeURIComponent(folder) + '&ext=' + encodeURIComponent(ext)
         : SUPABASE_URL + '/storage/v1/object/' + PROJ_BUCKET + '/' + path;
 
-      var bar  = progressId ? document.getElementById(progressId) : null;
+      var bar = progressId ? document.getElementById(progressId) : null;
       var fill = bar ? bar.querySelector('.upload-progress-fill') : null;
-      var pct  = bar ? bar.querySelector('[id$="-pct"]') : null;
+      var pct = bar ? bar.querySelector('[id$="-pct"]') : null;
       var name = bar ? bar.querySelector('[id$="-name"]') : null;
-      if (bar)  { bar.classList.add('active'); }
+      if (bar) { bar.classList.add('active'); }
       if (fill) { fill.style.width = '0%'; }
-      if (pct)  { pct.textContent = '0%'; }
+      if (pct) { pct.textContent = '0%'; }
       if (name) { name.textContent = file.name; }
 
       var xhr = new XMLHttpRequest();
@@ -353,22 +353,22 @@ async function compressImage(file, opts) {
         if (!e.lengthComputable) return;
         var p = Math.round((e.loaded / e.total) * 100);
         if (fill) fill.style.width = p + '%';
-        if (pct)  pct.textContent  = p + '%';
+        if (pct) pct.textContent = p + '%';
       });
 
       xhr.addEventListener('load', function () {
         if (bar) bar.classList.remove('active');
         if (xhr.status >= 200 && xhr.status < 300) {
           var localUrl = null;
-          if (local) { try { localUrl = JSON.parse(xhr.responseText).url; } catch (_) {} }
+          if (local) { try { localUrl = JSON.parse(xhr.responseText).url; } catch (_) { } }
           resolve({
             url: localUrl || SUPABASE_URL + '/storage/v1/object/public/' + PROJ_BUCKET + '/' + path,
-            w:   width  || null,
-            h:   height || null
+            w: width || null,
+            h: height || null
           });
         } else {
           var msg = 'Upload failed (' + xhr.status + ')';
-          try { var body = JSON.parse(xhr.responseText); msg = body.error || body.message || msg; } catch (_) {}
+          try { var body = JSON.parse(xhr.responseText); msg = body.error || body.message || msg; } catch (_) { }
           if (!local && (xhr.status === 413 || (msg && msg.toLowerCase().includes('size')))) {
             msg = 'File too large for the bucket — increase the max file size in your Supabase dashboard (Storage → Buckets → Edit)';
           }
@@ -403,7 +403,7 @@ async function compressImage(file, opts) {
       var marker = '/object/public/' + PROJ_BUCKET + '/';
       var i = url.indexOf(marker);
       if (i !== -1) await _sb.storage.from(PROJ_BUCKET).remove([decodeURIComponent(url.slice(i + marker.length))]);
-    } catch (e) {}
+    } catch (e) { }
   }
 
   // ── Helpers ───────────────────────────────────
@@ -462,10 +462,12 @@ async function compressImage(file, opts) {
         i++;
       } else if (item.layout === 'half' && state.gallery[i + 1] && state.gallery[i + 1].layout === 'half') {
         var next = state.gallery[i + 1];
-        result.push({ type: 'pair', images: [
-          { src: item.src, full: item.full || undefined, w: item.w || null, h: item.h || null, alt: item.alt, mediaType: item.mediaType || 'image', poster: item.poster || undefined, posterTime: item.posterTime || undefined },
-          { src: next.src, full: next.full || undefined, w: next.w || null, h: next.h || null, alt: next.alt, mediaType: next.mediaType || 'image', poster: next.poster || undefined, posterTime: next.posterTime || undefined }
-        ]});
+        result.push({
+          type: 'pair', images: [
+            { src: item.src, full: item.full || undefined, w: item.w || null, h: item.h || null, alt: item.alt, mediaType: item.mediaType || 'image', poster: item.poster || undefined, posterTime: item.posterTime || undefined },
+            { src: next.src, full: next.full || undefined, w: next.w || null, h: next.h || null, alt: next.alt, mediaType: next.mediaType || 'image', poster: next.poster || undefined, posterTime: next.posterTime || undefined }
+          ]
+        });
         i += 2;
       } else {
         // poster only exists on videos; undefined keeps it out of the JSON
@@ -482,25 +484,25 @@ async function compressImage(file, opts) {
     list.innerHTML = '';
 
     state.order.forEach(function (id, idx) {
-      var p  = state.projects[id];
+      var p = state.projects[id];
       if (!p) return;
       var li = document.createElement('li');
-      li.className   = 'project-list-item' + (id === state.activeId ? ' active' : '');
-      li.dataset.id  = id;
+      li.className = 'project-list-item' + (id === state.activeId ? ' active' : '');
+      li.dataset.id = id;
       li.dataset.idx = idx;
-      li.draggable   = true;
+      li.draggable = true;
 
       li.innerHTML =
         '<span class="pli-drag" title="Drag to reorder">' +
-          '<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">' +
-            '<circle cx="3.5" cy="2.5" r="1.1"/><circle cx="8.5" cy="2.5" r="1.1"/>' +
-            '<circle cx="3.5" cy="6" r="1.1"/><circle cx="8.5" cy="6" r="1.1"/>' +
-            '<circle cx="3.5" cy="9.5" r="1.1"/><circle cx="8.5" cy="9.5" r="1.1"/>' +
-          '</svg>' +
+        '<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">' +
+        '<circle cx="3.5" cy="2.5" r="1.1"/><circle cx="8.5" cy="2.5" r="1.1"/>' +
+        '<circle cx="3.5" cy="6" r="1.1"/><circle cx="8.5" cy="6" r="1.1"/>' +
+        '<circle cx="3.5" cy="9.5" r="1.1"/><circle cx="8.5" cy="9.5" r="1.1"/>' +
+        '</svg>' +
         '</span>' +
         '<div class="pli-text">' +
-          '<p class="pli-title">' + esc(p.title || 'Untitled') + '</p>' +
-          '<p class="pli-meta">' + esc(p.industry || '') + (p.year ? ' · ' + esc(p.year) : '') + '</p>' +
+        '<p class="pli-title">' + esc(p.title || 'Untitled') + '</p>' +
+        '<p class="pli-meta">' + esc(p.industry || '') + (p.year ? ' · ' + esc(p.year) : '') + '</p>' +
         '</div>';
 
       li.addEventListener('click', function (e) {
@@ -553,7 +555,7 @@ async function compressImage(file, opts) {
     });
     populateEditor(id);
     document.getElementById('empty-state').style.display = 'none';
-    document.getElementById('editor').style.display      = 'block';
+    document.getElementById('editor').style.display = 'block';
     document.getElementById('projects-panel').classList.add('mob-editor-active');
   }
 
@@ -561,21 +563,21 @@ async function compressImage(file, opts) {
   function populateEditor(id) {
     var p = state.projects[id];
     document.getElementById('editor-heading').textContent = p.title || 'Untitled';
-    document.getElementById('editor-url').textContent     = '/pages/work/project/?id=' + id;
-    document.getElementById('btn-preview').href           = '/pages/work/project/?id=' + id;
-    document.getElementById('f-slug').value     = id;
-    document.getElementById('f-title').value    = p.title    || '';
-    document.getElementById('f-tagline').value  = p.tagline  || '';
-    document.getElementById('f-about').value    = p.about    || '';
+    document.getElementById('editor-url').textContent = '/pages/work/project/?id=' + id;
+    document.getElementById('btn-preview').href = '/pages/work/project/?id=' + id;
+    document.getElementById('f-slug').value = id;
+    document.getElementById('f-title').value = p.title || '';
+    document.getElementById('f-tagline').value = p.tagline || '';
+    document.getElementById('f-about').value = p.about || '';
     document.getElementById('f-industry').value = p.industry || '';
-    document.getElementById('f-role').value     = p.role     || '';
-    document.getElementById('f-year').value     = p.year     || '';
-    document.getElementById('f-meta').value     = p.meta     || '';
+    document.getElementById('f-role').value = p.role || '';
+    document.getElementById('f-year').value = p.year || '';
+    document.getElementById('f-meta').value = p.meta || '';
     document.getElementById('f-live-url').value = p.live_url || '';
     document.getElementById('f-coming-soon').checked = !!p.coming_soon;
     document.getElementById('slug-preview').textContent = id;
 
-    state.gallery        = galleryToFlat(p.gallery);
+    state.gallery = galleryToFlat(p.gallery);
     state.activeCoverUrl = p.cover_url || null;
 
     renderGalleryGrid();
@@ -612,17 +614,17 @@ async function compressImage(file, opts) {
   // title line and its explanation stay one list item. Toggles off when
   // every selected item already has that marker.
   function toggleList(ta, ordered) {
-    var v  = ta.value, s = ta.selectionStart, e = ta.selectionEnd;
+    var v = ta.value, s = ta.selectionStart, e = ta.selectionEnd;
     if (e > s && v[e - 1] === '\n') e--;
     var ls = v.lastIndexOf('\n', s - 1) + 1;
     var le = v.indexOf('\n', e); if (le === -1) le = v.length;
-    var lines   = v.slice(ls, le).split('\n');
+    var lines = v.slice(ls, le).split('\n');
     var chunked = lines.some(function (l) { return !l.trim(); });
-    var heads   = lines.map(function (l, k) {
+    var heads = lines.map(function (l, k) {
       return !!l.trim() && (!chunked || k === 0 || !lines[k - 1].trim());
     });
     var mark = ordered ? /^\s*\d+[.)]\s+/ : /^\s*[-•*]\s+/;
-    var off  = lines.every(function (l, k) { return !heads[k] || mark.test(l); });
+    var off = lines.every(function (l, k) { return !heads[k] || mark.test(l); });
     var n = 0;
     var out = lines.map(function (l, k) {
       if (!heads[k]) return l;
@@ -640,7 +642,7 @@ async function compressImage(file, opts) {
     function kids(n) { return Array.prototype.map.call(n.childNodes, walk).join(''); }
     function isBold(n) {
       var tag = n.tagName.toLowerCase();
-      var fw  = n.style && n.style.fontWeight;
+      var fw = n.style && n.style.fontWeight;
       if (fw === 'normal' || fw === '400') return false; // Google Docs wraps everything in <b style="font-weight:normal">
       return tag === 'strong' || tag === 'b' || fw === 'bold' || parseInt(fw, 10) >= 600;
     }
@@ -754,13 +756,13 @@ async function compressImage(file, opts) {
     function cardBar(idx, label, extra) {
       var last = state.gallery.length - 1;
       return '<div class="gcard-drag-handle gcard-bar" title="Drag to reorder">' +
-          '<span class="gcard-pos">' + (idx + 1) + (label ? ' · ' + label : '') + '</span>' +
-          '<span class="gcard-bar-actions">' +
-            '<button type="button" class="gcard-move-btn" data-move="-1" title="Move earlier"' + (idx === 0 ? ' disabled' : '') + '>←</button>' +
-            DRAG_ICON +
-            '<button type="button" class="gcard-move-btn" data-move="1" title="Move later"' + (idx === last ? ' disabled' : '') + '>→</button>' +
-            (extra || '') +
-          '</span>' +
+        '<span class="gcard-pos">' + (idx + 1) + (label ? ' · ' + label : '') + '</span>' +
+        '<span class="gcard-bar-actions">' +
+        '<button type="button" class="gcard-move-btn" data-move="-1" title="Move earlier"' + (idx === 0 ? ' disabled' : '') + '>←</button>' +
+        DRAG_ICON +
+        '<button type="button" class="gcard-move-btn" data-move="1" title="Move later"' + (idx === last ? ' disabled' : '') + '>→</button>' +
+        (extra || '') +
+        '</span>' +
         '</div>';
     }
 
@@ -779,7 +781,7 @@ async function compressImage(file, opts) {
 
     function renderTextCard(item, idx) {
       var card = document.createElement('div');
-      card.className   = 'gcard gcard--text';
+      card.className = 'gcard gcard--text';
       card.dataset.idx = idx;
 
       // Side by side (two heading + paragraph pairs, as in the design) or a
@@ -790,30 +792,30 @@ async function compressImage(file, opts) {
       function colHtml(c, k) {
         return '<div class="gcard-text-col" data-col="' + k + '">' +
           '<label class="gcard-text-field"><span class="field-label">Heading</span>' +
-            '<input class="field-input gcard-text-heading" type="text" placeholder="e.g. The Goal" value="' + esc(c.heading) + '" /></label>' +
+          '<input class="field-input gcard-text-heading" type="text" placeholder="e.g. The Goal" value="' + esc(c.heading) + '" /></label>' +
           '<div class="gcard-text-field"><span class="field-label">Paragraph</span>' +
-            '<div class="rich-toolbar">' +
-              '<button type="button" class="rich-btn" data-fmt="bold" title="Bold (⌘B)"><b>B</b></button>' +
-              '<button type="button" class="rich-btn" data-fmt="ol" title="Numbered list">1.</button>' +
-              '<button type="button" class="rich-btn" data-fmt="ul" title="Bullet list">•</button>' +
-              '<span class="rich-hint">Select text, then B · pasted bold and lists are kept</span>' +
-            '</div>' +
-            '<textarea class="field-input field-textarea gcard-text-body" rows="7" placeholder="Write the paragraph…">' + esc(c.body) + '</textarea></div>' +
-        '</div>';
+          '<div class="rich-toolbar">' +
+          '<button type="button" class="rich-btn" data-fmt="bold" title="Bold (⌘B)"><b>B</b></button>' +
+          '<button type="button" class="rich-btn" data-fmt="ol" title="Numbered list">1.</button>' +
+          '<button type="button" class="rich-btn" data-fmt="ul" title="Bullet list">•</button>' +
+          '<span class="rich-hint">Select text, then B · pasted bold and lists are kept</span>' +
+          '</div>' +
+          '<textarea class="field-input field-textarea gcard-text-body" rows="7" placeholder="Write the paragraph…">' + esc(c.body) + '</textarea></div>' +
+          '</div>';
       }
 
       card.innerHTML =
         cardBar(idx, 'Text', '<button type="button" class="gcard-remove-btn" title="Remove text block">✕</button>') +
         '<div class="gcard-layout gcard-text-layout">' +
-          '<button type="button" class="gcard-layout-btn' + (showSecond ? '' : ' active') + '" data-cols="1">One column</button>' +
-          '<button type="button" class="gcard-layout-btn' + (showSecond ? ' active' : '') + '" data-cols="2">Side by side</button>' +
+        '<button type="button" class="gcard-layout-btn' + (showSecond ? '' : ' active') + '" data-cols="1">One column</button>' +
+        '<button type="button" class="gcard-layout-btn' + (showSecond ? ' active' : '') + '" data-cols="2">Side by side</button>' +
         '</div>' +
         '<div class="gcard-text-cols' + (showSecond ? ' has-two' : '') + '">' +
-          colHtml(item.columns[0], 0) +
-          (showSecond ? colHtml(second, 1) : '') +
+        colHtml(item.columns[0], 0) +
+        (showSecond ? colHtml(second, 1) : '') +
         '</div>' +
         '<div class="gcard-text-footer">' +
-          '<button type="button" class="gcard-text-link gcard-add-text-after">+ Text after</button>' +
+        '<button type="button" class="gcard-text-link gcard-add-text-after">+ Text after</button>' +
         '</div>';
 
       wireDrag(card, idx);
@@ -852,38 +854,38 @@ async function compressImage(file, opts) {
 
     state.gallery.forEach(function (item, idx) {
       if (item.kind === 'text') { renderTextCard(item, idx); return; }
-      var isVideo  = item.mediaType === 'video';
-      var isCover  = !!(state.activeCoverUrl && item.src && item.src === state.activeCoverUrl);
-      var card     = document.createElement('div');
-      card.className   = 'gcard' + (isCover ? ' is-cover' : '');
+      var isVideo = item.mediaType === 'video';
+      var isCover = !!(state.activeCoverUrl && item.src && item.src === state.activeCoverUrl);
+      var card = document.createElement('div');
+      card.className = 'gcard' + (isCover ? ' is-cover' : '');
       card.dataset.idx = idx;
 
-      var mediaHtml      = isVideo
+      var mediaHtml = isVideo
         ? '<video class="gcard-img" muted preload="metadata" loop playsinline></video>'
         : '<img class="gcard-img" src="" alt="" />';
-      var coverBtnHtml   = '<button class="gcard-cover-btn" title="Set as cover">★</button>';
+      var coverBtnHtml = '<button class="gcard-cover-btn" title="Set as cover">★</button>';
       var videoBadgeHtml = isVideo ? '<span class="gcard-video-badge">Video</span>' : '';
 
       card.innerHTML =
         cardBar(idx, isVideo ? 'Video' : 'Image') +
         '<div class="gcard-img-wrap">' +
-          mediaHtml +
-          '<div class="gcard-overlay">' +
-            coverBtnHtml +
-            (isVideo ? '<button type="button" class="gcard-replace-btn gcard-poster-btn" title="Choose the frame shown before the video plays">Cover frame</button>' : '') +
-            '<button type="button" class="gcard-replace-btn" title="Replace with a new file">Replace</button>' +
-            '<button class="gcard-remove-btn" title="Remove">✕</button>' +
-          '</div>' +
-          '<span class="gcard-cover-badge">Cover</span>' +
-          videoBadgeHtml +
+        mediaHtml +
+        '<div class="gcard-overlay">' +
+        coverBtnHtml +
+        (isVideo ? '<button type="button" class="gcard-replace-btn gcard-poster-btn" title="Choose the frame shown before the video plays">Cover frame</button>' : '') +
+        '<button type="button" class="gcard-replace-btn" title="Replace with a new file">Replace</button>' +
+        '<button class="gcard-remove-btn" title="Remove">✕</button>' +
+        '</div>' +
+        '<span class="gcard-cover-badge">Cover</span>' +
+        videoBadgeHtml +
         '</div>' +
         '<div class="gcard-meta">' +
-          '<input class="field-input gcard-alt" type="text" placeholder="' + (isVideo ? 'Video label' : 'Alt text') + '" value="' + esc(item.alt) + '" />' +
-          '<div class="gcard-layout">' +
-            '<button class="gcard-layout-btn' + (item.layout !== 'half' ? ' active' : '') + '" data-layout="full">Full</button>' +
-            '<button class="gcard-layout-btn' + (item.layout === 'half' ? ' active' : '') + '" data-layout="half">Half</button>' +
-          '</div>' +
-          '<button type="button" class="gcard-add-text-after" title="Insert a text block right after this image">+ Text after</button>' +
+        '<input class="field-input gcard-alt" type="text" placeholder="' + (isVideo ? 'Video label' : 'Alt text') + '" value="' + esc(item.alt) + '" />' +
+        '<div class="gcard-layout">' +
+        '<button class="gcard-layout-btn' + (item.layout !== 'half' ? ' active' : '') + '" data-layout="full">Full</button>' +
+        '<button class="gcard-layout-btn' + (item.layout === 'half' ? ' active' : '') + '" data-layout="half">Half</button>' +
+        '</div>' +
+        '<button type="button" class="gcard-add-text-after" title="Insert a text block right after this image">+ Text after</button>' +
         '</div>';
 
       wireDrag(card, idx);
@@ -912,7 +914,7 @@ async function compressImage(file, opts) {
           }
           state.activeCoverUrl = item.src;
           document.querySelectorAll('.gcard').forEach(function (c) {
-            var cIdx  = parseInt(c.dataset.idx);
+            var cIdx = parseInt(c.dataset.idx);
             var cItem = state.gallery[cIdx];
             c.classList.toggle('is-cover', !!(state.activeCoverUrl && cItem && cItem.src === state.activeCoverUrl));
           });
@@ -922,7 +924,7 @@ async function compressImage(file, opts) {
 
       card.querySelector('.gcard-replace-btn').addEventListener('click', function () {
         var picker = document.createElement('input');
-        picker.type   = 'file';
+        picker.type = 'file';
         picker.accept = 'image/*,video/*';
         picker.addEventListener('change', function () {
           if (picker.files && picker.files[0]) replaceGalleryMedia(item, picker.files[0]);
@@ -975,7 +977,7 @@ async function compressImage(file, opts) {
       if (size > HEAVY_COVER_BYTES) {
         note += '. It’s ' + Math.round(size / 1048576) + ' MB — under 8 MB starts faster on hover';
       }
-    } catch (e) {}
+    } catch (e) { }
     return note;
   }
 
@@ -1031,7 +1033,7 @@ async function compressImage(file, opts) {
       var url = pick.time != null
         ? (await uploadBlob(pick.file, 'images', null, pick.width, pick.height)).url
         : (await uploadFile(pick.file, 'images', 'gallery-upload-progress')).url;
-      item.poster     = url;
+      item.poster = url;
       item.posterTime = pick.time || null;
       renderGalleryGrid();
       toast('Cover frame set ✓ — save to publish');
@@ -1048,9 +1050,9 @@ async function compressImage(file, opts) {
     // Snapshot: a live FileList is emptied when the input's value is reset,
     // which would truncate this loop to a single file after the first await.
     var files = Array.prototype.slice.call(fileList);
-    var done  = 0;
+    var done = 0;
     for (var fi = 0; fi < files.length; fi++) {
-      var file    = files[fi];
+      var file = files[fi];
       var isVideo = file.type.startsWith('video/');
       var isImage = file.type.startsWith('image/');
       if (!isImage && !isVideo) continue;
@@ -1081,12 +1083,12 @@ async function compressImage(file, opts) {
     try {
       var up = await uploadGalleryFile(file, isVideo ? 'videos' : 'images', 'gallery-upload-progress');
       var wasCover = !!item.src && item.src === state.activeCoverUrl;
-      item.src       = up.url;
-      item.full      = up.full || null;
-      item.w         = up.w;
-      item.h         = up.h;
+      item.src = up.url;
+      item.full = up.full || null;
+      item.w = up.w;
+      item.h = up.h;
       item.mediaType = isVideo ? 'video' : 'image';
-      item.poster    = null;
+      item.poster = null;
       item.posterTime = null;
       var note = 'Replaced ✓ — save to publish';
       if (wasCover) {
@@ -1103,17 +1105,17 @@ async function compressImage(file, opts) {
   // ── Read form ─────────────────────────────────
   function readForm() {
     return {
-      title:     document.getElementById('f-title').value.trim(),
-      tagline:   document.getElementById('f-tagline').value.trim(),
-      about:     document.getElementById('f-about').value.trim(),
-      industry:  document.getElementById('f-industry').value.trim(),
-      role:      document.getElementById('f-role').value.trim(),
-      year:      document.getElementById('f-year').value.trim(),
-      meta:      document.getElementById('f-meta').value.trim(),
-      live_url:     document.getElementById('f-live-url').value.trim() || null,
-      coming_soon:  document.getElementById('f-coming-soon').checked,
+      title: document.getElementById('f-title').value.trim(),
+      tagline: document.getElementById('f-tagline').value.trim(),
+      about: document.getElementById('f-about').value.trim(),
+      industry: document.getElementById('f-industry').value.trim(),
+      role: document.getElementById('f-role').value.trim(),
+      year: document.getElementById('f-year').value.trim(),
+      meta: document.getElementById('f-meta').value.trim(),
+      live_url: document.getElementById('f-live-url').value.trim() || null,
+      coming_soon: document.getElementById('f-coming-soon').checked,
       cover_url: state.activeCoverUrl || null,
-      gallery:   galleryToProjectFormat()
+      gallery: galleryToProjectFormat()
     };
   }
 
@@ -1171,11 +1173,11 @@ async function compressImage(file, opts) {
       if (error) { toast('Delete failed: ' + error.message); return; }
     }
 
-    state.order    = state.order.filter(function (id) { return id !== state.activeId; });
+    state.order = state.order.filter(function (id) { return id !== state.activeId; });
     delete state.projects[state.activeId];
     state.activeId = null;
     renderList();
-    document.getElementById('editor').style.display      = 'none';
+    document.getElementById('editor').style.display = 'none';
     document.getElementById('empty-state').style.display = 'flex';
     document.getElementById('projects-panel').classList.remove('mob-editor-active');
     if (state.order.length && window.innerWidth > 768) selectProject(state.order[0]);
@@ -1196,7 +1198,7 @@ async function compressImage(file, opts) {
 
   // ── Bind events ───────────────────────────────
   function bindGlobalEvents() {
-    var zone  = document.getElementById('upload-zone');
+    var zone = document.getElementById('upload-zone');
     var input = document.getElementById('upload-input');
 
     input.addEventListener('change', function () { handleFiles(this.files); this.value = ''; });
@@ -1206,9 +1208,9 @@ async function compressImage(file, opts) {
         insertTextBlock(state.gallery.length);
       });
     });
-    zone.addEventListener('dragover',  function (e) { e.preventDefault(); this.classList.add('drag-over'); });
-    zone.addEventListener('dragleave', function ()  { this.classList.remove('drag-over'); });
-    zone.addEventListener('drop',      function (e) {
+    zone.addEventListener('dragover', function (e) { e.preventDefault(); this.classList.add('drag-over'); });
+    zone.addEventListener('dragleave', function () { this.classList.remove('drag-over'); });
+    zone.addEventListener('drop', function (e) {
       e.preventDefault(); this.classList.remove('drag-over');
       handleFiles(e.dataTransfer.files);
     });
@@ -1260,7 +1262,7 @@ async function compressImage(file, opts) {
   var BUCKET = 'playground';
 
   var pgState = {
-    items:    [],
+    items: [],
     activeId: null
   };
 
@@ -1291,20 +1293,20 @@ async function compressImage(file, opts) {
   async function uploadBlob(file, folder, progressId) {
     var local = await localSaveReady;
     return new Promise(function (resolve, reject) {
-      var ext  = file.name.split('.').pop().toLowerCase();
+      var ext = file.name.split('.').pop().toLowerCase();
       var path = folder + '/' + Date.now() + '_' + Math.random().toString(36).slice(2, 7) + '.' + ext;
       // local mode lands the file in image/uploads/playground-<folder>/
       var endpoint = local
         ? '/api/local/upload?folder=' + encodeURIComponent('playground-' + folder) + '&ext=' + encodeURIComponent(ext)
         : SUPABASE_URL + '/storage/v1/object/' + BUCKET + '/' + path;
 
-      var bar  = progressId ? document.getElementById(progressId) : null;
+      var bar = progressId ? document.getElementById(progressId) : null;
       var fill = bar ? bar.querySelector('.upload-progress-fill') : null;
-      var pct  = bar ? bar.querySelector('[id$="-pct"]') : null;
+      var pct = bar ? bar.querySelector('[id$="-pct"]') : null;
       var name = bar ? bar.querySelector('[id$="-name"]') : null;
-      if (bar)  { bar.classList.add('active'); }
+      if (bar) { bar.classList.add('active'); }
       if (fill) { fill.style.width = '0%'; }
-      if (pct)  { pct.textContent = '0%'; }
+      if (pct) { pct.textContent = '0%'; }
       if (name) { name.textContent = file.name; }
 
       var xhr = new XMLHttpRequest();
@@ -1320,18 +1322,18 @@ async function compressImage(file, opts) {
         if (!e.lengthComputable) return;
         var p = Math.round((e.loaded / e.total) * 100);
         if (fill) fill.style.width = p + '%';
-        if (pct)  pct.textContent  = p + '%';
+        if (pct) pct.textContent = p + '%';
       });
 
       xhr.addEventListener('load', function () {
         if (bar) bar.classList.remove('active');
         if (xhr.status >= 200 && xhr.status < 300) {
           var localUrl = null;
-          if (local) { try { localUrl = JSON.parse(xhr.responseText).url; } catch (_) {} }
+          if (local) { try { localUrl = JSON.parse(xhr.responseText).url; } catch (_) { } }
           resolve(localUrl || SUPABASE_URL + '/storage/v1/object/public/' + BUCKET + '/' + path);
         } else {
           var msg = 'Upload failed (' + xhr.status + ')';
-          try { var body = JSON.parse(xhr.responseText); msg = body.error || body.message || msg; } catch (_) {}
+          try { var body = JSON.parse(xhr.responseText); msg = body.error || body.message || msg; } catch (_) { }
           if (!local && (xhr.status === 413 || (msg && msg.toLowerCase().includes('size')))) {
             msg = 'File too large for the bucket — increase the max file size in your Supabase dashboard (Storage → Buckets → Edit)';
           }
@@ -1355,7 +1357,7 @@ async function compressImage(file, opts) {
       var marker = '/object/public/' + BUCKET + '/';
       var i = url.indexOf(marker);
       if (i !== -1) await _sb.storage.from(BUCKET).remove([decodeURIComponent(url.slice(i + marker.length))]);
-    } catch (e) {}
+    } catch (e) { }
   }
 
   // Playground writes go through these so local mode can swap the destination.
@@ -1377,16 +1379,16 @@ async function compressImage(file, opts) {
         var panel = this.dataset.panel;
         document.querySelectorAll('.admin-tab').forEach(function (b) { b.classList.remove('active'); });
         this.classList.add('active');
-        document.getElementById('projects-panel').style.display    = panel === 'projects'   ? 'flex' : 'none';
-        document.getElementById('playground-panel').style.display  = panel === 'playground' ? 'flex' : 'none';
-        document.getElementById('articles-panel').style.display    = panel === 'articles'   ? 'flex' : 'none';
-        document.getElementById('carousel-panel').style.display    = panel === 'carousel'   ? 'flex' : 'none';
-        document.getElementById('analytics-panel').style.display   = panel === 'analytics'  ? 'flex' : 'none';
-        document.getElementById('header-actions-projects').style.display   = panel === 'projects'   ? 'flex' : 'none';
+        document.getElementById('projects-panel').style.display = panel === 'projects' ? 'flex' : 'none';
+        document.getElementById('playground-panel').style.display = panel === 'playground' ? 'flex' : 'none';
+        document.getElementById('articles-panel').style.display = panel === 'articles' ? 'flex' : 'none';
+        document.getElementById('carousel-panel').style.display = panel === 'carousel' ? 'flex' : 'none';
+        document.getElementById('analytics-panel').style.display = panel === 'analytics' ? 'flex' : 'none';
+        document.getElementById('header-actions-projects').style.display = panel === 'projects' ? 'flex' : 'none';
         document.getElementById('header-actions-playground').style.display = panel === 'playground' ? 'flex' : 'none';
-        document.getElementById('header-actions-articles').style.display   = panel === 'articles'   ? 'flex' : 'none';
-        document.getElementById('header-actions-carousel').style.display   = panel === 'carousel'   ? 'flex' : 'none';
-        document.getElementById('header-actions-analytics').style.display  = panel === 'analytics'  ? 'flex' : 'none';
+        document.getElementById('header-actions-articles').style.display = panel === 'articles' ? 'flex' : 'none';
+        document.getElementById('header-actions-carousel').style.display = panel === 'carousel' ? 'flex' : 'none';
+        document.getElementById('header-actions-analytics').style.display = panel === 'analytics' ? 'flex' : 'none';
         if (panel === 'analytics') analyticsLoad();
       });
     });
@@ -1394,19 +1396,72 @@ async function compressImage(file, opts) {
 
   // ── List ────────────────────────────────────────────────────────────────────
 
+  var pgDragSrc = null;
+
   function renderPgList() {
     var list = document.getElementById('pg-item-list');
     list.innerHTML = '';
-    pgState.items.forEach(function (item) {
+    pgState.items.forEach(function (item, idx) {
       var li = document.createElement('li');
-      li.className  = 'project-list-item' + (item.id === pgState.activeId ? ' active' : '');
+      li.className = 'project-list-item' + (item.id === pgState.activeId ? ' active' : '');
       li.dataset.id = item.id;
+      li.draggable = true;
       li.innerHTML =
+        '<span class="pli-drag" title="Drag to reorder">' +
+        '<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">' +
+        '<circle cx="3.5" cy="2.5" r="1.1"/><circle cx="8.5" cy="2.5" r="1.1"/>' +
+        '<circle cx="3.5" cy="6" r="1.1"/><circle cx="8.5" cy="6" r="1.1"/>' +
+        '<circle cx="3.5" cy="9.5" r="1.1"/><circle cx="8.5" cy="9.5" r="1.1"/>' +
+        '</svg>' +
+        '</span>' +
         '<div class="pli-text">' +
-          '<p class="pli-title">' + pgEsc(item.title      || 'Untitled') + '</p>' +
-          '<p class="pli-meta">'  + pgEsc(item.media_type || '—')        + '</p>' +
+        '<p class="pli-title">' + pgEsc(item.title || 'Untitled') + '</p>' +
+        '<p class="pli-meta">' + pgEsc(item.media_type || '—') + '</p>' +
         '</div>';
-      li.addEventListener('click', function () { selectPgItem(item.id); });
+
+      li.addEventListener('click', function (e) {
+        if (e.target.closest('.pli-drag')) return;
+        selectPgItem(item.id);
+      });
+
+      li.addEventListener('dragstart', function (e) {
+        pgDragSrc = idx;
+        e.dataTransfer.effectAllowed = 'move';
+        setTimeout(function () { li.classList.add('is-dragging'); }, 0);
+      });
+      li.addEventListener('dragend', function () {
+        pgDragSrc = null;
+        li.classList.remove('is-dragging');
+        document.querySelectorAll('#pg-item-list .project-list-item')
+          .forEach(function (el) { el.classList.remove('drag-over'); });
+      });
+      li.addEventListener('dragover', function (e) { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; });
+      li.addEventListener('dragenter', function (e) {
+        e.preventDefault();
+        if (pgDragSrc !== null && pgDragSrc !== idx) li.classList.add('drag-over');
+      });
+      li.addEventListener('dragleave', function () { li.classList.remove('drag-over'); });
+      li.addEventListener('drop', async function (e) {
+        e.preventDefault();
+        li.classList.remove('drag-over');
+        if (pgDragSrc === null || pgDragSrc === idx) return;
+
+        var moved = pgState.items.splice(pgDragSrc, 1)[0];
+        pgState.items.splice(idx, 0, moved);
+        renderPgList();
+
+        // send full rows so the upsert never trips on NOT NULL columns;
+        // skip brand-new items that haven't been saved yet (no title)
+        var rows = [];
+        pgState.items.forEach(function (it, i) {
+          it.sort_order = i;
+          if (it.title) rows.push(it);
+        });
+        var res = await pgUpsert(rows);
+        if (res.error) { pgToast('Order not saved: ' + res.error.message); return; }
+        pgToast('Order saved');
+      });
+
       list.appendChild(li);
     });
   }
@@ -1420,18 +1475,18 @@ async function compressImage(file, opts) {
     });
     populatePgEditor(id);
     document.getElementById('pg-empty-state').style.display = 'none';
-    document.getElementById('pg-editor').style.display      = 'block';
+    document.getElementById('pg-editor').style.display = 'block';
     document.getElementById('playground-panel').classList.add('mob-editor-active');
   }
 
   function populatePgEditor(id) {
     var item = pgState.items.find(function (i) { return i.id === id; });
     if (!item) return;
-    document.getElementById('pg-editor-heading').textContent = item.title       || 'Untitled';
-    document.getElementById('pg-f-title').value              = item.title       || '';
-    document.getElementById('pg-f-desc').value               = item.description || '';
-    document.getElementById('pg-f-about').value              = item.about       || '';
-    document.getElementById('pg-f-live-url').value           = item.live_url    || '';
+    document.getElementById('pg-editor-heading').textContent = item.title || 'Untitled';
+    document.getElementById('pg-f-title').value = item.title || '';
+    document.getElementById('pg-f-desc').value = item.description || '';
+    document.getElementById('pg-f-about').value = item.about || '';
+    document.getElementById('pg-f-live-url').value = item.live_url || '';
     renderPgCoverPreview(item);
     renderPgMediaPreview(item);
   }
@@ -1450,7 +1505,7 @@ async function compressImage(file, opts) {
       var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
       if (idx === -1) return;
       await deleteFile(pgState.items[idx].cover_url);
-      pgState.items[idx].cover_url  = null;
+      pgState.items[idx].cover_url = null;
       pgState.items[idx].cover_time = null;
       renderPgCoverPreview(pgState.items[idx]);
     });
@@ -1465,7 +1520,7 @@ async function compressImage(file, opts) {
     pgToast(pick.time != null ? 'Saving cover frame…' : 'Uploading cover image…');
     try {
       // the old cover stays on disk: the saved item still points at it until Save
-      item.cover_url  = pick.time != null ? await uploadBlob(pick.file, 'covers') : await uploadFile(pick.file, 'covers');
+      item.cover_url = pick.time != null ? await uploadBlob(pick.file, 'covers') : await uploadFile(pick.file, 'covers');
       item.cover_time = pick.time;
       if (item.id === pgState.activeId) renderPgCoverPreview(item);
       pgToast('Cover set ✓ — save to publish');
@@ -1502,7 +1557,7 @@ async function compressImage(file, opts) {
       var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
       if (idx === -1) return;
       await deleteFile(pgState.items[idx].media_url);
-      pgState.items[idx].media_url  = null;
+      pgState.items[idx].media_url = null;
       pgState.items[idx].media_type = null;
       pgState.items[idx].cover_time = null;
       renderPgMediaPreview(pgState.items[idx]);
@@ -1538,14 +1593,14 @@ async function compressImage(file, opts) {
       .filter(function (f) { return f.type.startsWith('image/'); });
     if (!files.length) return;
 
-    var target  = activePgIndex();
+    var target = activePgIndex();
     var created = 0;
     for (var i = 0; i < files.length; i++) {
       try {
         pgToast(files.length > 1 ? 'Uploading ' + (i + 1) + ' of ' + files.length + '…' : 'Uploading…');
         var url = await uploadFile(files[i], 'covers');
         if (i === 0 && target !== -1) {
-          pgState.items[target].cover_url  = url;
+          pgState.items[target].cover_url = url;
           pgState.items[target].cover_time = null;
           renderPgCoverPreview(pgState.items[target]);
         } else {
@@ -1556,7 +1611,7 @@ async function compressImage(file, opts) {
     }
     if (created) renderPgList();
     pgToast(created ? 'Uploaded · ' + created + ' new item' + (created > 1 ? 's' : '') + ' created'
-                    : 'Cover uploaded');
+      : 'Cover uploaded');
   }
 
   async function handlePgFiles(fileList) {
@@ -1565,7 +1620,7 @@ async function compressImage(file, opts) {
     });
     if (!files.length) return;
 
-    var target  = activePgIndex();
+    var target = activePgIndex();
     var created = 0;
     for (var i = 0; i < files.length; i++) {
       var file = files[i];
@@ -1575,7 +1630,7 @@ async function compressImage(file, opts) {
         pgToast(files.length > 1 ? 'Uploading ' + (i + 1) + ' of ' + files.length + '…' : 'Uploading…');
         var url = await uploadFile(file, kind === 'video' ? 'videos' : 'images', 'pg-upload-progress');
         if (i === 0 && target !== -1) {
-          pgState.items[target].media_url  = url;
+          pgState.items[target].media_url = url;
           pgState.items[target].media_type = kind;
           pgState.items[target].cover_time = null;
           renderPgMediaPreview(pgState.items[target]);
@@ -1587,22 +1642,22 @@ async function compressImage(file, opts) {
     }
     renderPgList();
     pgToast(created ? 'Uploaded · ' + created + ' new item' + (created > 1 ? 's' : '') + ' created'
-                    : 'Media uploaded');
+      : 'Media uploaded');
   }
 
   // ── CRUD ─────────────────────────────────────────────────────────────────────
 
   async function savePgItem() {
     var title = document.getElementById('pg-f-title').value.trim();
-    var desc  = document.getElementById('pg-f-desc').value.trim();
+    var desc = document.getElementById('pg-f-desc').value.trim();
     if (!title) { pgToast('Title is required'); return; }
     var idx = pgState.items.findIndex(function (x) { return x.id === pgState.activeId; });
     if (idx === -1) { pgToast('Item not found'); return; }
-    pgState.items[idx].title       = title;
+    pgState.items[idx].title = title;
     pgState.items[idx].description = desc;
-    pgState.items[idx].about       = document.getElementById('pg-f-about').value.trim();
-    pgState.items[idx].live_url    = document.getElementById('pg-f-live-url').value.trim() || null;
-    pgState.items[idx].sort_order  = idx;
+    pgState.items[idx].about = document.getElementById('pg-f-about').value.trim();
+    pgState.items[idx].live_url = document.getElementById('pg-f-live-url').value.trim() || null;
+    pgState.items[idx].sort_order = idx;
     document.getElementById('pg-editor-heading').textContent = title;
     var { error } = await pgUpsert(pgState.items[idx]);
     if (error) { pgToast('Save failed: ' + error.message); return; }
@@ -1617,17 +1672,17 @@ async function compressImage(file, opts) {
     if (item) { await deleteFile(item.cover_url); await deleteFile(item.media_url); }
     var { error } = await pgDelete(pgState.activeId);
     if (error) { pgToast('Delete failed: ' + error.message); return; }
-    pgState.items    = pgState.items.filter(function (x) { return x.id !== pgState.activeId; });
+    pgState.items = pgState.items.filter(function (x) { return x.id !== pgState.activeId; });
     pgState.activeId = null;
     renderPgList();
-    document.getElementById('pg-editor').style.display      = 'none';
+    document.getElementById('pg-editor').style.display = 'none';
     document.getElementById('pg-empty-state').style.display = 'flex';
     document.getElementById('playground-panel').classList.remove('mob-editor-active');
     pgToast('Deleted');
   }
 
   function newPgItem() {
-    var id   = pgUid();
+    var id = pgUid();
     var item = { id: id, title: '', description: '', live_url: null, media_url: null, media_type: null, cover_url: null, sort_order: pgState.items.length };
     pgState.items.push(item);
     renderPgList();
@@ -1639,23 +1694,23 @@ async function compressImage(file, opts) {
   // ── Bind events ──────────────────────────────────────────────────────────────
 
   function bindPgEvents() {
-    var coverZone  = document.getElementById('pg-cover-zone');
+    var coverZone = document.getElementById('pg-cover-zone');
     var coverInput = document.getElementById('pg-cover-input');
-    var zone  = document.getElementById('pg-upload-zone');
+    var zone = document.getElementById('pg-upload-zone');
     var input = document.getElementById('pg-upload-input');
 
     coverInput.addEventListener('change', function () { if (this.files.length) handlePgCoverFiles(this.files); this.value = ''; });
-    coverZone.addEventListener('dragover',  function (e) { e.preventDefault(); this.classList.add('drag-over'); });
-    coverZone.addEventListener('dragleave', function ()  { this.classList.remove('drag-over'); });
-    coverZone.addEventListener('drop',      function (e) {
+    coverZone.addEventListener('dragover', function (e) { e.preventDefault(); this.classList.add('drag-over'); });
+    coverZone.addEventListener('dragleave', function () { this.classList.remove('drag-over'); });
+    coverZone.addEventListener('drop', function (e) {
       e.preventDefault(); this.classList.remove('drag-over');
       if (e.dataTransfer.files.length) handlePgCoverFiles(e.dataTransfer.files);
     });
 
     input.addEventListener('change', function () { if (this.files.length) handlePgFiles(this.files); this.value = ''; });
-    zone.addEventListener('dragover',  function (e) { e.preventDefault(); this.classList.add('drag-over'); });
-    zone.addEventListener('dragleave', function ()  { this.classList.remove('drag-over'); });
-    zone.addEventListener('drop',      function (e) {
+    zone.addEventListener('dragover', function (e) { e.preventDefault(); this.classList.add('drag-over'); });
+    zone.addEventListener('dragleave', function () { this.classList.remove('drag-over'); });
+    zone.addEventListener('drop', function (e) {
       e.preventDefault(); this.classList.remove('drag-over');
       if (e.dataTransfer.files.length) handlePgFiles(e.dataTransfer.files);
     });
@@ -1703,7 +1758,7 @@ async function compressImage(file, opts) {
   var artState = { items: [], activeId: null };
 
   function artEsc(s) {
-    return String(s || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
   function artToast(msg) {
     var el = document.getElementById('toast');
@@ -1714,7 +1769,7 @@ async function compressImage(file, opts) {
 
   async function artUploadFile(rawFile) {
     var file = (await compressImage(rawFile)).file;
-    var ext  = file.name.split('.').pop().toLowerCase();
+    var ext = file.name.split('.').pop().toLowerCase();
     var path = 'covers/' + Date.now() + '_' + Math.random().toString(36).slice(2, 7) + '.' + ext;
     var { error } = await _sb.storage.from(ART_BUCKET).upload(path, file, { cacheControl: '31536000', upsert: false });
     if (error) throw error;
@@ -1727,7 +1782,7 @@ async function compressImage(file, opts) {
       var marker = '/object/public/' + ART_BUCKET + '/';
       var i = url.indexOf(marker);
       if (i !== -1) await _sb.storage.from(ART_BUCKET).remove([decodeURIComponent(url.slice(i + marker.length))]);
-    } catch (e) {}
+    } catch (e) { }
   }
 
   // ── List ───────────────────────────────────────────────────────────────────
@@ -1741,8 +1796,8 @@ async function compressImage(file, opts) {
       li.dataset.id = item.id;
       li.innerHTML =
         '<div class="pli-text">' +
-          '<p class="pli-title">' + artEsc(item.title || 'Untitled') + '</p>' +
-          '<p class="pli-meta">'  + artEsc(item.date  || '')         + '</p>' +
+        '<p class="pli-title">' + artEsc(item.title || 'Untitled') + '</p>' +
+        '<p class="pli-meta">' + artEsc(item.date || '') + '</p>' +
         '</div>';
       li.addEventListener('click', function () { selectArtItem(item.id); });
       list.appendChild(li);
@@ -1758,18 +1813,18 @@ async function compressImage(file, opts) {
     });
     populateArtEditor(id);
     document.getElementById('art-empty-state').style.display = 'none';
-    document.getElementById('art-editor').style.display      = 'block';
+    document.getElementById('art-editor').style.display = 'block';
     document.getElementById('articles-panel').classList.add('mob-editor-active');
   }
 
   function populateArtEditor(id) {
     var item = artState.items.find(function (i) { return i.id === id; });
     if (!item) return;
-    document.getElementById('art-editor-heading').textContent = item.title       || 'Untitled';
-    document.getElementById('art-f-title').value              = item.title       || '';
-    document.getElementById('art-f-desc').value               = item.description || '';
-    document.getElementById('art-f-date').value               = item.date        || '';
-    document.getElementById('art-f-url').value                = item.url         || '';
+    document.getElementById('art-editor-heading').textContent = item.title || 'Untitled';
+    document.getElementById('art-f-title').value = item.title || '';
+    document.getElementById('art-f-desc').value = item.description || '';
+    document.getElementById('art-f-date').value = item.date || '';
+    document.getElementById('art-f-url').value = item.url || '';
     renderArtCoverPreview(item);
   }
 
@@ -1817,7 +1872,7 @@ async function compressImage(file, opts) {
       .filter(function (f) { return f.type.startsWith('image/'); });
     if (!files.length) return;
 
-    var target  = artState.items.findIndex(function (x) { return x.id === artState.activeId; });
+    var target = artState.items.findIndex(function (x) { return x.id === artState.activeId; });
     var created = 0;
     for (var i = 0; i < files.length; i++) {
       try {
@@ -1836,7 +1891,7 @@ async function compressImage(file, opts) {
     }
     if (created) renderArtList();
     artToast(created ? 'Uploaded · ' + created + ' new article' + (created > 1 ? 's' : '') + ' created'
-                     : 'Cover uploaded');
+      : 'Cover uploaded');
   }
 
   // ── CRUD ───────────────────────────────────────────────────────────────────
@@ -1846,11 +1901,11 @@ async function compressImage(file, opts) {
     if (!title) { artToast('Title is required'); return; }
     var idx = artState.items.findIndex(function (x) { return x.id === artState.activeId; });
     if (idx === -1) { artToast('Item not found'); return; }
-    artState.items[idx].title       = title;
+    artState.items[idx].title = title;
     artState.items[idx].description = document.getElementById('art-f-desc').value.trim();
-    artState.items[idx].date        = document.getElementById('art-f-date').value.trim();
-    artState.items[idx].url         = document.getElementById('art-f-url').value.trim();
-    artState.items[idx].sort_order  = idx;
+    artState.items[idx].date = document.getElementById('art-f-date').value.trim();
+    artState.items[idx].url = document.getElementById('art-f-url').value.trim();
+    artState.items[idx].sort_order = idx;
     document.getElementById('art-editor-heading').textContent = title;
     var { error } = await _sb.from('articles').upsert(artState.items[idx]);
     if (error) { artToast('Save failed: ' + error.message); return; }
@@ -1865,10 +1920,10 @@ async function compressImage(file, opts) {
     if (item && item.cover_url) await artDeleteFile(item.cover_url);
     var { error } = await _sb.from('articles').delete().eq('id', artState.activeId);
     if (error) { artToast('Delete failed: ' + error.message); return; }
-    artState.items    = artState.items.filter(function (x) { return x.id !== artState.activeId; });
+    artState.items = artState.items.filter(function (x) { return x.id !== artState.activeId; });
     artState.activeId = null;
     renderArtList();
-    document.getElementById('art-editor').style.display      = 'none';
+    document.getElementById('art-editor').style.display = 'none';
     document.getElementById('art-empty-state').style.display = 'flex';
     document.getElementById('articles-panel').classList.remove('mob-editor-active');
     artToast('Deleted');
@@ -1886,12 +1941,12 @@ async function compressImage(file, opts) {
   // ── Bind events ────────────────────────────────────────────────────────────
 
   function bindArtEvents() {
-    var zone  = document.getElementById('art-cover-zone');
+    var zone = document.getElementById('art-cover-zone');
     var input = document.getElementById('art-cover-input');
     input.addEventListener('change', function () { if (this.files.length) handleArtCovers(this.files); this.value = ''; });
-    zone.addEventListener('dragover',  function (e) { e.preventDefault(); this.classList.add('drag-over'); });
-    zone.addEventListener('dragleave', function ()  { this.classList.remove('drag-over'); });
-    zone.addEventListener('drop',      function (e) {
+    zone.addEventListener('dragover', function (e) { e.preventDefault(); this.classList.add('drag-over'); });
+    zone.addEventListener('dragleave', function () { this.classList.remove('drag-over'); });
+    zone.addEventListener('drop', function (e) {
       e.preventDefault(); this.classList.remove('drag-over');
       if (e.dataTransfer.files.length) handleArtCovers(e.dataTransfer.files);
     });
@@ -1974,7 +2029,7 @@ async function compressImage(file, opts) {
     heicLibPromise = new Promise(function (resolve, reject) {
       var el = document.createElement('script');
       el.src = HEIC2ANY_SRC;
-      el.onload  = function () {
+      el.onload = function () {
         if (window.heic2any) resolve(window.heic2any);
         else { heicLibPromise = null; reject(new Error('HEIC converter did not initialise')); }
       };
@@ -1995,7 +2050,7 @@ async function compressImage(file, opts) {
     if (!window.createImageBitmap) return Promise.reject(new Error('no createImageBitmap'));
     return createImageBitmap(file, { imageOrientation: 'from-image' }).then(function (bmp) {
       var canvas = document.createElement('canvas');
-      canvas.width  = bmp.width;
+      canvas.width = bmp.width;
       canvas.height = bmp.height;
       canvas.getContext('2d').drawImage(bmp, 0, 0);
       if (bmp.close) bmp.close();
@@ -2027,7 +2082,7 @@ async function compressImage(file, opts) {
   }
 
   var carState = { home: [], about: [] };
-  var carDrag  = { page: null, fromIndex: -1 };
+  var carDrag = { page: null, fromIndex: -1 };
 
   function carToast(msg) {
     var el = document.getElementById('toast');
@@ -2040,17 +2095,17 @@ async function compressImage(file, opts) {
 
   function carUploadFile(file, page, progressId) {
     return new Promise(function (resolve, reject) {
-      var ext  = file.name.split('.').pop().toLowerCase();
+      var ext = file.name.split('.').pop().toLowerCase();
       var path = page + '/' + Date.now() + '_' + Math.random().toString(36).slice(2, 7) + '.' + ext;
       var endpoint = SUPABASE_URL + '/storage/v1/object/' + BUCKET + '/' + path;
 
-      var bar  = progressId ? document.getElementById(progressId) : null;
+      var bar = progressId ? document.getElementById(progressId) : null;
       var fill = bar ? bar.querySelector('.upload-progress-fill') : null;
-      var pct  = bar ? bar.querySelector('[id$="-pct"]') : null;
+      var pct = bar ? bar.querySelector('[id$="-pct"]') : null;
       var name = bar ? bar.querySelector('[id$="-name"]') : null;
-      if (bar)  { bar.classList.add('active'); }
+      if (bar) { bar.classList.add('active'); }
       if (fill) { fill.style.width = '0%'; }
-      if (pct)  { pct.textContent = '0%'; }
+      if (pct) { pct.textContent = '0%'; }
       if (name) { name.textContent = file.name; }
 
       var xhr = new XMLHttpRequest();
@@ -2064,7 +2119,7 @@ async function compressImage(file, opts) {
         if (!e.lengthComputable) return;
         var p = Math.round((e.loaded / e.total) * 100);
         if (fill) fill.style.width = p + '%';
-        if (pct)  pct.textContent  = p + '%';
+        if (pct) pct.textContent = p + '%';
       });
 
       xhr.addEventListener('load', function () {
@@ -2073,7 +2128,7 @@ async function compressImage(file, opts) {
           resolve(SUPABASE_URL + '/storage/v1/object/public/' + BUCKET + '/' + path);
         } else {
           var msg = 'Upload failed (' + xhr.status + ')';
-          try { var body = JSON.parse(xhr.responseText); msg = body.error || body.message || msg; } catch (_) {}
+          try { var body = JSON.parse(xhr.responseText); msg = body.error || body.message || msg; } catch (_) { }
           reject(new Error(msg));
         }
       });
@@ -2093,7 +2148,7 @@ async function compressImage(file, opts) {
       var marker = '/object/public/' + BUCKET + '/';
       var i = url.indexOf(marker);
       if (i !== -1) await _sb.storage.from(BUCKET).remove([decodeURIComponent(url.slice(i + marker.length))]);
-    } catch (e) {}
+    } catch (e) { }
   }
 
   async function saveCarOrder(page) {
@@ -2153,7 +2208,7 @@ async function compressImage(file, opts) {
 
       div.addEventListener('dragstart', function (e) {
         e.dataTransfer.effectAllowed = 'move';
-        carDrag.page      = page;
+        carDrag.page = page;
         carDrag.fromIndex = index;
         div.classList.add('car-dragging');
       });
@@ -2180,7 +2235,7 @@ async function compressImage(file, opts) {
         div.classList.remove('car-drag-over');
         var toIndex = index;
         if (carDrag.page !== page || carDrag.fromIndex === toIndex) return;
-        var arr   = carState[page];
+        var arr = carState[page];
         var moved = arr.splice(carDrag.fromIndex, 1)[0];
         arr.splice(toIndex, 0, moved);
         renderCarGrid(page);
@@ -2222,7 +2277,7 @@ async function compressImage(file, opts) {
         var url = await carUploadFile(file, page, progressId);
         var existing = carState[page];
         var order = existing.length ? Math.max.apply(null, existing.map(function (x) { return x.sort_order || 0; })) + 1 : 0;
-        var id  = page + '_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
+        var id = page + '_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
         var res = await _sb.from('carousel_images').insert({ id: id, url: url, page: page, sort_order: order });
         if (res.error) throw res.error;
         carState[page].push({ id: id, url: url, page: page, sort_order: order });
@@ -2240,8 +2295,8 @@ async function compressImage(file, opts) {
 
   function initSpeedControls() {
     ['home', 'about'].forEach(function (page) {
-      var slider  = document.getElementById('car-' + page + '-speed');
-      var valEl   = document.getElementById('car-' + page + '-speed-val');
+      var slider = document.getElementById('car-' + page + '-speed');
+      var valEl = document.getElementById('car-' + page + '-speed-val');
       var saveBtn = document.getElementById('car-' + page + '-speed-save');
       if (!slider) return;
 
@@ -2274,7 +2329,7 @@ async function compressImage(file, opts) {
           carSpeed[row.page] = row.duration;
         }
       });
-    } catch (e) {}
+    } catch (e) { }
   }
 
   // ── Crop modal ────────────────────────────────────────────────────────────────
@@ -2283,7 +2338,7 @@ async function compressImage(file, opts) {
     page: null, index: null,
     rectW: 0, rectH: 0,
     rectX: 0, rectY: 0,
-    maxX: 0,  maxY: 0,
+    maxX: 0, maxY: 0,
     imgOffX: 0, imgOffY: 0,
     dragging: false,
     startMX: 0, startMY: 0, startRX: 0, startRY: 0
@@ -2292,26 +2347,26 @@ async function compressImage(file, opts) {
   function openCropModal(page, index) {
     var item = carState[page][index];
     if (!item) return;
-    cropState.page  = page;
+    cropState.page = page;
     cropState.index = index;
-    var modal  = document.getElementById('crop-modal');
-    var imgEl  = document.getElementById('crop-img');
+    var modal = document.getElementById('crop-modal');
+    var imgEl = document.getElementById('crop-img');
     var rectEl = document.getElementById('crop-rect');
     rectEl.style.display = 'none';
     imgEl.src = '';
     modal.classList.add('active');
 
     function setupRect() {
-      var wrap    = document.getElementById('crop-canvas-wrap');
-      var wrapR   = wrap.getBoundingClientRect();
-      var imgR    = imgEl.getBoundingClientRect();
-      var RATIO   = 846 / 700;
-      var dispW   = imgEl.offsetWidth;
-      var dispH   = imgEl.offsetHeight;
+      var wrap = document.getElementById('crop-canvas-wrap');
+      var wrapR = wrap.getBoundingClientRect();
+      var imgR = imgEl.getBoundingClientRect();
+      var RATIO = 846 / 700;
+      var dispW = imgEl.offsetWidth;
+      var dispH = imgEl.offsetHeight;
       if (!dispW || !dispH) return;
 
       cropState.imgOffX = imgR.left - wrapR.left;
-      cropState.imgOffY = imgR.top  - wrapR.top;
+      cropState.imgOffY = imgR.top - wrapR.top;
 
       if (dispW / dispH > RATIO) {
         cropState.rectH = dispH;
@@ -2345,9 +2400,9 @@ async function compressImage(file, opts) {
 
   function updateCropRect() {
     var rectEl = document.getElementById('crop-rect');
-    rectEl.style.left   = (cropState.imgOffX + cropState.rectX) + 'px';
-    rectEl.style.top    = (cropState.imgOffY + cropState.rectY) + 'px';
-    rectEl.style.width  = cropState.rectW + 'px';
+    rectEl.style.left = (cropState.imgOffX + cropState.rectX) + 'px';
+    rectEl.style.top = (cropState.imgOffY + cropState.rectY) + 'px';
+    rectEl.style.width = cropState.rectW + 'px';
     rectEl.style.height = cropState.rectH + 'px';
   }
 
@@ -2357,14 +2412,14 @@ async function compressImage(file, opts) {
 
   function bindCropDrag() {
     var rectEl = document.getElementById('crop-rect');
-    var wrap   = document.getElementById('crop-canvas-wrap');
+    var wrap = document.getElementById('crop-canvas-wrap');
 
     function startDrag(clientX, clientY) {
       cropState.dragging = true;
-      cropState.startMX  = clientX;
-      cropState.startMY  = clientY;
-      cropState.startRX  = cropState.rectX;
-      cropState.startRY  = cropState.rectY;
+      cropState.startMX = clientX;
+      cropState.startMY = clientY;
+      cropState.startRX = cropState.rectX;
+      cropState.startRY = cropState.rectY;
     }
 
     function moveDrag(clientX, clientY) {
@@ -2400,12 +2455,12 @@ async function compressImage(file, opts) {
     });
 
     document.getElementById('crop-apply-btn').addEventListener('click', async function () {
-      var x    = cropState.maxX > 0 ? Math.round(cropState.rectX / cropState.maxX * 100) : 50;
-      var y    = cropState.maxY > 0 ? Math.round(cropState.rectY / cropState.maxY * 100) : 50;
+      var x = cropState.maxX > 0 ? Math.round(cropState.rectX / cropState.maxX * 100) : 50;
+      var y = cropState.maxY > 0 ? Math.round(cropState.rectY / cropState.maxY * 100) : 50;
       var crop = { x: x, y: y };
-      var page  = cropState.page;
+      var page = cropState.page;
       var index = cropState.index;
-      var item  = carState[page][index];
+      var item = carState[page][index];
       if (!item) return;
       item.crop = crop;
       try {
@@ -2426,7 +2481,7 @@ async function compressImage(file, opts) {
 
   function bindCarEvents() {
     ['home', 'about'].forEach(function (page) {
-      var zone  = document.getElementById('car-' + page + '-zone');
+      var zone = document.getElementById('car-' + page + '-zone');
       var input = document.getElementById('car-' + page + '-input');
       if (!zone || !input) return;
 
@@ -2452,7 +2507,7 @@ async function compressImage(file, opts) {
     initSpeedControls();
     var carRows = await selectOrSnapshot('carousel_images',
       _sb.from('carousel_images').select('*').order('sort_order', { ascending: true }));
-    carState.home  = carRows.filter(function (i) { return i.page === 'home'; });
+    carState.home = carRows.filter(function (i) { return i.page === 'home'; });
     carState.about = carRows.filter(function (i) { return i.page === 'about'; });
     renderCarGrid('home');
     renderCarGrid('about');
@@ -2466,15 +2521,15 @@ async function compressImage(file, opts) {
 (function () {
 
   var activeRange = '7d';
-  var loaded      = false;
+  var loaded = false;
 
   function fmtRelative(date) {
     var diff = Date.now() - date.getTime();
     var mins = Math.floor(diff / 60000);
-    if (mins < 1)  return 'just now';
+    if (mins < 1) return 'just now';
     if (mins < 60) return mins + 'm ago';
     var hrs = Math.floor(mins / 60);
-    if (hrs < 24)  return hrs + 'h ago';
+    if (hrs < 24) return hrs + 'h ago';
     var days = Math.floor(hrs / 24);
     return days + 'd ago';
   }
@@ -2527,50 +2582,50 @@ async function compressImage(file, opts) {
   }
 
   var COUNTRY_NAMES = {
-    AF:'Afghanistan',ZA:'South Africa',AL:'Albania',DZ:'Algeria',DE:'Germany',
-    AD:'Andorra',AO:'Angola',AG:'Antigua & Barbuda',SA:'Saudi Arabia',AR:'Argentina',
-    AM:'Armenia',AU:'Australia',AT:'Austria',AZ:'Azerbaijan',BS:'Bahamas',
-    BH:'Bahrain',BD:'Bangladesh',BB:'Barbados',BY:'Belarus',BE:'Belgium',
-    BZ:'Belize',BJ:'Benin',BT:'Bhutan',BO:'Bolivia',BA:'Bosnia & Herzegovina',
-    BW:'Botswana',BR:'Brazil',BN:'Brunei',BG:'Bulgaria',BF:'Burkina Faso',
-    BI:'Burundi',CV:'Cape Verde',KH:'Cambodia',CM:'Cameroon',CA:'Canada',
-    CF:'Central African Republic',TD:'Chad',CL:'Chile',CN:'China',CY:'Cyprus',
-    CO:'Colombia',KM:'Comoros',CG:'Congo',CD:'DR Congo',KP:'North Korea',
-    KR:'South Korea',CI:"Côte d'Ivoire",CR:'Costa Rica',HR:'Croatia',CU:'Cuba',
-    DK:'Denmark',DJ:'Djibouti',DM:'Dominica',DO:'Dominican Republic',EC:'Ecuador',
-    EG:'Egypt',SV:'El Salvador',AE:'United Arab Emirates',ER:'Eritrea',SK:'Slovakia',
-    SI:'Slovenia',ES:'Spain',US:'United States',EE:'Estonia',ET:'Ethiopia',
-    FJ:'Fiji',PH:'Philippines',FI:'Finland',FR:'France',GA:'Gabon',GM:'Gambia',
-    GE:'Georgia',GH:'Ghana',GD:'Grenada',GR:'Greece',GT:'Guatemala',GN:'Guinea',
-    GW:'Guinea-Bissau',GQ:'Equatorial Guinea',GY:'Guyana',HT:'Haiti',HN:'Honduras',
-    HU:'Hungary',IN:'India',ID:'Indonesia',IQ:'Iraq',IR:'Iran',IE:'Ireland',
-    IS:'Iceland',IL:'Israel',IT:'Italy',JM:'Jamaica',JP:'Japan',JO:'Jordan',
-    KZ:'Kazakhstan',KE:'Kenya',KG:'Kyrgyzstan',KI:'Kiribati',KW:'Kuwait',
-    LA:'Laos',LS:'Lesotho',LV:'Latvia',LB:'Lebanon',LR:'Liberia',LY:'Libya',
-    LI:'Liechtenstein',LT:'Lithuania',LU:'Luxembourg',MG:'Madagascar',MY:'Malaysia',
-    MW:'Malawi',MV:'Maldives',ML:'Mali',MT:'Malta',MA:'Morocco',MH:'Marshall Islands',
-    MR:'Mauritania',MU:'Mauritius',MX:'Mexico',FM:'Micronesia',MD:'Moldova',
-    MC:'Monaco',MN:'Mongolia',ME:'Montenegro',MZ:'Mozambique',MM:'Myanmar',
-    NA:'Namibia',NR:'Nauru',NP:'Nepal',NI:'Nicaragua',NE:'Niger',NG:'Nigeria',
-    NO:'Norway',NZ:'New Zealand',OM:'Oman',NL:'Netherlands',PK:'Pakistan',
-    PW:'Palau',PA:'Panama',PG:'Papua New Guinea',PY:'Paraguay',PE:'Peru',
-    PL:'Poland',PT:'Portugal',QA:'Qatar',GB:'United Kingdom',CZ:'Czech Republic',
-    RO:'Romania',RW:'Rwanda',RU:'Russia',KN:'Saint Kitts & Nevis',
-    LC:'Saint Lucia',VC:'Saint Vincent & Grenadines',WS:'Samoa',SM:'San Marino',
-    ST:'São Tomé & Príncipe',SN:'Senegal',RS:'Serbia',SC:'Seychelles',
-    SL:'Sierra Leone',SG:'Singapore',SO:'Somalia',LK:'Sri Lanka',SD:'Sudan',
-    SS:'South Sudan',SR:'Suriname',SZ:'Eswatini',SE:'Sweden',CH:'Switzerland',
-    SY:'Syria',TJ:'Tajikistan',TH:'Thailand',TL:'Timor-Leste',TG:'Togo',
-    TO:'Tonga',TT:'Trinidad & Tobago',TN:'Tunisia',TM:'Turkmenistan',TR:'Turkey',
-    TV:'Tuvalu',UA:'Ukraine',UG:'Uganda',UY:'Uruguay',UZ:'Uzbekistan',
-    VU:'Vanuatu',VE:'Venezuela',VN:'Vietnam',YE:'Yemen',ZM:'Zambia',ZW:'Zimbabwe'
+    AF: 'Afghanistan', ZA: 'South Africa', AL: 'Albania', DZ: 'Algeria', DE: 'Germany',
+    AD: 'Andorra', AO: 'Angola', AG: 'Antigua & Barbuda', SA: 'Saudi Arabia', AR: 'Argentina',
+    AM: 'Armenia', AU: 'Australia', AT: 'Austria', AZ: 'Azerbaijan', BS: 'Bahamas',
+    BH: 'Bahrain', BD: 'Bangladesh', BB: 'Barbados', BY: 'Belarus', BE: 'Belgium',
+    BZ: 'Belize', BJ: 'Benin', BT: 'Bhutan', BO: 'Bolivia', BA: 'Bosnia & Herzegovina',
+    BW: 'Botswana', BR: 'Brazil', BN: 'Brunei', BG: 'Bulgaria', BF: 'Burkina Faso',
+    BI: 'Burundi', CV: 'Cape Verde', KH: 'Cambodia', CM: 'Cameroon', CA: 'Canada',
+    CF: 'Central African Republic', TD: 'Chad', CL: 'Chile', CN: 'China', CY: 'Cyprus',
+    CO: 'Colombia', KM: 'Comoros', CG: 'Congo', CD: 'DR Congo', KP: 'North Korea',
+    KR: 'South Korea', CI: "Côte d'Ivoire", CR: 'Costa Rica', HR: 'Croatia', CU: 'Cuba',
+    DK: 'Denmark', DJ: 'Djibouti', DM: 'Dominica', DO: 'Dominican Republic', EC: 'Ecuador',
+    EG: 'Egypt', SV: 'El Salvador', AE: 'United Arab Emirates', ER: 'Eritrea', SK: 'Slovakia',
+    SI: 'Slovenia', ES: 'Spain', US: 'United States', EE: 'Estonia', ET: 'Ethiopia',
+    FJ: 'Fiji', PH: 'Philippines', FI: 'Finland', FR: 'France', GA: 'Gabon', GM: 'Gambia',
+    GE: 'Georgia', GH: 'Ghana', GD: 'Grenada', GR: 'Greece', GT: 'Guatemala', GN: 'Guinea',
+    GW: 'Guinea-Bissau', GQ: 'Equatorial Guinea', GY: 'Guyana', HT: 'Haiti', HN: 'Honduras',
+    HU: 'Hungary', IN: 'India', ID: 'Indonesia', IQ: 'Iraq', IR: 'Iran', IE: 'Ireland',
+    IS: 'Iceland', IL: 'Israel', IT: 'Italy', JM: 'Jamaica', JP: 'Japan', JO: 'Jordan',
+    KZ: 'Kazakhstan', KE: 'Kenya', KG: 'Kyrgyzstan', KI: 'Kiribati', KW: 'Kuwait',
+    LA: 'Laos', LS: 'Lesotho', LV: 'Latvia', LB: 'Lebanon', LR: 'Liberia', LY: 'Libya',
+    LI: 'Liechtenstein', LT: 'Lithuania', LU: 'Luxembourg', MG: 'Madagascar', MY: 'Malaysia',
+    MW: 'Malawi', MV: 'Maldives', ML: 'Mali', MT: 'Malta', MA: 'Morocco', MH: 'Marshall Islands',
+    MR: 'Mauritania', MU: 'Mauritius', MX: 'Mexico', FM: 'Micronesia', MD: 'Moldova',
+    MC: 'Monaco', MN: 'Mongolia', ME: 'Montenegro', MZ: 'Mozambique', MM: 'Myanmar',
+    NA: 'Namibia', NR: 'Nauru', NP: 'Nepal', NI: 'Nicaragua', NE: 'Niger', NG: 'Nigeria',
+    NO: 'Norway', NZ: 'New Zealand', OM: 'Oman', NL: 'Netherlands', PK: 'Pakistan',
+    PW: 'Palau', PA: 'Panama', PG: 'Papua New Guinea', PY: 'Paraguay', PE: 'Peru',
+    PL: 'Poland', PT: 'Portugal', QA: 'Qatar', GB: 'United Kingdom', CZ: 'Czech Republic',
+    RO: 'Romania', RW: 'Rwanda', RU: 'Russia', KN: 'Saint Kitts & Nevis',
+    LC: 'Saint Lucia', VC: 'Saint Vincent & Grenadines', WS: 'Samoa', SM: 'San Marino',
+    ST: 'São Tomé & Príncipe', SN: 'Senegal', RS: 'Serbia', SC: 'Seychelles',
+    SL: 'Sierra Leone', SG: 'Singapore', SO: 'Somalia', LK: 'Sri Lanka', SD: 'Sudan',
+    SS: 'South Sudan', SR: 'Suriname', SZ: 'Eswatini', SE: 'Sweden', CH: 'Switzerland',
+    SY: 'Syria', TJ: 'Tajikistan', TH: 'Thailand', TL: 'Timor-Leste', TG: 'Togo',
+    TO: 'Tonga', TT: 'Trinidad & Tobago', TN: 'Tunisia', TM: 'Turkmenistan', TR: 'Turkey',
+    TV: 'Tuvalu', UA: 'Ukraine', UG: 'Uganda', UY: 'Uruguay', UZ: 'Uzbekistan',
+    VU: 'Vanuatu', VE: 'Venezuela', VN: 'Vietnam', YE: 'Yemen', ZM: 'Zambia', ZW: 'Zimbabwe'
   };
 
   function countryFlag(code) {
     if (!code || code.length !== 2) return '';
     var c = code.toUpperCase();
     return String.fromCodePoint(0x1F1E6 - 65 + c.charCodeAt(0)) +
-           String.fromCodePoint(0x1F1E6 - 65 + c.charCodeAt(1));
+      String.fromCodePoint(0x1F1E6 - 65 + c.charCodeAt(1));
   }
 
   function renderCountryTable(rows, max) {
@@ -2579,7 +2634,7 @@ async function compressImage(file, opts) {
       '<th>Country</th><th>Views</th><th></th>' +
       '</tr></thead><tbody>';
     rows.forEach(function (r) {
-      var pct  = max > 0 ? Math.round((r.count / max) * 100) : 0;
+      var pct = max > 0 ? Math.round((r.count / max) * 100) : 0;
       var flag = countryFlag(r.country);
       var name = (r.country && COUNTRY_NAMES[r.country.toUpperCase()]) || r.country || 'Unknown';
       var label = flag ? flag + ' ' + name : name;
@@ -2596,7 +2651,7 @@ async function compressImage(file, opts) {
   // which counts in D1 and sends back only the totals and breakdowns — no row
   // paging, no 1000-row cap, and no Supabase quota to run into.
   var ANALYTICS_URL = 'https://portfolio-analytics.sulaimonodeniran.workers.dev';
-  var TOKEN_KEY     = 'analytics_stats_token';
+  var TOKEN_KEY = 'analytics_stats_token';
 
   function readToken() {
     try { return localStorage.getItem(TOKEN_KEY) || ''; } catch (e) { return ''; }
@@ -2606,7 +2661,7 @@ async function compressImage(file, opts) {
     try {
       if (value) localStorage.setItem(TOKEN_KEY, value);
       else localStorage.removeItem(TOKEN_KEY);
-    } catch (e) {}
+    } catch (e) { }
   }
 
   function rangeStart() {
@@ -2618,7 +2673,7 @@ async function compressImage(file, opts) {
   async function fetchStats(token) {
     var todayStart = new Date(); todayStart.setHours(0, 0, 0, 0);
     var qs = '?from=' + encodeURIComponent(rangeStart()) +
-             '&today=' + encodeURIComponent(todayStart.toISOString());
+      '&today=' + encodeURIComponent(todayStart.toISOString());
     var res = await fetch(ANALYTICS_URL + '/stats' + qs, {
       headers: { Authorization: 'Bearer ' + token },
       cache: 'no-store'
@@ -2644,13 +2699,13 @@ async function compressImage(file, opts) {
     document.getElementById('analytics-updated').textContent = isError ? 'Not loaded' : message;
     document.getElementById('analytics-table-wrap').innerHTML =
       '<form id="analytics-token-form">' +
-        '<div style="display:flex;gap:8px;align-items:center;">' +
-          '<input class="field-input" id="analytics-token-input" type="password" autocomplete="off" ' +
-            'placeholder="Analytics token (ANALYTICS_STATS_TOKEN in .env.local)" style="flex:1;" />' +
-          '<button class="btn-primary" id="analytics-token-btn" type="submit">Save</button>' +
-        '</div>' +
-        '<p id="analytics-token-msg" class="' + (isError ? 'lock-error' : 'analytics-empty') + '" style="margin-top:8px;">' +
-          esc(message) + '</p>' +
+      '<div style="display:flex;gap:8px;align-items:center;">' +
+      '<input class="field-input" id="analytics-token-input" type="password" autocomplete="off" ' +
+      'placeholder="Analytics token (ANALYTICS_STATS_TOKEN in .env.local)" style="flex:1;" />' +
+      '<button class="btn-primary" id="analytics-token-btn" type="submit">Save</button>' +
+      '</div>' +
+      '<p id="analytics-token-msg" class="' + (isError ? 'lock-error' : 'analytics-empty') + '" style="margin-top:8px;">' +
+      esc(message) + '</p>' +
       '</form>';
     ['analytics-ref-wrap', 'analytics-country-wrap'].forEach(function (id) {
       document.getElementById(id).innerHTML = '<p class="analytics-empty">—</p>';
@@ -2676,8 +2731,8 @@ async function compressImage(file, opts) {
     }
 
     document.getElementById('analytics-updated').textContent = 'Loading…';
-    document.getElementById('analytics-table-wrap').innerHTML   = '<p class="analytics-loading">Loading…</p>';
-    document.getElementById('analytics-ref-wrap').innerHTML     = '<p class="analytics-loading">Loading…</p>';
+    document.getElementById('analytics-table-wrap').innerHTML = '<p class="analytics-loading">Loading…</p>';
+    document.getElementById('analytics-ref-wrap').innerHTML = '<p class="analytics-loading">Loading…</p>';
     document.getElementById('analytics-country-wrap').innerHTML = '<p class="analytics-loading">Loading…</p>';
 
     var data;
@@ -2702,26 +2757,26 @@ async function compressImage(file, opts) {
 
     // The token worked, so this is the site owner's browser: stop counting
     // its visits to the public pages (scripts/track.js checks this flag).
-    try { localStorage.setItem('analytics_ignore', '1'); } catch (e) {}
+    try { localStorage.setItem('analytics_ignore', '1'); } catch (e) { }
 
     var pageRows = data.pages.map(function (r) {
       return { page: r.page, count: r.count, lastSeen: new Date(r.last_seen) };
     });
-    var refRows     = data.referrers.map(function (r) { return { ref: r.ref, count: r.count }; });
+    var refRows = data.referrers.map(function (r) { return { ref: r.ref, count: r.count }; });
     var countryRows = data.countries.map(function (r) { return { country: r.country, count: r.count }; });
 
-    var topPage    = pageRows.length    ? pageRows[0].page     : '—';
-    var pageMax    = pageRows.length    ? pageRows[0].count    : 1;
-    var refMax     = refRows.length     ? refRows[0].count     : 1;
+    var topPage = pageRows.length ? pageRows[0].page : '—';
+    var pageMax = pageRows.length ? pageRows[0].count : 1;
+    var refMax = refRows.length ? refRows[0].count : 1;
     var countryMax = countryRows.length ? countryRows[0].count : 1;
 
     document.getElementById('stat-total').textContent = fmtNum(data.total);
     document.getElementById('stat-today').textContent = fmtNum(data.today);
-    document.getElementById('stat-top').textContent   = topPage;
+    document.getElementById('stat-top').textContent = topPage;
     document.getElementById('stat-pages').textContent = String(pageRows.length);
 
-    document.getElementById('analytics-table-wrap').innerHTML   = renderPageTable(pageRows, pageMax);
-    document.getElementById('analytics-ref-wrap').innerHTML     = renderRefTable(refRows, refMax);
+    document.getElementById('analytics-table-wrap').innerHTML = renderPageTable(pageRows, pageMax);
+    document.getElementById('analytics-ref-wrap').innerHTML = renderRefTable(refRows, refMax);
     document.getElementById('analytics-country-wrap').innerHTML = renderCountryTable(countryRows, countryMax);
 
     document.getElementById('analytics-updated').textContent =
