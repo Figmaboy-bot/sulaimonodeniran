@@ -2231,11 +2231,11 @@
     {
       "id": "pg_1793401503507_n039f",
       "title": "Fintech Onboarding",
-      "description": "An animated onboarding prototype for a stablecoin money app, built in SwiftUI from a Figma design.",
+      "description": "Onboarding prototype for a stablecoin money app.",
       "live_url": null,
-      "media_url": "/image/uploads/playground-videos/1793401790298_pu91d.mp4",
+      "media_url": "/image/uploads/playground-videos/1793402491340_s421e.mp4",
       "media_type": "video",
-      "cover_url": "/image/uploads/playground-covers/1793401802031_9349n.webp",
+      "cover_url": "/image/uploads/playground-covers/1793402494650_lpybc.webp",
       "sort_order": 7,
       "cover_time": 0,
       "about": "Fintech Onboarding is a native iOS splash and sign-in screen for a stablecoin money app. The screen cycles through the product’s five core actions (Pay, Save, Earn, Spend and Invest), then leads into “Continue with Apple” and “Recover existing wallet” sign-in options.\n\nI designed the flow in Figma and built it in SwiftUI, with a focus on motion. The word carousel is an infinite loop driven by a single spring-animated value, so every row’s position, scale and weight moves together. You can interrupt it mid-animation, and tap or drag to scrub through the list in either direction. Rows fade at the top and bottom edges, and the interaction has haptic feedback and Reduce Motion support.\n\nBuilt with: SwiftUI, Figma"
