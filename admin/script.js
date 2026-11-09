@@ -1,4 +1,5 @@
 var _sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+var LOCAL_TABLES = ['projects', 'playground_items', 'carousel_images', 'carousel_settings'];
 
 // ── Snapshot fallback ────────────────────────────────────────────────────────
 // When Supabase refuses reads (quota exceeded, project paused) the tabs used to
@@ -34,7 +35,6 @@ function showSnapshotBanner(reason) {
 // tabs read and write data/snapshot.json (plus image/uploads/) via that server
 // instead of Supabase; the repo's commit-and-push then ships the edit.
 // Anywhere else the ping never answers and nothing changes.
-var LOCAL_TABLES = ['projects', 'playground_items'];
 var localSaveReady = /^(localhost|127\.0\.0\.1)$/.test(location.hostname)
   ? fetch('/api/local/ping', { cache: 'no-store' })
     .then(function (r) { return r.ok; })
@@ -296,7 +296,8 @@ async function compressImage(file, opts) {
     order: [],
     activeId: null,
     gallery: [],
-    activeCoverUrl: null
+    activeCoverUrl: null,
+    activeCoverCrop: null
   };
 
   var dragSrcIdx = null;
@@ -428,10 +429,10 @@ async function compressImage(file, opts) {
     var flat = [];
     (dbGallery || []).forEach(function (section) {
       if (section.type === 'full') {
-        flat.push({ src: section.src || null, full: section.full || null, w: section.w || null, h: section.h || null, alt: section.alt || '', layout: 'full', mediaType: section.mediaType || 'image', poster: section.poster || null, posterTime: section.posterTime || null });
+        flat.push({ src: section.src || null, full: section.full || null, w: section.w || null, h: section.h || null, crop: section.crop || null, alt: section.alt || '', layout: 'full', mediaType: section.mediaType || 'image', poster: section.poster || null, posterTime: section.posterTime || null });
       } else if (section.type === 'pair') {
         (section.images || []).forEach(function (img) {
-          flat.push({ src: img.src || null, full: img.full || null, w: img.w || null, h: img.h || null, alt: img.alt || '', layout: 'half', mediaType: img.mediaType || 'image', poster: img.poster || null, posterTime: img.posterTime || null });
+          flat.push({ src: img.src || null, full: img.full || null, w: img.w || null, h: img.h || null, crop: img.crop || null, alt: img.alt || '', layout: 'half', mediaType: img.mediaType || 'image', poster: img.poster || null, posterTime: img.posterTime || null });
         });
       } else if (section.type === 'text') {
         flat.push({ kind: 'text', columns: textColumns(section.columns) });
@@ -464,14 +465,14 @@ async function compressImage(file, opts) {
         var next = state.gallery[i + 1];
         result.push({
           type: 'pair', images: [
-            { src: item.src, full: item.full || undefined, w: item.w || null, h: item.h || null, alt: item.alt, mediaType: item.mediaType || 'image', poster: item.poster || undefined, posterTime: item.posterTime || undefined },
-            { src: next.src, full: next.full || undefined, w: next.w || null, h: next.h || null, alt: next.alt, mediaType: next.mediaType || 'image', poster: next.poster || undefined, posterTime: next.posterTime || undefined }
+            { src: item.src, full: item.full || undefined, w: item.w || null, h: item.h || null, crop: item.crop || undefined, alt: item.alt, mediaType: item.mediaType || 'image', poster: item.poster || undefined, posterTime: item.posterTime || undefined },
+            { src: next.src, full: next.full || undefined, w: next.w || null, h: next.h || null, crop: next.crop || undefined, alt: next.alt, mediaType: next.mediaType || 'image', poster: next.poster || undefined, posterTime: next.posterTime || undefined }
           ]
         });
         i += 2;
       } else {
         // poster only exists on videos; undefined keeps it out of the JSON
-        result.push({ type: 'full', src: item.src, full: item.full || undefined, w: item.w || null, h: item.h || null, alt: item.alt, mediaType: item.mediaType || 'image', poster: item.poster || undefined, posterTime: item.posterTime || undefined });
+        result.push({ type: 'full', src: item.src, full: item.full || undefined, w: item.w || null, h: item.h || null, crop: item.crop || undefined, alt: item.alt, mediaType: item.mediaType || 'image', poster: item.poster || undefined, posterTime: item.posterTime || undefined });
         i++;
       }
     }
@@ -533,9 +534,13 @@ async function compressImage(file, opts) {
         var moved = state.order.splice(sidebarDragSrc, 1)[0];
         state.order.splice(idx, 0, moved);
         renderList();
+        // full rows, so the upsert never trips on NOT NULL columns
         var updates = state.order
           .filter(function (oid) { return !!state.projects[oid] && !oid.startsWith('new-project-'); })
-          .map(function (oid, i) { return { id: oid, sort_order: i }; });
+          .map(function (oid, i) {
+            state.projects[oid].sort_order = i;
+            return Object.assign({}, state.projects[oid], { id: oid, sort_order: i });
+          });
         if (updates.length) {
           var ord = await projUpsert(updates);
           if (ord.error) { toast('Order not saved: ' + ord.error.message); return; }
@@ -575,10 +580,13 @@ async function compressImage(file, opts) {
     document.getElementById('f-meta').value = p.meta || '';
     document.getElementById('f-live-url').value = p.live_url || '';
     document.getElementById('f-coming-soon').checked = !!p.coming_soon;
+    document.getElementById('f-cover-size').value = p.cover_size || 'm';
     document.getElementById('slug-preview').textContent = id;
 
     state.gallery = galleryToFlat(p.gallery);
     state.activeCoverUrl = p.cover_url || null;
+    state.activeCoverCrop = p.cover_crop || null;
+    updateCropStatus();
 
     renderGalleryGrid();
   }
@@ -855,6 +863,10 @@ async function compressImage(file, opts) {
     state.gallery.forEach(function (item, idx) {
       if (item.kind === 'text') { renderTextCard(item, idx); return; }
       var isVideo = item.mediaType === 'video';
+      // the first image on the project page sits in a fixed-shape header frame;
+      // that frame is the only one a crop has any effect on
+      var nextItem = state.gallery[idx + 1];
+      var isHero = idx === 0 && !(item.layout === 'half' && nextItem && nextItem.kind !== 'text' && nextItem.layout === 'half');
       var isCover = !!(state.activeCoverUrl && item.src && item.src === state.activeCoverUrl);
       var card = document.createElement('div');
       card.className = 'gcard' + (isCover ? ' is-cover' : '');
@@ -873,7 +885,8 @@ async function compressImage(file, opts) {
         '<div class="gcard-overlay">' +
         coverBtnHtml +
         (isVideo ? '<button type="button" class="gcard-replace-btn gcard-poster-btn" title="Choose the frame shown before the video plays">Cover frame</button>' : '') +
-        '<button type="button" class="gcard-replace-btn" title="Replace with a new file">Replace</button>' +
+        (isHero ? '<button type="button" class="gcard-replace-btn gcard-crop-btn" title="Choose which part shows in the project page header">' + (item.crop ? 'Cropped ✓' : 'Crop') + '</button>' : '') +
+        '<button type="button" class="gcard-replace-btn" data-act="replace" title="Replace with a new file">Replace</button>' +
         '<button class="gcard-remove-btn" title="Remove">✕</button>' +
         '</div>' +
         '<span class="gcard-cover-badge">Cover</span>' +
@@ -912,6 +925,7 @@ async function compressImage(file, opts) {
             note = await prepareVideoCover(item);
             renderGalleryGrid();
           }
+          if (state.activeCoverUrl !== item.src) { state.activeCoverCrop = null; updateCropStatus(); };
           state.activeCoverUrl = item.src;
           document.querySelectorAll('.gcard').forEach(function (c) {
             var cIdx = parseInt(c.dataset.idx);
@@ -922,7 +936,28 @@ async function compressImage(file, opts) {
         });
       }
 
-      card.querySelector('.gcard-replace-btn').addEventListener('click', function () {
+      var cropBtn = card.querySelector('.gcard-crop-btn');
+      if (cropBtn) {
+        cropBtn.addEventListener('click', function () {
+          if (!item.src) { toast('Upload this file first'); return; }
+          openCrop({
+            src: item.src,
+            poster: item.poster,
+            isVideo: isVideo,
+            crop: item.crop,
+            ratio: PAGE_HERO_RATIO,
+            title: 'Crop Header Image',
+            hint: 'Drag to choose what shows in the header at the top of the project page.',
+            onApply: function (crop) {
+              item.crop = crop;
+              renderGalleryGrid();
+              toast('Crop set ✓ — save to publish');
+            }
+          });
+        });
+      }
+
+      card.querySelector('[data-act="replace"]').addEventListener('click', function () {
         var picker = document.createElement('input');
         picker.type = 'file';
         picker.accept = 'image/*,video/*';
@@ -933,7 +968,7 @@ async function compressImage(file, opts) {
       });
 
       card.querySelector('.gcard-remove-btn').addEventListener('click', function () {
-        if (item.src === state.activeCoverUrl) state.activeCoverUrl = null;
+        if (item.src === state.activeCoverUrl) { state.activeCoverUrl = null; state.activeCoverCrop = null; updateCropStatus(); }
         state.gallery.splice(idx, 1);
         renderGalleryGrid();
       });
@@ -1090,10 +1125,12 @@ async function compressImage(file, opts) {
       item.mediaType = isVideo ? 'video' : 'image';
       item.poster = null;
       item.posterTime = null;
+      item.crop = null;
       var note = 'Replaced ✓ — save to publish';
       if (wasCover) {
         state.activeCoverUrl = up.url;
         if (isVideo) note = await prepareVideoCover(item);
+        state.activeCoverCrop = null; updateCropStatus();
       }
       renderGalleryGrid();
       toast(note);
@@ -1114,7 +1151,9 @@ async function compressImage(file, opts) {
       meta: document.getElementById('f-meta').value.trim(),
       live_url: document.getElementById('f-live-url').value.trim() || null,
       coming_soon: document.getElementById('f-coming-soon').checked,
+      cover_size: document.getElementById('f-cover-size').value,
       cover_url: state.activeCoverUrl || null,
+      cover_crop: state.activeCoverCrop || null,
       gallery: galleryToProjectFormat()
     };
   }
@@ -1127,21 +1166,20 @@ async function compressImage(file, opts) {
     if (!data.title) { toast('Title is required'); return; }
     var oldId = state.activeId;
 
-    if (newSlug !== oldId) {
-      var orderIdx = state.order.indexOf(oldId);
-      if (orderIdx !== -1) state.order[orderIdx] = newSlug;
-      else state.order.push(newSlug);
-      delete state.projects[oldId];
-      if (oldId && !oldId.startsWith('new-project-')) {
-        await projDelete(oldId);
-      }
-    }
-
-    var sortIdx = state.order.indexOf(newSlug);
+    var renamed = newSlug !== oldId;
+    var sortIdx = renamed ? (state.order.indexOf(oldId) !== -1 ? state.order.indexOf(oldId) : state.order.length) : state.order.indexOf(newSlug);
     var row = Object.assign({ id: newSlug, sort_order: sortIdx !== -1 ? sortIdx : 0 }, data);
 
     var { error } = await projUpsert(row);
     if (error) { toast('Save failed: ' + error.message); return; }
+
+    if (renamed) {
+      var orderIdx = state.order.indexOf(oldId);
+      if (orderIdx !== -1) state.order[orderIdx] = newSlug;
+      else state.order.push(newSlug);
+      delete state.projects[oldId];
+      if (oldId && !oldId.startsWith('new-project-')) await projDelete(oldId);
+    }
 
     state.projects[newSlug] = Object.assign({}, row);
     state.activeId = newSlug;
@@ -1187,7 +1225,7 @@ async function compressImage(file, opts) {
   // ── New project ───────────────────────────────
   function newProject() {
     var tempId = 'new-project-' + Date.now();
-    state.projects[tempId] = { title: '', tagline: '', about: '', industry: '', role: '', year: '', meta: '', live_url: null, cover_url: null, gallery: [] };
+    state.projects[tempId] = { title: '', tagline: '', about: '', industry: '', role: '', year: '', meta: '', live_url: null, cover_size: 'm', cover_url: null, cover_crop: null, gallery: [] };
     state.order.push(tempId);
     renderList();
     selectProject(tempId);
@@ -1196,8 +1234,153 @@ async function compressImage(file, opts) {
     toast('New project — fill in the details and save');
   }
 
+  // ── Cover crop ────────────────────────────────
+  // The card is a fixed shape per size and the cover fills it, so a crop is a
+  // focal point: object-position x% y%. Images and videos both honour it.
+  var COVER_UNITS = { s: 350, m: 574, l: 772 }; // same weights as scripts/home-grid.js
+  var COVER_UNIT_H = 507;                        // card height in those units, from the live layout
+  // the project page's header frame (pages/work/project) — 1200 × 1000 on desktop
+  var PAGE_HERO_RATIO = 1200 / 1000;
+  var cc = { x: 50, y: 50, media: null, nw: 0, nh: 0, fw: 0, fh: 0, drag: null, ratio: 1, onApply: null };
+
+  function clampPct(n) { return Math.min(100, Math.max(0, n)); }
+
+  function coverGalleryItem() {
+    var hit = null;
+    state.gallery.some(function (g) {
+      if (g.src && g.src === state.activeCoverUrl) { hit = g; return true; }
+      return false;
+    });
+    return hit;
+  }
+
+  function updateCropStatus() {
+    var el = document.getElementById('cover-crop-status');
+    var c = state.activeCoverCrop;
+    if (el) el.textContent = c && c.x != null ? 'Cropped (' + c.x + '%, ' + c.y + '%)' : 'Centered';
+  }
+
+  function ccLayout() {
+    var wrap = document.querySelector('#cover-crop-modal .crop-canvas-wrap');
+    var frame = document.getElementById('cover-crop-frame');
+    var ratio = cc.ratio;
+    var w = Math.min(wrap.clientWidth - 32, Math.min(window.innerHeight * 0.56, 520) * ratio);
+    cc.fw = w;
+    cc.fh = w / ratio;
+    frame.style.width = cc.fw + 'px';
+    frame.style.height = cc.fh + 'px';
+  }
+
+  function ccApplyPos() {
+    if (cc.media) cc.media.style.objectPosition = cc.x + '% ' + cc.y + '%';
+  }
+
+  // how far the cover overflows the frame, i.e. how much there is to pan
+  function ccOverflow() {
+    if (!cc.nw || !cc.nh) return { x: 0, y: 0 };
+    var s = Math.max(cc.fw / cc.nw, cc.fh / cc.nh);
+    return { x: Math.max(0, cc.nw * s - cc.fw), y: Math.max(0, cc.nh * s - cc.fh) };
+  }
+
+  // o: { src, poster, isVideo, crop, ratio, title, hint, onApply(crop|null) }
+  function openCrop(o) {
+    var modal = document.getElementById('cover-crop-modal');
+    var frame = document.getElementById('cover-crop-frame');
+    var c = o.crop;
+    cc.x = c && c.x != null ? c.x : 50;
+    cc.y = c && c.y != null ? c.y : 50;
+    cc.nw = cc.nh = 0;
+    cc.ratio = o.ratio;
+    cc.onApply = o.onApply;
+    modal.querySelector('.crop-modal-title').textContent = o.title;
+    modal.querySelector('.crop-modal-hint').textContent = o.hint;
+    frame.innerHTML = '';
+
+    var el;
+    if (o.isVideo && !o.poster) {
+      el = document.createElement('video');
+      el.muted = true; el.playsInline = true; el.preload = 'auto';
+      el.addEventListener('loadeddata', function () { cc.nw = el.videoWidth; cc.nh = el.videoHeight; });
+      el.src = cdnUrl(o.src) + '#t=0.001';
+    } else {
+      el = document.createElement('img');
+      el.alt = '';
+      el.addEventListener('load', function () { cc.nw = el.naturalWidth; cc.nh = el.naturalHeight; });
+      el.src = cdnUrl(o.isVideo ? o.poster : o.src);
+    }
+    frame.appendChild(el);
+    cc.media = el;
+    modal.classList.add('active');
+    ccLayout();
+    ccApplyPos();
+  }
+
+  function openCoverCrop() {
+    if (!state.activeCoverUrl) { toast('Pick a cover first — click ★ on an image or video'); return; }
+    var item = coverGalleryItem();
+    openCrop({
+      src: state.activeCoverUrl,
+      poster: item && item.poster,
+      isVideo: !!item && item.mediaType === 'video',
+      crop: state.activeCoverCrop,
+      ratio: COVER_UNITS[document.getElementById('f-cover-size').value] / COVER_UNIT_H,
+      title: 'Crop Cover',
+      hint: 'Drag to choose what shows on the home page card. The frame matches the cover size you picked.',
+      onApply: function (crop) {
+        state.activeCoverCrop = crop;
+        updateCropStatus();
+        toast('Crop set ✓ — save to publish');
+      }
+    });
+  }
+
+  function closeCoverCrop() {
+    document.getElementById('cover-crop-modal').classList.remove('active');
+    document.getElementById('cover-crop-frame').innerHTML = '';
+    cc.media = null;
+    cc.drag = null;
+  }
+
+  function bindCoverCrop() {
+    var modal = document.getElementById('cover-crop-modal');
+    var frame = document.getElementById('cover-crop-frame');
+
+    document.getElementById('btn-crop-cover').addEventListener('click', openCoverCrop);
+    document.getElementById('cover-crop-cancel').addEventListener('click', closeCoverCrop);
+    modal.addEventListener('click', function (e) { if (e.target === modal) closeCoverCrop(); });
+    window.addEventListener('resize', function () { if (modal.classList.contains('active')) ccLayout(); });
+
+    document.getElementById('cover-crop-reset').addEventListener('click', function () {
+      cc.x = 50; cc.y = 50; ccApplyPos();
+    });
+
+    document.getElementById('cover-crop-apply').addEventListener('click', function () {
+      var x = Math.round(cc.x), y = Math.round(cc.y);
+      var done = cc.onApply;
+      closeCoverCrop();
+      if (done) done((x === 50 && y === 50) ? null : { x: x, y: y });
+    });
+
+    frame.addEventListener('pointerdown', function (e) {
+      e.preventDefault();
+      frame.setPointerCapture(e.pointerId);
+      cc.drag = { x: e.clientX, y: e.clientY, px: cc.x, py: cc.y };
+    });
+    frame.addEventListener('pointermove', function (e) {
+      if (!cc.drag) return;
+      var o = ccOverflow();
+      if (o.x > 0) cc.x = clampPct(cc.drag.px - (e.clientX - cc.drag.x) / o.x * 100);
+      if (o.y > 0) cc.y = clampPct(cc.drag.py - (e.clientY - cc.drag.y) / o.y * 100);
+      ccApplyPos();
+    });
+    ['pointerup', 'pointercancel'].forEach(function (t) {
+      frame.addEventListener(t, function () { cc.drag = null; });
+    });
+  }
+
   // ── Bind events ───────────────────────────────
   function bindGlobalEvents() {
+    bindCoverCrop();
     var zone = document.getElementById('upload-zone');
     var input = document.getElementById('upload-input');
 
@@ -2093,11 +2276,24 @@ async function compressImage(file, opts) {
     el._t = setTimeout(function () { el.classList.remove('show'); }, 2400);
   }
 
-  function carUploadFile(file, page, progressId) {
+  async function carUpsert(table, rows) {
+    if (await localSaveReady) return localApi('upsert', { table: table, rows: [].concat(rows) });
+    return _sb.from(table).upsert(rows);
+  }
+
+  async function carDelete(id) {
+    if (await localSaveReady) return localApi('delete', { table: 'carousel_images', id: id });
+    return _sb.from('carousel_images').delete().eq('id', id);
+  }
+
+  async function carUploadFile(file, page, progressId) {
+    var local = await localSaveReady;
     return new Promise(function (resolve, reject) {
       var ext = file.name.split('.').pop().toLowerCase();
       var path = page + '/' + Date.now() + '_' + Math.random().toString(36).slice(2, 7) + '.' + ext;
-      var endpoint = SUPABASE_URL + '/storage/v1/object/' + BUCKET + '/' + path;
+      var endpoint = local
+        ? '/api/local/upload?folder=' + encodeURIComponent('carousel-' + page) + '&ext=' + encodeURIComponent(ext)
+        : SUPABASE_URL + '/storage/v1/object/' + BUCKET + '/' + path;
 
       var bar = progressId ? document.getElementById(progressId) : null;
       var fill = bar ? bar.querySelector('.upload-progress-fill') : null;
@@ -2110,10 +2306,12 @@ async function compressImage(file, opts) {
 
       var xhr = new XMLHttpRequest();
       xhr.open('POST', endpoint);
-      xhr.setRequestHeader('apikey', SUPABASE_ANON_KEY);
-      xhr.setRequestHeader('Authorization', 'Bearer ' + SUPABASE_ANON_KEY);
+      if (!local) {
+        xhr.setRequestHeader('apikey', SUPABASE_ANON_KEY);
+        xhr.setRequestHeader('Authorization', 'Bearer ' + SUPABASE_ANON_KEY);
+        xhr.setRequestHeader('cache-control', 'max-age=31536000, immutable');
+      }
       xhr.setRequestHeader('Content-Type', carMimeOf(file));
-      xhr.setRequestHeader('cache-control', 'max-age=31536000, immutable');
 
       xhr.upload.addEventListener('progress', function (e) {
         if (!e.lengthComputable) return;
@@ -2125,7 +2323,9 @@ async function compressImage(file, opts) {
       xhr.addEventListener('load', function () {
         if (bar) bar.classList.remove('active');
         if (xhr.status >= 200 && xhr.status < 300) {
-          resolve(SUPABASE_URL + '/storage/v1/object/public/' + BUCKET + '/' + path);
+          var localUrl = null;
+          if (local) { try { localUrl = JSON.parse(xhr.responseText).url; } catch (_) { } }
+          resolve(localUrl || SUPABASE_URL + '/storage/v1/object/public/' + BUCKET + '/' + path);
         } else {
           var msg = 'Upload failed (' + xhr.status + ')';
           try { var body = JSON.parse(xhr.responseText); msg = body.error || body.message || msg; } catch (_) { }
@@ -2144,6 +2344,7 @@ async function compressImage(file, opts) {
 
   async function deleteCarFile(url) {
     if (!url) return;
+    if (await localSaveReady) { await localApi('remove-file', { url: url }); return; }
     try {
       var marker = '/object/public/' + BUCKET + '/';
       var i = url.indexOf(marker);
@@ -2156,7 +2357,7 @@ async function compressImage(file, opts) {
       var updates = carState[page].map(function (item, i) {
         return { id: item.id, url: item.url, page: item.page, sort_order: i, crop: item.crop || null };
       });
-      var res = await _sb.from('carousel_images').upsert(updates);
+      var res = await carUpsert('carousel_images', updates);
       if (res.error) throw res.error;
     } catch (e) {
       carToast('Could not save order: ' + e.message);
@@ -2249,7 +2450,7 @@ async function compressImage(file, opts) {
   async function removeCarImage(id, url, page) {
     carToast('Deleting…');
     try {
-      var res = await _sb.from('carousel_images').delete().eq('id', id);
+      var res = await carDelete(id);
       if (res.error) throw res.error;
       await deleteCarFile(url);
       carState[page] = carState[page].filter(function (i) { return i.id !== id; });
@@ -2278,7 +2479,7 @@ async function compressImage(file, opts) {
         var existing = carState[page];
         var order = existing.length ? Math.max.apply(null, existing.map(function (x) { return x.sort_order || 0; })) + 1 : 0;
         var id = page + '_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
-        var res = await _sb.from('carousel_images').insert({ id: id, url: url, page: page, sort_order: order });
+        var res = await carUpsert('carousel_images', { id: id, url: url, page: page, sort_order: order });
         if (res.error) throw res.error;
         carState[page].push({ id: id, url: url, page: page, sort_order: order });
         renderCarGrid(page);
@@ -2311,7 +2512,7 @@ async function compressImage(file, opts) {
         var duration = parseInt(slider.value, 10);
         carSpeed[page] = duration;
         try {
-          var res = await _sb.from('carousel_settings').upsert({ page: page, duration: duration });
+          var res = await carUpsert('carousel_settings', { page: page, duration: duration });
           if (res.error) throw res.error;
           carToast('Speed saved ✓');
         } catch (e) {
@@ -2464,7 +2665,7 @@ async function compressImage(file, opts) {
       if (!item) return;
       item.crop = crop;
       try {
-        var res = await _sb.from('carousel_images').update({ crop: crop }).eq('id', item.id);
+        var res = await carUpsert('carousel_images', item);
         if (res.error) throw res.error;
         carToast('Crop saved ✓');
       } catch (e) {

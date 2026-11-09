@@ -1,347 +1,192 @@
 {
   "projects": [
     {
-      "id": "wager365---mobile-app",
+      "id": "growvest---mobile-app",
       "sort_order": 0,
-      "title": "Wager365 - Mobile App",
-      "tagline": "Live sports odds and a multi-currency wallet, designed and built end-to-end.",
-      "about": "Wager365 is a sports betting app bringing live football, basketball and tennis odds into one board, with a bet slip that supports parlays and a wallet that takes bank transfer, card or crypto deposits, settling in whatever currency the user sets for their account. I designed the full product from onboarding through settlement, then built it as a working React Native app with a Firebase backend, including a tested settlement engine and a staged migration path for moving money logic server-side.",
-      "industry": "Sports Betting",
-      "role": "Product Design · Development",
+      "title": "Growvest - Mobile App",
+      "tagline": "An investment platform connecting everyday investors with businesses looking to raise capital.",
+      "about": "GrowVest is a fintech platform designed to bridge the gap between individuals looking to invest and businesses seeking funding.\n\nThe platform brings both experiences together in one mobile app. Investors can discover businesses, explore investment opportunities, buy and sell shares, manage their portfolios, and track investment performance. Business owners can create listings, raise capital, monitor fundraising progress, and manage investor activity.\n\nI worked on designing and developing the mobile experience, focusing on making complex financial processes feel simple, intuitive, and accessible. From onboarding and identity verification to investment management and business fundraising, the goal was to create a seamless experience that serves both investors and business owners.",
+      "industry": "Fintech",
+      "role": "Product Design & Development",
       "year": "2026",
-      "meta": "Sports Betting · 2026",
+      "meta": "Fintech · 2026",
       "live_url": null,
       "coming_soon": false,
-      "cover_url": "/image/uploads/images/1783589940734_quot1.webp",
+      "cover_url": "/image/uploads/videos/1794171916932_1uyai.mp4",
       "gallery": [
         {
           "type": "full",
-          "src": "/image/uploads/images/1783589940734_quot1.webp",
-          "w": 2000,
-          "h": 1551,
-          "alt": "Wager365 home screen on a phone in hand",
-          "mediaType": "image"
+          "src": "/image/uploads/videos/1794171916932_1uyai.mp4",
+          "w": null,
+          "h": null,
+          "crop": {
+            "x": 11,
+            "y": 50
+          },
+          "alt": "Cover",
+          "mediaType": "video",
+          "poster": "/image/uploads/images/1794174815690_aa8fd.webp",
+          "posterTime": 1.2
         },
         {
           "type": "text",
           "columns": [
             {
-              "heading": "The Problem",
-              "body": "Traditional betting platforms can often feel cluttered and overwhelming.\n\nUsers may need to navigate through:\n\n- Large numbers of betting markets\n\n- Complicated odds\n\n- Clunky deposits, especially with crypto\n\n- Difficult-to-understand bet slips\n\n- Fragmented transaction experiences\n\nFor a crypto-powered platform, these problems become even more important because users need to understand **both their bets and their money**."
-            },
-            {
-              "heading": "Design Goals",
-              "body": "The product experience was designed around five key goals:\n\n**Clarity**\nMake odds, markets, balances, and potential winnings easy to understand.\n\n**Speed**\nReduce the number of steps required to discover a match and place a wager.\n\n**Flexible funding**\nMake deposits easy across cryptocurrencies, stablecoins and fiat currency.\n\n**Trust**\nCreate an interface that feels reliable enough for users to confidently manage funds and bets.\n\n**Simplicity**\nHide unnecessary complexity without limiting functionality for experienced users."
-            }
-          ]
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1791061201481_1u139.webp",
-              "full": "/image/uploads/images/1791061203058_z1cqx.webp",
-              "w": 1200,
-              "h": 1475,
-              "alt": "Home Screen",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1791061230837_qdrpd.webp",
-              "full": "/image/uploads/images/1791061232557_4xbzh.webp",
-              "w": 1200,
-              "h": 1584,
-              "alt": "Bets Screen",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "pair",
-          "images": [
-            {
-              "src": "/image/uploads/images/1791061238394_etpy5.webp",
-              "full": "/image/uploads/images/1791061239827_85aje.webp",
-              "w": 1200,
-              "h": 1475,
-              "alt": "Wallet Screen",
-              "mediaType": "image"
-            },
-            {
-              "src": "/image/uploads/images/1791061247743_4t01d.webp",
-              "full": "/image/uploads/images/1791061249060_xpczl.webp",
-              "w": 1200,
-              "h": 1475,
-              "alt": "Profile Screen",
-              "mediaType": "image"
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "Design Decisions",
-              "body": "**Why fintech-inspired UI?**\n\nMoney-related products require a strong sense of clarity and trust. Wager365 therefore borrows interaction patterns from fintech products rather than relying entirely on traditional sportsbook conventions.\n\n**Why a simplified bet slip?**\n\nThe bet slip is where a user's selections become an actual wager. Reducing unnecessary information and emphasizing the stake and potential return makes the final decision easier to understand.\n\n**Why strong information hierarchy?**\n\nSports betting interfaces contain a huge amount of numerical information. Typography, spacing, grouping, and contrast were therefore used to create a clear hierarchy between matches, markets, odds, and secondary information."
-            }
-          ]
-        },
-        {
-          "type": "text",
-          "columns": [
-            {
-              "heading": "Onboarding",
-              "body": "From splash screen to a set-up account: personal details, favourite sports and leagues, then wallet preferences."
+              "heading": "A simpler way to get started",
+              "body": "First impressions matter, especially when introducing people to a financial product. I designed GrowVest's onboarding experience to introduce the platform's value and guide users through account creation without overwhelming them. Each step focuses on collecting only the information needed to move forward, making the process feel clear and straightforward."
             }
           ]
         },
         {
           "type": "full",
-          "src": "/image/uploads/videos/1791557627275_govye.mp4",
+          "src": "/image/uploads/videos/1793620534935_xaa1y.mp4",
           "w": null,
           "h": null,
           "alt": "Onboarding",
           "mediaType": "video"
         },
         {
-          "type": "full",
-          "src": "/image/uploads/images/1790274717420_7i0rd.webp",
-          "w": 2000,
-          "h": 1263,
-          "alt": "Wager365 splash screens in lime and black",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1791061311291_i3hsk.webp",
-          "full": "/image/uploads/images/1791061312797_2w5pj.webp",
-          "w": 1200,
-          "h": 758,
-          "alt": "Wager365 onboarding carousel: bet on every game, live odds, deposit your way",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790274710036_b70hz.webp",
-          "w": 2000,
-          "h": 1263,
-          "alt": "Wager365 create account and log in screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1791061360787_02kzc.webp",
-          "full": "/image/uploads/images/1791061362104_r2lxq.webp",
-          "w": 1200,
-          "h": 758,
-          "alt": "Wager365 onboarding steps: personal details, sports and leagues, wallet preference, ready to bet",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1791061348659_ocuwj.webp",
-          "full": "/image/uploads/images/1791061349911_ee4g5.webp",
-          "w": 1200,
-          "h": 758,
-          "alt": "Wager365 forgot password, identity verification, new password and success screens",
-          "mediaType": "image"
-        },
-        {
           "type": "text",
           "columns": [
             {
-              "heading": "Home Screen and Match Details",
-              "body": "Live football, basketball and tennis odds on one board, with a match page that groups markets so the important odds stand out first."
+              "heading": "An investment experience built around you",
+              "body": "Every investor has different goals, preferences, and levels of experience. Instead of presenting users with a lengthy form, I broke profile setup into smaller steps that help GrowVest understand their investment interests and financial goals. This creates a more personalized starting point while keeping the experience easy to complete."
             }
           ]
         },
         {
           "type": "full",
-          "src": "/image/uploads/videos/1791557627208_w0law.mp4",
+          "src": "/image/uploads/videos/1793620535394_aclm2.mp4",
           "w": null,
           "h": null,
-          "alt": "Home Screen and Match Details",
+          "alt": "Profile Setup",
           "mediaType": "video"
         },
         {
-          "type": "full",
-          "src": "/image/uploads/images/1791061367856_6dk44.webp",
-          "full": "/image/uploads/images/1791061369129_cf1az.webp",
-          "w": 1200,
-          "h": 758,
-          "alt": "Wager365 search, live games, bet slip and match detail screens",
-          "mediaType": "image"
-        },
-        {
           "type": "text",
           "columns": [
             {
-              "heading": "Place a bet",
-              "body": "Picks go into a simplified bet slip that puts the stake and potential return front and centre, including for parlays."
+              "heading": "Making verification feel less complicated",
+              "body": "Identity verification is an important part of using a financial platform, but it shouldn't feel intimidating. I designed a guided KYC experience that explains what users need to provide and breaks the process into manageable steps. Clear instructions and progress indicators help users understand what's expected and move through verification with greater confidence."
             }
           ]
         },
         {
           "type": "full",
-          "src": "/image/uploads/videos/1791557627311_nilej.mp4",
+          "src": "/image/uploads/videos/1793620535218_qq0a6.mp4",
           "w": null,
           "h": null,
-          "alt": "Place a bet",
+          "alt": "KYC",
           "mediaType": "video"
         },
         {
-          "type": "full",
-          "src": "/image/uploads/images/1791560347630_37pmp.webp",
-          "full": "/image/uploads/images/1791560349361_43aoz.webp",
-          "w": 1200,
-          "h": 758,
-          "alt": "Wager365 bet slip won and lost tabs, and notification screens",
-          "mediaType": "image"
-        },
-        {
           "type": "text",
           "columns": [
             {
-              "heading": "Deposit and Withdraw",
-              "body": "Bank transfer, card or crypto in, settled in whatever currency the user sets for their account."
+              "heading": "Everything that matters, in one place",
+              "body": "The home screen is where investors get a quick picture of their financial activity. I prioritized portfolio value, wallet balance, investment opportunities, and recent activity, using a clear visual hierarchy to make important information easy to find. The goal was to give users a useful overview without making the dashboard feel cluttered."
             }
           ]
         },
         {
           "type": "full",
-          "src": "/image/uploads/videos/1791486712513_mg1j3.mp4",
+          "src": "/image/uploads/videos/1793620535172_mr9z3.mp4",
           "w": null,
           "h": null,
-          "alt": "Deposit and Withdraw",
+          "alt": "Home",
           "mediaType": "video"
         },
         {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "From discovering a business to owning shares",
+              "body": "Investing involves important financial decisions, so I wanted the buying experience to be as clear as possible. Users can explore a business, review its investment details, choose an amount, and see how many shares they're purchasing before confirming. Breaking the journey into focused steps helps users understand their decisions without unnecessary complexity."
+            }
+          ]
+        },
+        {
           "type": "full",
-          "src": "/image/uploads/images/1791560632975_aul0d.webp",
-          "full": "/image/uploads/images/1791560650732_237ne.webp",
-          "w": 1200,
-          "h": 814,
-          "alt": "Wager365 deposit method, deposit amount, Paystack confirmation and Bitcoin deposit screens",
-          "mediaType": "image"
+          "src": "/image/uploads/videos/1793620534972_wiiqd.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Buy Shares flow",
+          "mediaType": "video"
         },
         {
           "type": "text",
           "columns": [
             {
-              "heading": "Reflection",
-              "body": "Wager365 was an exploration of what a modern crypto-powered sportsbook could look and feel like, combining the speed of digital assets with the familiarity of a well-designed sports betting platform.\n\nThe project allowed me to explore:\n\n- Sports betting UX\n\n- Financial product interfaces\n\n- Crypto wallet experiences\n\n- Information-heavy dashboards\n\n- Complex interaction flows\n\n- Design systems and visual hierarchy\n\nMore importantly, it challenged me to design for a product where **speed, clarity, and trust directly influence the user’s experience.**"
+              "heading": "Know where your investments stand",
+              "body": "After investing, users need an easy way to understand what they own and how their investments are performing. I designed the portfolio experience to bring together total invested capital, portfolio value, returns, and individual holdings. Users can move from a high-level overview to the details of each investment without losing context."
             }
           ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/videos/1793620535270_xqz5j.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Portfolio",
+          "mediaType": "video"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Helping businesses raise and manage capital",
+              "body": "GrowVest serves businesses as well as investors, so I designed a separate experience around the needs of business owners. The dashboard brings fundraising progress, active listings, and investor activity into one place, giving owners a clearer view of how their businesses are performing. Users can switch between investor and business-owner experiences without needing separate accounts."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/videos/1793620534865_y0ttx.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Business flow",
+          "mediaType": "video"
         }
       ],
-      "created_at": "2026-07-05T20:41:07.009223+00:00"
+      "cover_size": "s",
+      "cover_crop": {
+        "x": 29,
+        "y": 50
+      }
     },
     {
-      "id": "orbit---website",
-      "title": "Orbit - Website",
-      "tagline": "Orbit is a modern financial platform built to make managing money across borders effortless.",
-      "about": "Orbit is a modern financial platform built to make managing money across borders effortless. We bring together traditional currencies and stablecoins in one intuitive app, giving you the freedom to send, receive, save, spend, and convert money without the complexity of multiple accounts or platforms.\n\nWhether you're a freelancer getting paid internationally, a traveler spending abroad, or someone protecting savings with stablecoins, Orbit gives you the tools to move money confidently and securely.\n\nWith support for Naira (NGN), US Dollar (USD), Euro (EUR), USDT, and USDC, Orbit combines fast transfers, transparent exchange rates, secure virtual cards, and intelligent money management into one seamless experience.",
-      "industry": "Fintech",
+      "id": "growvest---website",
+      "sort_order": 1,
+      "title": "Growvest - Website",
+      "tagline": "A marketing website introducing GrowVest’s mobile app, its investment and fundraising features, and how investors and business owners can get started.",
+      "about": "GrowVest is an investment platform designed to connect individuals looking to invest with businesses seeking funding.\n\nI designed the GrowVest website to introduce the platform, communicate its value, and guide two different audiences toward their goals.\n\nThe website features two dedicated landing pages: one for investors and another for business owners. The investor experience focuses on discovering investment opportunities, understanding how investing works, exploring the app's features, and building confidence through clear information about verification and security.\n\nThe business experience focuses on helping business owners understand how GrowVest supports fundraising, from listing their businesses to connecting with potential investors and managing their fundraising activities.\n\nBoth landing pages share a consistent visual identity, with a simple switch that allows visitors to move between the investor and business experiences.\n\nMy goal was to create a modern, responsive website that communicates a complex financial product clearly while making it easy for visitors to understand what GrowVest offers and how to get started.",
+      "industry": "Fintech · Investment",
       "role": "Web Design · Development",
       "year": "2026",
       "meta": "Fintech · 2026",
-      "live_url": "https://orbit-website-lovat.vercel.app/",
-      "cover_url": "/image/uploads/images/1791062176175_npp6w.webp",
+      "live_url": "https://growvest-website.vercel.app/",
+      "coming_soon": false,
+      "cover_size": "l",
+      "cover_url": null,
       "gallery": [
         {
           "type": "full",
-          "src": "/image/uploads/images/1791062176175_npp6w.webp",
-          "full": "/image/uploads/images/1791062176938_4chpd.webp",
-          "w": 1200,
-          "h": 900,
-          "alt": "Orbit website hero on a laptop",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1791062276768_x6yyk.webp",
-          "full": "/image/uploads/images/1791062278151_vlbw0.webp",
-          "w": 1200,
-          "h": 776,
+          "src": "/image/uploads/videos/1794085958666_phi8e.mp4",
+          "w": null,
+          "h": null,
           "alt": "Hero",
-          "mediaType": "image"
+          "mediaType": "video",
+          "poster": "/image/uploads/images/1794085982627_6aqv8.webp"
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1791062284761_0peoc.webp",
-          "full": "/image/uploads/images/1791062285439_5dhjk.webp",
-          "w": 1200,
-          "h": 750,
-          "alt": "Features",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1791062249905_2o52y.webp",
-          "full": "/image/uploads/images/1791062251192_qxa9j.webp",
-          "w": 1200,
-          "h": 938,
-          "alt": "How it works",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1791062240680_754fc.webp",
-          "full": "/image/uploads/images/1791062241282_83xc0.webp",
-          "w": 1200,
-          "h": 593,
-          "alt": "Smarter Money",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1791062232201_7217a.webp",
-          "full": "/image/uploads/images/1791062233377_guc60.webp",
-          "w": 1200,
-          "h": 1068,
-          "alt": "Send",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1791062221942_2l8x6.webp",
-          "full": "/image/uploads/images/1791062222896_r0ddz.webp",
-          "w": 1200,
-          "h": 931,
-          "alt": "Security",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1791062214383_lo36g.webp",
-          "full": "/image/uploads/images/1791062216705_xhp2n.webp",
-          "w": 1200,
-          "h": 1435,
-          "alt": "Card",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1791062206285_5wwoj.webp",
-          "full": "/image/uploads/images/1791062207029_abrdn.webp",
-          "w": 1200,
-          "h": 685,
-          "alt": "FAQ",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1791062201982_tkw5v.webp",
-          "full": "/image/uploads/images/1791062204633_cxdek.webp",
-          "w": 1200,
-          "h": 1596,
-          "alt": "Footer",
-          "mediaType": "image"
+          "src": "/image/uploads/videos/1794086000733_4qb8y.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Investor website",
+          "mediaType": "video"
         }
-      ],
-      "sort_order": 1,
-      "created_at": "2026-07-03T16:17:48.277832+00:00",
-      "coming_soon": false
+      ]
     },
     {
       "id": "scribe---web-app",
@@ -717,162 +562,12 @@
             }
           ]
         }
-      ]
-    },
-    {
-      "id": "task-hive-landing-page",
-      "title": "Task Hive - Landing Page",
-      "tagline": "A modern task management platform designed for teams and individuals.",
-      "about": "TaskHive is a modern task management platform designed for teams and individuals who want to stay organized, hit deadlines, and work smarter. With powerful features like Kanban boards, AI task suggestions, and real-time team activity, TaskHive simplifies collaboration and boosts productivity—all in one intuitive workspace.",
-      "industry": "Productivity / SaaS",
-      "role": "UI/UX Design · Web Development",
-      "year": "2025",
-      "meta": "Productivity / SaaS · 2025",
-      "live_url": "https://taskhive-21eff5.webflow.io/",
-      "cover_url": "/image/uploads/images/1777628294732_ezj30.webp",
-      "gallery": [
-        {
-          "h": 1500,
-          "w": 2000,
-          "alt": "TaskHive landing page on a laptop",
-          "src": "/image/uploads/images/1777628296764_23a5o.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "alt": "TaskHive landing page video",
-          "src": "/image/uploads/videos/1777628297442_at4a7.mp4",
-          "type": "full",
-          "mediaType": "video"
-        },
-        {
-          "h": 1333,
-          "w": 2000,
-          "alt": "TaskHive landing page on a phone",
-          "src": "/image/uploads/images/1777628300819_x8qw9.webp",
-          "type": "full",
-          "mediaType": "image"
-        },
-        {
-          "h": 8866,
-          "w": 1354,
-          "alt": "TaskHive full landing page",
-          "src": "/image/uploads/images/1777628307543_gorgi.webp",
-          "type": "full",
-          "mediaType": "image"
-        }
       ],
-      "sort_order": 3,
-      "created_at": "2026-05-01T09:37:59.310904+00:00",
-      "coming_soon": false
-    },
-    {
-      "id": "scribe---website",
-      "sort_order": 4,
-      "title": "Scribe - Website",
-      "tagline": "A focused workspace for writing, organizing, and managing documents.",
-      "about": "I designed the Scribe website to introduce the product and communicate its vision as a modern, cross-platform document workspace. The experience focuses on Scribe’s core value of bringing writing, organization, and productivity into one place, while showcasing the product, key features, and overall ecosystem through a clean, editorial visual direction.",
-      "industry": "Productivity / SaaS",
-      "role": "Web Design",
-      "year": "2026",
-      "meta": "Productivity / SaaS · 2026",
-      "live_url": "https://scribe.best/",
-      "coming_soon": true,
-      "cover_url": "/image/uploads/images/1790672284237_umzrz.webp",
-      "gallery": [
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672284237_umzrz.webp",
-          "w": 1544,
-          "h": 1000,
-          "alt": "Portfolio Cover",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672361569_27iaw.webp",
-          "w": 2000,
-          "h": 2318,
-          "alt": "Hero",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672357969_yqdmi.webp",
-          "w": 2000,
-          "h": 1910,
-          "alt": "Features",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672369809_l0g6e.webp",
-          "w": 2000,
-          "h": 4618,
-          "alt": "Use Case",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672356921_rxno0.webp",
-          "w": 2000,
-          "h": 1883,
-          "alt": "Collaboration",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672354873_zryzf.webp",
-          "w": 2000,
-          "h": 1813,
-          "alt": "A place for everything",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672355847_85vdd.webp",
-          "w": 2000,
-          "h": 1789,
-          "alt": "AI",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672362626_iogjy.webp",
-          "w": 2000,
-          "h": 1661,
-          "alt": "Integrations",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672364485_3iubb.webp",
-          "w": 2000,
-          "h": 1248,
-          "alt": "Security",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672363620_vlm8d.webp",
-          "w": 2000,
-          "h": 1449,
-          "alt": "Pricing",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790672359316_m3nld.webp",
-          "w": 2000,
-          "h": 2185,
-          "alt": "Footerjpg",
-          "mediaType": "image"
-        }
-      ]
+      "cover_size": "m"
     },
     {
       "id": "echoyou",
-      "sort_order": 5,
+      "sort_order": 3,
       "title": "EchoYou",
       "tagline": "An AI-powered communication assistant designed to help people take control of their inbox.",
       "about": "Email is still one of the most important communication tools for modern professionals, but managing an inbox can quickly become overwhelming.\n\nEchoYou is an AI-powered productivity platform designed to help users understand, organize, and act on their emails without constantly working through their inbox manually.\n\nThe product combines email management, AI assistance, calendar intelligence, and automated actions into one experience.",
@@ -1181,53 +876,63 @@
           "alt": "Camera glides across the EchoYou inbox, from daily summary to categorised emails, over a sky and meadow backdrop",
           "mediaType": "video"
         }
-      ]
+      ],
+      "cover_size": "m"
     },
     {
-      "id": "orbit---mobile-app",
-      "sort_order": 6,
-      "title": "Orbit - Mobile App",
-      "tagline": "Orbit is a multi-currency fintech app that allows users to send, receive, and hold Naira, USD, Euro, and stablecoins seamlessly in one place.",
-      "about": "Orbit is a modern multi-currency finance app built for a borderless world.\nWe help people send, receive, convert, and manage money seamlessly across Naira, USD, Euro, and stablecoins all from one secure platform.\n\nDesigned for freelancers, global professionals, travelers, and digital-first users, Orbit combines the simplicity of modern banking with the flexibility of digital assets. Whether you’re paying internationally, saving in stable currencies, or transferring funds instantly, Orbit keeps your money moving without limits.",
-      "industry": "Fintech",
-      "role": "UI/UX Design",
+      "id": "wager365---mobile-app",
+      "sort_order": 4,
+      "title": "Wager365 - Mobile App",
+      "tagline": "Live sports odds and a multi-currency wallet, designed and built end-to-end.",
+      "about": "Wager365 is a sports betting app bringing live football, basketball and tennis odds into one board, with a bet slip that supports parlays and a wallet that takes bank transfer, card or crypto deposits, settling in whatever currency the user sets for their account. I designed the full product from onboarding through settlement, then built it as a working React Native app with a Firebase backend, including a tested settlement engine and a staged migration path for moving money logic server-side.",
+      "industry": "Sports Betting",
+      "role": "Product Design · Development",
       "year": "2026",
-      "meta": "Fintech · 2026",
+      "meta": "Sports Betting · 2026",
       "live_url": null,
       "coming_soon": false,
-      "cover_url": "/image/uploads/images/1790325111007_4p43d.webp",
+      "cover_url": "/image/uploads/videos/1794197078981_oditn.mp4",
       "gallery": [
         {
           "type": "full",
-          "src": "/image/uploads/images/1790325111007_4p43d.webp",
-          "w": 2000,
-          "h": 1384,
-          "alt": "Orbit home screen on a phone in hand",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/videos/1790281927529_m4ucf.mp4",
+          "src": "/image/uploads/videos/1794197078981_oditn.mp4",
           "w": null,
           "h": null,
-          "alt": "Orbit app screens video",
-          "mediaType": "video"
+          "alt": "Wager365 home screen on a phone in hand",
+          "mediaType": "video",
+          "poster": "/image/uploads/images/1794197126827_i1xuq.webp",
+          "posterTime": 0.6
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "The Problem",
+              "body": "Traditional betting platforms can often feel cluttered and overwhelming.\n\nUsers may need to navigate through:\n\n- Large numbers of betting markets\n\n- Complicated odds\n\n- Clunky deposits, especially with crypto\n\n- Difficult-to-understand bet slips\n\n- Fragmented transaction experiences\n\nFor a crypto-powered platform, these problems become even more important because users need to understand **both their bets and their money**."
+            },
+            {
+              "heading": "Design Goals",
+              "body": "The product experience was designed around five key goals:\n\n**Clarity**\nMake odds, markets, balances, and potential winnings easy to understand.\n\n**Speed**\nReduce the number of steps required to discover a match and place a wager.\n\n**Flexible funding**\nMake deposits easy across cryptocurrencies, stablecoins and fiat currency.\n\n**Trust**\nCreate an interface that feels reliable enough for users to confidently manage funds and bets.\n\n**Simplicity**\nHide unnecessary complexity without limiting functionality for experienced users."
+            }
+          ]
         },
         {
           "type": "pair",
           "images": [
             {
-              "src": "/image/uploads/images/1790275493959_wiywn.webp",
-              "w": 2000,
-              "h": 2444,
+              "src": "/image/uploads/images/1791061201481_1u139.webp",
+              "full": "/image/uploads/images/1791061203058_z1cqx.webp",
+              "w": 1200,
+              "h": 1475,
               "alt": "Home Screen",
               "mediaType": "image"
             },
             {
-              "src": "/image/uploads/images/1790276168795_2hxeb.webp",
-              "w": 2000,
-              "h": 2444,
-              "alt": "Home screen, dark mode",
+              "src": "/image/uploads/images/1791061230837_qdrpd.webp",
+              "full": "/image/uploads/images/1791061232557_4xbzh.webp",
+              "w": 1200,
+              "h": 1584,
+              "alt": "Bets Screen",
               "mediaType": "image"
             }
           ]
@@ -1236,16 +941,18 @@
           "type": "pair",
           "images": [
             {
-              "src": "/image/uploads/images/1790275493115_6debl.webp",
-              "w": 2000,
-              "h": 2444,
-              "alt": "Cards Screen",
+              "src": "/image/uploads/images/1791061238394_etpy5.webp",
+              "full": "/image/uploads/images/1791061239827_85aje.webp",
+              "w": 1200,
+              "h": 1475,
+              "alt": "Wallet Screen",
               "mediaType": "image"
             },
             {
-              "src": "/image/uploads/images/1790275494831_m97z8.webp",
-              "w": 2000,
-              "h": 2444,
+              "src": "/image/uploads/images/1791061247743_4t01d.webp",
+              "full": "/image/uploads/images/1791061249060_xpczl.webp",
+              "w": 1200,
+              "h": 1475,
               "alt": "Profile Screen",
               "mediaType": "image"
             }
@@ -1255,111 +962,310 @@
           "type": "text",
           "columns": [
             {
-              "heading": "The Problem",
-              "body": "The modern financial ecosystem is fragmented.\n\nUsers managing money across borders often have to move between:\n\n- Traditional bank accounts\n\n- Crypto wallets\n\n- Currency exchange platforms\n\n- Payment apps\n\n- Stablecoin wallets\n\n- International transfer services\n\nEach platform introduces its own interface, terminology, and transaction flow.\n\nThis creates unnecessary friction, especially for users who simply want to **hold, move, exchange, and spend their money.**"
-            },
-            {
-              "heading": "The Opportunity",
-              "body": "Stablecoins create an interesting bridge between traditional finance and digital assets.\n\nBut the underlying technology can be complicated.\n\nUsers shouldn't need to understand:\n\n- Blockchain networks\n\n- Gas fees\n\n- Wallet infrastructure\n\n- Token standards\n\n- On-chain transactions\n\njust to move money.\n\nThe opportunity was to abstract that complexity behind a familiar financial experience."
+              "heading": "Design Decisions",
+              "body": "**Why fintech-inspired UI?**\n\nMoney-related products require a strong sense of clarity and trust. Wager365 therefore borrows interaction patterns from fintech products rather than relying entirely on traditional sportsbook conventions.\n\n**Why a simplified bet slip?**\n\nThe bet slip is where a user's selections become an actual wager. Reducing unnecessary information and emphasizing the stake and potential return makes the final decision easier to understand.\n\n**Why strong information hierarchy?**\n\nSports betting interfaces contain a huge amount of numerical information. Typography, spacing, grouping, and contrast were therefore used to create a clear hierarchy between matches, markets, odds, and secondary information."
             }
           ]
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278832359_3mpm7.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit splash screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278831802_vqn16.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit onboarding screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278832920_65zp2.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit create account and log in screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278830980_6vsl5.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit email verification screens",
-          "mediaType": "image"
         },
         {
           "type": "text",
           "columns": [
             {
-              "heading": "Design Goals",
-              "body": "**01. Simplify**\n\nReduce the complexity of managing multiple currencies and financial accounts.\n\n**02. Connect**\n\nBring fiat and stablecoins together within one wallet experience.\n\n**03. Build Trust**\n\nMake balances, transactions, rates, and financial actions clear.\n\n**04. Enable Movement**\n\nMake sending money across currencies feel as easy as sending a local transfer."
-            },
-            {
-              "heading": "Product Experience",
-              "body": "Orbit revolves around four core experiences:\n\n**Multi-Currency Wallet**\n\nUsers can manage their ₦, $, €, USDT, and USDC balances from one place.\n\n**Global Transfers**\n\nUsers can send money to other people without needing to understand the underlying financial infrastructure.\n\n**Currency Conversion**\n\nUsers can move between supported currencies while clearly seeing the amount, rate, and fees before confirming.\n\n**Financial Insights**\n\nOrbit provides users with a clearer picture of how they're using and moving their money."
+              "heading": "Onboarding",
+              "body": "From splash screen to a set-up account: personal details, favourite sports and leagues, then wallet preferences."
             }
           ]
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1790278833495_uy4eq.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit send money: recipient, country and bank account details",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278834066_yf2ck.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit transfer details, PIN, success and transaction details screens",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278834633_ezw0m.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit transfer to an Orbit user, from recipient to transaction details",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278835209_dm6hp.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit crypto transfer: network, address, details and confirmation",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1790278835765_wlbdu.webp",
-          "w": 2000,
-          "h": 1256,
-          "alt": "Orbit crypto transfer success and transaction details",
-          "mediaType": "image"
+          "src": "/image/uploads/videos/1791557627275_govye.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Onboarding",
+          "mediaType": "video"
         },
         {
           "type": "text",
           "columns": [
             {
-              "heading": "Final Outcome",
-              "body": "Orbit explores what a financial platform could look like when **traditional money and digital assets are treated as parts of the same ecosystem.**\n\nThe project allowed me to explore:\n\n- Fintech product design\n\n- Stablecoin experiences\n\n- Multi-currency wallets\n\n- Payment infrastructure\n\n- Financial dashboards\n\n- Transaction UX\n\n- Web3 abstraction\n\n- Responsive product design\n\n- Design systems\n\nUltimately, Orbit isn't about making crypto more complicated. It's about making the complexity **disappear.**"
+              "heading": "Home Screen and Match Details",
+              "body": "Live football, basketball and tennis odds on one board, with a match page that groups markets so the important odds stand out first."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/videos/1791557627208_w0law.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Home Screen and Match Details",
+          "mediaType": "video"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Place a bet",
+              "body": "Picks go into a simplified bet slip that puts the stake and potential return front and centre, including for parlays."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/videos/1791557627311_nilej.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Place a bet",
+          "mediaType": "video"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Deposit and Withdraw",
+              "body": "Bank transfer, card or crypto in, settled in whatever currency the user sets for their account."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/videos/1791486712513_mg1j3.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Deposit and Withdraw",
+          "mediaType": "video"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Reflection",
+              "body": "Wager365 was an exploration of what a modern crypto-powered sportsbook could look and feel like, combining the speed of digital assets with the familiarity of a well-designed sports betting platform.\n\nThe project allowed me to explore:\n\n- Sports betting UX\n\n- Financial product interfaces\n\n- Crypto wallet experiences\n\n- Information-heavy dashboards\n\n- Complex interaction flows\n\n- Design systems and visual hierarchy\n\nMore importantly, it challenged me to design for a product where **speed, clarity, and trust directly influence the user’s experience.**"
             }
           ]
         }
       ],
-      "created_at": "2026-05-16T13:43:30.550027+00:00"
+      "created_at": "2026-07-05T20:41:07.009223+00:00",
+      "cover_size": "s",
+      "cover_crop": null
+    },
+    {
+      "id": "scribe---website",
+      "sort_order": 5,
+      "title": "Scribe - Website",
+      "tagline": "A focused workspace for writing, organizing, and managing documents.",
+      "about": "I designed the Scribe website to introduce the product and communicate its vision as a modern, cross-platform document workspace. The experience focuses on Scribe’s core value of bringing writing, organization, and productivity into one place, while showcasing the product, key features, and overall ecosystem through a clean, editorial visual direction.",
+      "industry": "Productivity / SaaS",
+      "role": "Web Design",
+      "year": "2026",
+      "meta": "Productivity / SaaS · 2026",
+      "live_url": "https://scribe.best/",
+      "coming_soon": false,
+      "cover_url": "/image/uploads/images/1794176332370_4amzr.webp",
+      "gallery": [
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1794176332370_4amzr.webp",
+          "full": "/image/uploads/images/1794176333603_ibrg2.webp",
+          "w": 1200,
+          "h": 1000,
+          "alt": "Portfolio Cover",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672361569_27iaw.webp",
+          "w": 2000,
+          "h": 2318,
+          "alt": "Hero",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672357969_yqdmi.webp",
+          "w": 2000,
+          "h": 1910,
+          "alt": "Features",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672369809_l0g6e.webp",
+          "w": 2000,
+          "h": 4618,
+          "alt": "Use Case",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672356921_rxno0.webp",
+          "w": 2000,
+          "h": 1883,
+          "alt": "Collaboration",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672354873_zryzf.webp",
+          "w": 2000,
+          "h": 1813,
+          "alt": "A place for everything",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672355847_85vdd.webp",
+          "w": 2000,
+          "h": 1789,
+          "alt": "AI",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672362626_iogjy.webp",
+          "w": 2000,
+          "h": 1661,
+          "alt": "Integrations",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672364485_3iubb.webp",
+          "w": 2000,
+          "h": 1248,
+          "alt": "Security",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672363620_vlm8d.webp",
+          "w": 2000,
+          "h": 1449,
+          "alt": "Pricing",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790672359316_m3nld.webp",
+          "w": 2000,
+          "h": 2185,
+          "alt": "Footerjpg",
+          "mediaType": "image"
+        }
+      ],
+      "cover_size": "l",
+      "cover_crop": {
+        "x": 50,
+        "y": 0
+      }
+    },
+    {
+      "id": "orbit---website",
+      "title": "Orbit - Website",
+      "tagline": "Orbit is a modern financial platform built to make managing money across borders effortless.",
+      "about": "Orbit is a modern financial platform built to make managing money across borders effortless. We bring together traditional currencies and stablecoins in one intuitive app, giving you the freedom to send, receive, save, spend, and convert money without the complexity of multiple accounts or platforms.\n\nWhether you're a freelancer getting paid internationally, a traveler spending abroad, or someone protecting savings with stablecoins, Orbit gives you the tools to move money confidently and securely.\n\nWith support for Naira (NGN), US Dollar (USD), Euro (EUR), USDT, and USDC, Orbit combines fast transfers, transparent exchange rates, secure virtual cards, and intelligent money management into one seamless experience.",
+      "industry": "Fintech",
+      "role": "Web Design · Development",
+      "year": "2026",
+      "meta": "Fintech · 2026",
+      "live_url": "https://orbit-website-lovat.vercel.app/",
+      "cover_url": "/image/uploads/images/1791062176175_npp6w.webp",
+      "gallery": [
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1791062176175_npp6w.webp",
+          "full": "/image/uploads/images/1791062176938_4chpd.webp",
+          "w": 1200,
+          "h": 900,
+          "alt": "Orbit website hero on a laptop",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1791062276768_x6yyk.webp",
+          "full": "/image/uploads/images/1791062278151_vlbw0.webp",
+          "w": 1200,
+          "h": 776,
+          "alt": "Hero",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1791062284761_0peoc.webp",
+          "full": "/image/uploads/images/1791062285439_5dhjk.webp",
+          "w": 1200,
+          "h": 750,
+          "alt": "Features",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1791062249905_2o52y.webp",
+          "full": "/image/uploads/images/1791062251192_qxa9j.webp",
+          "w": 1200,
+          "h": 938,
+          "alt": "How it works",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1791062240680_754fc.webp",
+          "full": "/image/uploads/images/1791062241282_83xc0.webp",
+          "w": 1200,
+          "h": 593,
+          "alt": "Smarter Money",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1791062232201_7217a.webp",
+          "full": "/image/uploads/images/1791062233377_guc60.webp",
+          "w": 1200,
+          "h": 1068,
+          "alt": "Send",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1791062221942_2l8x6.webp",
+          "full": "/image/uploads/images/1791062222896_r0ddz.webp",
+          "w": 1200,
+          "h": 931,
+          "alt": "Security",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1791062214383_lo36g.webp",
+          "full": "/image/uploads/images/1791062216705_xhp2n.webp",
+          "w": 1200,
+          "h": 1435,
+          "alt": "Card",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1791062206285_5wwoj.webp",
+          "full": "/image/uploads/images/1791062207029_abrdn.webp",
+          "w": 1200,
+          "h": 685,
+          "alt": "FAQ",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1791062201982_tkw5v.webp",
+          "full": "/image/uploads/images/1791062204633_cxdek.webp",
+          "w": 1200,
+          "h": 1596,
+          "alt": "Footer",
+          "mediaType": "image"
+        }
+      ],
+      "sort_order": 6,
+      "created_at": "2026-07-03T16:17:48.277832+00:00",
+      "coming_soon": false,
+      "cover_size": "m"
     },
     {
       "id": "scholara",
@@ -1679,11 +1585,435 @@
       ],
       "sort_order": 7,
       "created_at": "2026-05-16T15:13:06.337063+00:00",
-      "coming_soon": false
+      "coming_soon": false,
+      "cover_size": "l"
+    },
+    {
+      "id": "orbit---mobile-app",
+      "sort_order": 8,
+      "title": "Orbit - Mobile App",
+      "tagline": "Orbit is a multi-currency fintech app that allows users to send, receive, and hold Naira, USD, Euro, and stablecoins seamlessly in one place.",
+      "about": "Orbit is a modern multi-currency finance app built for a borderless world.\nWe help people send, receive, convert, and manage money seamlessly across Naira, USD, Euro, and stablecoins all from one secure platform.\n\nDesigned for freelancers, global professionals, travelers, and digital-first users, Orbit combines the simplicity of modern banking with the flexibility of digital assets. Whether you’re paying internationally, saving in stable currencies, or transferring funds instantly, Orbit keeps your money moving without limits.",
+      "industry": "Fintech",
+      "role": "UI/UX Design",
+      "year": "2026",
+      "meta": "Fintech · 2026",
+      "live_url": null,
+      "coming_soon": false,
+      "cover_url": "/image/uploads/images/1790325111007_4p43d.webp",
+      "gallery": [
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790325111007_4p43d.webp",
+          "w": 2000,
+          "h": 1384,
+          "alt": "Orbit home screen on a phone in hand",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/videos/1790281927529_m4ucf.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Orbit app screens video",
+          "mediaType": "video"
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790275493959_wiywn.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Home Screen",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790276168795_2hxeb.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Home screen, dark mode",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "images": [
+            {
+              "src": "/image/uploads/images/1790275493115_6debl.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Cards Screen",
+              "mediaType": "image"
+            },
+            {
+              "src": "/image/uploads/images/1790275494831_m97z8.webp",
+              "w": 2000,
+              "h": 2444,
+              "alt": "Profile Screen",
+              "mediaType": "image"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "The Problem",
+              "body": "The modern financial ecosystem is fragmented.\n\nUsers managing money across borders often have to move between:\n\n- Traditional bank accounts\n\n- Crypto wallets\n\n- Currency exchange platforms\n\n- Payment apps\n\n- Stablecoin wallets\n\n- International transfer services\n\nEach platform introduces its own interface, terminology, and transaction flow.\n\nThis creates unnecessary friction, especially for users who simply want to **hold, move, exchange, and spend their money.**"
+            },
+            {
+              "heading": "The Opportunity",
+              "body": "Stablecoins create an interesting bridge between traditional finance and digital assets.\n\nBut the underlying technology can be complicated.\n\nUsers shouldn't need to understand:\n\n- Blockchain networks\n\n- Gas fees\n\n- Wallet infrastructure\n\n- Token standards\n\n- On-chain transactions\n\njust to move money.\n\nThe opportunity was to abstract that complexity behind a familiar financial experience."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278832359_3mpm7.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit splash screens",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278831802_vqn16.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit onboarding screens",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278832920_65zp2.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit create account and log in screens",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278830980_6vsl5.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit email verification screens",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Design Goals",
+              "body": "**01. Simplify**\n\nReduce the complexity of managing multiple currencies and financial accounts.\n\n**02. Connect**\n\nBring fiat and stablecoins together within one wallet experience.\n\n**03. Build Trust**\n\nMake balances, transactions, rates, and financial actions clear.\n\n**04. Enable Movement**\n\nMake sending money across currencies feel as easy as sending a local transfer."
+            },
+            {
+              "heading": "Product Experience",
+              "body": "Orbit revolves around four core experiences:\n\n**Multi-Currency Wallet**\n\nUsers can manage their ₦, $, €, USDT, and USDC balances from one place.\n\n**Global Transfers**\n\nUsers can send money to other people without needing to understand the underlying financial infrastructure.\n\n**Currency Conversion**\n\nUsers can move between supported currencies while clearly seeing the amount, rate, and fees before confirming.\n\n**Financial Insights**\n\nOrbit provides users with a clearer picture of how they're using and moving their money."
+            }
+          ]
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278833495_uy4eq.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit send money: recipient, country and bank account details",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278834066_yf2ck.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit transfer details, PIN, success and transaction details screens",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278834633_ezw0m.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit transfer to an Orbit user, from recipient to transaction details",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278835209_dm6hp.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit crypto transfer: network, address, details and confirmation",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1790278835765_wlbdu.webp",
+          "w": 2000,
+          "h": 1256,
+          "alt": "Orbit crypto transfer success and transaction details",
+          "mediaType": "image"
+        },
+        {
+          "type": "text",
+          "columns": [
+            {
+              "heading": "Final Outcome",
+              "body": "Orbit explores what a financial platform could look like when **traditional money and digital assets are treated as parts of the same ecosystem.**\n\nThe project allowed me to explore:\n\n- Fintech product design\n\n- Stablecoin experiences\n\n- Multi-currency wallets\n\n- Payment infrastructure\n\n- Financial dashboards\n\n- Transaction UX\n\n- Web3 abstraction\n\n- Responsive product design\n\n- Design systems\n\nUltimately, Orbit isn't about making crypto more complicated. It's about making the complexity **disappear.**"
+            }
+          ]
+        }
+      ],
+      "created_at": "2026-05-16T13:43:30.550027+00:00",
+      "cover_size": "s"
+    },
+    {
+      "id": "ecowave",
+      "title": "Ecowave",
+      "tagline": "A bold visual identity crafted to make a lasting impression.",
+      "about": "Ecowave is a forward-thinking renewable energy brand dedicated to harnessing nature’s power for a sustainable future. Focused on delivering clean energy solutions through solar, wind, and hydro power, Ecowave empowers communities with accessible, eco-friendly alternatives to traditional energy sources.\n\nBuilt on the principles of innovation, sustainability, and impact, Ecowave integrates cutting-edge technology with environmentally responsible practices to reduce carbon footprints and drive a greener tomorrow. Through thoughtful branding and strategic positioning, Ecowave aims to not only provide energy solutions but also inspire a global shift toward renewable power.",
+      "industry": "Renewable Energy",
+      "role": "Brand Identity",
+      "year": "2024",
+      "meta": "Renewable Energy · 2024",
+      "live_url": null,
+      "cover_url": "/image/uploads/images/1778834754542_zlfjf.webp",
+      "gallery": [
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1778834754542_zlfjf.webp",
+          "w": 2000,
+          "h": 1364,
+          "alt": "Ecowave billboard on a city building",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/videos/1778836794324_zax3y.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Ecowave brand video",
+          "mediaType": "video"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1778834731017_gk2rq.webp",
+          "w": 2000,
+          "h": 1667,
+          "alt": "Ecowave colour palette",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1778834789019_r5ai0.webp",
+          "w": 2000,
+          "h": 1156,
+          "alt": "Ecowave logo on dark green",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1778834797805_j48is.webp",
+          "w": 2000,
+          "h": 1156,
+          "alt": "Ecowave logo on green",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1778834804050_pd8qx.webp",
+          "w": 2000,
+          "h": 1156,
+          "alt": "Ecowave logo on yellow",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1778834809572_eir6k.webp",
+          "w": 2000,
+          "h": 1156,
+          "alt": "Ecowave sun logo pattern",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1778834745835_62wzp.webp",
+          "w": 2000,
+          "h": 1334,
+          "alt": "Ecowave shipping container",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1778834762935_vwiwc.webp",
+          "w": 2000,
+          "h": 1335,
+          "alt": "Ecowave tote bag",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1778834749427_lft42.webp",
+          "w": 2000,
+          "h": 1501,
+          "alt": "Ecowave billboard on a fence",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1778834817494_eyvpx.webp",
+          "w": 2000,
+          "h": 1156,
+          "alt": "Ecowave Instagram profile",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1778834824178_2fo7y.webp",
+          "w": 2000,
+          "h": 1251,
+          "alt": "Ecowave branded hard hats",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1778834837845_yfzan.webp",
+          "w": 2000,
+          "h": 1390,
+          "alt": "Ecowave branded lanyards",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1778834844096_t42j0.webp",
+          "w": 2000,
+          "h": 1601,
+          "alt": "Ecowave branded wristbands",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1778834856063_4kvl1.webp",
+          "w": 2000,
+          "h": 1335,
+          "alt": "Ecowave branded tape on the floor",
+          "mediaType": "image"
+        }
+      ],
+      "sort_order": 9,
+      "created_at": "2026-05-15T08:49:25.908566+00:00",
+      "coming_soon": false,
+      "cover_size": "l"
+    },
+    {
+      "id": "nexflo-website",
+      "title": "Nexflo - Website",
+      "tagline": "A website for an automation platform that simplifies connecting apps, tools, and workflows.",
+      "about": "Similar to platforms like Zapier and n8n, Nexflo empowers users to automate repetitive tasks, streamline operations, and improve productivity without needing to write code.\n\nWith a focus on flexibility, speed, and ease of use, Nexflo helps users build powerful workflows that move data seamlessly across applications, trigger actions in real time, and eliminate manual work. Whether it’s syncing data between CRMs, automating notifications, or integrating payment systems, Nexflo ensures that workflows run reliably and efficiently.\n\nBuilt with scalability in mind, Nexflo caters to both individual creators looking to save time and teams or businessesaiming to optimize their processes.",
+      "industry": "SaaS / Workflow Automation",
+      "role": "UI/UX Design · Web Development",
+      "year": "2025",
+      "meta": "SaaS / Workflow Automation · 2025",
+      "live_url": "https://nexflo-automation.webflow.io/",
+      "cover_url": "/image/uploads/images/1777628333894_mf0uc.webp",
+      "gallery": [
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1777628335250_ypfvq.webp",
+          "w": 2000,
+          "h": 1500,
+          "alt": "Nexflo website on a laptop",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/videos/1777628337191_1nu6j.mp4",
+          "w": null,
+          "h": null,
+          "alt": "Nexflo website video",
+          "mediaType": "video"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1777628345363_39ae0.webp",
+          "w": 2000,
+          "h": 1293,
+          "alt": "Nexflo website hero",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1777628347163_lqr9a.webp",
+          "w": 2000,
+          "h": 464,
+          "alt": "Brands",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1777628347608_ram7z.webp",
+          "w": 2000,
+          "h": 1906,
+          "alt": "Features",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1777628348821_iywjl.webp",
+          "w": 2000,
+          "h": 1027,
+          "alt": "Benefits Dark",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1777628349848_aguhg.webp",
+          "w": 2000,
+          "h": 1057,
+          "alt": "Automation (Dark)",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1777628350371_7e8hk.webp",
+          "w": 2000,
+          "h": 1531,
+          "alt": "Testimonials",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1777628351862_bm4pf.webp",
+          "w": 2000,
+          "h": 1131,
+          "alt": "Pricing",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1777628352506_5l3tm.webp",
+          "w": 2000,
+          "h": 1309,
+          "alt": "FAQ",
+          "mediaType": "image"
+        },
+        {
+          "type": "full",
+          "src": "/image/uploads/images/1777628353190_sza24.webp",
+          "w": 2000,
+          "h": 1330,
+          "alt": "Footer",
+          "mediaType": "image"
+        }
+      ],
+      "sort_order": 10,
+      "created_at": "2026-05-01T09:39:14.531838+00:00",
+      "coming_soon": false,
+      "cover_size": "m"
     },
     {
       "id": "coin-compass---mobile-app",
-      "sort_order": 8,
+      "sort_order": 11,
       "title": "Coin Compass - Mobile App",
       "tagline": "Your smart financial guide, built to help you navigate money management with confidence.",
       "about": "CoinCompass is your smart financial guide, built to help you navigate money management with confidence. Designed for the modern user, CoinCompass combines intelligent insights, intuitive tools, and real-time tracking to help you make smarter decisions about your finances.\nWhether you're budgeting, investing, or just trying to stay on top of your spending, CoinCompass empowers you to take control with ease. Our sleek interface, personalized recommendations, and seamless experience make managing money less stressful—and a lot more rewarding.",
@@ -1881,253 +2211,62 @@
           ]
         }
       ],
-      "created_at": "2026-05-01T09:38:53.602026+00:00"
+      "created_at": "2026-05-01T09:38:53.602026+00:00",
+      "cover_size": "s"
     },
     {
-      "id": "ecowave",
-      "title": "Ecowave",
-      "tagline": "A bold visual identity crafted to make a lasting impression.",
-      "about": "Ecowave is a forward-thinking renewable energy brand dedicated to harnessing nature’s power for a sustainable future. Focused on delivering clean energy solutions through solar, wind, and hydro power, Ecowave empowers communities with accessible, eco-friendly alternatives to traditional energy sources.\n\nBuilt on the principles of innovation, sustainability, and impact, Ecowave integrates cutting-edge technology with environmentally responsible practices to reduce carbon footprints and drive a greener tomorrow. Through thoughtful branding and strategic positioning, Ecowave aims to not only provide energy solutions but also inspire a global shift toward renewable power.",
-      "industry": "Renewable Energy",
-      "role": "Brand Identity",
-      "year": "2024",
-      "meta": "Renewable Energy · 2024",
-      "live_url": null,
-      "cover_url": "/image/uploads/images/1778834754542_zlfjf.webp",
-      "gallery": [
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1778834754542_zlfjf.webp",
-          "w": 2000,
-          "h": 1364,
-          "alt": "Ecowave billboard on a city building",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/videos/1778836794324_zax3y.mp4",
-          "w": null,
-          "h": null,
-          "alt": "Ecowave brand video",
-          "mediaType": "video"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1778834731017_gk2rq.webp",
-          "w": 2000,
-          "h": 1667,
-          "alt": "Ecowave colour palette",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1778834789019_r5ai0.webp",
-          "w": 2000,
-          "h": 1156,
-          "alt": "Ecowave logo on dark green",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1778834797805_j48is.webp",
-          "w": 2000,
-          "h": 1156,
-          "alt": "Ecowave logo on green",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1778834804050_pd8qx.webp",
-          "w": 2000,
-          "h": 1156,
-          "alt": "Ecowave logo on yellow",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1778834809572_eir6k.webp",
-          "w": 2000,
-          "h": 1156,
-          "alt": "Ecowave sun logo pattern",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1778834745835_62wzp.webp",
-          "w": 2000,
-          "h": 1334,
-          "alt": "Ecowave shipping container",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1778834762935_vwiwc.webp",
-          "w": 2000,
-          "h": 1335,
-          "alt": "Ecowave tote bag",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1778834749427_lft42.webp",
-          "w": 2000,
-          "h": 1501,
-          "alt": "Ecowave billboard on a fence",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1778834817494_eyvpx.webp",
-          "w": 2000,
-          "h": 1156,
-          "alt": "Ecowave Instagram profile",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1778834824178_2fo7y.webp",
-          "w": 2000,
-          "h": 1251,
-          "alt": "Ecowave branded hard hats",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1778834837845_yfzan.webp",
-          "w": 2000,
-          "h": 1390,
-          "alt": "Ecowave branded lanyards",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1778834844096_t42j0.webp",
-          "w": 2000,
-          "h": 1601,
-          "alt": "Ecowave branded wristbands",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1778834856063_4kvl1.webp",
-          "w": 2000,
-          "h": 1335,
-          "alt": "Ecowave branded tape on the floor",
-          "mediaType": "image"
-        }
-      ],
-      "sort_order": 9,
-      "created_at": "2026-05-15T08:49:25.908566+00:00",
-      "coming_soon": false
-    },
-    {
-      "id": "nexflo-website",
-      "title": "Nexflo - Website",
-      "tagline": "A website for an automation platform that simplifies connecting apps, tools, and workflows.",
-      "about": "Similar to platforms like Zapier and n8n, Nexflo empowers users to automate repetitive tasks, streamline operations, and improve productivity without needing to write code.\n\nWith a focus on flexibility, speed, and ease of use, Nexflo helps users build powerful workflows that move data seamlessly across applications, trigger actions in real time, and eliminate manual work. Whether it’s syncing data between CRMs, automating notifications, or integrating payment systems, Nexflo ensures that workflows run reliably and efficiently.\n\nBuilt with scalability in mind, Nexflo caters to both individual creators looking to save time and teams or businessesaiming to optimize their processes.",
-      "industry": "SaaS / Workflow Automation",
+      "id": "task-hive-landing-page",
+      "title": "Task Hive - Landing Page",
+      "tagline": "A modern task management platform designed for teams and individuals.",
+      "about": "TaskHive is a modern task management platform designed for teams and individuals who want to stay organized, hit deadlines, and work smarter. With powerful features like Kanban boards, AI task suggestions, and real-time team activity, TaskHive simplifies collaboration and boosts productivity—all in one intuitive workspace.",
+      "industry": "Productivity / SaaS",
       "role": "UI/UX Design · Web Development",
       "year": "2025",
-      "meta": "SaaS / Workflow Automation · 2025",
-      "live_url": "https://nexflo-automation.webflow.io/",
-      "cover_url": "/image/uploads/images/1777628333894_mf0uc.webp",
+      "meta": "Productivity / SaaS · 2025",
+      "live_url": "https://taskhive-21eff5.webflow.io/",
+      "cover_url": "/image/uploads/images/1777628294732_ezj30.webp",
       "gallery": [
         {
           "type": "full",
-          "src": "/image/uploads/images/1777628335250_ypfvq.webp",
+          "src": "/image/uploads/images/1777628296764_23a5o.webp",
           "w": 2000,
           "h": 1500,
-          "alt": "Nexflo website on a laptop",
+          "alt": "TaskHive landing page on a laptop",
           "mediaType": "image"
         },
         {
           "type": "full",
-          "src": "/image/uploads/videos/1777628337191_1nu6j.mp4",
+          "src": "/image/uploads/videos/1777628297442_at4a7.mp4",
           "w": null,
           "h": null,
-          "alt": "Nexflo website video",
+          "alt": "TaskHive landing page video",
           "mediaType": "video"
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1777628345363_39ae0.webp",
+          "src": "/image/uploads/images/1777628300819_x8qw9.webp",
           "w": 2000,
-          "h": 1293,
-          "alt": "Nexflo website hero",
+          "h": 1333,
+          "alt": "TaskHive landing page on a phone",
           "mediaType": "image"
         },
         {
           "type": "full",
-          "src": "/image/uploads/images/1777628347163_lqr9a.webp",
-          "w": 2000,
-          "h": 464,
-          "alt": "Brands",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1777628347608_ram7z.webp",
-          "w": 2000,
-          "h": 1906,
-          "alt": "Features",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1777628348821_iywjl.webp",
-          "w": 2000,
-          "h": 1027,
-          "alt": "Benefits Dark",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1777628349848_aguhg.webp",
-          "w": 2000,
-          "h": 1057,
-          "alt": "Automation (Dark)",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1777628350371_7e8hk.webp",
-          "w": 2000,
-          "h": 1531,
-          "alt": "Testimonials",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1777628351862_bm4pf.webp",
-          "w": 2000,
-          "h": 1131,
-          "alt": "Pricing",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1777628352506_5l3tm.webp",
-          "w": 2000,
-          "h": 1309,
-          "alt": "FAQ",
-          "mediaType": "image"
-        },
-        {
-          "type": "full",
-          "src": "/image/uploads/images/1777628353190_sza24.webp",
-          "w": 2000,
-          "h": 1330,
-          "alt": "Footer",
+          "src": "/image/uploads/images/1777628307543_gorgi.webp",
+          "w": 1354,
+          "h": 8866,
+          "alt": "TaskHive full landing page",
           "mediaType": "image"
         }
       ],
-      "sort_order": 10,
-      "created_at": "2026-05-01T09:39:14.531838+00:00",
-      "coming_soon": true
+      "sort_order": 12,
+      "created_at": "2026-05-01T09:37:59.310904+00:00",
+      "coming_soon": false,
+      "cover_size": "m"
     },
     {
       "id": "nexflo---web-app",
-      "sort_order": 11,
+      "sort_order": 13,
       "title": "Nexflo - Web App",
       "tagline": "Automate your workflows. Connect your tools. Get more done.",
       "about": "Nexflo is a modern workflow automation platform designed to help teams connect their favorite tools and automate repetitive processes without complex setup. I worked on the brand identity and product experience, creating a cohesive visual system and intuitive interfaces across onboarding, authentication, workflow management, and pricing.",
@@ -2147,7 +2286,8 @@
           "alt": "Nexflo dashboard on a laptop",
           "mediaType": "image"
         }
-      ]
+      ],
+      "cover_size": "m"
     }
   ],
   "playground_items": [
@@ -2523,6 +2663,16 @@
       "page": "about",
       "sort_order": 19,
       "crop": null
+    },
+    {
+      "id": "about_1793926388266_ufq6a",
+      "url": "/image/uploads/carousel-about/1793926388261_dk4i3.jpg",
+      "page": "about",
+      "sort_order": 20,
+      "crop": {
+        "x": 50,
+        "y": 63
+      }
     }
   ],
   "carousel_settings": [

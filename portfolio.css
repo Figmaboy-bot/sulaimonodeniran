@@ -298,16 +298,13 @@ main {
   text-decoration: none;
 }
 
-.case-card--s {
-  flex: 350 1 0;
+.case-card {
+  flex: var(--w, 574) 1 0;
 }
 
-.case-card--l {
-  flex: 574 1 0;
-}
-
-.case-card--f {
-  flex: 772 1 0;
+/* Last row that doesn't fill: keep each card at its natural width, left-aligned */
+.case-row--partial .case-card {
+  flex: 0 0 calc(var(--w) * 100% / 1704 - 4px);
 }
 
 /* 500px tall on the design's 1728px frame, growing with the screen past it
@@ -439,10 +436,10 @@ main {
     gap: 32px;
   }
 
-  .case-card--s,
-  .case-card--l,
-  .case-card--f {
+  .case-card,
+  .case-row--partial .case-card {
     flex: none;
+    width: 100%;
   }
 
   .case-card-img {

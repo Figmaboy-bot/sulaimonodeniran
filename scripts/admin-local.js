@@ -17,38 +17,41 @@
 // so nothing here should ever be reachable from another machine.
 
 const http = require('http');
-const fs   = require('fs');
+const fs = require('fs');
 const path = require('path');
 
-const ROOT     = path.resolve(__dirname, '..');
+const ROOT = path.resolve(__dirname, '..');
 const SNAPSHOT = path.join(ROOT, 'data', 'snapshot.json');
-const UPLOADS  = path.join(ROOT, 'image', 'uploads');
-const PORT     = Number(process.env.PORT) || 4173;
-const HOST     = '127.0.0.1';
+const UPLOADS = path.join(ROOT, 'image', 'uploads');
+const PORT = Number(process.env.PORT) || 4173;
+const HOST = '127.0.0.1';
 
-const TABLES = new Set(['projects', 'playground_items']);
+const TABLES = new Set(['projects', 'playground_items', 'carousel_images', 'carousel_settings']);
+// the column that identifies a row; every table not listed here uses id
+const KEYS = { carousel_settings: 'page' };
+const keyOf = (name) => KEYS[name] || 'id';
 // GitHub refuses files over 100 MB; stay well clear so a push never jams
 const MAX_UPLOAD = 50 * 1024 * 1024;
 
 const TYPES = {
   '.html': 'text/html; charset=utf-8',
-  '.css':  'text/css; charset=utf-8',
-  '.js':   'text/javascript; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8',
   '.json': 'application/json; charset=utf-8',
-  '.svg':  'image/svg+xml',
-  '.png':  'image/png',
-  '.jpg':  'image/jpeg',
+  '.svg': 'image/svg+xml',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.webp': 'image/webp',
-  '.gif':  'image/gif',
-  '.ico':  'image/x-icon',
-  '.mp4':  'video/mp4',
-  '.mov':  'video/quicktime',
+  '.gif': 'image/gif',
+  '.ico': 'image/x-icon',
+  '.mp4': 'video/mp4',
+  '.mov': 'video/quicktime',
   '.webm': 'video/webm',
   '.woff2': 'font/woff2',
   '.woff': 'font/woff'
 };
-const UPLOAD_EXT = new Set(['webp', 'jpg', 'jpeg', 'png', 'gif', 'svg', 'mp4', 'mov', 'webm']);
+const UPLOAD_EXT = new Set(['webp', 'jpg', 'jpeg', 'png', 'gif', 'svg', 'avif', 'mp4', 'mov', 'webm']);
 
 function readSnapshot() {
   return JSON.parse(fs.readFileSync(SNAPSHOT, 'utf8'));
@@ -105,9 +108,10 @@ function table(snap, name) {
 function upsert(body) {
   const snap = readSnapshot();
   const rows = table(snap, body.table);
+  const key = keyOf(body.table);
   (body.rows || []).forEach((row) => {
-    if (!row || !row.id) return;
-    const at = rows.findIndex((r) => String(r.id) === String(row.id));
+    if (!row || !row[key]) return;
+    const at = rows.findIndex((r) => String(r[key]) === String(row[key]));
     if (at === -1) rows.push(row);
     else rows[at] = Object.assign({}, rows[at], row);
   });
@@ -119,17 +123,18 @@ function upsert(body) {
 function remove(body) {
   const snap = readSnapshot();
   const rows = table(snap, body.table);
-  snap[body.table] = rows.filter((r) => String(r.id) !== String(body.id));
+  const key = keyOf(body.table);
+  snap[body.table] = rows.filter((r) => String(r[key]) !== String(body.id));
   writeSnapshot(snap);
   return { ok: true };
 }
 
 async function upload(req, url) {
   const folder = (url.searchParams.get('folder') || 'images').replace(/[^a-z0-9_-]/gi, '') || 'images';
-  const ext    = (url.searchParams.get('ext') || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  const ext = (url.searchParams.get('ext') || '').toLowerCase().replace(/[^a-z0-9]/g, '');
   if (!UPLOAD_EXT.has(ext)) throw Object.assign(new Error('Unsupported file type: .' + ext), { status: 400 });
   const data = await readBody(req, MAX_UPLOAD);
-  const dir  = path.join(UPLOADS, folder);
+  const dir = path.join(UPLOADS, folder);
   fs.mkdirSync(dir, { recursive: true });
   const name = Date.now() + '_' + Math.random().toString(36).slice(2, 7) + '.' + ext;
   fs.writeFileSync(path.join(dir, name), data);
@@ -142,7 +147,7 @@ function removeFile(body) {
   if (!rel.startsWith('/image/uploads/')) return { ok: true };
   const file = path.resolve(ROOT, '.' + rel);
   if (!file.startsWith(UPLOADS + path.sep)) return { ok: true };
-  try { fs.unlinkSync(file); } catch (e) {}
+  try { fs.unlinkSync(file); } catch (e) { }
   return { ok: true };
 }
 
@@ -175,7 +180,7 @@ function serveStatic(req, res, url) {
   const range = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range || '');
   if (range && (range[1] || range[2])) {
     let start = range[1] ? Number(range[1]) : Math.max(0, size - Number(range[2]));
-    let end   = range[1] && range[2] ? Math.min(Number(range[2]), size - 1) : size - 1;
+    let end = range[1] && range[2] ? Math.min(Number(range[2]), size - 1) : size - 1;
     if (start >= size || start > end) {
       res.writeHead(416, { 'Content-Range': 'bytes */' + size });
       res.end();
@@ -208,10 +213,10 @@ const server = http.createServer(async (req, res) => {
   try {
     if (url.pathname.startsWith('/api/local/')) {
       const route = req.method + ' ' + url.pathname.slice('/api/local/'.length);
-      if (route === 'GET ping')         return send(res, 200, { ok: true });
-      if (route === 'POST upsert')      return send(res, 200, upsert(await readJson(req)));
-      if (route === 'POST delete')      return send(res, 200, remove(await readJson(req)));
-      if (route === 'POST upload')      return send(res, 200, await upload(req, url));
+      if (route === 'GET ping') return send(res, 200, { ok: true });
+      if (route === 'POST upsert') return send(res, 200, upsert(await readJson(req)));
+      if (route === 'POST delete') return send(res, 200, remove(await readJson(req)));
+      if (route === 'POST upload') return send(res, 200, await upload(req, url));
       if (route === 'POST remove-file') return send(res, 200, removeFile(await readJson(req)));
       return send(res, 404, { error: 'Unknown route' });
     }

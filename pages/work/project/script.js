@@ -15,7 +15,7 @@
     try {
       var stored = localStorage.getItem('portfolio_projects');
       if (stored) source = JSON.parse(stored);
-    } catch (e) {}
+    } catch (e) { }
     return (source && source[id]) || null;
   }
 
@@ -61,38 +61,38 @@
 
     // ── Populate header + info ──────────────────
     document.title = project.title + ' — Sulaimon Odeniran';
-    document.getElementById('project-title').textContent    = project.title;
+    document.getElementById('project-title').textContent = project.title;
     var taglineEl = document.getElementById('project-tagline');
     taglineEl.textContent = project.tagline || '';
     if (!project.tagline) taglineEl.style.display = 'none';
-    document.getElementById('project-about').textContent    = project.about || '';
+    document.getElementById('project-about').textContent = project.about || '';
     document.getElementById('project-industry').textContent = project.industry || '';
-    document.getElementById('project-role').textContent     = project.role || '';
-    document.getElementById('project-year').textContent     = project.year || '';
+    document.getElementById('project-role').textContent = project.role || '';
+    document.getElementById('project-year').textContent = project.year || '';
 
     var liveBtn = document.getElementById('btn-live');
     var liveUrl = project.live_url || project.liveUrl;
     if (liveUrl) {
-      liveBtn.href          = liveUrl;
+      liveBtn.href = liveUrl;
       liveBtn.style.display = '';
     }
 
     // ── Build gallery ───────────────────────────
     var gallery = document.getElementById('project-gallery');
 
-    var SVG_PAUSE   = '<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>';
-    var SVG_PLAY    = '<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M8 5v14l11-7z"/></svg>';
+    var SVG_PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>';
+    var SVG_PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M8 5v14l11-7z"/></svg>';
     var SVG_VOL_OFF = '<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>';
-    var SVG_VOL_ON  = '<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
+    var SVG_VOL_ON = '<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>';
 
-    function makeMedia(mediaType, alt, eager, w, h) {
+    function makeMedia(mediaType, alt, eager, w, h, crop) {
       var wrap = document.createElement('div');
       wrap.className = 'gallery-img';
       var el;
       if (mediaType === 'video') {
         el = document.createElement('video');
-        el.muted    = true;
-        el.loop     = true;
+        el.muted = true;
+        el.loop = true;
         el.setAttribute('playsinline', '');
         // 'none' + no src until the observer below sees this element near the
         // viewport — previously 'auto' + autoplay meant every video in the
@@ -101,8 +101,8 @@
         el.setAttribute('preload', 'none');
       } else {
         el = document.createElement('img');
-        el.alt      = alt;
-        el.loading  = eager ? 'eager' : 'lazy';
+        el.alt = alt;
+        el.loading = eager ? 'eager' : 'lazy';
         el.decoding = 'async';
         // the cover is the largest contentful paint — fetch it ahead of the rest
         if (eager) el.setAttribute('fetchpriority', 'high');
@@ -113,13 +113,19 @@
         el.setAttribute('width', w);
         el.setAttribute('height', h);
       }
+      // focal point picked with the admin's Crop tool (needs object-fit: cover)
+      if (crop && crop.x != null) {
+        var cx = Math.min(100, Math.max(0, Number(crop.x)));
+        var cy = Math.min(100, Math.max(0, Number(crop.y)));
+        if (isFinite(cx) && isFinite(cy)) el.style.objectPosition = cx + '% ' + cy + '%';
+      }
       wrap.appendChild(el);
 
       if (mediaType === 'video') {
-        var controls     = document.createElement('div');
+        var controls = document.createElement('div');
         controls.className = 'video-controls';
 
-        var playBtn      = document.createElement('button');
+        var playBtn = document.createElement('button');
         playBtn.className = 'vc-btn vc-play-pause';
         playBtn.setAttribute('aria-label', 'Pause');
         playBtn.innerHTML = SVG_PAUSE;
@@ -130,7 +136,7 @@
         progressFill.className = 'vc-progress-fill';
         progressWrap.appendChild(progressFill);
 
-        var muteBtn      = document.createElement('button');
+        var muteBtn = document.createElement('button');
         muteBtn.className = 'vc-btn vc-mute';
         muteBtn.setAttribute('aria-label', 'Unmute');
         muteBtn.innerHTML = SVG_VOL_OFF;
@@ -169,7 +175,7 @@
         progressWrap.addEventListener('click', function (e) {
           e.stopPropagation();
           var rect = progressWrap.getBoundingClientRect();
-          var pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+          var pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
           if (el.duration) el.currentTime = pct * el.duration;
         });
       }
@@ -183,20 +189,20 @@
     // the time it scrolls into view, without loading everything up front.
     var lazyVideoObserver = 'IntersectionObserver' in window
       ? new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            var el = entry.target;
-            if (entry.isIntersecting) {
-              if (!el.src && el.dataset.src) {
-                // a picked cover frame is where playback opens
-                el.src = el.dataset.src + (el.dataset.start ? '#t=' + el.dataset.start : '');
-                el.load();
-              }
-              el.play().catch(function () {});
-            } else {
-              el.pause();
+        entries.forEach(function (entry) {
+          var el = entry.target;
+          if (entry.isIntersecting) {
+            if (!el.src && el.dataset.src) {
+              // a picked cover frame is where playback opens
+              el.src = el.dataset.src + (el.dataset.start ? '#t=' + el.dataset.start : '');
+              el.load();
             }
-          });
-        }, { rootMargin: '200px 0px' })
+            el.play().catch(function () { });
+          } else {
+            el.pause();
+          }
+        });
+      }, { rootMargin: '200px 0px' })
       : null;
 
     function resolveMedia(el, imageId, src, mediaType, poster, full, posterTime) {
@@ -217,7 +223,7 @@
           // no IntersectionObserver support — fall back to eager, still better
           // than nothing
           el.src = url + (posterTime ? '#t=' + Number(posterTime) : '');
-          el.play().catch(function () {});
+          el.play().catch(function () { });
         }
         return;
       }
@@ -262,7 +268,7 @@
       var open = false;
       return lines.map(function (line) {
         if (!line.trim()) return line;
-        var m    = line.match(LINE_PREFIX);
+        var m = line.match(LINE_PREFIX);
         var body = (open ? '**' : '') + m[2];
         if ((body.match(/\*\*/g) || []).length % 2) { body += '**'; open = true; }
         else open = false;
@@ -272,8 +278,8 @@
 
     function renderRich(text) {
       var lines = balanceBold(String(text).replace(/\r\n?/g, '\n').split('\n'));
-      var html  = '';
-      var i     = 0;
+      var html = '';
+      var i = 0;
 
       function blank(k) { return k < lines.length && !lines[k].trim(); }
       function nextFilled(k) { while (blank(k)) k++; return k; }
@@ -284,8 +290,8 @@
         var ordered = OL_ITEM.test(lines[i]);
         if (ordered || UL_ITEM.test(lines[i])) {
           var marker = ordered ? OL_ITEM : UL_ITEM;
-          var start  = ordered ? parseInt(lines[i].match(OL_ITEM)[1], 10) : 1;
-          var items  = [];
+          var start = ordered ? parseInt(lines[i].match(OL_ITEM)[1], 10) : 1;
+          var items = [];
           // an item runs until a blank line or the next marker; a blank line
           // only ends the list when the next text isn't another item
           while (i < lines.length) {
@@ -328,7 +334,7 @@
         c.className = 'text-col';
         if (col.heading) {
           var h = document.createElement('h2');
-          h.className   = 'meta-label';
+          h.className = 'meta-label';
           h.textContent = col.heading;
           c.appendChild(h);
         }
@@ -345,7 +351,7 @@
 
     // Consecutive images sit 12px apart; text rows and the info block get the
     // wider 40px rhythm of the content column, so images are grouped into stacks.
-    var info  = document.getElementById('project-info');
+    var info = document.getElementById('project-info');
     var stack = null;
     var infoPlaced = false;
 
@@ -375,7 +381,7 @@
       }
 
       if (section.type === 'full') {
-        var wrap = makeMedia(section.mediaType || 'image', section.alt || '', i === 0, section.w, section.h);
+        var wrap = makeMedia(section.mediaType || 'image', section.alt || '', i === 0, section.w, section.h, section.crop);
         resolveMedia(wrap.firstChild, section.imageId, section.src, section.mediaType, section.poster, section.full, section.posterTime);
         if (i === 0) {
           // the cover gets a fixed-height frame with the project info right below
@@ -400,7 +406,7 @@
           row.style.setProperty('--pair-ar', sum / ratios.length);
         }
         (section.images || []).forEach(function (item) {
-          var w = makeMedia(item.mediaType || 'image', item.alt || '', false, item.w, item.h);
+          var w = makeMedia(item.mediaType || 'image', item.alt || '', false, item.w, item.h, item.crop);
           resolveMedia(w.firstChild, item.imageId, item.src, item.mediaType, item.poster, item.full, item.posterTime);
           row.appendChild(w);
         });
@@ -452,7 +458,7 @@
     if (typeof sbSelect === 'function') {
       sbSelect('projects', 'select=id,title,coming_soon,sort_order&order=sort_order.asc', renderPager)
         .then(renderPager)
-        .catch(function () {});
+        .catch(function () { });
     }
 
     // ── Back button exit ────────────────────────
@@ -465,11 +471,11 @@
         var g = document.getElementById('project-gallery');
         if (g) {
           g.style.transition = 'transform 0.45s cubic-bezier(0.76,0,0.24,1), opacity 0.35s ease';
-          g.style.transform  = 'translateY(80px)';
-          g.style.opacity    = '0';
+          g.style.transform = 'translateY(80px)';
+          g.style.opacity = '0';
         }
         document.body.style.transition = 'opacity 0.4s ease';
-        document.body.style.opacity    = '0';
+        document.body.style.opacity = '0';
         setTimeout(function () { location.href = href; }, 440);
       });
     }

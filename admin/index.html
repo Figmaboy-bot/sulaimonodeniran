@@ -24,8 +24,18 @@
         <div class="lock-input-wrap">
           <input class="lock-input" id="lock-input" type="password" placeholder="Password" autofocus />
           <button class="lock-toggle" id="lock-toggle" type="button" aria-label="Toggle password visibility">
-            <svg id="icon-eye" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-            <svg id="icon-eye-off" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            <svg id="icon-eye" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            <svg id="icon-eye-off" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              style="display:none;">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
+              <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+              <line x1="1" y1="1" x2="23" y2="23" />
+            </svg>
           </button>
         </div>
         <p class="lock-error" id="lock-error"></p>
@@ -120,38 +130,38 @@
           <h3 class="section-title">Details</h3>
           <div class="field-grid">
             <div class="field field--full">
-              <label class="field-label">Slug (URL ID)</label>
-              <input class="field-input" id="f-slug" type="text" placeholder="e.g. coin-compass" />
-              <p class="field-hint">Used in the URL: /pages/work/project/?id=<span id="slug-preview">…</span></p>
+              <label class="field-label" for="f-slug">Slug</label>
+              <input class="field-input" id="f-slug" type="text" placeholder="e.g. fintech-dashboard" />
+              <p class="field-hint">URL id: <span id="slug-preview">…</span></p>
             </div>
             <div class="field field--full">
-              <label class="field-label">Title</label>
+              <label class="field-label" for="f-title">Title</label>
               <input class="field-input" id="f-title" type="text" placeholder="Project title" />
             </div>
             <div class="field field--full">
-              <label class="field-label">Tagline</label>
-              <input class="field-input" id="f-tagline" type="text" placeholder="One-line description" />
+              <label class="field-label" for="f-tagline">Tagline</label>
+              <input class="field-input" id="f-tagline" type="text" placeholder="One-line summary" />
             </div>
             <div class="field field--full">
-              <label class="field-label">About</label>
-              <textarea class="field-input field-textarea" id="f-about" rows="4" placeholder="Longer project description"></textarea>
+              <label class="field-label" for="f-about">About</label>
+              <textarea class="field-input field-textarea" id="f-about" rows="4"
+                placeholder="Longer description for the project page"></textarea>
             </div>
             <div class="field">
-              <label class="field-label">Industry</label>
+              <label class="field-label" for="f-industry">Industry</label>
               <input class="field-input" id="f-industry" type="text" placeholder="e.g. Fintech" />
             </div>
             <div class="field">
-              <label class="field-label">Role</label>
-              <input class="field-input" id="f-role" type="text" placeholder="e.g. UI/UX Design" />
+              <label class="field-label" for="f-role">Role</label>
+              <input class="field-input" id="f-role" type="text" placeholder="e.g. Product Designer" />
             </div>
             <div class="field">
-              <label class="field-label">Year</label>
-              <input class="field-input" id="f-year" type="text" placeholder="e.g. 2024" />
+              <label class="field-label" for="f-year">Year</label>
+              <input class="field-input" id="f-year" type="text" placeholder="e.g. 2025" />
             </div>
-            <div class="field field--full">
-              <label class="field-label">Live Project URL</label>
+            <div class="field">
+              <label class="field-label" for="f-live-url">Live link URL</label>
               <input class="field-input" id="f-live-url" type="url" placeholder="https://…" />
-              <p class="field-hint">Optional — shows a "View Live Project" button on the detail page</p>
             </div>
           </div>
         </section>
@@ -161,8 +171,23 @@
           <h3 class="section-title">Work Listing Card</h3>
           <div class="field-grid">
             <div class="field field--full">
-              <label class="field-label">Category · Year label</label>
+              <label class="field-label" for="f-meta">Category · Year label</label>
               <input class="field-input" id="f-meta" type="text" placeholder="e.g. Fintech · 2023" />
+            </div>
+            <div class="field">
+              <label class="field-label" for="f-cover-size">Cover size</label>
+              <select class="field-input" id="f-cover-size">
+                <option value="s">Small</option>
+                <option value="m">Medium</option>
+                <option value="l">Large</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field-label">Cover crop</label>
+              <div class="cover-crop-row">
+                <button type="button" class="btn-ghost" id="btn-crop-cover">Crop cover…</button>
+                <span class="field-hint" id="cover-crop-status">Centered</span>
+              </div>
             </div>
           </div>
         </section>
@@ -173,18 +198,27 @@
             <h3 class="section-title">Images &amp; text</h3>
             <button type="button" class="btn-add-text-top" id="btn-add-text-top">+ Add text</button>
           </div>
-          <p class="cover-hint gallery-hint">Cards show in page order. Use “+ Text after” on any image to put text right below it, and ← / → (or drag) to move anything. ★ sets the work listing cover.</p>
+          <p class="cover-hint gallery-hint">Cards show in page order. Use “+ Text after” on any image to put text right
+            below it, and ← / → (or drag) to move anything. ★ sets the work listing cover.</p>
 
           <!-- Upload zone -->
           <label class="upload-zone" id="upload-zone">
             <input type="file" id="upload-input" accept="image/*,video/*" multiple />
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
             <p class="upload-label">Drop images or videos here or <span>browse</span></p>
             <p class="upload-hint">PNG, JPG, WebP, MP4, MOV · Multiple files · up to 100 MB each</p>
           </label>
           <div class="upload-progress" id="gallery-upload-progress">
-            <div class="upload-progress-bar"><div class="upload-progress-fill" id="gallery-upload-fill"></div></div>
-            <div class="upload-progress-label"><span id="gallery-upload-name"></span><span id="gallery-upload-pct"></span></div>
+            <div class="upload-progress-bar">
+              <div class="upload-progress-fill" id="gallery-upload-fill"></div>
+            </div>
+            <div class="upload-progress-label"><span id="gallery-upload-name"></span><span
+                id="gallery-upload-pct"></span></div>
           </div>
 
           <!-- Image grid -->
@@ -235,7 +269,8 @@
             </div>
             <div class="field field--full">
               <label class="field-label">About</label>
-              <textarea class="field-input field-textarea" id="pg-f-about" rows="4" placeholder="Longer description for the item's page"></textarea>
+              <textarea class="field-input field-textarea" id="pg-f-about" rows="4"
+                placeholder="Longer description for the item's page"></textarea>
             </div>
             <div class="field field--full">
               <label class="field-label">Live Link URL</label>
@@ -249,7 +284,12 @@
           <p class="field-hint" style="margin-bottom:12px;">Shown on the card. Required for video items.</p>
           <label class="upload-zone" id="pg-cover-zone">
             <input type="file" id="pg-cover-input" accept="image/*" multiple />
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
             <p class="upload-label">Drop cover images here or <span>browse</span></p>
             <p class="upload-hint">PNG, JPG, WebP · Multiple files — extras become new items</p>
           </label>
@@ -260,12 +300,20 @@
           <p class="field-hint" style="margin-bottom:12px;">Shown in the modal when the card is clicked.</p>
           <label class="upload-zone" id="pg-upload-zone">
             <input type="file" id="pg-upload-input" accept="image/*,video/*" multiple />
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
             <p class="upload-label">Drop images or videos here or <span>browse</span></p>
-            <p class="upload-hint">PNG, JPG, WebP, MP4, MOV · Multiple files — extras become new items · up to 100 MB</p>
+            <p class="upload-hint">PNG, JPG, WebP, MP4, MOV · Multiple files — extras become new items · up to 100 MB
+            </p>
           </label>
           <div class="upload-progress" id="pg-upload-progress">
-            <div class="upload-progress-bar"><div class="upload-progress-fill" id="pg-upload-fill"></div></div>
+            <div class="upload-progress-bar">
+              <div class="upload-progress-fill" id="pg-upload-fill"></div>
+            </div>
             <div class="upload-progress-label"><span id="pg-upload-name"></span><span id="pg-upload-pct"></span></div>
           </div>
           <div class="pg-media-preview" id="pg-media-preview"></div>
@@ -308,7 +356,8 @@
             </div>
             <div class="field field--full">
               <label class="field-label">Description</label>
-              <textarea class="field-input field-textarea" id="art-f-desc" rows="3" placeholder="Short description"></textarea>
+              <textarea class="field-input field-textarea" id="art-f-desc" rows="3"
+                placeholder="Short description"></textarea>
             </div>
             <div class="field">
               <label class="field-label">Date</label>
@@ -324,7 +373,12 @@
           <h3 class="section-title">Cover Image</h3>
           <label class="upload-zone" id="art-cover-zone">
             <input type="file" id="art-cover-input" accept="image/*" multiple />
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
             <p class="upload-label">Drop cover images here or <span>browse</span></p>
             <p class="upload-hint">PNG, JPG, WebP · Multiple files — extras become new articles</p>
           </label>
@@ -359,15 +413,24 @@
           <p class="field-hint" style="margin-bottom:16px;">Images shown in the scrolling carousel on the homepage.</p>
           <label class="upload-zone" id="car-home-zone">
             <input type="file" id="car-home-input" accept="image/*,.heic,.heif,.avif,.tif,.tiff,.bmp" multiple />
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
             <p class="upload-label">Drop images here or <span>browse</span></p>
             <p class="upload-hint">PNG, JPG, WebP, HEIC, AVIF, TIFF, BMP · Multiple files · up to 100 MB each</p>
           </label>
           <div class="upload-progress" id="car-home-progress">
-            <div class="upload-progress-bar"><div class="upload-progress-fill" id="car-home-fill"></div></div>
+            <div class="upload-progress-bar">
+              <div class="upload-progress-fill" id="car-home-fill"></div>
+            </div>
             <div class="upload-progress-label"><span id="car-home-name"></span><span id="car-home-pct"></span></div>
           </div>
-          <div class="car-img-grid" id="car-home-grid"><p class="car-empty">Loading…</p></div>
+          <div class="car-img-grid" id="car-home-grid">
+            <p class="car-empty">Loading…</p>
+          </div>
         </section>
 
         <!-- About carousel section -->
@@ -381,18 +444,28 @@
               <button id="car-about-speed-save" class="btn-ghost btn-sm">Save</button>
             </div>
           </div>
-          <p class="field-hint" style="margin-bottom:16px;">Images shown in the scrolling carousel on the About page.</p>
+          <p class="field-hint" style="margin-bottom:16px;">Images shown in the scrolling carousel on the About page.
+          </p>
           <label class="upload-zone" id="car-about-zone">
             <input type="file" id="car-about-input" accept="image/*,.heic,.heif,.avif,.tif,.tiff,.bmp" multiple />
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
             <p class="upload-label">Drop images here or <span>browse</span></p>
             <p class="upload-hint">PNG, JPG, WebP, HEIC, AVIF, TIFF, BMP · Multiple files · up to 100 MB each</p>
           </label>
           <div class="upload-progress" id="car-about-progress">
-            <div class="upload-progress-bar"><div class="upload-progress-fill" id="car-about-fill"></div></div>
+            <div class="upload-progress-bar">
+              <div class="upload-progress-fill" id="car-about-fill"></div>
+            </div>
             <div class="upload-progress-label"><span id="car-about-name"></span><span id="car-about-pct"></span></div>
           </div>
-          <div class="car-img-grid" id="car-about-grid"><p class="car-empty">Loading…</p></div>
+          <div class="car-img-grid" id="car-about-grid">
+            <p class="car-empty">Loading…</p>
+          </div>
         </section>
 
       </div>
@@ -477,6 +550,24 @@
     </div>
   </div>
 
+  <div id="cover-crop-modal" class="crop-modal" role="dialog" aria-modal="true">
+    <div class="crop-modal-inner">
+      <div class="crop-modal-header">
+        <h3 class="crop-modal-title">Crop Cover</h3>
+        <p class="crop-modal-hint">Drag to choose what shows on the home page card. The frame matches the cover size you
+          picked.</p>
+      </div>
+      <div class="crop-canvas-wrap">
+        <div class="cover-crop-frame" id="cover-crop-frame"></div>
+      </div>
+      <div class="crop-modal-footer">
+        <button id="cover-crop-reset" class="btn-ghost">Reset</button>
+        <button id="cover-crop-cancel" class="btn-ghost">Cancel</button>
+        <button id="cover-crop-apply" class="btn-primary">Apply Crop</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Video cover-frame picker -->
   <div id="poster-modal" class="crop-modal" role="dialog" aria-modal="true">
     <div class="crop-modal-inner">
@@ -485,7 +576,8 @@
         <p class="crop-modal-hint">Scrub to the frame you want as the video's cover, or upload an image instead.</p>
       </div>
       <div class="crop-canvas-wrap">
-        <video id="poster-video" class="poster-video" muted playsinline controls preload="auto" crossorigin="anonymous"></video>
+        <video id="poster-video" class="poster-video" muted playsinline controls preload="auto"
+          crossorigin="anonymous"></video>
       </div>
       <div class="crop-modal-footer">
         <button id="poster-upload-btn" class="btn-ghost">Upload image…</button>
